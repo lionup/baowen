@@ -1,0 +1,2055 @@
+
+  ___  ____  ____  ____  ____ (R)
+ /__    /   ____/   /   ____/
+___/   /   /___/   /   /___/   13.1   Copyright 1985-2013 StataCorp LP
+  Statistics/Data Analysis            StataCorp
+                                      4905 Lakeway Drive
+     MP - Parallel Edition            College Station, Texas 77845 USA
+                                      800-STATA-PC        http://www.stata.com
+                                      979-696-4600        stata@stata.com
+                                      979-696-4601 (fax)
+
+5-user 4-core Stata network perpetual license:
+       Serial number:  501306214279
+         Licensed to:  Department of Economics
+                       University College London
+
+Notes:
+      1.  (-v# option or -set maxvar-) 5000 maximum variables
+      2.  Command line editing disabled
+      3.  Stata running in batch mode
+
+Note:  Your site can add messages to the introduction by editing the file
+       stata.msg in the directory where Stata is installed.
+
+. do impute.do 
+
+. cd ~/git/baowen/
+/data/uctprgu/git/baowen
+
+. 
+. log using log_mi, text replace
+(note: file /data/uctprgu/git/baowen/log_mi.log not found)
+-------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  /data/uctprgu/git/baowen/log_mi.log
+  log type:  text
+ opened on:   8 Dec 2014, 18:27:44
+
+. 
+. use missingwide, clear
+(SAVASTATA created this dataset on 01JAN2014)
+
+. mi set flong
+
+. mi xtset,clear
+
+. 
+. mi register imputed education skills spouse ///
+> smoking1989 alcoholgroup1989 logincomemedi1989 smoking1991 alcoholgroup1991 l
+> ogincomemedi1991 ///
+> smoking1993 alcoholgroup1993 logincomemedi1993 smoking1997 alcoholgroup1997 l
+> ogincomemedi1997 ///
+> smoking2000 alcoholgroup2000 logincomemedi2000 smoking2004 alcoholgroup2004 l
+> ogincomemedi2004 ///
+> smoking2006 alcoholgroup2006 logincomemedi2006 smoking2009 alcoholgroup2009 l
+> ogincomemedi2009 ///
+> smoking2011 alcoholgroup2011 logincomemedi2011 ///
+> waist1991 bmi1991 sysdrug1991 diadrug1991 ///
+> waist1993 bmi1993 sysdrug1993 diadrug1993 ///
+> waist1997 bmi1997 sysdrug1997 diadrug1997 ///
+> waist2000 bmi2000 sysdrug2000 diadrug2000 ///
+> waist2004 bmi2004 sysdrug2004 diadrug2004 ///
+> waist2006 bmi2006 sysdrug2006 diadrug2006 ///
+> waist2009 bmi2009 sysdrug2009 diadrug2009 ///
+> waist2011 bmi2011 sysdrug2011 diadrug2011 ///
+> energy1991 carbo1991 fat1991 protein1991 ///
+> energy1993 carbo1993 fat1993 protein1993 energy1997 carbo1997 fat1997 protein
+> 1997 ///
+> energy2000 carbo2000 fat2000 protein2000 energy2004 carbo2004 fat2004 protein
+> 2004 ///
+> energy2006 carbo2006 fat2006 protein2006 energy2009 carbo2009 fat2009 protein
+> 2009 ///
+> energy2011 carbo2011 fat2011 protein2011 ///
+> metstotal1997 metstotal2000 metstotal2004 metstotal2006 metstotal2009 metstot
+> al2011 
+(1254 m=0 obs. now marked as incomplete)
+
+. 
+. 
+.  mi impute chained ///
+> (mlogit, augment)spouse ///
+> (ologit) education skills ///
+> (regress) logincomemedi1989 logincomemedi1991 logincomemedi1993 logincomemedi
+> 1997 ///
+> logincomemedi2000 logincomemedi2004 logincomemedi2006 logincomemedi2009 login
+> comemedi2011 ///
+> waist1991 bmi1991 sysdrug1991 diadrug1991 ///
+> waist1993 bmi1993 sysdrug1993 diadrug1993 ///
+> waist1997 bmi1997 sysdrug1997 diadrug1997 ///
+> waist2000 bmi2000 sysdrug2000 diadrug2000 ///
+> waist2004 bmi2004 sysdrug2004 diadrug2004 ///
+> waist2006 bmi2006 sysdrug2006 diadrug2006 ///
+> waist2009 bmi2009 sysdrug2009 diadrug2009 ///
+> waist2011 bmi2011 sysdrug2011 diadrug2011 ///
+> energy1991 carbo1991 fat1991 protein1991 ///
+> energy1993 carbo1993 fat1993 protein1993 energy1997 carbo1997 fat1997 protein
+> 1997 ///
+> energy2000 carbo2000 fat2000 protein2000 energy2004 carbo2004 fat2004 protein
+> 2004 ///
+> energy2006 carbo2006 fat2006 protein2006 energy2009 carbo2009 fat2009 protein
+> 2009 ///
+> energy2011 carbo2011 fat2011 protein2011 ///
+> metstotal1997 metstotal2000 metstotal2004 metstotal2006 metstotal2009 metstot
+> al2011 ///
+> = gender retireageg birthcohort area provinces communityid ///
+> yrsinceretire1989 yrsinceretire1991 yrsinceretire1993 yrsinceretire1997 ///
+> yrsinceretire2000 yrsinceretire2004 yrsinceretire2006 yrsinceretire2009 yrsin
+> ceretire2011 ///
+> ,add(5) burn(10) rseed(1389) 
+
+Conditional models:
+         education: ologit education i.skills i.spouse logincomemedi2000
+                     carbo2000 fat2000 protein2000 energy2000 sysdrug2000
+                     diadrug2000 bmi2000 waist2000 logincomemedi1989
+                     logincomemedi1991 logincomemedi2004 energy2004 carbo2004
+                     fat2004 protein2004 logincomemedi2006 energy2006
+                     carbo2006 fat2006 protein2006 sysdrug2004 diadrug2004
+                     bmi2004 waist2004 sysdrug2006 diadrug2006
+                     logincomemedi1993 waist2006 carbo1991 fat1991
+                     protein1991 bmi2006 energy1991 energy1993 carbo1993
+                     fat1993 protein1993 logincomemedi1997 sysdrug1991
+                     diadrug1991 carbo1997 protein1997 energy1997 fat1997
+                     energy2009 carbo2009 fat2009 protein2009
+                     logincomemedi2009 bmi1991 sysdrug1993 diadrug1993
+                     sysdrug2009 diadrug2009 bmi1993 waist2009 bmi2009
+                     waist1993 sysdrug1997 diadrug1997 bmi1997 waist1997
+                     sysdrug2011 diadrug2011 waist2011 bmi2011 energy2011
+                     carbo2011 fat2011 protein2011 logincomemedi2011
+                     metstotal2006 metstotal2004 metstotal2009 metstotal2011
+                     metstotal2000 metstotal1997 waist1991 gender retireageg
+                     birthcohort area provinces communityid yrsinceretire1989
+                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
+                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
+                     yrsinceretire2009 yrsinceretire2011
+            skills: ologit skills i.education i.spouse logincomemedi2000
+                     carbo2000 fat2000 protein2000 energy2000 sysdrug2000
+                     diadrug2000 bmi2000 waist2000 logincomemedi1989
+                     logincomemedi1991 logincomemedi2004 energy2004 carbo2004
+                     fat2004 protein2004 logincomemedi2006 energy2006
+                     carbo2006 fat2006 protein2006 sysdrug2004 diadrug2004
+                     bmi2004 waist2004 sysdrug2006 diadrug2006
+                     logincomemedi1993 waist2006 carbo1991 fat1991
+                     protein1991 bmi2006 energy1991 energy1993 carbo1993
+                     fat1993 protein1993 logincomemedi1997 sysdrug1991
+                     diadrug1991 carbo1997 protein1997 energy1997 fat1997
+                     energy2009 carbo2009 fat2009 protein2009
+                     logincomemedi2009 bmi1991 sysdrug1993 diadrug1993
+                     sysdrug2009 diadrug2009 bmi1993 waist2009 bmi2009
+                     waist1993 sysdrug1997 diadrug1997 bmi1997 waist1997
+                     sysdrug2011 diadrug2011 waist2011 bmi2011 energy2011
+                     carbo2011 fat2011 protein2011 logincomemedi2011
+                     metstotal2006 metstotal2004 metstotal2009 metstotal2011
+                     metstotal2000 metstotal1997 waist1991 gender retireageg
+                     birthcohort area provinces communityid yrsinceretire1989
+                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
+                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
+                     yrsinceretire2009 yrsinceretire2011
+            spouse: mlogit spouse i.education i.skills logincomemedi2000
+                     carbo2000 fat2000 protein2000 energy2000 sysdrug2000
+                     diadrug2000 bmi2000 waist2000 logincomemedi1989
+                     logincomemedi1991 logincomemedi2004 energy2004 carbo2004
+                     fat2004 protein2004 logincomemedi2006 energy2006
+                     carbo2006 fat2006 protein2006 sysdrug2004 diadrug2004
+                     bmi2004 waist2004 sysdrug2006 diadrug2006
+                     logincomemedi1993 waist2006 carbo1991 fat1991
+                     protein1991 bmi2006 energy1991 energy1993 carbo1993
+                     fat1993 protein1993 logincomemedi1997 sysdrug1991
+                     diadrug1991 carbo1997 protein1997 energy1997 fat1997
+                     energy2009 carbo2009 fat2009 protein2009
+                     logincomemedi2009 bmi1991 sysdrug1993 diadrug1993
+                     sysdrug2009 diadrug2009 bmi1993 waist2009 bmi2009
+                     waist1993 sysdrug1997 diadrug1997 bmi1997 waist1997
+                     sysdrug2011 diadrug2011 waist2011 bmi2011 energy2011
+                     carbo2011 fat2011 protein2011 logincomemedi2011
+                     metstotal2006 metstotal2004 metstotal2009 metstotal2011
+                     metstotal2000 metstotal1997 waist1991 gender retireageg
+                     birthcohort area provinces communityid yrsinceretire1989
+                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
+                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
+                     yrsinceretire2009 yrsinceretire2011 , augment
+    logincome~2000: regress logincomemedi2000 i.education i.skills i.spouse
+                     carbo2000 fat2000 protein2000 energy2000 sysdrug2000
+                     diadrug2000 bmi2000 waist2000 logincomemedi1989
+                     logincomemedi1991 logincomemedi2004 energy2004 carbo2004
+                     fat2004 protein2004 logincomemedi2006 energy2006
+                     carbo2006 fat2006 protein2006 sysdrug2004 diadrug2004
+                     bmi2004 waist2004 sysdrug2006 diadrug2006
+                     logincomemedi1993 waist2006 carbo1991 fat1991
+                     protein1991 bmi2006 energy1991 energy1993 carbo1993
+                     fat1993 protein1993 logincomemedi1997 sysdrug1991
+                     diadrug1991 carbo1997 protein1997 energy1997 fat1997
+                     energy2009 carbo2009 fat2009 protein2009
+                     logincomemedi2009 bmi1991 sysdrug1993 diadrug1993
+                     sysdrug2009 diadrug2009 bmi1993 waist2009 bmi2009
+                     waist1993 sysdrug1997 diadrug1997 bmi1997 waist1997
+                     sysdrug2011 diadrug2011 waist2011 bmi2011 energy2011
+                     carbo2011 fat2011 protein2011 logincomemedi2011
+                     metstotal2006 metstotal2004 metstotal2009 metstotal2011
+                     metstotal2000 metstotal1997 waist1991 gender retireageg
+                     birthcohort area provinces communityid yrsinceretire1989
+                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
+                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
+                     yrsinceretire2009 yrsinceretire2011
+         carbo2000: regress carbo2000 i.education i.skills i.spouse
+                     logincomemedi2000 fat2000 protein2000 energy2000
+                     sysdrug2000 diadrug2000 bmi2000 waist2000
+                     logincomemedi1989 logincomemedi1991 logincomemedi2004
+                     energy2004 carbo2004 fat2004 protein2004
+                     logincomemedi2006 energy2006 carbo2006 fat2006
+                     protein2006 sysdrug2004 diadrug2004 bmi2004 waist2004
+                     sysdrug2006 diadrug2006 logincomemedi1993 waist2006
+                     carbo1991 fat1991 protein1991 bmi2006 energy1991
+                     energy1993 carbo1993 fat1993 protein1993
+                     logincomemedi1997 sysdrug1991 diadrug1991 carbo1997
+                     protein1997 energy1997 fat1997 energy2009 carbo2009
+                     fat2009 protein2009 logincomemedi2009 bmi1991
+                     sysdrug1993 diadrug1993 sysdrug2009 diadrug2009 bmi1993
+                     waist2009 bmi2009 waist1993 sysdrug1997 diadrug1997
+                     bmi1997 waist1997 sysdrug2011 diadrug2011 waist2011
+                     bmi2011 energy2011 carbo2011 fat2011 protein2011
+                     logincomemedi2011 metstotal2006 metstotal2004
+                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
+                     waist1991 gender retireageg birthcohort area provinces
+                     communityid yrsinceretire1989 yrsinceretire1991
+                     yrsinceretire1993 yrsinceretire1997 yrsinceretire2000
+                     yrsinceretire2004 yrsinceretire2006 yrsinceretire2009
+                     yrsinceretire2011
+           fat2000: regress fat2000 i.education i.skills i.spouse
+                     logincomemedi2000 carbo2000 protein2000 energy2000
+                     sysdrug2000 diadrug2000 bmi2000 waist2000
+                     logincomemedi1989 logincomemedi1991 logincomemedi2004
+                     energy2004 carbo2004 fat2004 protein2004
+                     logincomemedi2006 energy2006 carbo2006 fat2006
+                     protein2006 sysdrug2004 diadrug2004 bmi2004 waist2004
+                     sysdrug2006 diadrug2006 logincomemedi1993 waist2006
+                     carbo1991 fat1991 protein1991 bmi2006 energy1991
+                     energy1993 carbo1993 fat1993 protein1993
+                     logincomemedi1997 sysdrug1991 diadrug1991 carbo1997
+                     protein1997 energy1997 fat1997 energy2009 carbo2009
+                     fat2009 protein2009 logincomemedi2009 bmi1991
+                     sysdrug1993 diadrug1993 sysdrug2009 diadrug2009 bmi1993
+                     waist2009 bmi2009 waist1993 sysdrug1997 diadrug1997
+                     bmi1997 waist1997 sysdrug2011 diadrug2011 waist2011
+                     bmi2011 energy2011 carbo2011 fat2011 protein2011
+                     logincomemedi2011 metstotal2006 metstotal2004
+                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
+                     waist1991 gender retireageg birthcohort area provinces
+                     communityid yrsinceretire1989 yrsinceretire1991
+                     yrsinceretire1993 yrsinceretire1997 yrsinceretire2000
+                     yrsinceretire2004 yrsinceretire2006 yrsinceretire2009
+                     yrsinceretire2011
+       protein2000: regress protein2000 i.education i.skills i.spouse
+                     logincomemedi2000 carbo2000 fat2000 energy2000
+                     sysdrug2000 diadrug2000 bmi2000 waist2000
+                     logincomemedi1989 logincomemedi1991 logincomemedi2004
+                     energy2004 carbo2004 fat2004 protein2004
+                     logincomemedi2006 energy2006 carbo2006 fat2006
+                     protein2006 sysdrug2004 diadrug2004 bmi2004 waist2004
+                     sysdrug2006 diadrug2006 logincomemedi1993 waist2006
+                     carbo1991 fat1991 protein1991 bmi2006 energy1991
+                     energy1993 carbo1993 fat1993 protein1993
+                     logincomemedi1997 sysdrug1991 diadrug1991 carbo1997
+                     protein1997 energy1997 fat1997 energy2009 carbo2009
+                     fat2009 protein2009 logincomemedi2009 bmi1991
+                     sysdrug1993 diadrug1993 sysdrug2009 diadrug2009 bmi1993
+                     waist2009 bmi2009 waist1993 sysdrug1997 diadrug1997
+                     bmi1997 waist1997 sysdrug2011 diadrug2011 waist2011
+                     bmi2011 energy2011 carbo2011 fat2011 protein2011
+                     logincomemedi2011 metstotal2006 metstotal2004
+                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
+                     waist1991 gender retireageg birthcohort area provinces
+                     communityid yrsinceretire1989 yrsinceretire1991
+                     yrsinceretire1993 yrsinceretire1997 yrsinceretire2000
+                     yrsinceretire2004 yrsinceretire2006 yrsinceretire2009
+                     yrsinceretire2011
+        energy2000: regress energy2000 i.education i.skills i.spouse
+                     logincomemedi2000 carbo2000 fat2000 protein2000
+                     sysdrug2000 diadrug2000 bmi2000 waist2000
+                     logincomemedi1989 logincomemedi1991 logincomemedi2004
+                     energy2004 carbo2004 fat2004 protein2004
+                     logincomemedi2006 energy2006 carbo2006 fat2006
+                     protein2006 sysdrug2004 diadrug2004 bmi2004 waist2004
+                     sysdrug2006 diadrug2006 logincomemedi1993 waist2006
+                     carbo1991 fat1991 protein1991 bmi2006 energy1991
+                     energy1993 carbo1993 fat1993 protein1993
+                     logincomemedi1997 sysdrug1991 diadrug1991 carbo1997
+                     protein1997 energy1997 fat1997 energy2009 carbo2009
+                     fat2009 protein2009 logincomemedi2009 bmi1991
+                     sysdrug1993 diadrug1993 sysdrug2009 diadrug2009 bmi1993
+                     waist2009 bmi2009 waist1993 sysdrug1997 diadrug1997
+                     bmi1997 waist1997 sysdrug2011 diadrug2011 waist2011
+                     bmi2011 energy2011 carbo2011 fat2011 protein2011
+                     logincomemedi2011 metstotal2006 metstotal2004
+                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
+                     waist1991 gender retireageg birthcohort area provinces
+                     communityid yrsinceretire1989 yrsinceretire1991
+                     yrsinceretire1993 yrsinceretire1997 yrsinceretire2000
+                     yrsinceretire2004 yrsinceretire2006 yrsinceretire2009
+                     yrsinceretire2011
+       sysdrug2000: regress sysdrug2000 i.education i.skills i.spouse
+                     logincomemedi2000 carbo2000 fat2000 protein2000
+                     energy2000 diadrug2000 bmi2000 waist2000
+                     logincomemedi1989 logincomemedi1991 logincomemedi2004
+                     energy2004 carbo2004 fat2004 protein2004
+                     logincomemedi2006 energy2006 carbo2006 fat2006
+                     protein2006 sysdrug2004 diadrug2004 bmi2004 waist2004
+                     sysdrug2006 diadrug2006 logincomemedi1993 waist2006
+                     carbo1991 fat1991 protein1991 bmi2006 energy1991
+                     energy1993 carbo1993 fat1993 protein1993
+                     logincomemedi1997 sysdrug1991 diadrug1991 carbo1997
+                     protein1997 energy1997 fat1997 energy2009 carbo2009
+                     fat2009 protein2009 logincomemedi2009 bmi1991
+                     sysdrug1993 diadrug1993 sysdrug2009 diadrug2009 bmi1993
+                     waist2009 bmi2009 waist1993 sysdrug1997 diadrug1997
+                     bmi1997 waist1997 sysdrug2011 diadrug2011 waist2011
+                     bmi2011 energy2011 carbo2011 fat2011 protein2011
+                     logincomemedi2011 metstotal2006 metstotal2004
+                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
+                     waist1991 gender retireageg birthcohort area provinces
+                     communityid yrsinceretire1989 yrsinceretire1991
+                     yrsinceretire1993 yrsinceretire1997 yrsinceretire2000
+                     yrsinceretire2004 yrsinceretire2006 yrsinceretire2009
+                     yrsinceretire2011
+       diadrug2000: regress diadrug2000 i.education i.skills i.spouse
+                     logincomemedi2000 carbo2000 fat2000 protein2000
+                     energy2000 sysdrug2000 bmi2000 waist2000
+                     logincomemedi1989 logincomemedi1991 logincomemedi2004
+                     energy2004 carbo2004 fat2004 protein2004
+                     logincomemedi2006 energy2006 carbo2006 fat2006
+                     protein2006 sysdrug2004 diadrug2004 bmi2004 waist2004
+                     sysdrug2006 diadrug2006 logincomemedi1993 waist2006
+                     carbo1991 fat1991 protein1991 bmi2006 energy1991
+                     energy1993 carbo1993 fat1993 protein1993
+                     logincomemedi1997 sysdrug1991 diadrug1991 carbo1997
+                     protein1997 energy1997 fat1997 energy2009 carbo2009
+                     fat2009 protein2009 logincomemedi2009 bmi1991
+                     sysdrug1993 diadrug1993 sysdrug2009 diadrug2009 bmi1993
+                     waist2009 bmi2009 waist1993 sysdrug1997 diadrug1997
+                     bmi1997 waist1997 sysdrug2011 diadrug2011 waist2011
+                     bmi2011 energy2011 carbo2011 fat2011 protein2011
+                     logincomemedi2011 metstotal2006 metstotal2004
+                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
+                     waist1991 gender retireageg birthcohort area provinces
+                     communityid yrsinceretire1989 yrsinceretire1991
+                     yrsinceretire1993 yrsinceretire1997 yrsinceretire2000
+                     yrsinceretire2004 yrsinceretire2006 yrsinceretire2009
+                     yrsinceretire2011
+           bmi2000: regress bmi2000 i.education i.skills i.spouse
+                     logincomemedi2000 carbo2000 fat2000 protein2000
+                     energy2000 sysdrug2000 diadrug2000 waist2000
+                     logincomemedi1989 logincomemedi1991 logincomemedi2004
+                     energy2004 carbo2004 fat2004 protein2004
+                     logincomemedi2006 energy2006 carbo2006 fat2006
+                     protein2006 sysdrug2004 diadrug2004 bmi2004 waist2004
+                     sysdrug2006 diadrug2006 logincomemedi1993 waist2006
+                     carbo1991 fat1991 protein1991 bmi2006 energy1991
+                     energy1993 carbo1993 fat1993 protein1993
+                     logincomemedi1997 sysdrug1991 diadrug1991 carbo1997
+                     protein1997 energy1997 fat1997 energy2009 carbo2009
+                     fat2009 protein2009 logincomemedi2009 bmi1991
+                     sysdrug1993 diadrug1993 sysdrug2009 diadrug2009 bmi1993
+                     waist2009 bmi2009 waist1993 sysdrug1997 diadrug1997
+                     bmi1997 waist1997 sysdrug2011 diadrug2011 waist2011
+                     bmi2011 energy2011 carbo2011 fat2011 protein2011
+                     logincomemedi2011 metstotal2006 metstotal2004
+                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
+                     waist1991 gender retireageg birthcohort area provinces
+                     communityid yrsinceretire1989 yrsinceretire1991
+                     yrsinceretire1993 yrsinceretire1997 yrsinceretire2000
+                     yrsinceretire2004 yrsinceretire2006 yrsinceretire2009
+                     yrsinceretire2011
+         waist2000: regress waist2000 i.education i.skills i.spouse
+                     logincomemedi2000 carbo2000 fat2000 protein2000
+                     energy2000 sysdrug2000 diadrug2000 bmi2000
+                     logincomemedi1989 logincomemedi1991 logincomemedi2004
+                     energy2004 carbo2004 fat2004 protein2004
+                     logincomemedi2006 energy2006 carbo2006 fat2006
+                     protein2006 sysdrug2004 diadrug2004 bmi2004 waist2004
+                     sysdrug2006 diadrug2006 logincomemedi1993 waist2006
+                     carbo1991 fat1991 protein1991 bmi2006 energy1991
+                     energy1993 carbo1993 fat1993 protein1993
+                     logincomemedi1997 sysdrug1991 diadrug1991 carbo1997
+                     protein1997 energy1997 fat1997 energy2009 carbo2009
+                     fat2009 protein2009 logincomemedi2009 bmi1991
+                     sysdrug1993 diadrug1993 sysdrug2009 diadrug2009 bmi1993
+                     waist2009 bmi2009 waist1993 sysdrug1997 diadrug1997
+                     bmi1997 waist1997 sysdrug2011 diadrug2011 waist2011
+                     bmi2011 energy2011 carbo2011 fat2011 protein2011
+                     logincomemedi2011 metstotal2006 metstotal2004
+                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
+                     waist1991 gender retireageg birthcohort area provinces
+                     communityid yrsinceretire1989 yrsinceretire1991
+                     yrsinceretire1993 yrsinceretire1997 yrsinceretire2000
+                     yrsinceretire2004 yrsinceretire2006 yrsinceretire2009
+                     yrsinceretire2011
+    logincome~1989: regress logincomemedi1989 i.education i.skills i.spouse
+                     logincomemedi2000 carbo2000 fat2000 protein2000
+                     energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
+                     logincomemedi1991 logincomemedi2004 energy2004 carbo2004
+                     fat2004 protein2004 logincomemedi2006 energy2006
+                     carbo2006 fat2006 protein2006 sysdrug2004 diadrug2004
+                     bmi2004 waist2004 sysdrug2006 diadrug2006
+                     logincomemedi1993 waist2006 carbo1991 fat1991
+                     protein1991 bmi2006 energy1991 energy1993 carbo1993
+                     fat1993 protein1993 logincomemedi1997 sysdrug1991
+                     diadrug1991 carbo1997 protein1997 energy1997 fat1997
+                     energy2009 carbo2009 fat2009 protein2009
+                     logincomemedi2009 bmi1991 sysdrug1993 diadrug1993
+                     sysdrug2009 diadrug2009 bmi1993 waist2009 bmi2009
+                     waist1993 sysdrug1997 diadrug1997 bmi1997 waist1997
+                     sysdrug2011 diadrug2011 waist2011 bmi2011 energy2011
+                     carbo2011 fat2011 protein2011 logincomemedi2011
+                     metstotal2006 metstotal2004 metstotal2009 metstotal2011
+                     metstotal2000 metstotal1997 waist1991 gender retireageg
+                     birthcohort area provinces communityid yrsinceretire1989
+                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
+                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
+                     yrsinceretire2009 yrsinceretire2011
+    logincome~1991: regress logincomemedi1991 i.education i.skills i.spouse
+                     logincomemedi2000 carbo2000 fat2000 protein2000
+                     energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
+                     logincomemedi1989 logincomemedi2004 energy2004 carbo2004
+                     fat2004 protein2004 logincomemedi2006 energy2006
+                     carbo2006 fat2006 protein2006 sysdrug2004 diadrug2004
+                     bmi2004 waist2004 sysdrug2006 diadrug2006
+                     logincomemedi1993 waist2006 carbo1991 fat1991
+                     protein1991 bmi2006 energy1991 energy1993 carbo1993
+                     fat1993 protein1993 logincomemedi1997 sysdrug1991
+                     diadrug1991 carbo1997 protein1997 energy1997 fat1997
+                     energy2009 carbo2009 fat2009 protein2009
+                     logincomemedi2009 bmi1991 sysdrug1993 diadrug1993
+                     sysdrug2009 diadrug2009 bmi1993 waist2009 bmi2009
+                     waist1993 sysdrug1997 diadrug1997 bmi1997 waist1997
+                     sysdrug2011 diadrug2011 waist2011 bmi2011 energy2011
+                     carbo2011 fat2011 protein2011 logincomemedi2011
+                     metstotal2006 metstotal2004 metstotal2009 metstotal2011
+                     metstotal2000 metstotal1997 waist1991 gender retireageg
+                     birthcohort area provinces communityid yrsinceretire1989
+                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
+                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
+                     yrsinceretire2009 yrsinceretire2011
+    logincome~2004: regress logincomemedi2004 i.education i.skills i.spouse
+                     logincomemedi2000 carbo2000 fat2000 protein2000
+                     energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
+                     logincomemedi1989 logincomemedi1991 energy2004 carbo2004
+                     fat2004 protein2004 logincomemedi2006 energy2006
+                     carbo2006 fat2006 protein2006 sysdrug2004 diadrug2004
+                     bmi2004 waist2004 sysdrug2006 diadrug2006
+                     logincomemedi1993 waist2006 carbo1991 fat1991
+                     protein1991 bmi2006 energy1991 energy1993 carbo1993
+                     fat1993 protein1993 logincomemedi1997 sysdrug1991
+                     diadrug1991 carbo1997 protein1997 energy1997 fat1997
+                     energy2009 carbo2009 fat2009 protein2009
+                     logincomemedi2009 bmi1991 sysdrug1993 diadrug1993
+                     sysdrug2009 diadrug2009 bmi1993 waist2009 bmi2009
+                     waist1993 sysdrug1997 diadrug1997 bmi1997 waist1997
+                     sysdrug2011 diadrug2011 waist2011 bmi2011 energy2011
+                     carbo2011 fat2011 protein2011 logincomemedi2011
+                     metstotal2006 metstotal2004 metstotal2009 metstotal2011
+                     metstotal2000 metstotal1997 waist1991 gender retireageg
+                     birthcohort area provinces communityid yrsinceretire1989
+                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
+                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
+                     yrsinceretire2009 yrsinceretire2011
+        energy2004: regress energy2004 i.education i.skills i.spouse
+                     logincomemedi2000 carbo2000 fat2000 protein2000
+                     energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
+                     logincomemedi1989 logincomemedi1991 logincomemedi2004
+                     carbo2004 fat2004 protein2004 logincomemedi2006
+                     energy2006 carbo2006 fat2006 protein2006 sysdrug2004
+                     diadrug2004 bmi2004 waist2004 sysdrug2006 diadrug2006
+                     logincomemedi1993 waist2006 carbo1991 fat1991
+                     protein1991 bmi2006 energy1991 energy1993 carbo1993
+                     fat1993 protein1993 logincomemedi1997 sysdrug1991
+                     diadrug1991 carbo1997 protein1997 energy1997 fat1997
+                     energy2009 carbo2009 fat2009 protein2009
+                     logincomemedi2009 bmi1991 sysdrug1993 diadrug1993
+                     sysdrug2009 diadrug2009 bmi1993 waist2009 bmi2009
+                     waist1993 sysdrug1997 diadrug1997 bmi1997 waist1997
+                     sysdrug2011 diadrug2011 waist2011 bmi2011 energy2011
+                     carbo2011 fat2011 protein2011 logincomemedi2011
+                     metstotal2006 metstotal2004 metstotal2009 metstotal2011
+                     metstotal2000 metstotal1997 waist1991 gender retireageg
+                     birthcohort area provinces communityid yrsinceretire1989
+                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
+                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
+                     yrsinceretire2009 yrsinceretire2011
+         carbo2004: regress carbo2004 i.education i.skills i.spouse
+                     logincomemedi2000 carbo2000 fat2000 protein2000
+                     energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
+                     logincomemedi1989 logincomemedi1991 logincomemedi2004
+                     energy2004 fat2004 protein2004 logincomemedi2006
+                     energy2006 carbo2006 fat2006 protein2006 sysdrug2004
+                     diadrug2004 bmi2004 waist2004 sysdrug2006 diadrug2006
+                     logincomemedi1993 waist2006 carbo1991 fat1991
+                     protein1991 bmi2006 energy1991 energy1993 carbo1993
+                     fat1993 protein1993 logincomemedi1997 sysdrug1991
+                     diadrug1991 carbo1997 protein1997 energy1997 fat1997
+                     energy2009 carbo2009 fat2009 protein2009
+                     logincomemedi2009 bmi1991 sysdrug1993 diadrug1993
+                     sysdrug2009 diadrug2009 bmi1993 waist2009 bmi2009
+                     waist1993 sysdrug1997 diadrug1997 bmi1997 waist1997
+                     sysdrug2011 diadrug2011 waist2011 bmi2011 energy2011
+                     carbo2011 fat2011 protein2011 logincomemedi2011
+                     metstotal2006 metstotal2004 metstotal2009 metstotal2011
+                     metstotal2000 metstotal1997 waist1991 gender retireageg
+                     birthcohort area provinces communityid yrsinceretire1989
+                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
+                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
+                     yrsinceretire2009 yrsinceretire2011
+           fat2004: regress fat2004 i.education i.skills i.spouse
+                     logincomemedi2000 carbo2000 fat2000 protein2000
+                     energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
+                     logincomemedi1989 logincomemedi1991 logincomemedi2004
+                     energy2004 carbo2004 protein2004 logincomemedi2006
+                     energy2006 carbo2006 fat2006 protein2006 sysdrug2004
+                     diadrug2004 bmi2004 waist2004 sysdrug2006 diadrug2006
+                     logincomemedi1993 waist2006 carbo1991 fat1991
+                     protein1991 bmi2006 energy1991 energy1993 carbo1993
+                     fat1993 protein1993 logincomemedi1997 sysdrug1991
+                     diadrug1991 carbo1997 protein1997 energy1997 fat1997
+                     energy2009 carbo2009 fat2009 protein2009
+                     logincomemedi2009 bmi1991 sysdrug1993 diadrug1993
+                     sysdrug2009 diadrug2009 bmi1993 waist2009 bmi2009
+                     waist1993 sysdrug1997 diadrug1997 bmi1997 waist1997
+                     sysdrug2011 diadrug2011 waist2011 bmi2011 energy2011
+                     carbo2011 fat2011 protein2011 logincomemedi2011
+                     metstotal2006 metstotal2004 metstotal2009 metstotal2011
+                     metstotal2000 metstotal1997 waist1991 gender retireageg
+                     birthcohort area provinces communityid yrsinceretire1989
+                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
+                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
+                     yrsinceretire2009 yrsinceretire2011
+       protein2004: regress protein2004 i.education i.skills i.spouse
+                     logincomemedi2000 carbo2000 fat2000 protein2000
+                     energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
+                     logincomemedi1989 logincomemedi1991 logincomemedi2004
+                     energy2004 carbo2004 fat2004 logincomemedi2006
+                     energy2006 carbo2006 fat2006 protein2006 sysdrug2004
+                     diadrug2004 bmi2004 waist2004 sysdrug2006 diadrug2006
+                     logincomemedi1993 waist2006 carbo1991 fat1991
+                     protein1991 bmi2006 energy1991 energy1993 carbo1993
+                     fat1993 protein1993 logincomemedi1997 sysdrug1991
+                     diadrug1991 carbo1997 protein1997 energy1997 fat1997
+                     energy2009 carbo2009 fat2009 protein2009
+                     logincomemedi2009 bmi1991 sysdrug1993 diadrug1993
+                     sysdrug2009 diadrug2009 bmi1993 waist2009 bmi2009
+                     waist1993 sysdrug1997 diadrug1997 bmi1997 waist1997
+                     sysdrug2011 diadrug2011 waist2011 bmi2011 energy2011
+                     carbo2011 fat2011 protein2011 logincomemedi2011
+                     metstotal2006 metstotal2004 metstotal2009 metstotal2011
+                     metstotal2000 metstotal1997 waist1991 gender retireageg
+                     birthcohort area provinces communityid yrsinceretire1989
+                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
+                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
+                     yrsinceretire2009 yrsinceretire2011
+    logincome~2006: regress logincomemedi2006 i.education i.skills i.spouse
+                     logincomemedi2000 carbo2000 fat2000 protein2000
+                     energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
+                     logincomemedi1989 logincomemedi1991 logincomemedi2004
+                     energy2004 carbo2004 fat2004 protein2004 energy2006
+                     carbo2006 fat2006 protein2006 sysdrug2004 diadrug2004
+                     bmi2004 waist2004 sysdrug2006 diadrug2006
+                     logincomemedi1993 waist2006 carbo1991 fat1991
+                     protein1991 bmi2006 energy1991 energy1993 carbo1993
+                     fat1993 protein1993 logincomemedi1997 sysdrug1991
+                     diadrug1991 carbo1997 protein1997 energy1997 fat1997
+                     energy2009 carbo2009 fat2009 protein2009
+                     logincomemedi2009 bmi1991 sysdrug1993 diadrug1993
+                     sysdrug2009 diadrug2009 bmi1993 waist2009 bmi2009
+                     waist1993 sysdrug1997 diadrug1997 bmi1997 waist1997
+                     sysdrug2011 diadrug2011 waist2011 bmi2011 energy2011
+                     carbo2011 fat2011 protein2011 logincomemedi2011
+                     metstotal2006 metstotal2004 metstotal2009 metstotal2011
+                     metstotal2000 metstotal1997 waist1991 gender retireageg
+                     birthcohort area provinces communityid yrsinceretire1989
+                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
+                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
+                     yrsinceretire2009 yrsinceretire2011
+        energy2006: regress energy2006 i.education i.skills i.spouse
+                     logincomemedi2000 carbo2000 fat2000 protein2000
+                     energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
+                     logincomemedi1989 logincomemedi1991 logincomemedi2004
+                     energy2004 carbo2004 fat2004 protein2004
+                     logincomemedi2006 carbo2006 fat2006 protein2006
+                     sysdrug2004 diadrug2004 bmi2004 waist2004 sysdrug2006
+                     diadrug2006 logincomemedi1993 waist2006 carbo1991
+                     fat1991 protein1991 bmi2006 energy1991 energy1993
+                     carbo1993 fat1993 protein1993 logincomemedi1997
+                     sysdrug1991 diadrug1991 carbo1997 protein1997 energy1997
+                     fat1997 energy2009 carbo2009 fat2009 protein2009
+                     logincomemedi2009 bmi1991 sysdrug1993 diadrug1993
+                     sysdrug2009 diadrug2009 bmi1993 waist2009 bmi2009
+                     waist1993 sysdrug1997 diadrug1997 bmi1997 waist1997
+                     sysdrug2011 diadrug2011 waist2011 bmi2011 energy2011
+                     carbo2011 fat2011 protein2011 logincomemedi2011
+                     metstotal2006 metstotal2004 metstotal2009 metstotal2011
+                     metstotal2000 metstotal1997 waist1991 gender retireageg
+                     birthcohort area provinces communityid yrsinceretire1989
+                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
+                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
+                     yrsinceretire2009 yrsinceretire2011
+         carbo2006: regress carbo2006 i.education i.skills i.spouse
+                     logincomemedi2000 carbo2000 fat2000 protein2000
+                     energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
+                     logincomemedi1989 logincomemedi1991 logincomemedi2004
+                     energy2004 carbo2004 fat2004 protein2004
+                     logincomemedi2006 energy2006 fat2006 protein2006
+                     sysdrug2004 diadrug2004 bmi2004 waist2004 sysdrug2006
+                     diadrug2006 logincomemedi1993 waist2006 carbo1991
+                     fat1991 protein1991 bmi2006 energy1991 energy1993
+                     carbo1993 fat1993 protein1993 logincomemedi1997
+                     sysdrug1991 diadrug1991 carbo1997 protein1997 energy1997
+                     fat1997 energy2009 carbo2009 fat2009 protein2009
+                     logincomemedi2009 bmi1991 sysdrug1993 diadrug1993
+                     sysdrug2009 diadrug2009 bmi1993 waist2009 bmi2009
+                     waist1993 sysdrug1997 diadrug1997 bmi1997 waist1997
+                     sysdrug2011 diadrug2011 waist2011 bmi2011 energy2011
+                     carbo2011 fat2011 protein2011 logincomemedi2011
+                     metstotal2006 metstotal2004 metstotal2009 metstotal2011
+                     metstotal2000 metstotal1997 waist1991 gender retireageg
+                     birthcohort area provinces communityid yrsinceretire1989
+                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
+                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
+                     yrsinceretire2009 yrsinceretire2011
+           fat2006: regress fat2006 i.education i.skills i.spouse
+                     logincomemedi2000 carbo2000 fat2000 protein2000
+                     energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
+                     logincomemedi1989 logincomemedi1991 logincomemedi2004
+                     energy2004 carbo2004 fat2004 protein2004
+                     logincomemedi2006 energy2006 carbo2006 protein2006
+                     sysdrug2004 diadrug2004 bmi2004 waist2004 sysdrug2006
+                     diadrug2006 logincomemedi1993 waist2006 carbo1991
+                     fat1991 protein1991 bmi2006 energy1991 energy1993
+                     carbo1993 fat1993 protein1993 logincomemedi1997
+                     sysdrug1991 diadrug1991 carbo1997 protein1997 energy1997
+                     fat1997 energy2009 carbo2009 fat2009 protein2009
+                     logincomemedi2009 bmi1991 sysdrug1993 diadrug1993
+                     sysdrug2009 diadrug2009 bmi1993 waist2009 bmi2009
+                     waist1993 sysdrug1997 diadrug1997 bmi1997 waist1997
+                     sysdrug2011 diadrug2011 waist2011 bmi2011 energy2011
+                     carbo2011 fat2011 protein2011 logincomemedi2011
+                     metstotal2006 metstotal2004 metstotal2009 metstotal2011
+                     metstotal2000 metstotal1997 waist1991 gender retireageg
+                     birthcohort area provinces communityid yrsinceretire1989
+                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
+                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
+                     yrsinceretire2009 yrsinceretire2011
+       protein2006: regress protein2006 i.education i.skills i.spouse
+                     logincomemedi2000 carbo2000 fat2000 protein2000
+                     energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
+                     logincomemedi1989 logincomemedi1991 logincomemedi2004
+                     energy2004 carbo2004 fat2004 protein2004
+                     logincomemedi2006 energy2006 carbo2006 fat2006
+                     sysdrug2004 diadrug2004 bmi2004 waist2004 sysdrug2006
+                     diadrug2006 logincomemedi1993 waist2006 carbo1991
+                     fat1991 protein1991 bmi2006 energy1991 energy1993
+                     carbo1993 fat1993 protein1993 logincomemedi1997
+                     sysdrug1991 diadrug1991 carbo1997 protein1997 energy1997
+                     fat1997 energy2009 carbo2009 fat2009 protein2009
+                     logincomemedi2009 bmi1991 sysdrug1993 diadrug1993
+                     sysdrug2009 diadrug2009 bmi1993 waist2009 bmi2009
+                     waist1993 sysdrug1997 diadrug1997 bmi1997 waist1997
+                     sysdrug2011 diadrug2011 waist2011 bmi2011 energy2011
+                     carbo2011 fat2011 protein2011 logincomemedi2011
+                     metstotal2006 metstotal2004 metstotal2009 metstotal2011
+                     metstotal2000 metstotal1997 waist1991 gender retireageg
+                     birthcohort area provinces communityid yrsinceretire1989
+                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
+                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
+                     yrsinceretire2009 yrsinceretire2011
+       sysdrug2004: regress sysdrug2004 i.education i.skills i.spouse
+                     logincomemedi2000 carbo2000 fat2000 protein2000
+                     energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
+                     logincomemedi1989 logincomemedi1991 logincomemedi2004
+                     energy2004 carbo2004 fat2004 protein2004
+                     logincomemedi2006 energy2006 carbo2006 fat2006
+                     protein2006 diadrug2004 bmi2004 waist2004 sysdrug2006
+                     diadrug2006 logincomemedi1993 waist2006 carbo1991
+                     fat1991 protein1991 bmi2006 energy1991 energy1993
+                     carbo1993 fat1993 protein1993 logincomemedi1997
+                     sysdrug1991 diadrug1991 carbo1997 protein1997 energy1997
+                     fat1997 energy2009 carbo2009 fat2009 protein2009
+                     logincomemedi2009 bmi1991 sysdrug1993 diadrug1993
+                     sysdrug2009 diadrug2009 bmi1993 waist2009 bmi2009
+                     waist1993 sysdrug1997 diadrug1997 bmi1997 waist1997
+                     sysdrug2011 diadrug2011 waist2011 bmi2011 energy2011
+                     carbo2011 fat2011 protein2011 logincomemedi2011
+                     metstotal2006 metstotal2004 metstotal2009 metstotal2011
+                     metstotal2000 metstotal1997 waist1991 gender retireageg
+                     birthcohort area provinces communityid yrsinceretire1989
+                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
+                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
+                     yrsinceretire2009 yrsinceretire2011
+       diadrug2004: regress diadrug2004 i.education i.skills i.spouse
+                     logincomemedi2000 carbo2000 fat2000 protein2000
+                     energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
+                     logincomemedi1989 logincomemedi1991 logincomemedi2004
+                     energy2004 carbo2004 fat2004 protein2004
+                     logincomemedi2006 energy2006 carbo2006 fat2006
+                     protein2006 sysdrug2004 bmi2004 waist2004 sysdrug2006
+                     diadrug2006 logincomemedi1993 waist2006 carbo1991
+                     fat1991 protein1991 bmi2006 energy1991 energy1993
+                     carbo1993 fat1993 protein1993 logincomemedi1997
+                     sysdrug1991 diadrug1991 carbo1997 protein1997 energy1997
+                     fat1997 energy2009 carbo2009 fat2009 protein2009
+                     logincomemedi2009 bmi1991 sysdrug1993 diadrug1993
+                     sysdrug2009 diadrug2009 bmi1993 waist2009 bmi2009
+                     waist1993 sysdrug1997 diadrug1997 bmi1997 waist1997
+                     sysdrug2011 diadrug2011 waist2011 bmi2011 energy2011
+                     carbo2011 fat2011 protein2011 logincomemedi2011
+                     metstotal2006 metstotal2004 metstotal2009 metstotal2011
+                     metstotal2000 metstotal1997 waist1991 gender retireageg
+                     birthcohort area provinces communityid yrsinceretire1989
+                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
+                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
+                     yrsinceretire2009 yrsinceretire2011
+           bmi2004: regress bmi2004 i.education i.skills i.spouse
+                     logincomemedi2000 carbo2000 fat2000 protein2000
+                     energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
+                     logincomemedi1989 logincomemedi1991 logincomemedi2004
+                     energy2004 carbo2004 fat2004 protein2004
+                     logincomemedi2006 energy2006 carbo2006 fat2006
+                     protein2006 sysdrug2004 diadrug2004 waist2004
+                     sysdrug2006 diadrug2006 logincomemedi1993 waist2006
+                     carbo1991 fat1991 protein1991 bmi2006 energy1991
+                     energy1993 carbo1993 fat1993 protein1993
+                     logincomemedi1997 sysdrug1991 diadrug1991 carbo1997
+                     protein1997 energy1997 fat1997 energy2009 carbo2009
+                     fat2009 protein2009 logincomemedi2009 bmi1991
+                     sysdrug1993 diadrug1993 sysdrug2009 diadrug2009 bmi1993
+                     waist2009 bmi2009 waist1993 sysdrug1997 diadrug1997
+                     bmi1997 waist1997 sysdrug2011 diadrug2011 waist2011
+                     bmi2011 energy2011 carbo2011 fat2011 protein2011
+                     logincomemedi2011 metstotal2006 metstotal2004
+                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
+                     waist1991 gender retireageg birthcohort area provinces
+                     communityid yrsinceretire1989 yrsinceretire1991
+                     yrsinceretire1993 yrsinceretire1997 yrsinceretire2000
+                     yrsinceretire2004 yrsinceretire2006 yrsinceretire2009
+                     yrsinceretire2011
+         waist2004: regress waist2004 i.education i.skills i.spouse
+                     logincomemedi2000 carbo2000 fat2000 protein2000
+                     energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
+                     logincomemedi1989 logincomemedi1991 logincomemedi2004
+                     energy2004 carbo2004 fat2004 protein2004
+                     logincomemedi2006 energy2006 carbo2006 fat2006
+                     protein2006 sysdrug2004 diadrug2004 bmi2004 sysdrug2006
+                     diadrug2006 logincomemedi1993 waist2006 carbo1991
+                     fat1991 protein1991 bmi2006 energy1991 energy1993
+                     carbo1993 fat1993 protein1993 logincomemedi1997
+                     sysdrug1991 diadrug1991 carbo1997 protein1997 energy1997
+                     fat1997 energy2009 carbo2009 fat2009 protein2009
+                     logincomemedi2009 bmi1991 sysdrug1993 diadrug1993
+                     sysdrug2009 diadrug2009 bmi1993 waist2009 bmi2009
+                     waist1993 sysdrug1997 diadrug1997 bmi1997 waist1997
+                     sysdrug2011 diadrug2011 waist2011 bmi2011 energy2011
+                     carbo2011 fat2011 protein2011 logincomemedi2011
+                     metstotal2006 metstotal2004 metstotal2009 metstotal2011
+                     metstotal2000 metstotal1997 waist1991 gender retireageg
+                     birthcohort area provinces communityid yrsinceretire1989
+                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
+                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
+                     yrsinceretire2009 yrsinceretire2011
+       sysdrug2006: regress sysdrug2006 i.education i.skills i.spouse
+                     logincomemedi2000 carbo2000 fat2000 protein2000
+                     energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
+                     logincomemedi1989 logincomemedi1991 logincomemedi2004
+                     energy2004 carbo2004 fat2004 protein2004
+                     logincomemedi2006 energy2006 carbo2006 fat2006
+                     protein2006 sysdrug2004 diadrug2004 bmi2004 waist2004
+                     diadrug2006 logincomemedi1993 waist2006 carbo1991
+                     fat1991 protein1991 bmi2006 energy1991 energy1993
+                     carbo1993 fat1993 protein1993 logincomemedi1997
+                     sysdrug1991 diadrug1991 carbo1997 protein1997 energy1997
+                     fat1997 energy2009 carbo2009 fat2009 protein2009
+                     logincomemedi2009 bmi1991 sysdrug1993 diadrug1993
+                     sysdrug2009 diadrug2009 bmi1993 waist2009 bmi2009
+                     waist1993 sysdrug1997 diadrug1997 bmi1997 waist1997
+                     sysdrug2011 diadrug2011 waist2011 bmi2011 energy2011
+                     carbo2011 fat2011 protein2011 logincomemedi2011
+                     metstotal2006 metstotal2004 metstotal2009 metstotal2011
+                     metstotal2000 metstotal1997 waist1991 gender retireageg
+                     birthcohort area provinces communityid yrsinceretire1989
+                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
+                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
+                     yrsinceretire2009 yrsinceretire2011
+       diadrug2006: regress diadrug2006 i.education i.skills i.spouse
+                     logincomemedi2000 carbo2000 fat2000 protein2000
+                     energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
+                     logincomemedi1989 logincomemedi1991 logincomemedi2004
+                     energy2004 carbo2004 fat2004 protein2004
+                     logincomemedi2006 energy2006 carbo2006 fat2006
+                     protein2006 sysdrug2004 diadrug2004 bmi2004 waist2004
+                     sysdrug2006 logincomemedi1993 waist2006 carbo1991
+                     fat1991 protein1991 bmi2006 energy1991 energy1993
+                     carbo1993 fat1993 protein1993 logincomemedi1997
+                     sysdrug1991 diadrug1991 carbo1997 protein1997 energy1997
+                     fat1997 energy2009 carbo2009 fat2009 protein2009
+                     logincomemedi2009 bmi1991 sysdrug1993 diadrug1993
+                     sysdrug2009 diadrug2009 bmi1993 waist2009 bmi2009
+                     waist1993 sysdrug1997 diadrug1997 bmi1997 waist1997
+                     sysdrug2011 diadrug2011 waist2011 bmi2011 energy2011
+                     carbo2011 fat2011 protein2011 logincomemedi2011
+                     metstotal2006 metstotal2004 metstotal2009 metstotal2011
+                     metstotal2000 metstotal1997 waist1991 gender retireageg
+                     birthcohort area provinces communityid yrsinceretire1989
+                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
+                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
+                     yrsinceretire2009 yrsinceretire2011
+    logincome~1993: regress logincomemedi1993 i.education i.skills i.spouse
+                     logincomemedi2000 carbo2000 fat2000 protein2000
+                     energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
+                     logincomemedi1989 logincomemedi1991 logincomemedi2004
+                     energy2004 carbo2004 fat2004 protein2004
+                     logincomemedi2006 energy2006 carbo2006 fat2006
+                     protein2006 sysdrug2004 diadrug2004 bmi2004 waist2004
+                     sysdrug2006 diadrug2006 waist2006 carbo1991 fat1991
+                     protein1991 bmi2006 energy1991 energy1993 carbo1993
+                     fat1993 protein1993 logincomemedi1997 sysdrug1991
+                     diadrug1991 carbo1997 protein1997 energy1997 fat1997
+                     energy2009 carbo2009 fat2009 protein2009
+                     logincomemedi2009 bmi1991 sysdrug1993 diadrug1993
+                     sysdrug2009 diadrug2009 bmi1993 waist2009 bmi2009
+                     waist1993 sysdrug1997 diadrug1997 bmi1997 waist1997
+                     sysdrug2011 diadrug2011 waist2011 bmi2011 energy2011
+                     carbo2011 fat2011 protein2011 logincomemedi2011
+                     metstotal2006 metstotal2004 metstotal2009 metstotal2011
+                     metstotal2000 metstotal1997 waist1991 gender retireageg
+                     birthcohort area provinces communityid yrsinceretire1989
+                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
+                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
+                     yrsinceretire2009 yrsinceretire2011
+         waist2006: regress waist2006 i.education i.skills i.spouse
+                     logincomemedi2000 carbo2000 fat2000 protein2000
+                     energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
+                     logincomemedi1989 logincomemedi1991 logincomemedi2004
+                     energy2004 carbo2004 fat2004 protein2004
+                     logincomemedi2006 energy2006 carbo2006 fat2006
+                     protein2006 sysdrug2004 diadrug2004 bmi2004 waist2004
+                     sysdrug2006 diadrug2006 logincomemedi1993 carbo1991
+                     fat1991 protein1991 bmi2006 energy1991 energy1993
+                     carbo1993 fat1993 protein1993 logincomemedi1997
+                     sysdrug1991 diadrug1991 carbo1997 protein1997 energy1997
+                     fat1997 energy2009 carbo2009 fat2009 protein2009
+                     logincomemedi2009 bmi1991 sysdrug1993 diadrug1993
+                     sysdrug2009 diadrug2009 bmi1993 waist2009 bmi2009
+                     waist1993 sysdrug1997 diadrug1997 bmi1997 waist1997
+                     sysdrug2011 diadrug2011 waist2011 bmi2011 energy2011
+                     carbo2011 fat2011 protein2011 logincomemedi2011
+                     metstotal2006 metstotal2004 metstotal2009 metstotal2011
+                     metstotal2000 metstotal1997 waist1991 gender retireageg
+                     birthcohort area provinces communityid yrsinceretire1989
+                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
+                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
+                     yrsinceretire2009 yrsinceretire2011
+         carbo1991: regress carbo1991 i.education i.skills i.spouse
+                     logincomemedi2000 carbo2000 fat2000 protein2000
+                     energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
+                     logincomemedi1989 logincomemedi1991 logincomemedi2004
+                     energy2004 carbo2004 fat2004 protein2004
+                     logincomemedi2006 energy2006 carbo2006 fat2006
+                     protein2006 sysdrug2004 diadrug2004 bmi2004 waist2004
+                     sysdrug2006 diadrug2006 logincomemedi1993 waist2006
+                     fat1991 protein1991 bmi2006 energy1991 energy1993
+                     carbo1993 fat1993 protein1993 logincomemedi1997
+                     sysdrug1991 diadrug1991 carbo1997 protein1997 energy1997
+                     fat1997 energy2009 carbo2009 fat2009 protein2009
+                     logincomemedi2009 bmi1991 sysdrug1993 diadrug1993
+                     sysdrug2009 diadrug2009 bmi1993 waist2009 bmi2009
+                     waist1993 sysdrug1997 diadrug1997 bmi1997 waist1997
+                     sysdrug2011 diadrug2011 waist2011 bmi2011 energy2011
+                     carbo2011 fat2011 protein2011 logincomemedi2011
+                     metstotal2006 metstotal2004 metstotal2009 metstotal2011
+                     metstotal2000 metstotal1997 waist1991 gender retireageg
+                     birthcohort area provinces communityid yrsinceretire1989
+                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
+                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
+                     yrsinceretire2009 yrsinceretire2011
+           fat1991: regress fat1991 i.education i.skills i.spouse
+                     logincomemedi2000 carbo2000 fat2000 protein2000
+                     energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
+                     logincomemedi1989 logincomemedi1991 logincomemedi2004
+                     energy2004 carbo2004 fat2004 protein2004
+                     logincomemedi2006 energy2006 carbo2006 fat2006
+                     protein2006 sysdrug2004 diadrug2004 bmi2004 waist2004
+                     sysdrug2006 diadrug2006 logincomemedi1993 waist2006
+                     carbo1991 protein1991 bmi2006 energy1991 energy1993
+                     carbo1993 fat1993 protein1993 logincomemedi1997
+                     sysdrug1991 diadrug1991 carbo1997 protein1997 energy1997
+                     fat1997 energy2009 carbo2009 fat2009 protein2009
+                     logincomemedi2009 bmi1991 sysdrug1993 diadrug1993
+                     sysdrug2009 diadrug2009 bmi1993 waist2009 bmi2009
+                     waist1993 sysdrug1997 diadrug1997 bmi1997 waist1997
+                     sysdrug2011 diadrug2011 waist2011 bmi2011 energy2011
+                     carbo2011 fat2011 protein2011 logincomemedi2011
+                     metstotal2006 metstotal2004 metstotal2009 metstotal2011
+                     metstotal2000 metstotal1997 waist1991 gender retireageg
+                     birthcohort area provinces communityid yrsinceretire1989
+                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
+                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
+                     yrsinceretire2009 yrsinceretire2011
+       protein1991: regress protein1991 i.education i.skills i.spouse
+                     logincomemedi2000 carbo2000 fat2000 protein2000
+                     energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
+                     logincomemedi1989 logincomemedi1991 logincomemedi2004
+                     energy2004 carbo2004 fat2004 protein2004
+                     logincomemedi2006 energy2006 carbo2006 fat2006
+                     protein2006 sysdrug2004 diadrug2004 bmi2004 waist2004
+                     sysdrug2006 diadrug2006 logincomemedi1993 waist2006
+                     carbo1991 fat1991 bmi2006 energy1991 energy1993
+                     carbo1993 fat1993 protein1993 logincomemedi1997
+                     sysdrug1991 diadrug1991 carbo1997 protein1997 energy1997
+                     fat1997 energy2009 carbo2009 fat2009 protein2009
+                     logincomemedi2009 bmi1991 sysdrug1993 diadrug1993
+                     sysdrug2009 diadrug2009 bmi1993 waist2009 bmi2009
+                     waist1993 sysdrug1997 diadrug1997 bmi1997 waist1997
+                     sysdrug2011 diadrug2011 waist2011 bmi2011 energy2011
+                     carbo2011 fat2011 protein2011 logincomemedi2011
+                     metstotal2006 metstotal2004 metstotal2009 metstotal2011
+                     metstotal2000 metstotal1997 waist1991 gender retireageg
+                     birthcohort area provinces communityid yrsinceretire1989
+                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
+                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
+                     yrsinceretire2009 yrsinceretire2011
+           bmi2006: regress bmi2006 i.education i.skills i.spouse
+                     logincomemedi2000 carbo2000 fat2000 protein2000
+                     energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
+                     logincomemedi1989 logincomemedi1991 logincomemedi2004
+                     energy2004 carbo2004 fat2004 protein2004
+                     logincomemedi2006 energy2006 carbo2006 fat2006
+                     protein2006 sysdrug2004 diadrug2004 bmi2004 waist2004
+                     sysdrug2006 diadrug2006 logincomemedi1993 waist2006
+                     carbo1991 fat1991 protein1991 energy1991 energy1993
+                     carbo1993 fat1993 protein1993 logincomemedi1997
+                     sysdrug1991 diadrug1991 carbo1997 protein1997 energy1997
+                     fat1997 energy2009 carbo2009 fat2009 protein2009
+                     logincomemedi2009 bmi1991 sysdrug1993 diadrug1993
+                     sysdrug2009 diadrug2009 bmi1993 waist2009 bmi2009
+                     waist1993 sysdrug1997 diadrug1997 bmi1997 waist1997
+                     sysdrug2011 diadrug2011 waist2011 bmi2011 energy2011
+                     carbo2011 fat2011 protein2011 logincomemedi2011
+                     metstotal2006 metstotal2004 metstotal2009 metstotal2011
+                     metstotal2000 metstotal1997 waist1991 gender retireageg
+                     birthcohort area provinces communityid yrsinceretire1989
+                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
+                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
+                     yrsinceretire2009 yrsinceretire2011
+        energy1991: regress energy1991 i.education i.skills i.spouse
+                     logincomemedi2000 carbo2000 fat2000 protein2000
+                     energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
+                     logincomemedi1989 logincomemedi1991 logincomemedi2004
+                     energy2004 carbo2004 fat2004 protein2004
+                     logincomemedi2006 energy2006 carbo2006 fat2006
+                     protein2006 sysdrug2004 diadrug2004 bmi2004 waist2004
+                     sysdrug2006 diadrug2006 logincomemedi1993 waist2006
+                     carbo1991 fat1991 protein1991 bmi2006 energy1993
+                     carbo1993 fat1993 protein1993 logincomemedi1997
+                     sysdrug1991 diadrug1991 carbo1997 protein1997 energy1997
+                     fat1997 energy2009 carbo2009 fat2009 protein2009
+                     logincomemedi2009 bmi1991 sysdrug1993 diadrug1993
+                     sysdrug2009 diadrug2009 bmi1993 waist2009 bmi2009
+                     waist1993 sysdrug1997 diadrug1997 bmi1997 waist1997
+                     sysdrug2011 diadrug2011 waist2011 bmi2011 energy2011
+                     carbo2011 fat2011 protein2011 logincomemedi2011
+                     metstotal2006 metstotal2004 metstotal2009 metstotal2011
+                     metstotal2000 metstotal1997 waist1991 gender retireageg
+                     birthcohort area provinces communityid yrsinceretire1989
+                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
+                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
+                     yrsinceretire2009 yrsinceretire2011
+        energy1993: regress energy1993 i.education i.skills i.spouse
+                     logincomemedi2000 carbo2000 fat2000 protein2000
+                     energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
+                     logincomemedi1989 logincomemedi1991 logincomemedi2004
+                     energy2004 carbo2004 fat2004 protein2004
+                     logincomemedi2006 energy2006 carbo2006 fat2006
+                     protein2006 sysdrug2004 diadrug2004 bmi2004 waist2004
+                     sysdrug2006 diadrug2006 logincomemedi1993 waist2006
+                     carbo1991 fat1991 protein1991 bmi2006 energy1991
+                     carbo1993 fat1993 protein1993 logincomemedi1997
+                     sysdrug1991 diadrug1991 carbo1997 protein1997 energy1997
+                     fat1997 energy2009 carbo2009 fat2009 protein2009
+                     logincomemedi2009 bmi1991 sysdrug1993 diadrug1993
+                     sysdrug2009 diadrug2009 bmi1993 waist2009 bmi2009
+                     waist1993 sysdrug1997 diadrug1997 bmi1997 waist1997
+                     sysdrug2011 diadrug2011 waist2011 bmi2011 energy2011
+                     carbo2011 fat2011 protein2011 logincomemedi2011
+                     metstotal2006 metstotal2004 metstotal2009 metstotal2011
+                     metstotal2000 metstotal1997 waist1991 gender retireageg
+                     birthcohort area provinces communityid yrsinceretire1989
+                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
+                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
+                     yrsinceretire2009 yrsinceretire2011
+         carbo1993: regress carbo1993 i.education i.skills i.spouse
+                     logincomemedi2000 carbo2000 fat2000 protein2000
+                     energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
+                     logincomemedi1989 logincomemedi1991 logincomemedi2004
+                     energy2004 carbo2004 fat2004 protein2004
+                     logincomemedi2006 energy2006 carbo2006 fat2006
+                     protein2006 sysdrug2004 diadrug2004 bmi2004 waist2004
+                     sysdrug2006 diadrug2006 logincomemedi1993 waist2006
+                     carbo1991 fat1991 protein1991 bmi2006 energy1991
+                     energy1993 fat1993 protein1993 logincomemedi1997
+                     sysdrug1991 diadrug1991 carbo1997 protein1997 energy1997
+                     fat1997 energy2009 carbo2009 fat2009 protein2009
+                     logincomemedi2009 bmi1991 sysdrug1993 diadrug1993
+                     sysdrug2009 diadrug2009 bmi1993 waist2009 bmi2009
+                     waist1993 sysdrug1997 diadrug1997 bmi1997 waist1997
+                     sysdrug2011 diadrug2011 waist2011 bmi2011 energy2011
+                     carbo2011 fat2011 protein2011 logincomemedi2011
+                     metstotal2006 metstotal2004 metstotal2009 metstotal2011
+                     metstotal2000 metstotal1997 waist1991 gender retireageg
+                     birthcohort area provinces communityid yrsinceretire1989
+                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
+                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
+                     yrsinceretire2009 yrsinceretire2011
+           fat1993: regress fat1993 i.education i.skills i.spouse
+                     logincomemedi2000 carbo2000 fat2000 protein2000
+                     energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
+                     logincomemedi1989 logincomemedi1991 logincomemedi2004
+                     energy2004 carbo2004 fat2004 protein2004
+                     logincomemedi2006 energy2006 carbo2006 fat2006
+                     protein2006 sysdrug2004 diadrug2004 bmi2004 waist2004
+                     sysdrug2006 diadrug2006 logincomemedi1993 waist2006
+                     carbo1991 fat1991 protein1991 bmi2006 energy1991
+                     energy1993 carbo1993 protein1993 logincomemedi1997
+                     sysdrug1991 diadrug1991 carbo1997 protein1997 energy1997
+                     fat1997 energy2009 carbo2009 fat2009 protein2009
+                     logincomemedi2009 bmi1991 sysdrug1993 diadrug1993
+                     sysdrug2009 diadrug2009 bmi1993 waist2009 bmi2009
+                     waist1993 sysdrug1997 diadrug1997 bmi1997 waist1997
+                     sysdrug2011 diadrug2011 waist2011 bmi2011 energy2011
+                     carbo2011 fat2011 protein2011 logincomemedi2011
+                     metstotal2006 metstotal2004 metstotal2009 metstotal2011
+                     metstotal2000 metstotal1997 waist1991 gender retireageg
+                     birthcohort area provinces communityid yrsinceretire1989
+                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
+                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
+                     yrsinceretire2009 yrsinceretire2011
+       protein1993: regress protein1993 i.education i.skills i.spouse
+                     logincomemedi2000 carbo2000 fat2000 protein2000
+                     energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
+                     logincomemedi1989 logincomemedi1991 logincomemedi2004
+                     energy2004 carbo2004 fat2004 protein2004
+                     logincomemedi2006 energy2006 carbo2006 fat2006
+                     protein2006 sysdrug2004 diadrug2004 bmi2004 waist2004
+                     sysdrug2006 diadrug2006 logincomemedi1993 waist2006
+                     carbo1991 fat1991 protein1991 bmi2006 energy1991
+                     energy1993 carbo1993 fat1993 logincomemedi1997
+                     sysdrug1991 diadrug1991 carbo1997 protein1997 energy1997
+                     fat1997 energy2009 carbo2009 fat2009 protein2009
+                     logincomemedi2009 bmi1991 sysdrug1993 diadrug1993
+                     sysdrug2009 diadrug2009 bmi1993 waist2009 bmi2009
+                     waist1993 sysdrug1997 diadrug1997 bmi1997 waist1997
+                     sysdrug2011 diadrug2011 waist2011 bmi2011 energy2011
+                     carbo2011 fat2011 protein2011 logincomemedi2011
+                     metstotal2006 metstotal2004 metstotal2009 metstotal2011
+                     metstotal2000 metstotal1997 waist1991 gender retireageg
+                     birthcohort area provinces communityid yrsinceretire1989
+                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
+                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
+                     yrsinceretire2009 yrsinceretire2011
+    logincome~1997: regress logincomemedi1997 i.education i.skills i.spouse
+                     logincomemedi2000 carbo2000 fat2000 protein2000
+                     energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
+                     logincomemedi1989 logincomemedi1991 logincomemedi2004
+                     energy2004 carbo2004 fat2004 protein2004
+                     logincomemedi2006 energy2006 carbo2006 fat2006
+                     protein2006 sysdrug2004 diadrug2004 bmi2004 waist2004
+                     sysdrug2006 diadrug2006 logincomemedi1993 waist2006
+                     carbo1991 fat1991 protein1991 bmi2006 energy1991
+                     energy1993 carbo1993 fat1993 protein1993 sysdrug1991
+                     diadrug1991 carbo1997 protein1997 energy1997 fat1997
+                     energy2009 carbo2009 fat2009 protein2009
+                     logincomemedi2009 bmi1991 sysdrug1993 diadrug1993
+                     sysdrug2009 diadrug2009 bmi1993 waist2009 bmi2009
+                     waist1993 sysdrug1997 diadrug1997 bmi1997 waist1997
+                     sysdrug2011 diadrug2011 waist2011 bmi2011 energy2011
+                     carbo2011 fat2011 protein2011 logincomemedi2011
+                     metstotal2006 metstotal2004 metstotal2009 metstotal2011
+                     metstotal2000 metstotal1997 waist1991 gender retireageg
+                     birthcohort area provinces communityid yrsinceretire1989
+                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
+                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
+                     yrsinceretire2009 yrsinceretire2011
+       sysdrug1991: regress sysdrug1991 i.education i.skills i.spouse
+                     logincomemedi2000 carbo2000 fat2000 protein2000
+                     energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
+                     logincomemedi1989 logincomemedi1991 logincomemedi2004
+                     energy2004 carbo2004 fat2004 protein2004
+                     logincomemedi2006 energy2006 carbo2006 fat2006
+                     protein2006 sysdrug2004 diadrug2004 bmi2004 waist2004
+                     sysdrug2006 diadrug2006 logincomemedi1993 waist2006
+                     carbo1991 fat1991 protein1991 bmi2006 energy1991
+                     energy1993 carbo1993 fat1993 protein1993
+                     logincomemedi1997 diadrug1991 carbo1997 protein1997
+                     energy1997 fat1997 energy2009 carbo2009 fat2009
+                     protein2009 logincomemedi2009 bmi1991 sysdrug1993
+                     diadrug1993 sysdrug2009 diadrug2009 bmi1993 waist2009
+                     bmi2009 waist1993 sysdrug1997 diadrug1997 bmi1997
+                     waist1997 sysdrug2011 diadrug2011 waist2011 bmi2011
+                     energy2011 carbo2011 fat2011 protein2011
+                     logincomemedi2011 metstotal2006 metstotal2004
+                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
+                     waist1991 gender retireageg birthcohort area provinces
+                     communityid yrsinceretire1989 yrsinceretire1991
+                     yrsinceretire1993 yrsinceretire1997 yrsinceretire2000
+                     yrsinceretire2004 yrsinceretire2006 yrsinceretire2009
+                     yrsinceretire2011
+       diadrug1991: regress diadrug1991 i.education i.skills i.spouse
+                     logincomemedi2000 carbo2000 fat2000 protein2000
+                     energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
+                     logincomemedi1989 logincomemedi1991 logincomemedi2004
+                     energy2004 carbo2004 fat2004 protein2004
+                     logincomemedi2006 energy2006 carbo2006 fat2006
+                     protein2006 sysdrug2004 diadrug2004 bmi2004 waist2004
+                     sysdrug2006 diadrug2006 logincomemedi1993 waist2006
+                     carbo1991 fat1991 protein1991 bmi2006 energy1991
+                     energy1993 carbo1993 fat1993 protein1993
+                     logincomemedi1997 sysdrug1991 carbo1997 protein1997
+                     energy1997 fat1997 energy2009 carbo2009 fat2009
+                     protein2009 logincomemedi2009 bmi1991 sysdrug1993
+                     diadrug1993 sysdrug2009 diadrug2009 bmi1993 waist2009
+                     bmi2009 waist1993 sysdrug1997 diadrug1997 bmi1997
+                     waist1997 sysdrug2011 diadrug2011 waist2011 bmi2011
+                     energy2011 carbo2011 fat2011 protein2011
+                     logincomemedi2011 metstotal2006 metstotal2004
+                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
+                     waist1991 gender retireageg birthcohort area provinces
+                     communityid yrsinceretire1989 yrsinceretire1991
+                     yrsinceretire1993 yrsinceretire1997 yrsinceretire2000
+                     yrsinceretire2004 yrsinceretire2006 yrsinceretire2009
+                     yrsinceretire2011
+         carbo1997: regress carbo1997 i.education i.skills i.spouse
+                     logincomemedi2000 carbo2000 fat2000 protein2000
+                     energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
+                     logincomemedi1989 logincomemedi1991 logincomemedi2004
+                     energy2004 carbo2004 fat2004 protein2004
+                     logincomemedi2006 energy2006 carbo2006 fat2006
+                     protein2006 sysdrug2004 diadrug2004 bmi2004 waist2004
+                     sysdrug2006 diadrug2006 logincomemedi1993 waist2006
+                     carbo1991 fat1991 protein1991 bmi2006 energy1991
+                     energy1993 carbo1993 fat1993 protein1993
+                     logincomemedi1997 sysdrug1991 diadrug1991 protein1997
+                     energy1997 fat1997 energy2009 carbo2009 fat2009
+                     protein2009 logincomemedi2009 bmi1991 sysdrug1993
+                     diadrug1993 sysdrug2009 diadrug2009 bmi1993 waist2009
+                     bmi2009 waist1993 sysdrug1997 diadrug1997 bmi1997
+                     waist1997 sysdrug2011 diadrug2011 waist2011 bmi2011
+                     energy2011 carbo2011 fat2011 protein2011
+                     logincomemedi2011 metstotal2006 metstotal2004
+                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
+                     waist1991 gender retireageg birthcohort area provinces
+                     communityid yrsinceretire1989 yrsinceretire1991
+                     yrsinceretire1993 yrsinceretire1997 yrsinceretire2000
+                     yrsinceretire2004 yrsinceretire2006 yrsinceretire2009
+                     yrsinceretire2011
+       protein1997: regress protein1997 i.education i.skills i.spouse
+                     logincomemedi2000 carbo2000 fat2000 protein2000
+                     energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
+                     logincomemedi1989 logincomemedi1991 logincomemedi2004
+                     energy2004 carbo2004 fat2004 protein2004
+                     logincomemedi2006 energy2006 carbo2006 fat2006
+                     protein2006 sysdrug2004 diadrug2004 bmi2004 waist2004
+                     sysdrug2006 diadrug2006 logincomemedi1993 waist2006
+                     carbo1991 fat1991 protein1991 bmi2006 energy1991
+                     energy1993 carbo1993 fat1993 protein1993
+                     logincomemedi1997 sysdrug1991 diadrug1991 carbo1997
+                     energy1997 fat1997 energy2009 carbo2009 fat2009
+                     protein2009 logincomemedi2009 bmi1991 sysdrug1993
+                     diadrug1993 sysdrug2009 diadrug2009 bmi1993 waist2009
+                     bmi2009 waist1993 sysdrug1997 diadrug1997 bmi1997
+                     waist1997 sysdrug2011 diadrug2011 waist2011 bmi2011
+                     energy2011 carbo2011 fat2011 protein2011
+                     logincomemedi2011 metstotal2006 metstotal2004
+                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
+                     waist1991 gender retireageg birthcohort area provinces
+                     communityid yrsinceretire1989 yrsinceretire1991
+                     yrsinceretire1993 yrsinceretire1997 yrsinceretire2000
+                     yrsinceretire2004 yrsinceretire2006 yrsinceretire2009
+                     yrsinceretire2011
+        energy1997: regress energy1997 i.education i.skills i.spouse
+                     logincomemedi2000 carbo2000 fat2000 protein2000
+                     energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
+                     logincomemedi1989 logincomemedi1991 logincomemedi2004
+                     energy2004 carbo2004 fat2004 protein2004
+                     logincomemedi2006 energy2006 carbo2006 fat2006
+                     protein2006 sysdrug2004 diadrug2004 bmi2004 waist2004
+                     sysdrug2006 diadrug2006 logincomemedi1993 waist2006
+                     carbo1991 fat1991 protein1991 bmi2006 energy1991
+                     energy1993 carbo1993 fat1993 protein1993
+                     logincomemedi1997 sysdrug1991 diadrug1991 carbo1997
+                     protein1997 fat1997 energy2009 carbo2009 fat2009
+                     protein2009 logincomemedi2009 bmi1991 sysdrug1993
+                     diadrug1993 sysdrug2009 diadrug2009 bmi1993 waist2009
+                     bmi2009 waist1993 sysdrug1997 diadrug1997 bmi1997
+                     waist1997 sysdrug2011 diadrug2011 waist2011 bmi2011
+                     energy2011 carbo2011 fat2011 protein2011
+                     logincomemedi2011 metstotal2006 metstotal2004
+                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
+                     waist1991 gender retireageg birthcohort area provinces
+                     communityid yrsinceretire1989 yrsinceretire1991
+                     yrsinceretire1993 yrsinceretire1997 yrsinceretire2000
+                     yrsinceretire2004 yrsinceretire2006 yrsinceretire2009
+                     yrsinceretire2011
+           fat1997: regress fat1997 i.education i.skills i.spouse
+                     logincomemedi2000 carbo2000 fat2000 protein2000
+                     energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
+                     logincomemedi1989 logincomemedi1991 logincomemedi2004
+                     energy2004 carbo2004 fat2004 protein2004
+                     logincomemedi2006 energy2006 carbo2006 fat2006
+                     protein2006 sysdrug2004 diadrug2004 bmi2004 waist2004
+                     sysdrug2006 diadrug2006 logincomemedi1993 waist2006
+                     carbo1991 fat1991 protein1991 bmi2006 energy1991
+                     energy1993 carbo1993 fat1993 protein1993
+                     logincomemedi1997 sysdrug1991 diadrug1991 carbo1997
+                     protein1997 energy1997 energy2009 carbo2009 fat2009
+                     protein2009 logincomemedi2009 bmi1991 sysdrug1993
+                     diadrug1993 sysdrug2009 diadrug2009 bmi1993 waist2009
+                     bmi2009 waist1993 sysdrug1997 diadrug1997 bmi1997
+                     waist1997 sysdrug2011 diadrug2011 waist2011 bmi2011
+                     energy2011 carbo2011 fat2011 protein2011
+                     logincomemedi2011 metstotal2006 metstotal2004
+                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
+                     waist1991 gender retireageg birthcohort area provinces
+                     communityid yrsinceretire1989 yrsinceretire1991
+                     yrsinceretire1993 yrsinceretire1997 yrsinceretire2000
+                     yrsinceretire2004 yrsinceretire2006 yrsinceretire2009
+                     yrsinceretire2011
+        energy2009: regress energy2009 i.education i.skills i.spouse
+                     logincomemedi2000 carbo2000 fat2000 protein2000
+                     energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
+                     logincomemedi1989 logincomemedi1991 logincomemedi2004
+                     energy2004 carbo2004 fat2004 protein2004
+                     logincomemedi2006 energy2006 carbo2006 fat2006
+                     protein2006 sysdrug2004 diadrug2004 bmi2004 waist2004
+                     sysdrug2006 diadrug2006 logincomemedi1993 waist2006
+                     carbo1991 fat1991 protein1991 bmi2006 energy1991
+                     energy1993 carbo1993 fat1993 protein1993
+                     logincomemedi1997 sysdrug1991 diadrug1991 carbo1997
+                     protein1997 energy1997 fat1997 carbo2009 fat2009
+                     protein2009 logincomemedi2009 bmi1991 sysdrug1993
+                     diadrug1993 sysdrug2009 diadrug2009 bmi1993 waist2009
+                     bmi2009 waist1993 sysdrug1997 diadrug1997 bmi1997
+                     waist1997 sysdrug2011 diadrug2011 waist2011 bmi2011
+                     energy2011 carbo2011 fat2011 protein2011
+                     logincomemedi2011 metstotal2006 metstotal2004
+                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
+                     waist1991 gender retireageg birthcohort area provinces
+                     communityid yrsinceretire1989 yrsinceretire1991
+                     yrsinceretire1993 yrsinceretire1997 yrsinceretire2000
+                     yrsinceretire2004 yrsinceretire2006 yrsinceretire2009
+                     yrsinceretire2011
+         carbo2009: regress carbo2009 i.education i.skills i.spouse
+                     logincomemedi2000 carbo2000 fat2000 protein2000
+                     energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
+                     logincomemedi1989 logincomemedi1991 logincomemedi2004
+                     energy2004 carbo2004 fat2004 protein2004
+                     logincomemedi2006 energy2006 carbo2006 fat2006
+                     protein2006 sysdrug2004 diadrug2004 bmi2004 waist2004
+                     sysdrug2006 diadrug2006 logincomemedi1993 waist2006
+                     carbo1991 fat1991 protein1991 bmi2006 energy1991
+                     energy1993 carbo1993 fat1993 protein1993
+                     logincomemedi1997 sysdrug1991 diadrug1991 carbo1997
+                     protein1997 energy1997 fat1997 energy2009 fat2009
+                     protein2009 logincomemedi2009 bmi1991 sysdrug1993
+                     diadrug1993 sysdrug2009 diadrug2009 bmi1993 waist2009
+                     bmi2009 waist1993 sysdrug1997 diadrug1997 bmi1997
+                     waist1997 sysdrug2011 diadrug2011 waist2011 bmi2011
+                     energy2011 carbo2011 fat2011 protein2011
+                     logincomemedi2011 metstotal2006 metstotal2004
+                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
+                     waist1991 gender retireageg birthcohort area provinces
+                     communityid yrsinceretire1989 yrsinceretire1991
+                     yrsinceretire1993 yrsinceretire1997 yrsinceretire2000
+                     yrsinceretire2004 yrsinceretire2006 yrsinceretire2009
+                     yrsinceretire2011
+           fat2009: regress fat2009 i.education i.skills i.spouse
+                     logincomemedi2000 carbo2000 fat2000 protein2000
+                     energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
+                     logincomemedi1989 logincomemedi1991 logincomemedi2004
+                     energy2004 carbo2004 fat2004 protein2004
+                     logincomemedi2006 energy2006 carbo2006 fat2006
+                     protein2006 sysdrug2004 diadrug2004 bmi2004 waist2004
+                     sysdrug2006 diadrug2006 logincomemedi1993 waist2006
+                     carbo1991 fat1991 protein1991 bmi2006 energy1991
+                     energy1993 carbo1993 fat1993 protein1993
+                     logincomemedi1997 sysdrug1991 diadrug1991 carbo1997
+                     protein1997 energy1997 fat1997 energy2009 carbo2009
+                     protein2009 logincomemedi2009 bmi1991 sysdrug1993
+                     diadrug1993 sysdrug2009 diadrug2009 bmi1993 waist2009
+                     bmi2009 waist1993 sysdrug1997 diadrug1997 bmi1997
+                     waist1997 sysdrug2011 diadrug2011 waist2011 bmi2011
+                     energy2011 carbo2011 fat2011 protein2011
+                     logincomemedi2011 metstotal2006 metstotal2004
+                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
+                     waist1991 gender retireageg birthcohort area provinces
+                     communityid yrsinceretire1989 yrsinceretire1991
+                     yrsinceretire1993 yrsinceretire1997 yrsinceretire2000
+                     yrsinceretire2004 yrsinceretire2006 yrsinceretire2009
+                     yrsinceretire2011
+       protein2009: regress protein2009 i.education i.skills i.spouse
+                     logincomemedi2000 carbo2000 fat2000 protein2000
+                     energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
+                     logincomemedi1989 logincomemedi1991 logincomemedi2004
+                     energy2004 carbo2004 fat2004 protein2004
+                     logincomemedi2006 energy2006 carbo2006 fat2006
+                     protein2006 sysdrug2004 diadrug2004 bmi2004 waist2004
+                     sysdrug2006 diadrug2006 logincomemedi1993 waist2006
+                     carbo1991 fat1991 protein1991 bmi2006 energy1991
+                     energy1993 carbo1993 fat1993 protein1993
+                     logincomemedi1997 sysdrug1991 diadrug1991 carbo1997
+                     protein1997 energy1997 fat1997 energy2009 carbo2009
+                     fat2009 logincomemedi2009 bmi1991 sysdrug1993
+                     diadrug1993 sysdrug2009 diadrug2009 bmi1993 waist2009
+                     bmi2009 waist1993 sysdrug1997 diadrug1997 bmi1997
+                     waist1997 sysdrug2011 diadrug2011 waist2011 bmi2011
+                     energy2011 carbo2011 fat2011 protein2011
+                     logincomemedi2011 metstotal2006 metstotal2004
+                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
+                     waist1991 gender retireageg birthcohort area provinces
+                     communityid yrsinceretire1989 yrsinceretire1991
+                     yrsinceretire1993 yrsinceretire1997 yrsinceretire2000
+                     yrsinceretire2004 yrsinceretire2006 yrsinceretire2009
+                     yrsinceretire2011
+    logincome~2009: regress logincomemedi2009 i.education i.skills i.spouse
+                     logincomemedi2000 carbo2000 fat2000 protein2000
+                     energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
+                     logincomemedi1989 logincomemedi1991 logincomemedi2004
+                     energy2004 carbo2004 fat2004 protein2004
+                     logincomemedi2006 energy2006 carbo2006 fat2006
+                     protein2006 sysdrug2004 diadrug2004 bmi2004 waist2004
+                     sysdrug2006 diadrug2006 logincomemedi1993 waist2006
+                     carbo1991 fat1991 protein1991 bmi2006 energy1991
+                     energy1993 carbo1993 fat1993 protein1993
+                     logincomemedi1997 sysdrug1991 diadrug1991 carbo1997
+                     protein1997 energy1997 fat1997 energy2009 carbo2009
+                     fat2009 protein2009 bmi1991 sysdrug1993 diadrug1993
+                     sysdrug2009 diadrug2009 bmi1993 waist2009 bmi2009
+                     waist1993 sysdrug1997 diadrug1997 bmi1997 waist1997
+                     sysdrug2011 diadrug2011 waist2011 bmi2011 energy2011
+                     carbo2011 fat2011 protein2011 logincomemedi2011
+                     metstotal2006 metstotal2004 metstotal2009 metstotal2011
+                     metstotal2000 metstotal1997 waist1991 gender retireageg
+                     birthcohort area provinces communityid yrsinceretire1989
+                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
+                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
+                     yrsinceretire2009 yrsinceretire2011
+           bmi1991: regress bmi1991 i.education i.skills i.spouse
+                     logincomemedi2000 carbo2000 fat2000 protein2000
+                     energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
+                     logincomemedi1989 logincomemedi1991 logincomemedi2004
+                     energy2004 carbo2004 fat2004 protein2004
+                     logincomemedi2006 energy2006 carbo2006 fat2006
+                     protein2006 sysdrug2004 diadrug2004 bmi2004 waist2004
+                     sysdrug2006 diadrug2006 logincomemedi1993 waist2006
+                     carbo1991 fat1991 protein1991 bmi2006 energy1991
+                     energy1993 carbo1993 fat1993 protein1993
+                     logincomemedi1997 sysdrug1991 diadrug1991 carbo1997
+                     protein1997 energy1997 fat1997 energy2009 carbo2009
+                     fat2009 protein2009 logincomemedi2009 sysdrug1993
+                     diadrug1993 sysdrug2009 diadrug2009 bmi1993 waist2009
+                     bmi2009 waist1993 sysdrug1997 diadrug1997 bmi1997
+                     waist1997 sysdrug2011 diadrug2011 waist2011 bmi2011
+                     energy2011 carbo2011 fat2011 protein2011
+                     logincomemedi2011 metstotal2006 metstotal2004
+                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
+                     waist1991 gender retireageg birthcohort area provinces
+                     communityid yrsinceretire1989 yrsinceretire1991
+                     yrsinceretire1993 yrsinceretire1997 yrsinceretire2000
+                     yrsinceretire2004 yrsinceretire2006 yrsinceretire2009
+                     yrsinceretire2011
+       sysdrug1993: regress sysdrug1993 i.education i.skills i.spouse
+                     logincomemedi2000 carbo2000 fat2000 protein2000
+                     energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
+                     logincomemedi1989 logincomemedi1991 logincomemedi2004
+                     energy2004 carbo2004 fat2004 protein2004
+                     logincomemedi2006 energy2006 carbo2006 fat2006
+                     protein2006 sysdrug2004 diadrug2004 bmi2004 waist2004
+                     sysdrug2006 diadrug2006 logincomemedi1993 waist2006
+                     carbo1991 fat1991 protein1991 bmi2006 energy1991
+                     energy1993 carbo1993 fat1993 protein1993
+                     logincomemedi1997 sysdrug1991 diadrug1991 carbo1997
+                     protein1997 energy1997 fat1997 energy2009 carbo2009
+                     fat2009 protein2009 logincomemedi2009 bmi1991
+                     diadrug1993 sysdrug2009 diadrug2009 bmi1993 waist2009
+                     bmi2009 waist1993 sysdrug1997 diadrug1997 bmi1997
+                     waist1997 sysdrug2011 diadrug2011 waist2011 bmi2011
+                     energy2011 carbo2011 fat2011 protein2011
+                     logincomemedi2011 metstotal2006 metstotal2004
+                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
+                     waist1991 gender retireageg birthcohort area provinces
+                     communityid yrsinceretire1989 yrsinceretire1991
+                     yrsinceretire1993 yrsinceretire1997 yrsinceretire2000
+                     yrsinceretire2004 yrsinceretire2006 yrsinceretire2009
+                     yrsinceretire2011
+       diadrug1993: regress diadrug1993 i.education i.skills i.spouse
+                     logincomemedi2000 carbo2000 fat2000 protein2000
+                     energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
+                     logincomemedi1989 logincomemedi1991 logincomemedi2004
+                     energy2004 carbo2004 fat2004 protein2004
+                     logincomemedi2006 energy2006 carbo2006 fat2006
+                     protein2006 sysdrug2004 diadrug2004 bmi2004 waist2004
+                     sysdrug2006 diadrug2006 logincomemedi1993 waist2006
+                     carbo1991 fat1991 protein1991 bmi2006 energy1991
+                     energy1993 carbo1993 fat1993 protein1993
+                     logincomemedi1997 sysdrug1991 diadrug1991 carbo1997
+                     protein1997 energy1997 fat1997 energy2009 carbo2009
+                     fat2009 protein2009 logincomemedi2009 bmi1991
+                     sysdrug1993 sysdrug2009 diadrug2009 bmi1993 waist2009
+                     bmi2009 waist1993 sysdrug1997 diadrug1997 bmi1997
+                     waist1997 sysdrug2011 diadrug2011 waist2011 bmi2011
+                     energy2011 carbo2011 fat2011 protein2011
+                     logincomemedi2011 metstotal2006 metstotal2004
+                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
+                     waist1991 gender retireageg birthcohort area provinces
+                     communityid yrsinceretire1989 yrsinceretire1991
+                     yrsinceretire1993 yrsinceretire1997 yrsinceretire2000
+                     yrsinceretire2004 yrsinceretire2006 yrsinceretire2009
+                     yrsinceretire2011
+       sysdrug2009: regress sysdrug2009 i.education i.skills i.spouse
+                     logincomemedi2000 carbo2000 fat2000 protein2000
+                     energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
+                     logincomemedi1989 logincomemedi1991 logincomemedi2004
+                     energy2004 carbo2004 fat2004 protein2004
+                     logincomemedi2006 energy2006 carbo2006 fat2006
+                     protein2006 sysdrug2004 diadrug2004 bmi2004 waist2004
+                     sysdrug2006 diadrug2006 logincomemedi1993 waist2006
+                     carbo1991 fat1991 protein1991 bmi2006 energy1991
+                     energy1993 carbo1993 fat1993 protein1993
+                     logincomemedi1997 sysdrug1991 diadrug1991 carbo1997
+                     protein1997 energy1997 fat1997 energy2009 carbo2009
+                     fat2009 protein2009 logincomemedi2009 bmi1991
+                     sysdrug1993 diadrug1993 diadrug2009 bmi1993 waist2009
+                     bmi2009 waist1993 sysdrug1997 diadrug1997 bmi1997
+                     waist1997 sysdrug2011 diadrug2011 waist2011 bmi2011
+                     energy2011 carbo2011 fat2011 protein2011
+                     logincomemedi2011 metstotal2006 metstotal2004
+                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
+                     waist1991 gender retireageg birthcohort area provinces
+                     communityid yrsinceretire1989 yrsinceretire1991
+                     yrsinceretire1993 yrsinceretire1997 yrsinceretire2000
+                     yrsinceretire2004 yrsinceretire2006 yrsinceretire2009
+                     yrsinceretire2011
+       diadrug2009: regress diadrug2009 i.education i.skills i.spouse
+                     logincomemedi2000 carbo2000 fat2000 protein2000
+                     energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
+                     logincomemedi1989 logincomemedi1991 logincomemedi2004
+                     energy2004 carbo2004 fat2004 protein2004
+                     logincomemedi2006 energy2006 carbo2006 fat2006
+                     protein2006 sysdrug2004 diadrug2004 bmi2004 waist2004
+                     sysdrug2006 diadrug2006 logincomemedi1993 waist2006
+                     carbo1991 fat1991 protein1991 bmi2006 energy1991
+                     energy1993 carbo1993 fat1993 protein1993
+                     logincomemedi1997 sysdrug1991 diadrug1991 carbo1997
+                     protein1997 energy1997 fat1997 energy2009 carbo2009
+                     fat2009 protein2009 logincomemedi2009 bmi1991
+                     sysdrug1993 diadrug1993 sysdrug2009 bmi1993 waist2009
+                     bmi2009 waist1993 sysdrug1997 diadrug1997 bmi1997
+                     waist1997 sysdrug2011 diadrug2011 waist2011 bmi2011
+                     energy2011 carbo2011 fat2011 protein2011
+                     logincomemedi2011 metstotal2006 metstotal2004
+                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
+                     waist1991 gender retireageg birthcohort area provinces
+                     communityid yrsinceretire1989 yrsinceretire1991
+                     yrsinceretire1993 yrsinceretire1997 yrsinceretire2000
+                     yrsinceretire2004 yrsinceretire2006 yrsinceretire2009
+                     yrsinceretire2011
+           bmi1993: regress bmi1993 i.education i.skills i.spouse
+                     logincomemedi2000 carbo2000 fat2000 protein2000
+                     energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
+                     logincomemedi1989 logincomemedi1991 logincomemedi2004
+                     energy2004 carbo2004 fat2004 protein2004
+                     logincomemedi2006 energy2006 carbo2006 fat2006
+                     protein2006 sysdrug2004 diadrug2004 bmi2004 waist2004
+                     sysdrug2006 diadrug2006 logincomemedi1993 waist2006
+                     carbo1991 fat1991 protein1991 bmi2006 energy1991
+                     energy1993 carbo1993 fat1993 protein1993
+                     logincomemedi1997 sysdrug1991 diadrug1991 carbo1997
+                     protein1997 energy1997 fat1997 energy2009 carbo2009
+                     fat2009 protein2009 logincomemedi2009 bmi1991
+                     sysdrug1993 diadrug1993 sysdrug2009 diadrug2009
+                     waist2009 bmi2009 waist1993 sysdrug1997 diadrug1997
+                     bmi1997 waist1997 sysdrug2011 diadrug2011 waist2011
+                     bmi2011 energy2011 carbo2011 fat2011 protein2011
+                     logincomemedi2011 metstotal2006 metstotal2004
+                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
+                     waist1991 gender retireageg birthcohort area provinces
+                     communityid yrsinceretire1989 yrsinceretire1991
+                     yrsinceretire1993 yrsinceretire1997 yrsinceretire2000
+                     yrsinceretire2004 yrsinceretire2006 yrsinceretire2009
+                     yrsinceretire2011
+         waist2009: regress waist2009 i.education i.skills i.spouse
+                     logincomemedi2000 carbo2000 fat2000 protein2000
+                     energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
+                     logincomemedi1989 logincomemedi1991 logincomemedi2004
+                     energy2004 carbo2004 fat2004 protein2004
+                     logincomemedi2006 energy2006 carbo2006 fat2006
+                     protein2006 sysdrug2004 diadrug2004 bmi2004 waist2004
+                     sysdrug2006 diadrug2006 logincomemedi1993 waist2006
+                     carbo1991 fat1991 protein1991 bmi2006 energy1991
+                     energy1993 carbo1993 fat1993 protein1993
+                     logincomemedi1997 sysdrug1991 diadrug1991 carbo1997
+                     protein1997 energy1997 fat1997 energy2009 carbo2009
+                     fat2009 protein2009 logincomemedi2009 bmi1991
+                     sysdrug1993 diadrug1993 sysdrug2009 diadrug2009 bmi1993
+                     bmi2009 waist1993 sysdrug1997 diadrug1997 bmi1997
+                     waist1997 sysdrug2011 diadrug2011 waist2011 bmi2011
+                     energy2011 carbo2011 fat2011 protein2011
+                     logincomemedi2011 metstotal2006 metstotal2004
+                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
+                     waist1991 gender retireageg birthcohort area provinces
+                     communityid yrsinceretire1989 yrsinceretire1991
+                     yrsinceretire1993 yrsinceretire1997 yrsinceretire2000
+                     yrsinceretire2004 yrsinceretire2006 yrsinceretire2009
+                     yrsinceretire2011
+           bmi2009: regress bmi2009 i.education i.skills i.spouse
+                     logincomemedi2000 carbo2000 fat2000 protein2000
+                     energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
+                     logincomemedi1989 logincomemedi1991 logincomemedi2004
+                     energy2004 carbo2004 fat2004 protein2004
+                     logincomemedi2006 energy2006 carbo2006 fat2006
+                     protein2006 sysdrug2004 diadrug2004 bmi2004 waist2004
+                     sysdrug2006 diadrug2006 logincomemedi1993 waist2006
+                     carbo1991 fat1991 protein1991 bmi2006 energy1991
+                     energy1993 carbo1993 fat1993 protein1993
+                     logincomemedi1997 sysdrug1991 diadrug1991 carbo1997
+                     protein1997 energy1997 fat1997 energy2009 carbo2009
+                     fat2009 protein2009 logincomemedi2009 bmi1991
+                     sysdrug1993 diadrug1993 sysdrug2009 diadrug2009 bmi1993
+                     waist2009 waist1993 sysdrug1997 diadrug1997 bmi1997
+                     waist1997 sysdrug2011 diadrug2011 waist2011 bmi2011
+                     energy2011 carbo2011 fat2011 protein2011
+                     logincomemedi2011 metstotal2006 metstotal2004
+                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
+                     waist1991 gender retireageg birthcohort area provinces
+                     communityid yrsinceretire1989 yrsinceretire1991
+                     yrsinceretire1993 yrsinceretire1997 yrsinceretire2000
+                     yrsinceretire2004 yrsinceretire2006 yrsinceretire2009
+                     yrsinceretire2011
+         waist1993: regress waist1993 i.education i.skills i.spouse
+                     logincomemedi2000 carbo2000 fat2000 protein2000
+                     energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
+                     logincomemedi1989 logincomemedi1991 logincomemedi2004
+                     energy2004 carbo2004 fat2004 protein2004
+                     logincomemedi2006 energy2006 carbo2006 fat2006
+                     protein2006 sysdrug2004 diadrug2004 bmi2004 waist2004
+                     sysdrug2006 diadrug2006 logincomemedi1993 waist2006
+                     carbo1991 fat1991 protein1991 bmi2006 energy1991
+                     energy1993 carbo1993 fat1993 protein1993
+                     logincomemedi1997 sysdrug1991 diadrug1991 carbo1997
+                     protein1997 energy1997 fat1997 energy2009 carbo2009
+                     fat2009 protein2009 logincomemedi2009 bmi1991
+                     sysdrug1993 diadrug1993 sysdrug2009 diadrug2009 bmi1993
+                     waist2009 bmi2009 sysdrug1997 diadrug1997 bmi1997
+                     waist1997 sysdrug2011 diadrug2011 waist2011 bmi2011
+                     energy2011 carbo2011 fat2011 protein2011
+                     logincomemedi2011 metstotal2006 metstotal2004
+                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
+                     waist1991 gender retireageg birthcohort area provinces
+                     communityid yrsinceretire1989 yrsinceretire1991
+                     yrsinceretire1993 yrsinceretire1997 yrsinceretire2000
+                     yrsinceretire2004 yrsinceretire2006 yrsinceretire2009
+                     yrsinceretire2011
+       sysdrug1997: regress sysdrug1997 i.education i.skills i.spouse
+                     logincomemedi2000 carbo2000 fat2000 protein2000
+                     energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
+                     logincomemedi1989 logincomemedi1991 logincomemedi2004
+                     energy2004 carbo2004 fat2004 protein2004
+                     logincomemedi2006 energy2006 carbo2006 fat2006
+                     protein2006 sysdrug2004 diadrug2004 bmi2004 waist2004
+                     sysdrug2006 diadrug2006 logincomemedi1993 waist2006
+                     carbo1991 fat1991 protein1991 bmi2006 energy1991
+                     energy1993 carbo1993 fat1993 protein1993
+                     logincomemedi1997 sysdrug1991 diadrug1991 carbo1997
+                     protein1997 energy1997 fat1997 energy2009 carbo2009
+                     fat2009 protein2009 logincomemedi2009 bmi1991
+                     sysdrug1993 diadrug1993 sysdrug2009 diadrug2009 bmi1993
+                     waist2009 bmi2009 waist1993 diadrug1997 bmi1997
+                     waist1997 sysdrug2011 diadrug2011 waist2011 bmi2011
+                     energy2011 carbo2011 fat2011 protein2011
+                     logincomemedi2011 metstotal2006 metstotal2004
+                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
+                     waist1991 gender retireageg birthcohort area provinces
+                     communityid yrsinceretire1989 yrsinceretire1991
+                     yrsinceretire1993 yrsinceretire1997 yrsinceretire2000
+                     yrsinceretire2004 yrsinceretire2006 yrsinceretire2009
+                     yrsinceretire2011
+       diadrug1997: regress diadrug1997 i.education i.skills i.spouse
+                     logincomemedi2000 carbo2000 fat2000 protein2000
+                     energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
+                     logincomemedi1989 logincomemedi1991 logincomemedi2004
+                     energy2004 carbo2004 fat2004 protein2004
+                     logincomemedi2006 energy2006 carbo2006 fat2006
+                     protein2006 sysdrug2004 diadrug2004 bmi2004 waist2004
+                     sysdrug2006 diadrug2006 logincomemedi1993 waist2006
+                     carbo1991 fat1991 protein1991 bmi2006 energy1991
+                     energy1993 carbo1993 fat1993 protein1993
+                     logincomemedi1997 sysdrug1991 diadrug1991 carbo1997
+                     protein1997 energy1997 fat1997 energy2009 carbo2009
+                     fat2009 protein2009 logincomemedi2009 bmi1991
+                     sysdrug1993 diadrug1993 sysdrug2009 diadrug2009 bmi1993
+                     waist2009 bmi2009 waist1993 sysdrug1997 bmi1997
+                     waist1997 sysdrug2011 diadrug2011 waist2011 bmi2011
+                     energy2011 carbo2011 fat2011 protein2011
+                     logincomemedi2011 metstotal2006 metstotal2004
+                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
+                     waist1991 gender retireageg birthcohort area provinces
+                     communityid yrsinceretire1989 yrsinceretire1991
+                     yrsinceretire1993 yrsinceretire1997 yrsinceretire2000
+                     yrsinceretire2004 yrsinceretire2006 yrsinceretire2009
+                     yrsinceretire2011
+           bmi1997: regress bmi1997 i.education i.skills i.spouse
+                     logincomemedi2000 carbo2000 fat2000 protein2000
+                     energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
+                     logincomemedi1989 logincomemedi1991 logincomemedi2004
+                     energy2004 carbo2004 fat2004 protein2004
+                     logincomemedi2006 energy2006 carbo2006 fat2006
+                     protein2006 sysdrug2004 diadrug2004 bmi2004 waist2004
+                     sysdrug2006 diadrug2006 logincomemedi1993 waist2006
+                     carbo1991 fat1991 protein1991 bmi2006 energy1991
+                     energy1993 carbo1993 fat1993 protein1993
+                     logincomemedi1997 sysdrug1991 diadrug1991 carbo1997
+                     protein1997 energy1997 fat1997 energy2009 carbo2009
+                     fat2009 protein2009 logincomemedi2009 bmi1991
+                     sysdrug1993 diadrug1993 sysdrug2009 diadrug2009 bmi1993
+                     waist2009 bmi2009 waist1993 sysdrug1997 diadrug1997
+                     waist1997 sysdrug2011 diadrug2011 waist2011 bmi2011
+                     energy2011 carbo2011 fat2011 protein2011
+                     logincomemedi2011 metstotal2006 metstotal2004
+                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
+                     waist1991 gender retireageg birthcohort area provinces
+                     communityid yrsinceretire1989 yrsinceretire1991
+                     yrsinceretire1993 yrsinceretire1997 yrsinceretire2000
+                     yrsinceretire2004 yrsinceretire2006 yrsinceretire2009
+                     yrsinceretire2011
+         waist1997: regress waist1997 i.education i.skills i.spouse
+                     logincomemedi2000 carbo2000 fat2000 protein2000
+                     energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
+                     logincomemedi1989 logincomemedi1991 logincomemedi2004
+                     energy2004 carbo2004 fat2004 protein2004
+                     logincomemedi2006 energy2006 carbo2006 fat2006
+                     protein2006 sysdrug2004 diadrug2004 bmi2004 waist2004
+                     sysdrug2006 diadrug2006 logincomemedi1993 waist2006
+                     carbo1991 fat1991 protein1991 bmi2006 energy1991
+                     energy1993 carbo1993 fat1993 protein1993
+                     logincomemedi1997 sysdrug1991 diadrug1991 carbo1997
+                     protein1997 energy1997 fat1997 energy2009 carbo2009
+                     fat2009 protein2009 logincomemedi2009 bmi1991
+                     sysdrug1993 diadrug1993 sysdrug2009 diadrug2009 bmi1993
+                     waist2009 bmi2009 waist1993 sysdrug1997 diadrug1997
+                     bmi1997 sysdrug2011 diadrug2011 waist2011 bmi2011
+                     energy2011 carbo2011 fat2011 protein2011
+                     logincomemedi2011 metstotal2006 metstotal2004
+                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
+                     waist1991 gender retireageg birthcohort area provinces
+                     communityid yrsinceretire1989 yrsinceretire1991
+                     yrsinceretire1993 yrsinceretire1997 yrsinceretire2000
+                     yrsinceretire2004 yrsinceretire2006 yrsinceretire2009
+                     yrsinceretire2011
+       sysdrug2011: regress sysdrug2011 i.education i.skills i.spouse
+                     logincomemedi2000 carbo2000 fat2000 protein2000
+                     energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
+                     logincomemedi1989 logincomemedi1991 logincomemedi2004
+                     energy2004 carbo2004 fat2004 protein2004
+                     logincomemedi2006 energy2006 carbo2006 fat2006
+                     protein2006 sysdrug2004 diadrug2004 bmi2004 waist2004
+                     sysdrug2006 diadrug2006 logincomemedi1993 waist2006
+                     carbo1991 fat1991 protein1991 bmi2006 energy1991
+                     energy1993 carbo1993 fat1993 protein1993
+                     logincomemedi1997 sysdrug1991 diadrug1991 carbo1997
+                     protein1997 energy1997 fat1997 energy2009 carbo2009
+                     fat2009 protein2009 logincomemedi2009 bmi1991
+                     sysdrug1993 diadrug1993 sysdrug2009 diadrug2009 bmi1993
+                     waist2009 bmi2009 waist1993 sysdrug1997 diadrug1997
+                     bmi1997 waist1997 diadrug2011 waist2011 bmi2011
+                     energy2011 carbo2011 fat2011 protein2011
+                     logincomemedi2011 metstotal2006 metstotal2004
+                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
+                     waist1991 gender retireageg birthcohort area provinces
+                     communityid yrsinceretire1989 yrsinceretire1991
+                     yrsinceretire1993 yrsinceretire1997 yrsinceretire2000
+                     yrsinceretire2004 yrsinceretire2006 yrsinceretire2009
+                     yrsinceretire2011
+       diadrug2011: regress diadrug2011 i.education i.skills i.spouse
+                     logincomemedi2000 carbo2000 fat2000 protein2000
+                     energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
+                     logincomemedi1989 logincomemedi1991 logincomemedi2004
+                     energy2004 carbo2004 fat2004 protein2004
+                     logincomemedi2006 energy2006 carbo2006 fat2006
+                     protein2006 sysdrug2004 diadrug2004 bmi2004 waist2004
+                     sysdrug2006 diadrug2006 logincomemedi1993 waist2006
+                     carbo1991 fat1991 protein1991 bmi2006 energy1991
+                     energy1993 carbo1993 fat1993 protein1993
+                     logincomemedi1997 sysdrug1991 diadrug1991 carbo1997
+                     protein1997 energy1997 fat1997 energy2009 carbo2009
+                     fat2009 protein2009 logincomemedi2009 bmi1991
+                     sysdrug1993 diadrug1993 sysdrug2009 diadrug2009 bmi1993
+                     waist2009 bmi2009 waist1993 sysdrug1997 diadrug1997
+                     bmi1997 waist1997 sysdrug2011 waist2011 bmi2011
+                     energy2011 carbo2011 fat2011 protein2011
+                     logincomemedi2011 metstotal2006 metstotal2004
+                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
+                     waist1991 gender retireageg birthcohort area provinces
+                     communityid yrsinceretire1989 yrsinceretire1991
+                     yrsinceretire1993 yrsinceretire1997 yrsinceretire2000
+                     yrsinceretire2004 yrsinceretire2006 yrsinceretire2009
+                     yrsinceretire2011
+         waist2011: regress waist2011 i.education i.skills i.spouse
+                     logincomemedi2000 carbo2000 fat2000 protein2000
+                     energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
+                     logincomemedi1989 logincomemedi1991 logincomemedi2004
+                     energy2004 carbo2004 fat2004 protein2004
+                     logincomemedi2006 energy2006 carbo2006 fat2006
+                     protein2006 sysdrug2004 diadrug2004 bmi2004 waist2004
+                     sysdrug2006 diadrug2006 logincomemedi1993 waist2006
+                     carbo1991 fat1991 protein1991 bmi2006 energy1991
+                     energy1993 carbo1993 fat1993 protein1993
+                     logincomemedi1997 sysdrug1991 diadrug1991 carbo1997
+                     protein1997 energy1997 fat1997 energy2009 carbo2009
+                     fat2009 protein2009 logincomemedi2009 bmi1991
+                     sysdrug1993 diadrug1993 sysdrug2009 diadrug2009 bmi1993
+                     waist2009 bmi2009 waist1993 sysdrug1997 diadrug1997
+                     bmi1997 waist1997 sysdrug2011 diadrug2011 bmi2011
+                     energy2011 carbo2011 fat2011 protein2011
+                     logincomemedi2011 metstotal2006 metstotal2004
+                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
+                     waist1991 gender retireageg birthcohort area provinces
+                     communityid yrsinceretire1989 yrsinceretire1991
+                     yrsinceretire1993 yrsinceretire1997 yrsinceretire2000
+                     yrsinceretire2004 yrsinceretire2006 yrsinceretire2009
+                     yrsinceretire2011
+           bmi2011: regress bmi2011 i.education i.skills i.spouse
+                     logincomemedi2000 carbo2000 fat2000 protein2000
+                     energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
+                     logincomemedi1989 logincomemedi1991 logincomemedi2004
+                     energy2004 carbo2004 fat2004 protein2004
+                     logincomemedi2006 energy2006 carbo2006 fat2006
+                     protein2006 sysdrug2004 diadrug2004 bmi2004 waist2004
+                     sysdrug2006 diadrug2006 logincomemedi1993 waist2006
+                     carbo1991 fat1991 protein1991 bmi2006 energy1991
+                     energy1993 carbo1993 fat1993 protein1993
+                     logincomemedi1997 sysdrug1991 diadrug1991 carbo1997
+                     protein1997 energy1997 fat1997 energy2009 carbo2009
+                     fat2009 protein2009 logincomemedi2009 bmi1991
+                     sysdrug1993 diadrug1993 sysdrug2009 diadrug2009 bmi1993
+                     waist2009 bmi2009 waist1993 sysdrug1997 diadrug1997
+                     bmi1997 waist1997 sysdrug2011 diadrug2011 waist2011
+                     energy2011 carbo2011 fat2011 protein2011
+                     logincomemedi2011 metstotal2006 metstotal2004
+                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
+                     waist1991 gender retireageg birthcohort area provinces
+                     communityid yrsinceretire1989 yrsinceretire1991
+                     yrsinceretire1993 yrsinceretire1997 yrsinceretire2000
+                     yrsinceretire2004 yrsinceretire2006 yrsinceretire2009
+                     yrsinceretire2011
+        energy2011: regress energy2011 i.education i.skills i.spouse
+                     logincomemedi2000 carbo2000 fat2000 protein2000
+                     energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
+                     logincomemedi1989 logincomemedi1991 logincomemedi2004
+                     energy2004 carbo2004 fat2004 protein2004
+                     logincomemedi2006 energy2006 carbo2006 fat2006
+                     protein2006 sysdrug2004 diadrug2004 bmi2004 waist2004
+                     sysdrug2006 diadrug2006 logincomemedi1993 waist2006
+                     carbo1991 fat1991 protein1991 bmi2006 energy1991
+                     energy1993 carbo1993 fat1993 protein1993
+                     logincomemedi1997 sysdrug1991 diadrug1991 carbo1997
+                     protein1997 energy1997 fat1997 energy2009 carbo2009
+                     fat2009 protein2009 logincomemedi2009 bmi1991
+                     sysdrug1993 diadrug1993 sysdrug2009 diadrug2009 bmi1993
+                     waist2009 bmi2009 waist1993 sysdrug1997 diadrug1997
+                     bmi1997 waist1997 sysdrug2011 diadrug2011 waist2011
+                     bmi2011 carbo2011 fat2011 protein2011 logincomemedi2011
+                     metstotal2006 metstotal2004 metstotal2009 metstotal2011
+                     metstotal2000 metstotal1997 waist1991 gender retireageg
+                     birthcohort area provinces communityid yrsinceretire1989
+                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
+                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
+                     yrsinceretire2009 yrsinceretire2011
+         carbo2011: regress carbo2011 i.education i.skills i.spouse
+                     logincomemedi2000 carbo2000 fat2000 protein2000
+                     energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
+                     logincomemedi1989 logincomemedi1991 logincomemedi2004
+                     energy2004 carbo2004 fat2004 protein2004
+                     logincomemedi2006 energy2006 carbo2006 fat2006
+                     protein2006 sysdrug2004 diadrug2004 bmi2004 waist2004
+                     sysdrug2006 diadrug2006 logincomemedi1993 waist2006
+                     carbo1991 fat1991 protein1991 bmi2006 energy1991
+                     energy1993 carbo1993 fat1993 protein1993
+                     logincomemedi1997 sysdrug1991 diadrug1991 carbo1997
+                     protein1997 energy1997 fat1997 energy2009 carbo2009
+                     fat2009 protein2009 logincomemedi2009 bmi1991
+                     sysdrug1993 diadrug1993 sysdrug2009 diadrug2009 bmi1993
+                     waist2009 bmi2009 waist1993 sysdrug1997 diadrug1997
+                     bmi1997 waist1997 sysdrug2011 diadrug2011 waist2011
+                     bmi2011 energy2011 fat2011 protein2011 logincomemedi2011
+                     metstotal2006 metstotal2004 metstotal2009 metstotal2011
+                     metstotal2000 metstotal1997 waist1991 gender retireageg
+                     birthcohort area provinces communityid yrsinceretire1989
+                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
+                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
+                     yrsinceretire2009 yrsinceretire2011
+           fat2011: regress fat2011 i.education i.skills i.spouse
+                     logincomemedi2000 carbo2000 fat2000 protein2000
+                     energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
+                     logincomemedi1989 logincomemedi1991 logincomemedi2004
+                     energy2004 carbo2004 fat2004 protein2004
+                     logincomemedi2006 energy2006 carbo2006 fat2006
+                     protein2006 sysdrug2004 diadrug2004 bmi2004 waist2004
+                     sysdrug2006 diadrug2006 logincomemedi1993 waist2006
+                     carbo1991 fat1991 protein1991 bmi2006 energy1991
+                     energy1993 carbo1993 fat1993 protein1993
+                     logincomemedi1997 sysdrug1991 diadrug1991 carbo1997
+                     protein1997 energy1997 fat1997 energy2009 carbo2009
+                     fat2009 protein2009 logincomemedi2009 bmi1991
+                     sysdrug1993 diadrug1993 sysdrug2009 diadrug2009 bmi1993
+                     waist2009 bmi2009 waist1993 sysdrug1997 diadrug1997
+                     bmi1997 waist1997 sysdrug2011 diadrug2011 waist2011
+                     bmi2011 energy2011 carbo2011 protein2011
+                     logincomemedi2011 metstotal2006 metstotal2004
+                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
+                     waist1991 gender retireageg birthcohort area provinces
+                     communityid yrsinceretire1989 yrsinceretire1991
+                     yrsinceretire1993 yrsinceretire1997 yrsinceretire2000
+                     yrsinceretire2004 yrsinceretire2006 yrsinceretire2009
+                     yrsinceretire2011
+       protein2011: regress protein2011 i.education i.skills i.spouse
+                     logincomemedi2000 carbo2000 fat2000 protein2000
+                     energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
+                     logincomemedi1989 logincomemedi1991 logincomemedi2004
+                     energy2004 carbo2004 fat2004 protein2004
+                     logincomemedi2006 energy2006 carbo2006 fat2006
+                     protein2006 sysdrug2004 diadrug2004 bmi2004 waist2004
+                     sysdrug2006 diadrug2006 logincomemedi1993 waist2006
+                     carbo1991 fat1991 protein1991 bmi2006 energy1991
+                     energy1993 carbo1993 fat1993 protein1993
+                     logincomemedi1997 sysdrug1991 diadrug1991 carbo1997
+                     protein1997 energy1997 fat1997 energy2009 carbo2009
+                     fat2009 protein2009 logincomemedi2009 bmi1991
+                     sysdrug1993 diadrug1993 sysdrug2009 diadrug2009 bmi1993
+                     waist2009 bmi2009 waist1993 sysdrug1997 diadrug1997
+                     bmi1997 waist1997 sysdrug2011 diadrug2011 waist2011
+                     bmi2011 energy2011 carbo2011 fat2011 logincomemedi2011
+                     metstotal2006 metstotal2004 metstotal2009 metstotal2011
+                     metstotal2000 metstotal1997 waist1991 gender retireageg
+                     birthcohort area provinces communityid yrsinceretire1989
+                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
+                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
+                     yrsinceretire2009 yrsinceretire2011
+    logincome~2011: regress logincomemedi2011 i.education i.skills i.spouse
+                     logincomemedi2000 carbo2000 fat2000 protein2000
+                     energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
+                     logincomemedi1989 logincomemedi1991 logincomemedi2004
+                     energy2004 carbo2004 fat2004 protein2004
+                     logincomemedi2006 energy2006 carbo2006 fat2006
+                     protein2006 sysdrug2004 diadrug2004 bmi2004 waist2004
+                     sysdrug2006 diadrug2006 logincomemedi1993 waist2006
+                     carbo1991 fat1991 protein1991 bmi2006 energy1991
+                     energy1993 carbo1993 fat1993 protein1993
+                     logincomemedi1997 sysdrug1991 diadrug1991 carbo1997
+                     protein1997 energy1997 fat1997 energy2009 carbo2009
+                     fat2009 protein2009 logincomemedi2009 bmi1991
+                     sysdrug1993 diadrug1993 sysdrug2009 diadrug2009 bmi1993
+                     waist2009 bmi2009 waist1993 sysdrug1997 diadrug1997
+                     bmi1997 waist1997 sysdrug2011 diadrug2011 waist2011
+                     bmi2011 energy2011 carbo2011 fat2011 protein2011
+                     metstotal2006 metstotal2004 metstotal2009 metstotal2011
+                     metstotal2000 metstotal1997 waist1991 gender retireageg
+                     birthcohort area provinces communityid yrsinceretire1989
+                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
+                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
+                     yrsinceretire2009 yrsinceretire2011
+     metstotal2006: regress metstotal2006 i.education i.skills i.spouse
+                     logincomemedi2000 carbo2000 fat2000 protein2000
+                     energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
+                     logincomemedi1989 logincomemedi1991 logincomemedi2004
+                     energy2004 carbo2004 fat2004 protein2004
+                     logincomemedi2006 energy2006 carbo2006 fat2006
+                     protein2006 sysdrug2004 diadrug2004 bmi2004 waist2004
+                     sysdrug2006 diadrug2006 logincomemedi1993 waist2006
+                     carbo1991 fat1991 protein1991 bmi2006 energy1991
+                     energy1993 carbo1993 fat1993 protein1993
+                     logincomemedi1997 sysdrug1991 diadrug1991 carbo1997
+                     protein1997 energy1997 fat1997 energy2009 carbo2009
+                     fat2009 protein2009 logincomemedi2009 bmi1991
+                     sysdrug1993 diadrug1993 sysdrug2009 diadrug2009 bmi1993
+                     waist2009 bmi2009 waist1993 sysdrug1997 diadrug1997
+                     bmi1997 waist1997 sysdrug2011 diadrug2011 waist2011
+                     bmi2011 energy2011 carbo2011 fat2011 protein2011
+                     logincomemedi2011 metstotal2004 metstotal2009
+                     metstotal2011 metstotal2000 metstotal1997 waist1991
+                     gender retireageg birthcohort area provinces communityid
+                     yrsinceretire1989 yrsinceretire1991 yrsinceretire1993
+                     yrsinceretire1997 yrsinceretire2000 yrsinceretire2004
+                     yrsinceretire2006 yrsinceretire2009 yrsinceretire2011
+     metstotal2004: regress metstotal2004 i.education i.skills i.spouse
+                     logincomemedi2000 carbo2000 fat2000 protein2000
+                     energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
+                     logincomemedi1989 logincomemedi1991 logincomemedi2004
+                     energy2004 carbo2004 fat2004 protein2004
+                     logincomemedi2006 energy2006 carbo2006 fat2006
+                     protein2006 sysdrug2004 diadrug2004 bmi2004 waist2004
+                     sysdrug2006 diadrug2006 logincomemedi1993 waist2006
+                     carbo1991 fat1991 protein1991 bmi2006 energy1991
+                     energy1993 carbo1993 fat1993 protein1993
+                     logincomemedi1997 sysdrug1991 diadrug1991 carbo1997
+                     protein1997 energy1997 fat1997 energy2009 carbo2009
+                     fat2009 protein2009 logincomemedi2009 bmi1991
+                     sysdrug1993 diadrug1993 sysdrug2009 diadrug2009 bmi1993
+                     waist2009 bmi2009 waist1993 sysdrug1997 diadrug1997
+                     bmi1997 waist1997 sysdrug2011 diadrug2011 waist2011
+                     bmi2011 energy2011 carbo2011 fat2011 protein2011
+                     logincomemedi2011 metstotal2006 metstotal2009
+                     metstotal2011 metstotal2000 metstotal1997 waist1991
+                     gender retireageg birthcohort area provinces communityid
+                     yrsinceretire1989 yrsinceretire1991 yrsinceretire1993
+                     yrsinceretire1997 yrsinceretire2000 yrsinceretire2004
+                     yrsinceretire2006 yrsinceretire2009 yrsinceretire2011
+     metstotal2009: regress metstotal2009 i.education i.skills i.spouse
+                     logincomemedi2000 carbo2000 fat2000 protein2000
+                     energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
+                     logincomemedi1989 logincomemedi1991 logincomemedi2004
+                     energy2004 carbo2004 fat2004 protein2004
+                     logincomemedi2006 energy2006 carbo2006 fat2006
+                     protein2006 sysdrug2004 diadrug2004 bmi2004 waist2004
+                     sysdrug2006 diadrug2006 logincomemedi1993 waist2006
+                     carbo1991 fat1991 protein1991 bmi2006 energy1991
+                     energy1993 carbo1993 fat1993 protein1993
+                     logincomemedi1997 sysdrug1991 diadrug1991 carbo1997
+                     protein1997 energy1997 fat1997 energy2009 carbo2009
+                     fat2009 protein2009 logincomemedi2009 bmi1991
+                     sysdrug1993 diadrug1993 sysdrug2009 diadrug2009 bmi1993
+                     waist2009 bmi2009 waist1993 sysdrug1997 diadrug1997
+                     bmi1997 waist1997 sysdrug2011 diadrug2011 waist2011
+                     bmi2011 energy2011 carbo2011 fat2011 protein2011
+                     logincomemedi2011 metstotal2006 metstotal2004
+                     metstotal2011 metstotal2000 metstotal1997 waist1991
+                     gender retireageg birthcohort area provinces communityid
+                     yrsinceretire1989 yrsinceretire1991 yrsinceretire1993
+                     yrsinceretire1997 yrsinceretire2000 yrsinceretire2004
+                     yrsinceretire2006 yrsinceretire2009 yrsinceretire2011
+     metstotal2011: regress metstotal2011 i.education i.skills i.spouse
+                     logincomemedi2000 carbo2000 fat2000 protein2000
+                     energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
+                     logincomemedi1989 logincomemedi1991 logincomemedi2004
+                     energy2004 carbo2004 fat2004 protein2004
+                     logincomemedi2006 energy2006 carbo2006 fat2006
+                     protein2006 sysdrug2004 diadrug2004 bmi2004 waist2004
+                     sysdrug2006 diadrug2006 logincomemedi1993 waist2006
+                     carbo1991 fat1991 protein1991 bmi2006 energy1991
+                     energy1993 carbo1993 fat1993 protein1993
+                     logincomemedi1997 sysdrug1991 diadrug1991 carbo1997
+                     protein1997 energy1997 fat1997 energy2009 carbo2009
+                     fat2009 protein2009 logincomemedi2009 bmi1991
+                     sysdrug1993 diadrug1993 sysdrug2009 diadrug2009 bmi1993
+                     waist2009 bmi2009 waist1993 sysdrug1997 diadrug1997
+                     bmi1997 waist1997 sysdrug2011 diadrug2011 waist2011
+                     bmi2011 energy2011 carbo2011 fat2011 protein2011
+                     logincomemedi2011 metstotal2006 metstotal2004
+                     metstotal2009 metstotal2000 metstotal1997 waist1991
+                     gender retireageg birthcohort area provinces communityid
+                     yrsinceretire1989 yrsinceretire1991 yrsinceretire1993
+                     yrsinceretire1997 yrsinceretire2000 yrsinceretire2004
+                     yrsinceretire2006 yrsinceretire2009 yrsinceretire2011
+     metstotal2000: regress metstotal2000 i.education i.skills i.spouse
+                     logincomemedi2000 carbo2000 fat2000 protein2000
+                     energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
+                     logincomemedi1989 logincomemedi1991 logincomemedi2004
+                     energy2004 carbo2004 fat2004 protein2004
+                     logincomemedi2006 energy2006 carbo2006 fat2006
+                     protein2006 sysdrug2004 diadrug2004 bmi2004 waist2004
+                     sysdrug2006 diadrug2006 logincomemedi1993 waist2006
+                     carbo1991 fat1991 protein1991 bmi2006 energy1991
+                     energy1993 carbo1993 fat1993 protein1993
+                     logincomemedi1997 sysdrug1991 diadrug1991 carbo1997
+                     protein1997 energy1997 fat1997 energy2009 carbo2009
+                     fat2009 protein2009 logincomemedi2009 bmi1991
+                     sysdrug1993 diadrug1993 sysdrug2009 diadrug2009 bmi1993
+                     waist2009 bmi2009 waist1993 sysdrug1997 diadrug1997
+                     bmi1997 waist1997 sysdrug2011 diadrug2011 waist2011
+                     bmi2011 energy2011 carbo2011 fat2011 protein2011
+                     logincomemedi2011 metstotal2006 metstotal2004
+                     metstotal2009 metstotal2011 metstotal1997 waist1991
+                     gender retireageg birthcohort area provinces communityid
+                     yrsinceretire1989 yrsinceretire1991 yrsinceretire1993
+                     yrsinceretire1997 yrsinceretire2000 yrsinceretire2004
+                     yrsinceretire2006 yrsinceretire2009 yrsinceretire2011
+     metstotal1997: regress metstotal1997 i.education i.skills i.spouse
+                     logincomemedi2000 carbo2000 fat2000 protein2000
+                     energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
+                     logincomemedi1989 logincomemedi1991 logincomemedi2004
+                     energy2004 carbo2004 fat2004 protein2004
+                     logincomemedi2006 energy2006 carbo2006 fat2006
+                     protein2006 sysdrug2004 diadrug2004 bmi2004 waist2004
+                     sysdrug2006 diadrug2006 logincomemedi1993 waist2006
+                     carbo1991 fat1991 protein1991 bmi2006 energy1991
+                     energy1993 carbo1993 fat1993 protein1993
+                     logincomemedi1997 sysdrug1991 diadrug1991 carbo1997
+                     protein1997 energy1997 fat1997 energy2009 carbo2009
+                     fat2009 protein2009 logincomemedi2009 bmi1991
+                     sysdrug1993 diadrug1993 sysdrug2009 diadrug2009 bmi1993
+                     waist2009 bmi2009 waist1993 sysdrug1997 diadrug1997
+                     bmi1997 waist1997 sysdrug2011 diadrug2011 waist2011
+                     bmi2011 energy2011 carbo2011 fat2011 protein2011
+                     logincomemedi2011 metstotal2006 metstotal2004
+                     metstotal2009 metstotal2011 metstotal2000 waist1991
+                     gender retireageg birthcohort area provinces communityid
+                     yrsinceretire1989 yrsinceretire1991 yrsinceretire1993
+                     yrsinceretire1997 yrsinceretire2000 yrsinceretire2004
+                     yrsinceretire2006 yrsinceretire2009 yrsinceretire2011
+         waist1991: regress waist1991 i.education i.skills i.spouse
+                     logincomemedi2000 carbo2000 fat2000 protein2000
+                     energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
+                     logincomemedi1989 logincomemedi1991 logincomemedi2004
+                     energy2004 carbo2004 fat2004 protein2004
+                     logincomemedi2006 energy2006 carbo2006 fat2006
+                     protein2006 sysdrug2004 diadrug2004 bmi2004 waist2004
+                     sysdrug2006 diadrug2006 logincomemedi1993 waist2006
+                     carbo1991 fat1991 protein1991 bmi2006 energy1991
+                     energy1993 carbo1993 fat1993 protein1993
+                     logincomemedi1997 sysdrug1991 diadrug1991 carbo1997
+                     protein1997 energy1997 fat1997 energy2009 carbo2009
+                     fat2009 protein2009 logincomemedi2009 bmi1991
+                     sysdrug1993 diadrug1993 sysdrug2009 diadrug2009 bmi1993
+                     waist2009 bmi2009 waist1993 sysdrug1997 diadrug1997
+                     bmi1997 waist1997 sysdrug2011 diadrug2011 waist2011
+                     bmi2011 energy2011 carbo2011 fat2011 protein2011
+                     logincomemedi2011 metstotal2006 metstotal2004
+                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
+                     gender retireageg birthcohort area provinces communityid
+                     yrsinceretire1989 yrsinceretire1991 yrsinceretire1993
+                     yrsinceretire1997 yrsinceretire2000 yrsinceretire2004
+                     yrsinceretire2006 yrsinceretire2009 yrsinceretire2011
+
+Performing chained iterations ...
+3_spouse_from_working_to_non_wor invalid name
+error occurred during imputation of spouse education skills logincomemedi1989
+logincomemedi1991 logincomemedi1993 logincomemedi1997 logincomemedi2000
+logincomemedi2004 logincomemedi2006 logincomemedi2009 logincomemedi2011
+waist1991 bmi1991 sysdrug1991 diadrug1991 waist1993 bmi1993 sysdrug1993
+diadrug1993 waist1997 bmi1997 sysdrug1997 diadrug1997 waist2000 bmi2000
+sysdrug2000 diadrug2000 waist2004 bmi2004 sysdrug2004 diadrug2004 waist2006
+bmi2006 sysdrug2006 diadrug2006 waist2009 bmi2009 sysdrug2009 diadrug2009
+waist2011 bmi2011 sysdrug2011 diadrug2011 energy1991 carbo1991 fat1991
+protein1991 energy1993 carbo1993 fat1993 protein1993 energy1997 carbo1997
+fat1997 protein1997 energy2000 carbo2000 fat2000 protein2000 energy2004
+carbo2004 fat2004 protein2004 energy2006 carbo2006 fat2006 protein2006
+energy2009 carbo2009 fat2009 protein2009 energy2011 carbo2011 fat2011
+protein2011 metstotal1997 metstotal2000 metstotal2004 metstotal2006
+metstotal2009 metstotal2011 on m = 1
+r(198);
+
+end of do-file
+r(198);
