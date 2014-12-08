@@ -28,21 +28,18 @@ Note:  Your site can add messages to the introduction by editing the file
 /data/uctprgu/git/baowen
 
 . 
-. log using log_mi, text replace
-(note: file /data/uctprgu/git/baowen/log_mi.log not found)
--------------------------------------------------------------------------------
-      name:  <unnamed>
-       log:  /data/uctprgu/git/baowen/log_mi.log
-  log type:  text
- opened on:   8 Dec 2014, 18:27:44
-
-. 
 . use missingwide, clear
 (SAVASTATA created this dataset on 01JAN2014)
 
 . mi set flong
 
 . mi xtset,clear
+
+. 
+. label define spouse 0" working" 1 "notwork" 2 " nospouse" 3" wtonotw" 4" nott
+> owork" 5" stonos" 6" nostos"
+
+. label value spouse spouse
 
 . 
 . mi register imputed education skills spouse ///
@@ -77,14 +74,13 @@ Note:  Your site can add messages to the introduction by editing the file
 
 . 
 . 
-.  mi impute chained ///
+. mi impute chained ///
 > (mlogit, augment)spouse ///
 > (ologit) education skills ///
 > (regress) logincomemedi1989 logincomemedi1991 logincomemedi1993 logincomemedi
 > 1997 ///
 > logincomemedi2000 logincomemedi2004 logincomemedi2006 logincomemedi2009 login
-> comemedi2011 ///
-> waist1991 bmi1991 sysdrug1991 diadrug1991 ///
+> comemedi2011 /// bmi1991 sysdrug1991 diadrug1991 ///
 > waist1993 bmi1993 sysdrug1993 diadrug1993 ///
 > waist1997 bmi1997 sysdrug1997 diadrug1997 ///
 > waist2000 bmi2000 sysdrug2000 diadrug2000 ///
@@ -118,20 +114,19 @@ Conditional models:
                      bmi2004 waist2004 sysdrug2006 diadrug2006
                      logincomemedi1993 waist2006 carbo1991 fat1991
                      protein1991 bmi2006 energy1991 energy1993 carbo1993
-                     fat1993 protein1993 logincomemedi1997 sysdrug1991
-                     diadrug1991 carbo1997 protein1997 energy1997 fat1997
-                     energy2009 carbo2009 fat2009 protein2009
-                     logincomemedi2009 bmi1991 sysdrug1993 diadrug1993
-                     sysdrug2009 diadrug2009 bmi1993 waist2009 bmi2009
-                     waist1993 sysdrug1997 diadrug1997 bmi1997 waist1997
-                     sysdrug2011 diadrug2011 waist2011 bmi2011 energy2011
-                     carbo2011 fat2011 protein2011 logincomemedi2011
-                     metstotal2006 metstotal2004 metstotal2009 metstotal2011
-                     metstotal2000 metstotal1997 waist1991 gender retireageg
-                     birthcohort area provinces communityid yrsinceretire1989
-                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
-                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
-                     yrsinceretire2009 yrsinceretire2011
+                     fat1993 protein1993 logincomemedi1997 carbo1997
+                     protein1997 energy1997 fat1997 energy2009 carbo2009
+                     fat2009 protein2009 logincomemedi2009 sysdrug1993
+                     diadrug1993 sysdrug2009 diadrug2009 bmi1993 waist2009
+                     bmi2009 waist1993 sysdrug1997 diadrug1997 bmi1997
+                     waist1997 sysdrug2011 diadrug2011 waist2011 bmi2011
+                     energy2011 carbo2011 fat2011 protein2011
+                     logincomemedi2011 metstotal2006 metstotal2004
+                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
+                     gender retireageg birthcohort area provinces communityid
+                     yrsinceretire1989 yrsinceretire1991 yrsinceretire1993
+                     yrsinceretire1997 yrsinceretire2000 yrsinceretire2004
+                     yrsinceretire2006 yrsinceretire2009 yrsinceretire2011
             skills: ologit skills i.education i.spouse logincomemedi2000
                      carbo2000 fat2000 protein2000 energy2000 sysdrug2000
                      diadrug2000 bmi2000 waist2000 logincomemedi1989
@@ -141,20 +136,19 @@ Conditional models:
                      bmi2004 waist2004 sysdrug2006 diadrug2006
                      logincomemedi1993 waist2006 carbo1991 fat1991
                      protein1991 bmi2006 energy1991 energy1993 carbo1993
-                     fat1993 protein1993 logincomemedi1997 sysdrug1991
-                     diadrug1991 carbo1997 protein1997 energy1997 fat1997
-                     energy2009 carbo2009 fat2009 protein2009
-                     logincomemedi2009 bmi1991 sysdrug1993 diadrug1993
-                     sysdrug2009 diadrug2009 bmi1993 waist2009 bmi2009
-                     waist1993 sysdrug1997 diadrug1997 bmi1997 waist1997
-                     sysdrug2011 diadrug2011 waist2011 bmi2011 energy2011
-                     carbo2011 fat2011 protein2011 logincomemedi2011
-                     metstotal2006 metstotal2004 metstotal2009 metstotal2011
-                     metstotal2000 metstotal1997 waist1991 gender retireageg
-                     birthcohort area provinces communityid yrsinceretire1989
-                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
-                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
-                     yrsinceretire2009 yrsinceretire2011
+                     fat1993 protein1993 logincomemedi1997 carbo1997
+                     protein1997 energy1997 fat1997 energy2009 carbo2009
+                     fat2009 protein2009 logincomemedi2009 sysdrug1993
+                     diadrug1993 sysdrug2009 diadrug2009 bmi1993 waist2009
+                     bmi2009 waist1993 sysdrug1997 diadrug1997 bmi1997
+                     waist1997 sysdrug2011 diadrug2011 waist2011 bmi2011
+                     energy2011 carbo2011 fat2011 protein2011
+                     logincomemedi2011 metstotal2006 metstotal2004
+                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
+                     gender retireageg birthcohort area provinces communityid
+                     yrsinceretire1989 yrsinceretire1991 yrsinceretire1993
+                     yrsinceretire1997 yrsinceretire2000 yrsinceretire2004
+                     yrsinceretire2006 yrsinceretire2009 yrsinceretire2011
             spouse: mlogit spouse i.education i.skills logincomemedi2000
                      carbo2000 fat2000 protein2000 energy2000 sysdrug2000
                      diadrug2000 bmi2000 waist2000 logincomemedi1989
@@ -164,20 +158,20 @@ Conditional models:
                      bmi2004 waist2004 sysdrug2006 diadrug2006
                      logincomemedi1993 waist2006 carbo1991 fat1991
                      protein1991 bmi2006 energy1991 energy1993 carbo1993
-                     fat1993 protein1993 logincomemedi1997 sysdrug1991
-                     diadrug1991 carbo1997 protein1997 energy1997 fat1997
-                     energy2009 carbo2009 fat2009 protein2009
-                     logincomemedi2009 bmi1991 sysdrug1993 diadrug1993
-                     sysdrug2009 diadrug2009 bmi1993 waist2009 bmi2009
-                     waist1993 sysdrug1997 diadrug1997 bmi1997 waist1997
-                     sysdrug2011 diadrug2011 waist2011 bmi2011 energy2011
-                     carbo2011 fat2011 protein2011 logincomemedi2011
-                     metstotal2006 metstotal2004 metstotal2009 metstotal2011
-                     metstotal2000 metstotal1997 waist1991 gender retireageg
-                     birthcohort area provinces communityid yrsinceretire1989
-                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
-                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
-                     yrsinceretire2009 yrsinceretire2011 , augment
+                     fat1993 protein1993 logincomemedi1997 carbo1997
+                     protein1997 energy1997 fat1997 energy2009 carbo2009
+                     fat2009 protein2009 logincomemedi2009 sysdrug1993
+                     diadrug1993 sysdrug2009 diadrug2009 bmi1993 waist2009
+                     bmi2009 waist1993 sysdrug1997 diadrug1997 bmi1997
+                     waist1997 sysdrug2011 diadrug2011 waist2011 bmi2011
+                     energy2011 carbo2011 fat2011 protein2011
+                     logincomemedi2011 metstotal2006 metstotal2004
+                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
+                     gender retireageg birthcohort area provinces communityid
+                     yrsinceretire1989 yrsinceretire1991 yrsinceretire1993
+                     yrsinceretire1997 yrsinceretire2000 yrsinceretire2004
+                     yrsinceretire2006 yrsinceretire2009 yrsinceretire2011 ,
+                     augment
     logincome~2000: regress logincomemedi2000 i.education i.skills i.spouse
                      carbo2000 fat2000 protein2000 energy2000 sysdrug2000
                      diadrug2000 bmi2000 waist2000 logincomemedi1989
@@ -187,20 +181,19 @@ Conditional models:
                      bmi2004 waist2004 sysdrug2006 diadrug2006
                      logincomemedi1993 waist2006 carbo1991 fat1991
                      protein1991 bmi2006 energy1991 energy1993 carbo1993
-                     fat1993 protein1993 logincomemedi1997 sysdrug1991
-                     diadrug1991 carbo1997 protein1997 energy1997 fat1997
-                     energy2009 carbo2009 fat2009 protein2009
-                     logincomemedi2009 bmi1991 sysdrug1993 diadrug1993
-                     sysdrug2009 diadrug2009 bmi1993 waist2009 bmi2009
-                     waist1993 sysdrug1997 diadrug1997 bmi1997 waist1997
-                     sysdrug2011 diadrug2011 waist2011 bmi2011 energy2011
-                     carbo2011 fat2011 protein2011 logincomemedi2011
-                     metstotal2006 metstotal2004 metstotal2009 metstotal2011
-                     metstotal2000 metstotal1997 waist1991 gender retireageg
-                     birthcohort area provinces communityid yrsinceretire1989
-                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
-                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
-                     yrsinceretire2009 yrsinceretire2011
+                     fat1993 protein1993 logincomemedi1997 carbo1997
+                     protein1997 energy1997 fat1997 energy2009 carbo2009
+                     fat2009 protein2009 logincomemedi2009 sysdrug1993
+                     diadrug1993 sysdrug2009 diadrug2009 bmi1993 waist2009
+                     bmi2009 waist1993 sysdrug1997 diadrug1997 bmi1997
+                     waist1997 sysdrug2011 diadrug2011 waist2011 bmi2011
+                     energy2011 carbo2011 fat2011 protein2011
+                     logincomemedi2011 metstotal2006 metstotal2004
+                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
+                     gender retireageg birthcohort area provinces communityid
+                     yrsinceretire1989 yrsinceretire1991 yrsinceretire1993
+                     yrsinceretire1997 yrsinceretire2000 yrsinceretire2004
+                     yrsinceretire2006 yrsinceretire2009 yrsinceretire2011
          carbo2000: regress carbo2000 i.education i.skills i.spouse
                      logincomemedi2000 fat2000 protein2000 energy2000
                      sysdrug2000 diadrug2000 bmi2000 waist2000
@@ -211,20 +204,19 @@ Conditional models:
                      sysdrug2006 diadrug2006 logincomemedi1993 waist2006
                      carbo1991 fat1991 protein1991 bmi2006 energy1991
                      energy1993 carbo1993 fat1993 protein1993
-                     logincomemedi1997 sysdrug1991 diadrug1991 carbo1997
-                     protein1997 energy1997 fat1997 energy2009 carbo2009
-                     fat2009 protein2009 logincomemedi2009 bmi1991
-                     sysdrug1993 diadrug1993 sysdrug2009 diadrug2009 bmi1993
-                     waist2009 bmi2009 waist1993 sysdrug1997 diadrug1997
-                     bmi1997 waist1997 sysdrug2011 diadrug2011 waist2011
-                     bmi2011 energy2011 carbo2011 fat2011 protein2011
-                     logincomemedi2011 metstotal2006 metstotal2004
-                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
-                     waist1991 gender retireageg birthcohort area provinces
-                     communityid yrsinceretire1989 yrsinceretire1991
-                     yrsinceretire1993 yrsinceretire1997 yrsinceretire2000
-                     yrsinceretire2004 yrsinceretire2006 yrsinceretire2009
-                     yrsinceretire2011
+                     logincomemedi1997 carbo1997 protein1997 energy1997
+                     fat1997 energy2009 carbo2009 fat2009 protein2009
+                     logincomemedi2009 sysdrug1993 diadrug1993 sysdrug2009
+                     diadrug2009 bmi1993 waist2009 bmi2009 waist1993
+                     sysdrug1997 diadrug1997 bmi1997 waist1997 sysdrug2011
+                     diadrug2011 waist2011 bmi2011 energy2011 carbo2011
+                     fat2011 protein2011 logincomemedi2011 metstotal2006
+                     metstotal2004 metstotal2009 metstotal2011 metstotal2000
+                     metstotal1997 gender retireageg birthcohort area
+                     provinces communityid yrsinceretire1989
+                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
+                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
+                     yrsinceretire2009 yrsinceretire2011
            fat2000: regress fat2000 i.education i.skills i.spouse
                      logincomemedi2000 carbo2000 protein2000 energy2000
                      sysdrug2000 diadrug2000 bmi2000 waist2000
@@ -235,20 +227,19 @@ Conditional models:
                      sysdrug2006 diadrug2006 logincomemedi1993 waist2006
                      carbo1991 fat1991 protein1991 bmi2006 energy1991
                      energy1993 carbo1993 fat1993 protein1993
-                     logincomemedi1997 sysdrug1991 diadrug1991 carbo1997
-                     protein1997 energy1997 fat1997 energy2009 carbo2009
-                     fat2009 protein2009 logincomemedi2009 bmi1991
-                     sysdrug1993 diadrug1993 sysdrug2009 diadrug2009 bmi1993
-                     waist2009 bmi2009 waist1993 sysdrug1997 diadrug1997
-                     bmi1997 waist1997 sysdrug2011 diadrug2011 waist2011
-                     bmi2011 energy2011 carbo2011 fat2011 protein2011
-                     logincomemedi2011 metstotal2006 metstotal2004
-                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
-                     waist1991 gender retireageg birthcohort area provinces
-                     communityid yrsinceretire1989 yrsinceretire1991
-                     yrsinceretire1993 yrsinceretire1997 yrsinceretire2000
-                     yrsinceretire2004 yrsinceretire2006 yrsinceretire2009
-                     yrsinceretire2011
+                     logincomemedi1997 carbo1997 protein1997 energy1997
+                     fat1997 energy2009 carbo2009 fat2009 protein2009
+                     logincomemedi2009 sysdrug1993 diadrug1993 sysdrug2009
+                     diadrug2009 bmi1993 waist2009 bmi2009 waist1993
+                     sysdrug1997 diadrug1997 bmi1997 waist1997 sysdrug2011
+                     diadrug2011 waist2011 bmi2011 energy2011 carbo2011
+                     fat2011 protein2011 logincomemedi2011 metstotal2006
+                     metstotal2004 metstotal2009 metstotal2011 metstotal2000
+                     metstotal1997 gender retireageg birthcohort area
+                     provinces communityid yrsinceretire1989
+                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
+                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
+                     yrsinceretire2009 yrsinceretire2011
        protein2000: regress protein2000 i.education i.skills i.spouse
                      logincomemedi2000 carbo2000 fat2000 energy2000
                      sysdrug2000 diadrug2000 bmi2000 waist2000
@@ -259,20 +250,19 @@ Conditional models:
                      sysdrug2006 diadrug2006 logincomemedi1993 waist2006
                      carbo1991 fat1991 protein1991 bmi2006 energy1991
                      energy1993 carbo1993 fat1993 protein1993
-                     logincomemedi1997 sysdrug1991 diadrug1991 carbo1997
-                     protein1997 energy1997 fat1997 energy2009 carbo2009
-                     fat2009 protein2009 logincomemedi2009 bmi1991
-                     sysdrug1993 diadrug1993 sysdrug2009 diadrug2009 bmi1993
-                     waist2009 bmi2009 waist1993 sysdrug1997 diadrug1997
-                     bmi1997 waist1997 sysdrug2011 diadrug2011 waist2011
-                     bmi2011 energy2011 carbo2011 fat2011 protein2011
-                     logincomemedi2011 metstotal2006 metstotal2004
-                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
-                     waist1991 gender retireageg birthcohort area provinces
-                     communityid yrsinceretire1989 yrsinceretire1991
-                     yrsinceretire1993 yrsinceretire1997 yrsinceretire2000
-                     yrsinceretire2004 yrsinceretire2006 yrsinceretire2009
-                     yrsinceretire2011
+                     logincomemedi1997 carbo1997 protein1997 energy1997
+                     fat1997 energy2009 carbo2009 fat2009 protein2009
+                     logincomemedi2009 sysdrug1993 diadrug1993 sysdrug2009
+                     diadrug2009 bmi1993 waist2009 bmi2009 waist1993
+                     sysdrug1997 diadrug1997 bmi1997 waist1997 sysdrug2011
+                     diadrug2011 waist2011 bmi2011 energy2011 carbo2011
+                     fat2011 protein2011 logincomemedi2011 metstotal2006
+                     metstotal2004 metstotal2009 metstotal2011 metstotal2000
+                     metstotal1997 gender retireageg birthcohort area
+                     provinces communityid yrsinceretire1989
+                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
+                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
+                     yrsinceretire2009 yrsinceretire2011
         energy2000: regress energy2000 i.education i.skills i.spouse
                      logincomemedi2000 carbo2000 fat2000 protein2000
                      sysdrug2000 diadrug2000 bmi2000 waist2000
@@ -283,20 +273,19 @@ Conditional models:
                      sysdrug2006 diadrug2006 logincomemedi1993 waist2006
                      carbo1991 fat1991 protein1991 bmi2006 energy1991
                      energy1993 carbo1993 fat1993 protein1993
-                     logincomemedi1997 sysdrug1991 diadrug1991 carbo1997
-                     protein1997 energy1997 fat1997 energy2009 carbo2009
-                     fat2009 protein2009 logincomemedi2009 bmi1991
-                     sysdrug1993 diadrug1993 sysdrug2009 diadrug2009 bmi1993
-                     waist2009 bmi2009 waist1993 sysdrug1997 diadrug1997
-                     bmi1997 waist1997 sysdrug2011 diadrug2011 waist2011
-                     bmi2011 energy2011 carbo2011 fat2011 protein2011
-                     logincomemedi2011 metstotal2006 metstotal2004
-                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
-                     waist1991 gender retireageg birthcohort area provinces
-                     communityid yrsinceretire1989 yrsinceretire1991
-                     yrsinceretire1993 yrsinceretire1997 yrsinceretire2000
-                     yrsinceretire2004 yrsinceretire2006 yrsinceretire2009
-                     yrsinceretire2011
+                     logincomemedi1997 carbo1997 protein1997 energy1997
+                     fat1997 energy2009 carbo2009 fat2009 protein2009
+                     logincomemedi2009 sysdrug1993 diadrug1993 sysdrug2009
+                     diadrug2009 bmi1993 waist2009 bmi2009 waist1993
+                     sysdrug1997 diadrug1997 bmi1997 waist1997 sysdrug2011
+                     diadrug2011 waist2011 bmi2011 energy2011 carbo2011
+                     fat2011 protein2011 logincomemedi2011 metstotal2006
+                     metstotal2004 metstotal2009 metstotal2011 metstotal2000
+                     metstotal1997 gender retireageg birthcohort area
+                     provinces communityid yrsinceretire1989
+                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
+                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
+                     yrsinceretire2009 yrsinceretire2011
        sysdrug2000: regress sysdrug2000 i.education i.skills i.spouse
                      logincomemedi2000 carbo2000 fat2000 protein2000
                      energy2000 diadrug2000 bmi2000 waist2000
@@ -307,20 +296,19 @@ Conditional models:
                      sysdrug2006 diadrug2006 logincomemedi1993 waist2006
                      carbo1991 fat1991 protein1991 bmi2006 energy1991
                      energy1993 carbo1993 fat1993 protein1993
-                     logincomemedi1997 sysdrug1991 diadrug1991 carbo1997
-                     protein1997 energy1997 fat1997 energy2009 carbo2009
-                     fat2009 protein2009 logincomemedi2009 bmi1991
-                     sysdrug1993 diadrug1993 sysdrug2009 diadrug2009 bmi1993
-                     waist2009 bmi2009 waist1993 sysdrug1997 diadrug1997
-                     bmi1997 waist1997 sysdrug2011 diadrug2011 waist2011
-                     bmi2011 energy2011 carbo2011 fat2011 protein2011
-                     logincomemedi2011 metstotal2006 metstotal2004
-                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
-                     waist1991 gender retireageg birthcohort area provinces
-                     communityid yrsinceretire1989 yrsinceretire1991
-                     yrsinceretire1993 yrsinceretire1997 yrsinceretire2000
-                     yrsinceretire2004 yrsinceretire2006 yrsinceretire2009
-                     yrsinceretire2011
+                     logincomemedi1997 carbo1997 protein1997 energy1997
+                     fat1997 energy2009 carbo2009 fat2009 protein2009
+                     logincomemedi2009 sysdrug1993 diadrug1993 sysdrug2009
+                     diadrug2009 bmi1993 waist2009 bmi2009 waist1993
+                     sysdrug1997 diadrug1997 bmi1997 waist1997 sysdrug2011
+                     diadrug2011 waist2011 bmi2011 energy2011 carbo2011
+                     fat2011 protein2011 logincomemedi2011 metstotal2006
+                     metstotal2004 metstotal2009 metstotal2011 metstotal2000
+                     metstotal1997 gender retireageg birthcohort area
+                     provinces communityid yrsinceretire1989
+                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
+                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
+                     yrsinceretire2009 yrsinceretire2011
        diadrug2000: regress diadrug2000 i.education i.skills i.spouse
                      logincomemedi2000 carbo2000 fat2000 protein2000
                      energy2000 sysdrug2000 bmi2000 waist2000
@@ -331,20 +319,19 @@ Conditional models:
                      sysdrug2006 diadrug2006 logincomemedi1993 waist2006
                      carbo1991 fat1991 protein1991 bmi2006 energy1991
                      energy1993 carbo1993 fat1993 protein1993
-                     logincomemedi1997 sysdrug1991 diadrug1991 carbo1997
-                     protein1997 energy1997 fat1997 energy2009 carbo2009
-                     fat2009 protein2009 logincomemedi2009 bmi1991
-                     sysdrug1993 diadrug1993 sysdrug2009 diadrug2009 bmi1993
-                     waist2009 bmi2009 waist1993 sysdrug1997 diadrug1997
-                     bmi1997 waist1997 sysdrug2011 diadrug2011 waist2011
-                     bmi2011 energy2011 carbo2011 fat2011 protein2011
-                     logincomemedi2011 metstotal2006 metstotal2004
-                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
-                     waist1991 gender retireageg birthcohort area provinces
-                     communityid yrsinceretire1989 yrsinceretire1991
-                     yrsinceretire1993 yrsinceretire1997 yrsinceretire2000
-                     yrsinceretire2004 yrsinceretire2006 yrsinceretire2009
-                     yrsinceretire2011
+                     logincomemedi1997 carbo1997 protein1997 energy1997
+                     fat1997 energy2009 carbo2009 fat2009 protein2009
+                     logincomemedi2009 sysdrug1993 diadrug1993 sysdrug2009
+                     diadrug2009 bmi1993 waist2009 bmi2009 waist1993
+                     sysdrug1997 diadrug1997 bmi1997 waist1997 sysdrug2011
+                     diadrug2011 waist2011 bmi2011 energy2011 carbo2011
+                     fat2011 protein2011 logincomemedi2011 metstotal2006
+                     metstotal2004 metstotal2009 metstotal2011 metstotal2000
+                     metstotal1997 gender retireageg birthcohort area
+                     provinces communityid yrsinceretire1989
+                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
+                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
+                     yrsinceretire2009 yrsinceretire2011
            bmi2000: regress bmi2000 i.education i.skills i.spouse
                      logincomemedi2000 carbo2000 fat2000 protein2000
                      energy2000 sysdrug2000 diadrug2000 waist2000
@@ -355,20 +342,19 @@ Conditional models:
                      sysdrug2006 diadrug2006 logincomemedi1993 waist2006
                      carbo1991 fat1991 protein1991 bmi2006 energy1991
                      energy1993 carbo1993 fat1993 protein1993
-                     logincomemedi1997 sysdrug1991 diadrug1991 carbo1997
-                     protein1997 energy1997 fat1997 energy2009 carbo2009
-                     fat2009 protein2009 logincomemedi2009 bmi1991
-                     sysdrug1993 diadrug1993 sysdrug2009 diadrug2009 bmi1993
-                     waist2009 bmi2009 waist1993 sysdrug1997 diadrug1997
-                     bmi1997 waist1997 sysdrug2011 diadrug2011 waist2011
-                     bmi2011 energy2011 carbo2011 fat2011 protein2011
-                     logincomemedi2011 metstotal2006 metstotal2004
-                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
-                     waist1991 gender retireageg birthcohort area provinces
-                     communityid yrsinceretire1989 yrsinceretire1991
-                     yrsinceretire1993 yrsinceretire1997 yrsinceretire2000
-                     yrsinceretire2004 yrsinceretire2006 yrsinceretire2009
-                     yrsinceretire2011
+                     logincomemedi1997 carbo1997 protein1997 energy1997
+                     fat1997 energy2009 carbo2009 fat2009 protein2009
+                     logincomemedi2009 sysdrug1993 diadrug1993 sysdrug2009
+                     diadrug2009 bmi1993 waist2009 bmi2009 waist1993
+                     sysdrug1997 diadrug1997 bmi1997 waist1997 sysdrug2011
+                     diadrug2011 waist2011 bmi2011 energy2011 carbo2011
+                     fat2011 protein2011 logincomemedi2011 metstotal2006
+                     metstotal2004 metstotal2009 metstotal2011 metstotal2000
+                     metstotal1997 gender retireageg birthcohort area
+                     provinces communityid yrsinceretire1989
+                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
+                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
+                     yrsinceretire2009 yrsinceretire2011
          waist2000: regress waist2000 i.education i.skills i.spouse
                      logincomemedi2000 carbo2000 fat2000 protein2000
                      energy2000 sysdrug2000 diadrug2000 bmi2000
@@ -379,20 +365,19 @@ Conditional models:
                      sysdrug2006 diadrug2006 logincomemedi1993 waist2006
                      carbo1991 fat1991 protein1991 bmi2006 energy1991
                      energy1993 carbo1993 fat1993 protein1993
-                     logincomemedi1997 sysdrug1991 diadrug1991 carbo1997
-                     protein1997 energy1997 fat1997 energy2009 carbo2009
-                     fat2009 protein2009 logincomemedi2009 bmi1991
-                     sysdrug1993 diadrug1993 sysdrug2009 diadrug2009 bmi1993
-                     waist2009 bmi2009 waist1993 sysdrug1997 diadrug1997
-                     bmi1997 waist1997 sysdrug2011 diadrug2011 waist2011
-                     bmi2011 energy2011 carbo2011 fat2011 protein2011
-                     logincomemedi2011 metstotal2006 metstotal2004
-                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
-                     waist1991 gender retireageg birthcohort area provinces
-                     communityid yrsinceretire1989 yrsinceretire1991
-                     yrsinceretire1993 yrsinceretire1997 yrsinceretire2000
-                     yrsinceretire2004 yrsinceretire2006 yrsinceretire2009
-                     yrsinceretire2011
+                     logincomemedi1997 carbo1997 protein1997 energy1997
+                     fat1997 energy2009 carbo2009 fat2009 protein2009
+                     logincomemedi2009 sysdrug1993 diadrug1993 sysdrug2009
+                     diadrug2009 bmi1993 waist2009 bmi2009 waist1993
+                     sysdrug1997 diadrug1997 bmi1997 waist1997 sysdrug2011
+                     diadrug2011 waist2011 bmi2011 energy2011 carbo2011
+                     fat2011 protein2011 logincomemedi2011 metstotal2006
+                     metstotal2004 metstotal2009 metstotal2011 metstotal2000
+                     metstotal1997 gender retireageg birthcohort area
+                     provinces communityid yrsinceretire1989
+                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
+                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
+                     yrsinceretire2009 yrsinceretire2011
     logincome~1989: regress logincomemedi1989 i.education i.skills i.spouse
                      logincomemedi2000 carbo2000 fat2000 protein2000
                      energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
@@ -402,20 +387,19 @@ Conditional models:
                      bmi2004 waist2004 sysdrug2006 diadrug2006
                      logincomemedi1993 waist2006 carbo1991 fat1991
                      protein1991 bmi2006 energy1991 energy1993 carbo1993
-                     fat1993 protein1993 logincomemedi1997 sysdrug1991
-                     diadrug1991 carbo1997 protein1997 energy1997 fat1997
-                     energy2009 carbo2009 fat2009 protein2009
-                     logincomemedi2009 bmi1991 sysdrug1993 diadrug1993
-                     sysdrug2009 diadrug2009 bmi1993 waist2009 bmi2009
-                     waist1993 sysdrug1997 diadrug1997 bmi1997 waist1997
-                     sysdrug2011 diadrug2011 waist2011 bmi2011 energy2011
-                     carbo2011 fat2011 protein2011 logincomemedi2011
-                     metstotal2006 metstotal2004 metstotal2009 metstotal2011
-                     metstotal2000 metstotal1997 waist1991 gender retireageg
-                     birthcohort area provinces communityid yrsinceretire1989
-                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
-                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
-                     yrsinceretire2009 yrsinceretire2011
+                     fat1993 protein1993 logincomemedi1997 carbo1997
+                     protein1997 energy1997 fat1997 energy2009 carbo2009
+                     fat2009 protein2009 logincomemedi2009 sysdrug1993
+                     diadrug1993 sysdrug2009 diadrug2009 bmi1993 waist2009
+                     bmi2009 waist1993 sysdrug1997 diadrug1997 bmi1997
+                     waist1997 sysdrug2011 diadrug2011 waist2011 bmi2011
+                     energy2011 carbo2011 fat2011 protein2011
+                     logincomemedi2011 metstotal2006 metstotal2004
+                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
+                     gender retireageg birthcohort area provinces communityid
+                     yrsinceretire1989 yrsinceretire1991 yrsinceretire1993
+                     yrsinceretire1997 yrsinceretire2000 yrsinceretire2004
+                     yrsinceretire2006 yrsinceretire2009 yrsinceretire2011
     logincome~1991: regress logincomemedi1991 i.education i.skills i.spouse
                      logincomemedi2000 carbo2000 fat2000 protein2000
                      energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
@@ -425,20 +409,19 @@ Conditional models:
                      bmi2004 waist2004 sysdrug2006 diadrug2006
                      logincomemedi1993 waist2006 carbo1991 fat1991
                      protein1991 bmi2006 energy1991 energy1993 carbo1993
-                     fat1993 protein1993 logincomemedi1997 sysdrug1991
-                     diadrug1991 carbo1997 protein1997 energy1997 fat1997
-                     energy2009 carbo2009 fat2009 protein2009
-                     logincomemedi2009 bmi1991 sysdrug1993 diadrug1993
-                     sysdrug2009 diadrug2009 bmi1993 waist2009 bmi2009
-                     waist1993 sysdrug1997 diadrug1997 bmi1997 waist1997
-                     sysdrug2011 diadrug2011 waist2011 bmi2011 energy2011
-                     carbo2011 fat2011 protein2011 logincomemedi2011
-                     metstotal2006 metstotal2004 metstotal2009 metstotal2011
-                     metstotal2000 metstotal1997 waist1991 gender retireageg
-                     birthcohort area provinces communityid yrsinceretire1989
-                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
-                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
-                     yrsinceretire2009 yrsinceretire2011
+                     fat1993 protein1993 logincomemedi1997 carbo1997
+                     protein1997 energy1997 fat1997 energy2009 carbo2009
+                     fat2009 protein2009 logincomemedi2009 sysdrug1993
+                     diadrug1993 sysdrug2009 diadrug2009 bmi1993 waist2009
+                     bmi2009 waist1993 sysdrug1997 diadrug1997 bmi1997
+                     waist1997 sysdrug2011 diadrug2011 waist2011 bmi2011
+                     energy2011 carbo2011 fat2011 protein2011
+                     logincomemedi2011 metstotal2006 metstotal2004
+                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
+                     gender retireageg birthcohort area provinces communityid
+                     yrsinceretire1989 yrsinceretire1991 yrsinceretire1993
+                     yrsinceretire1997 yrsinceretire2000 yrsinceretire2004
+                     yrsinceretire2006 yrsinceretire2009 yrsinceretire2011
     logincome~2004: regress logincomemedi2004 i.education i.skills i.spouse
                      logincomemedi2000 carbo2000 fat2000 protein2000
                      energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
@@ -448,20 +431,19 @@ Conditional models:
                      bmi2004 waist2004 sysdrug2006 diadrug2006
                      logincomemedi1993 waist2006 carbo1991 fat1991
                      protein1991 bmi2006 energy1991 energy1993 carbo1993
-                     fat1993 protein1993 logincomemedi1997 sysdrug1991
-                     diadrug1991 carbo1997 protein1997 energy1997 fat1997
-                     energy2009 carbo2009 fat2009 protein2009
-                     logincomemedi2009 bmi1991 sysdrug1993 diadrug1993
-                     sysdrug2009 diadrug2009 bmi1993 waist2009 bmi2009
-                     waist1993 sysdrug1997 diadrug1997 bmi1997 waist1997
-                     sysdrug2011 diadrug2011 waist2011 bmi2011 energy2011
-                     carbo2011 fat2011 protein2011 logincomemedi2011
-                     metstotal2006 metstotal2004 metstotal2009 metstotal2011
-                     metstotal2000 metstotal1997 waist1991 gender retireageg
-                     birthcohort area provinces communityid yrsinceretire1989
-                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
-                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
-                     yrsinceretire2009 yrsinceretire2011
+                     fat1993 protein1993 logincomemedi1997 carbo1997
+                     protein1997 energy1997 fat1997 energy2009 carbo2009
+                     fat2009 protein2009 logincomemedi2009 sysdrug1993
+                     diadrug1993 sysdrug2009 diadrug2009 bmi1993 waist2009
+                     bmi2009 waist1993 sysdrug1997 diadrug1997 bmi1997
+                     waist1997 sysdrug2011 diadrug2011 waist2011 bmi2011
+                     energy2011 carbo2011 fat2011 protein2011
+                     logincomemedi2011 metstotal2006 metstotal2004
+                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
+                     gender retireageg birthcohort area provinces communityid
+                     yrsinceretire1989 yrsinceretire1991 yrsinceretire1993
+                     yrsinceretire1997 yrsinceretire2000 yrsinceretire2004
+                     yrsinceretire2006 yrsinceretire2009 yrsinceretire2011
         energy2004: regress energy2004 i.education i.skills i.spouse
                      logincomemedi2000 carbo2000 fat2000 protein2000
                      energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
@@ -471,20 +453,19 @@ Conditional models:
                      diadrug2004 bmi2004 waist2004 sysdrug2006 diadrug2006
                      logincomemedi1993 waist2006 carbo1991 fat1991
                      protein1991 bmi2006 energy1991 energy1993 carbo1993
-                     fat1993 protein1993 logincomemedi1997 sysdrug1991
-                     diadrug1991 carbo1997 protein1997 energy1997 fat1997
-                     energy2009 carbo2009 fat2009 protein2009
-                     logincomemedi2009 bmi1991 sysdrug1993 diadrug1993
-                     sysdrug2009 diadrug2009 bmi1993 waist2009 bmi2009
-                     waist1993 sysdrug1997 diadrug1997 bmi1997 waist1997
-                     sysdrug2011 diadrug2011 waist2011 bmi2011 energy2011
-                     carbo2011 fat2011 protein2011 logincomemedi2011
-                     metstotal2006 metstotal2004 metstotal2009 metstotal2011
-                     metstotal2000 metstotal1997 waist1991 gender retireageg
-                     birthcohort area provinces communityid yrsinceretire1989
-                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
-                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
-                     yrsinceretire2009 yrsinceretire2011
+                     fat1993 protein1993 logincomemedi1997 carbo1997
+                     protein1997 energy1997 fat1997 energy2009 carbo2009
+                     fat2009 protein2009 logincomemedi2009 sysdrug1993
+                     diadrug1993 sysdrug2009 diadrug2009 bmi1993 waist2009
+                     bmi2009 waist1993 sysdrug1997 diadrug1997 bmi1997
+                     waist1997 sysdrug2011 diadrug2011 waist2011 bmi2011
+                     energy2011 carbo2011 fat2011 protein2011
+                     logincomemedi2011 metstotal2006 metstotal2004
+                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
+                     gender retireageg birthcohort area provinces communityid
+                     yrsinceretire1989 yrsinceretire1991 yrsinceretire1993
+                     yrsinceretire1997 yrsinceretire2000 yrsinceretire2004
+                     yrsinceretire2006 yrsinceretire2009 yrsinceretire2011
          carbo2004: regress carbo2004 i.education i.skills i.spouse
                      logincomemedi2000 carbo2000 fat2000 protein2000
                      energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
@@ -494,20 +475,19 @@ Conditional models:
                      diadrug2004 bmi2004 waist2004 sysdrug2006 diadrug2006
                      logincomemedi1993 waist2006 carbo1991 fat1991
                      protein1991 bmi2006 energy1991 energy1993 carbo1993
-                     fat1993 protein1993 logincomemedi1997 sysdrug1991
-                     diadrug1991 carbo1997 protein1997 energy1997 fat1997
-                     energy2009 carbo2009 fat2009 protein2009
-                     logincomemedi2009 bmi1991 sysdrug1993 diadrug1993
-                     sysdrug2009 diadrug2009 bmi1993 waist2009 bmi2009
-                     waist1993 sysdrug1997 diadrug1997 bmi1997 waist1997
-                     sysdrug2011 diadrug2011 waist2011 bmi2011 energy2011
-                     carbo2011 fat2011 protein2011 logincomemedi2011
-                     metstotal2006 metstotal2004 metstotal2009 metstotal2011
-                     metstotal2000 metstotal1997 waist1991 gender retireageg
-                     birthcohort area provinces communityid yrsinceretire1989
-                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
-                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
-                     yrsinceretire2009 yrsinceretire2011
+                     fat1993 protein1993 logincomemedi1997 carbo1997
+                     protein1997 energy1997 fat1997 energy2009 carbo2009
+                     fat2009 protein2009 logincomemedi2009 sysdrug1993
+                     diadrug1993 sysdrug2009 diadrug2009 bmi1993 waist2009
+                     bmi2009 waist1993 sysdrug1997 diadrug1997 bmi1997
+                     waist1997 sysdrug2011 diadrug2011 waist2011 bmi2011
+                     energy2011 carbo2011 fat2011 protein2011
+                     logincomemedi2011 metstotal2006 metstotal2004
+                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
+                     gender retireageg birthcohort area provinces communityid
+                     yrsinceretire1989 yrsinceretire1991 yrsinceretire1993
+                     yrsinceretire1997 yrsinceretire2000 yrsinceretire2004
+                     yrsinceretire2006 yrsinceretire2009 yrsinceretire2011
            fat2004: regress fat2004 i.education i.skills i.spouse
                      logincomemedi2000 carbo2000 fat2000 protein2000
                      energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
@@ -517,20 +497,19 @@ Conditional models:
                      diadrug2004 bmi2004 waist2004 sysdrug2006 diadrug2006
                      logincomemedi1993 waist2006 carbo1991 fat1991
                      protein1991 bmi2006 energy1991 energy1993 carbo1993
-                     fat1993 protein1993 logincomemedi1997 sysdrug1991
-                     diadrug1991 carbo1997 protein1997 energy1997 fat1997
-                     energy2009 carbo2009 fat2009 protein2009
-                     logincomemedi2009 bmi1991 sysdrug1993 diadrug1993
-                     sysdrug2009 diadrug2009 bmi1993 waist2009 bmi2009
-                     waist1993 sysdrug1997 diadrug1997 bmi1997 waist1997
-                     sysdrug2011 diadrug2011 waist2011 bmi2011 energy2011
-                     carbo2011 fat2011 protein2011 logincomemedi2011
-                     metstotal2006 metstotal2004 metstotal2009 metstotal2011
-                     metstotal2000 metstotal1997 waist1991 gender retireageg
-                     birthcohort area provinces communityid yrsinceretire1989
-                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
-                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
-                     yrsinceretire2009 yrsinceretire2011
+                     fat1993 protein1993 logincomemedi1997 carbo1997
+                     protein1997 energy1997 fat1997 energy2009 carbo2009
+                     fat2009 protein2009 logincomemedi2009 sysdrug1993
+                     diadrug1993 sysdrug2009 diadrug2009 bmi1993 waist2009
+                     bmi2009 waist1993 sysdrug1997 diadrug1997 bmi1997
+                     waist1997 sysdrug2011 diadrug2011 waist2011 bmi2011
+                     energy2011 carbo2011 fat2011 protein2011
+                     logincomemedi2011 metstotal2006 metstotal2004
+                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
+                     gender retireageg birthcohort area provinces communityid
+                     yrsinceretire1989 yrsinceretire1991 yrsinceretire1993
+                     yrsinceretire1997 yrsinceretire2000 yrsinceretire2004
+                     yrsinceretire2006 yrsinceretire2009 yrsinceretire2011
        protein2004: regress protein2004 i.education i.skills i.spouse
                      logincomemedi2000 carbo2000 fat2000 protein2000
                      energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
@@ -540,20 +519,19 @@ Conditional models:
                      diadrug2004 bmi2004 waist2004 sysdrug2006 diadrug2006
                      logincomemedi1993 waist2006 carbo1991 fat1991
                      protein1991 bmi2006 energy1991 energy1993 carbo1993
-                     fat1993 protein1993 logincomemedi1997 sysdrug1991
-                     diadrug1991 carbo1997 protein1997 energy1997 fat1997
-                     energy2009 carbo2009 fat2009 protein2009
-                     logincomemedi2009 bmi1991 sysdrug1993 diadrug1993
-                     sysdrug2009 diadrug2009 bmi1993 waist2009 bmi2009
-                     waist1993 sysdrug1997 diadrug1997 bmi1997 waist1997
-                     sysdrug2011 diadrug2011 waist2011 bmi2011 energy2011
-                     carbo2011 fat2011 protein2011 logincomemedi2011
-                     metstotal2006 metstotal2004 metstotal2009 metstotal2011
-                     metstotal2000 metstotal1997 waist1991 gender retireageg
-                     birthcohort area provinces communityid yrsinceretire1989
-                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
-                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
-                     yrsinceretire2009 yrsinceretire2011
+                     fat1993 protein1993 logincomemedi1997 carbo1997
+                     protein1997 energy1997 fat1997 energy2009 carbo2009
+                     fat2009 protein2009 logincomemedi2009 sysdrug1993
+                     diadrug1993 sysdrug2009 diadrug2009 bmi1993 waist2009
+                     bmi2009 waist1993 sysdrug1997 diadrug1997 bmi1997
+                     waist1997 sysdrug2011 diadrug2011 waist2011 bmi2011
+                     energy2011 carbo2011 fat2011 protein2011
+                     logincomemedi2011 metstotal2006 metstotal2004
+                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
+                     gender retireageg birthcohort area provinces communityid
+                     yrsinceretire1989 yrsinceretire1991 yrsinceretire1993
+                     yrsinceretire1997 yrsinceretire2000 yrsinceretire2004
+                     yrsinceretire2006 yrsinceretire2009 yrsinceretire2011
     logincome~2006: regress logincomemedi2006 i.education i.skills i.spouse
                      logincomemedi2000 carbo2000 fat2000 protein2000
                      energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
@@ -563,20 +541,19 @@ Conditional models:
                      bmi2004 waist2004 sysdrug2006 diadrug2006
                      logincomemedi1993 waist2006 carbo1991 fat1991
                      protein1991 bmi2006 energy1991 energy1993 carbo1993
-                     fat1993 protein1993 logincomemedi1997 sysdrug1991
-                     diadrug1991 carbo1997 protein1997 energy1997 fat1997
-                     energy2009 carbo2009 fat2009 protein2009
-                     logincomemedi2009 bmi1991 sysdrug1993 diadrug1993
-                     sysdrug2009 diadrug2009 bmi1993 waist2009 bmi2009
-                     waist1993 sysdrug1997 diadrug1997 bmi1997 waist1997
-                     sysdrug2011 diadrug2011 waist2011 bmi2011 energy2011
-                     carbo2011 fat2011 protein2011 logincomemedi2011
-                     metstotal2006 metstotal2004 metstotal2009 metstotal2011
-                     metstotal2000 metstotal1997 waist1991 gender retireageg
-                     birthcohort area provinces communityid yrsinceretire1989
-                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
-                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
-                     yrsinceretire2009 yrsinceretire2011
+                     fat1993 protein1993 logincomemedi1997 carbo1997
+                     protein1997 energy1997 fat1997 energy2009 carbo2009
+                     fat2009 protein2009 logincomemedi2009 sysdrug1993
+                     diadrug1993 sysdrug2009 diadrug2009 bmi1993 waist2009
+                     bmi2009 waist1993 sysdrug1997 diadrug1997 bmi1997
+                     waist1997 sysdrug2011 diadrug2011 waist2011 bmi2011
+                     energy2011 carbo2011 fat2011 protein2011
+                     logincomemedi2011 metstotal2006 metstotal2004
+                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
+                     gender retireageg birthcohort area provinces communityid
+                     yrsinceretire1989 yrsinceretire1991 yrsinceretire1993
+                     yrsinceretire1997 yrsinceretire2000 yrsinceretire2004
+                     yrsinceretire2006 yrsinceretire2009 yrsinceretire2011
         energy2006: regress energy2006 i.education i.skills i.spouse
                      logincomemedi2000 carbo2000 fat2000 protein2000
                      energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
@@ -587,19 +564,18 @@ Conditional models:
                      diadrug2006 logincomemedi1993 waist2006 carbo1991
                      fat1991 protein1991 bmi2006 energy1991 energy1993
                      carbo1993 fat1993 protein1993 logincomemedi1997
-                     sysdrug1991 diadrug1991 carbo1997 protein1997 energy1997
-                     fat1997 energy2009 carbo2009 fat2009 protein2009
-                     logincomemedi2009 bmi1991 sysdrug1993 diadrug1993
-                     sysdrug2009 diadrug2009 bmi1993 waist2009 bmi2009
-                     waist1993 sysdrug1997 diadrug1997 bmi1997 waist1997
-                     sysdrug2011 diadrug2011 waist2011 bmi2011 energy2011
-                     carbo2011 fat2011 protein2011 logincomemedi2011
-                     metstotal2006 metstotal2004 metstotal2009 metstotal2011
-                     metstotal2000 metstotal1997 waist1991 gender retireageg
-                     birthcohort area provinces communityid yrsinceretire1989
-                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
-                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
-                     yrsinceretire2009 yrsinceretire2011
+                     carbo1997 protein1997 energy1997 fat1997 energy2009
+                     carbo2009 fat2009 protein2009 logincomemedi2009
+                     sysdrug1993 diadrug1993 sysdrug2009 diadrug2009 bmi1993
+                     waist2009 bmi2009 waist1993 sysdrug1997 diadrug1997
+                     bmi1997 waist1997 sysdrug2011 diadrug2011 waist2011
+                     bmi2011 energy2011 carbo2011 fat2011 protein2011
+                     logincomemedi2011 metstotal2006 metstotal2004
+                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
+                     gender retireageg birthcohort area provinces communityid
+                     yrsinceretire1989 yrsinceretire1991 yrsinceretire1993
+                     yrsinceretire1997 yrsinceretire2000 yrsinceretire2004
+                     yrsinceretire2006 yrsinceretire2009 yrsinceretire2011
          carbo2006: regress carbo2006 i.education i.skills i.spouse
                      logincomemedi2000 carbo2000 fat2000 protein2000
                      energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
@@ -610,19 +586,18 @@ Conditional models:
                      diadrug2006 logincomemedi1993 waist2006 carbo1991
                      fat1991 protein1991 bmi2006 energy1991 energy1993
                      carbo1993 fat1993 protein1993 logincomemedi1997
-                     sysdrug1991 diadrug1991 carbo1997 protein1997 energy1997
-                     fat1997 energy2009 carbo2009 fat2009 protein2009
-                     logincomemedi2009 bmi1991 sysdrug1993 diadrug1993
-                     sysdrug2009 diadrug2009 bmi1993 waist2009 bmi2009
-                     waist1993 sysdrug1997 diadrug1997 bmi1997 waist1997
-                     sysdrug2011 diadrug2011 waist2011 bmi2011 energy2011
-                     carbo2011 fat2011 protein2011 logincomemedi2011
-                     metstotal2006 metstotal2004 metstotal2009 metstotal2011
-                     metstotal2000 metstotal1997 waist1991 gender retireageg
-                     birthcohort area provinces communityid yrsinceretire1989
-                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
-                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
-                     yrsinceretire2009 yrsinceretire2011
+                     carbo1997 protein1997 energy1997 fat1997 energy2009
+                     carbo2009 fat2009 protein2009 logincomemedi2009
+                     sysdrug1993 diadrug1993 sysdrug2009 diadrug2009 bmi1993
+                     waist2009 bmi2009 waist1993 sysdrug1997 diadrug1997
+                     bmi1997 waist1997 sysdrug2011 diadrug2011 waist2011
+                     bmi2011 energy2011 carbo2011 fat2011 protein2011
+                     logincomemedi2011 metstotal2006 metstotal2004
+                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
+                     gender retireageg birthcohort area provinces communityid
+                     yrsinceretire1989 yrsinceretire1991 yrsinceretire1993
+                     yrsinceretire1997 yrsinceretire2000 yrsinceretire2004
+                     yrsinceretire2006 yrsinceretire2009 yrsinceretire2011
            fat2006: regress fat2006 i.education i.skills i.spouse
                      logincomemedi2000 carbo2000 fat2000 protein2000
                      energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
@@ -633,19 +608,18 @@ Conditional models:
                      diadrug2006 logincomemedi1993 waist2006 carbo1991
                      fat1991 protein1991 bmi2006 energy1991 energy1993
                      carbo1993 fat1993 protein1993 logincomemedi1997
-                     sysdrug1991 diadrug1991 carbo1997 protein1997 energy1997
-                     fat1997 energy2009 carbo2009 fat2009 protein2009
-                     logincomemedi2009 bmi1991 sysdrug1993 diadrug1993
-                     sysdrug2009 diadrug2009 bmi1993 waist2009 bmi2009
-                     waist1993 sysdrug1997 diadrug1997 bmi1997 waist1997
-                     sysdrug2011 diadrug2011 waist2011 bmi2011 energy2011
-                     carbo2011 fat2011 protein2011 logincomemedi2011
-                     metstotal2006 metstotal2004 metstotal2009 metstotal2011
-                     metstotal2000 metstotal1997 waist1991 gender retireageg
-                     birthcohort area provinces communityid yrsinceretire1989
-                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
-                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
-                     yrsinceretire2009 yrsinceretire2011
+                     carbo1997 protein1997 energy1997 fat1997 energy2009
+                     carbo2009 fat2009 protein2009 logincomemedi2009
+                     sysdrug1993 diadrug1993 sysdrug2009 diadrug2009 bmi1993
+                     waist2009 bmi2009 waist1993 sysdrug1997 diadrug1997
+                     bmi1997 waist1997 sysdrug2011 diadrug2011 waist2011
+                     bmi2011 energy2011 carbo2011 fat2011 protein2011
+                     logincomemedi2011 metstotal2006 metstotal2004
+                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
+                     gender retireageg birthcohort area provinces communityid
+                     yrsinceretire1989 yrsinceretire1991 yrsinceretire1993
+                     yrsinceretire1997 yrsinceretire2000 yrsinceretire2004
+                     yrsinceretire2006 yrsinceretire2009 yrsinceretire2011
        protein2006: regress protein2006 i.education i.skills i.spouse
                      logincomemedi2000 carbo2000 fat2000 protein2000
                      energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
@@ -656,19 +630,18 @@ Conditional models:
                      diadrug2006 logincomemedi1993 waist2006 carbo1991
                      fat1991 protein1991 bmi2006 energy1991 energy1993
                      carbo1993 fat1993 protein1993 logincomemedi1997
-                     sysdrug1991 diadrug1991 carbo1997 protein1997 energy1997
-                     fat1997 energy2009 carbo2009 fat2009 protein2009
-                     logincomemedi2009 bmi1991 sysdrug1993 diadrug1993
-                     sysdrug2009 diadrug2009 bmi1993 waist2009 bmi2009
-                     waist1993 sysdrug1997 diadrug1997 bmi1997 waist1997
-                     sysdrug2011 diadrug2011 waist2011 bmi2011 energy2011
-                     carbo2011 fat2011 protein2011 logincomemedi2011
-                     metstotal2006 metstotal2004 metstotal2009 metstotal2011
-                     metstotal2000 metstotal1997 waist1991 gender retireageg
-                     birthcohort area provinces communityid yrsinceretire1989
-                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
-                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
-                     yrsinceretire2009 yrsinceretire2011
+                     carbo1997 protein1997 energy1997 fat1997 energy2009
+                     carbo2009 fat2009 protein2009 logincomemedi2009
+                     sysdrug1993 diadrug1993 sysdrug2009 diadrug2009 bmi1993
+                     waist2009 bmi2009 waist1993 sysdrug1997 diadrug1997
+                     bmi1997 waist1997 sysdrug2011 diadrug2011 waist2011
+                     bmi2011 energy2011 carbo2011 fat2011 protein2011
+                     logincomemedi2011 metstotal2006 metstotal2004
+                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
+                     gender retireageg birthcohort area provinces communityid
+                     yrsinceretire1989 yrsinceretire1991 yrsinceretire1993
+                     yrsinceretire1997 yrsinceretire2000 yrsinceretire2004
+                     yrsinceretire2006 yrsinceretire2009 yrsinceretire2011
        sysdrug2004: regress sysdrug2004 i.education i.skills i.spouse
                      logincomemedi2000 carbo2000 fat2000 protein2000
                      energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
@@ -679,19 +652,18 @@ Conditional models:
                      diadrug2006 logincomemedi1993 waist2006 carbo1991
                      fat1991 protein1991 bmi2006 energy1991 energy1993
                      carbo1993 fat1993 protein1993 logincomemedi1997
-                     sysdrug1991 diadrug1991 carbo1997 protein1997 energy1997
-                     fat1997 energy2009 carbo2009 fat2009 protein2009
-                     logincomemedi2009 bmi1991 sysdrug1993 diadrug1993
-                     sysdrug2009 diadrug2009 bmi1993 waist2009 bmi2009
-                     waist1993 sysdrug1997 diadrug1997 bmi1997 waist1997
-                     sysdrug2011 diadrug2011 waist2011 bmi2011 energy2011
-                     carbo2011 fat2011 protein2011 logincomemedi2011
-                     metstotal2006 metstotal2004 metstotal2009 metstotal2011
-                     metstotal2000 metstotal1997 waist1991 gender retireageg
-                     birthcohort area provinces communityid yrsinceretire1989
-                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
-                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
-                     yrsinceretire2009 yrsinceretire2011
+                     carbo1997 protein1997 energy1997 fat1997 energy2009
+                     carbo2009 fat2009 protein2009 logincomemedi2009
+                     sysdrug1993 diadrug1993 sysdrug2009 diadrug2009 bmi1993
+                     waist2009 bmi2009 waist1993 sysdrug1997 diadrug1997
+                     bmi1997 waist1997 sysdrug2011 diadrug2011 waist2011
+                     bmi2011 energy2011 carbo2011 fat2011 protein2011
+                     logincomemedi2011 metstotal2006 metstotal2004
+                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
+                     gender retireageg birthcohort area provinces communityid
+                     yrsinceretire1989 yrsinceretire1991 yrsinceretire1993
+                     yrsinceretire1997 yrsinceretire2000 yrsinceretire2004
+                     yrsinceretire2006 yrsinceretire2009 yrsinceretire2011
        diadrug2004: regress diadrug2004 i.education i.skills i.spouse
                      logincomemedi2000 carbo2000 fat2000 protein2000
                      energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
@@ -702,19 +674,18 @@ Conditional models:
                      diadrug2006 logincomemedi1993 waist2006 carbo1991
                      fat1991 protein1991 bmi2006 energy1991 energy1993
                      carbo1993 fat1993 protein1993 logincomemedi1997
-                     sysdrug1991 diadrug1991 carbo1997 protein1997 energy1997
-                     fat1997 energy2009 carbo2009 fat2009 protein2009
-                     logincomemedi2009 bmi1991 sysdrug1993 diadrug1993
-                     sysdrug2009 diadrug2009 bmi1993 waist2009 bmi2009
-                     waist1993 sysdrug1997 diadrug1997 bmi1997 waist1997
-                     sysdrug2011 diadrug2011 waist2011 bmi2011 energy2011
-                     carbo2011 fat2011 protein2011 logincomemedi2011
-                     metstotal2006 metstotal2004 metstotal2009 metstotal2011
-                     metstotal2000 metstotal1997 waist1991 gender retireageg
-                     birthcohort area provinces communityid yrsinceretire1989
-                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
-                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
-                     yrsinceretire2009 yrsinceretire2011
+                     carbo1997 protein1997 energy1997 fat1997 energy2009
+                     carbo2009 fat2009 protein2009 logincomemedi2009
+                     sysdrug1993 diadrug1993 sysdrug2009 diadrug2009 bmi1993
+                     waist2009 bmi2009 waist1993 sysdrug1997 diadrug1997
+                     bmi1997 waist1997 sysdrug2011 diadrug2011 waist2011
+                     bmi2011 energy2011 carbo2011 fat2011 protein2011
+                     logincomemedi2011 metstotal2006 metstotal2004
+                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
+                     gender retireageg birthcohort area provinces communityid
+                     yrsinceretire1989 yrsinceretire1991 yrsinceretire1993
+                     yrsinceretire1997 yrsinceretire2000 yrsinceretire2004
+                     yrsinceretire2006 yrsinceretire2009 yrsinceretire2011
            bmi2004: regress bmi2004 i.education i.skills i.spouse
                      logincomemedi2000 carbo2000 fat2000 protein2000
                      energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
@@ -725,20 +696,19 @@ Conditional models:
                      sysdrug2006 diadrug2006 logincomemedi1993 waist2006
                      carbo1991 fat1991 protein1991 bmi2006 energy1991
                      energy1993 carbo1993 fat1993 protein1993
-                     logincomemedi1997 sysdrug1991 diadrug1991 carbo1997
-                     protein1997 energy1997 fat1997 energy2009 carbo2009
-                     fat2009 protein2009 logincomemedi2009 bmi1991
-                     sysdrug1993 diadrug1993 sysdrug2009 diadrug2009 bmi1993
-                     waist2009 bmi2009 waist1993 sysdrug1997 diadrug1997
-                     bmi1997 waist1997 sysdrug2011 diadrug2011 waist2011
-                     bmi2011 energy2011 carbo2011 fat2011 protein2011
-                     logincomemedi2011 metstotal2006 metstotal2004
-                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
-                     waist1991 gender retireageg birthcohort area provinces
-                     communityid yrsinceretire1989 yrsinceretire1991
-                     yrsinceretire1993 yrsinceretire1997 yrsinceretire2000
-                     yrsinceretire2004 yrsinceretire2006 yrsinceretire2009
-                     yrsinceretire2011
+                     logincomemedi1997 carbo1997 protein1997 energy1997
+                     fat1997 energy2009 carbo2009 fat2009 protein2009
+                     logincomemedi2009 sysdrug1993 diadrug1993 sysdrug2009
+                     diadrug2009 bmi1993 waist2009 bmi2009 waist1993
+                     sysdrug1997 diadrug1997 bmi1997 waist1997 sysdrug2011
+                     diadrug2011 waist2011 bmi2011 energy2011 carbo2011
+                     fat2011 protein2011 logincomemedi2011 metstotal2006
+                     metstotal2004 metstotal2009 metstotal2011 metstotal2000
+                     metstotal1997 gender retireageg birthcohort area
+                     provinces communityid yrsinceretire1989
+                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
+                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
+                     yrsinceretire2009 yrsinceretire2011
          waist2004: regress waist2004 i.education i.skills i.spouse
                      logincomemedi2000 carbo2000 fat2000 protein2000
                      energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
@@ -749,19 +719,18 @@ Conditional models:
                      diadrug2006 logincomemedi1993 waist2006 carbo1991
                      fat1991 protein1991 bmi2006 energy1991 energy1993
                      carbo1993 fat1993 protein1993 logincomemedi1997
-                     sysdrug1991 diadrug1991 carbo1997 protein1997 energy1997
-                     fat1997 energy2009 carbo2009 fat2009 protein2009
-                     logincomemedi2009 bmi1991 sysdrug1993 diadrug1993
-                     sysdrug2009 diadrug2009 bmi1993 waist2009 bmi2009
-                     waist1993 sysdrug1997 diadrug1997 bmi1997 waist1997
-                     sysdrug2011 diadrug2011 waist2011 bmi2011 energy2011
-                     carbo2011 fat2011 protein2011 logincomemedi2011
-                     metstotal2006 metstotal2004 metstotal2009 metstotal2011
-                     metstotal2000 metstotal1997 waist1991 gender retireageg
-                     birthcohort area provinces communityid yrsinceretire1989
-                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
-                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
-                     yrsinceretire2009 yrsinceretire2011
+                     carbo1997 protein1997 energy1997 fat1997 energy2009
+                     carbo2009 fat2009 protein2009 logincomemedi2009
+                     sysdrug1993 diadrug1993 sysdrug2009 diadrug2009 bmi1993
+                     waist2009 bmi2009 waist1993 sysdrug1997 diadrug1997
+                     bmi1997 waist1997 sysdrug2011 diadrug2011 waist2011
+                     bmi2011 energy2011 carbo2011 fat2011 protein2011
+                     logincomemedi2011 metstotal2006 metstotal2004
+                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
+                     gender retireageg birthcohort area provinces communityid
+                     yrsinceretire1989 yrsinceretire1991 yrsinceretire1993
+                     yrsinceretire1997 yrsinceretire2000 yrsinceretire2004
+                     yrsinceretire2006 yrsinceretire2009 yrsinceretire2011
        sysdrug2006: regress sysdrug2006 i.education i.skills i.spouse
                      logincomemedi2000 carbo2000 fat2000 protein2000
                      energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
@@ -772,19 +741,18 @@ Conditional models:
                      diadrug2006 logincomemedi1993 waist2006 carbo1991
                      fat1991 protein1991 bmi2006 energy1991 energy1993
                      carbo1993 fat1993 protein1993 logincomemedi1997
-                     sysdrug1991 diadrug1991 carbo1997 protein1997 energy1997
-                     fat1997 energy2009 carbo2009 fat2009 protein2009
-                     logincomemedi2009 bmi1991 sysdrug1993 diadrug1993
-                     sysdrug2009 diadrug2009 bmi1993 waist2009 bmi2009
-                     waist1993 sysdrug1997 diadrug1997 bmi1997 waist1997
-                     sysdrug2011 diadrug2011 waist2011 bmi2011 energy2011
-                     carbo2011 fat2011 protein2011 logincomemedi2011
-                     metstotal2006 metstotal2004 metstotal2009 metstotal2011
-                     metstotal2000 metstotal1997 waist1991 gender retireageg
-                     birthcohort area provinces communityid yrsinceretire1989
-                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
-                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
-                     yrsinceretire2009 yrsinceretire2011
+                     carbo1997 protein1997 energy1997 fat1997 energy2009
+                     carbo2009 fat2009 protein2009 logincomemedi2009
+                     sysdrug1993 diadrug1993 sysdrug2009 diadrug2009 bmi1993
+                     waist2009 bmi2009 waist1993 sysdrug1997 diadrug1997
+                     bmi1997 waist1997 sysdrug2011 diadrug2011 waist2011
+                     bmi2011 energy2011 carbo2011 fat2011 protein2011
+                     logincomemedi2011 metstotal2006 metstotal2004
+                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
+                     gender retireageg birthcohort area provinces communityid
+                     yrsinceretire1989 yrsinceretire1991 yrsinceretire1993
+                     yrsinceretire1997 yrsinceretire2000 yrsinceretire2004
+                     yrsinceretire2006 yrsinceretire2009 yrsinceretire2011
        diadrug2006: regress diadrug2006 i.education i.skills i.spouse
                      logincomemedi2000 carbo2000 fat2000 protein2000
                      energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
@@ -795,19 +763,18 @@ Conditional models:
                      sysdrug2006 logincomemedi1993 waist2006 carbo1991
                      fat1991 protein1991 bmi2006 energy1991 energy1993
                      carbo1993 fat1993 protein1993 logincomemedi1997
-                     sysdrug1991 diadrug1991 carbo1997 protein1997 energy1997
-                     fat1997 energy2009 carbo2009 fat2009 protein2009
-                     logincomemedi2009 bmi1991 sysdrug1993 diadrug1993
-                     sysdrug2009 diadrug2009 bmi1993 waist2009 bmi2009
-                     waist1993 sysdrug1997 diadrug1997 bmi1997 waist1997
-                     sysdrug2011 diadrug2011 waist2011 bmi2011 energy2011
-                     carbo2011 fat2011 protein2011 logincomemedi2011
-                     metstotal2006 metstotal2004 metstotal2009 metstotal2011
-                     metstotal2000 metstotal1997 waist1991 gender retireageg
-                     birthcohort area provinces communityid yrsinceretire1989
-                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
-                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
-                     yrsinceretire2009 yrsinceretire2011
+                     carbo1997 protein1997 energy1997 fat1997 energy2009
+                     carbo2009 fat2009 protein2009 logincomemedi2009
+                     sysdrug1993 diadrug1993 sysdrug2009 diadrug2009 bmi1993
+                     waist2009 bmi2009 waist1993 sysdrug1997 diadrug1997
+                     bmi1997 waist1997 sysdrug2011 diadrug2011 waist2011
+                     bmi2011 energy2011 carbo2011 fat2011 protein2011
+                     logincomemedi2011 metstotal2006 metstotal2004
+                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
+                     gender retireageg birthcohort area provinces communityid
+                     yrsinceretire1989 yrsinceretire1991 yrsinceretire1993
+                     yrsinceretire1997 yrsinceretire2000 yrsinceretire2004
+                     yrsinceretire2006 yrsinceretire2009 yrsinceretire2011
     logincome~1993: regress logincomemedi1993 i.education i.skills i.spouse
                      logincomemedi2000 carbo2000 fat2000 protein2000
                      energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
@@ -817,20 +784,19 @@ Conditional models:
                      protein2006 sysdrug2004 diadrug2004 bmi2004 waist2004
                      sysdrug2006 diadrug2006 waist2006 carbo1991 fat1991
                      protein1991 bmi2006 energy1991 energy1993 carbo1993
-                     fat1993 protein1993 logincomemedi1997 sysdrug1991
-                     diadrug1991 carbo1997 protein1997 energy1997 fat1997
-                     energy2009 carbo2009 fat2009 protein2009
-                     logincomemedi2009 bmi1991 sysdrug1993 diadrug1993
-                     sysdrug2009 diadrug2009 bmi1993 waist2009 bmi2009
-                     waist1993 sysdrug1997 diadrug1997 bmi1997 waist1997
-                     sysdrug2011 diadrug2011 waist2011 bmi2011 energy2011
-                     carbo2011 fat2011 protein2011 logincomemedi2011
-                     metstotal2006 metstotal2004 metstotal2009 metstotal2011
-                     metstotal2000 metstotal1997 waist1991 gender retireageg
-                     birthcohort area provinces communityid yrsinceretire1989
-                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
-                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
-                     yrsinceretire2009 yrsinceretire2011
+                     fat1993 protein1993 logincomemedi1997 carbo1997
+                     protein1997 energy1997 fat1997 energy2009 carbo2009
+                     fat2009 protein2009 logincomemedi2009 sysdrug1993
+                     diadrug1993 sysdrug2009 diadrug2009 bmi1993 waist2009
+                     bmi2009 waist1993 sysdrug1997 diadrug1997 bmi1997
+                     waist1997 sysdrug2011 diadrug2011 waist2011 bmi2011
+                     energy2011 carbo2011 fat2011 protein2011
+                     logincomemedi2011 metstotal2006 metstotal2004
+                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
+                     gender retireageg birthcohort area provinces communityid
+                     yrsinceretire1989 yrsinceretire1991 yrsinceretire1993
+                     yrsinceretire1997 yrsinceretire2000 yrsinceretire2004
+                     yrsinceretire2006 yrsinceretire2009 yrsinceretire2011
          waist2006: regress waist2006 i.education i.skills i.spouse
                      logincomemedi2000 carbo2000 fat2000 protein2000
                      energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
@@ -841,19 +807,18 @@ Conditional models:
                      sysdrug2006 diadrug2006 logincomemedi1993 carbo1991
                      fat1991 protein1991 bmi2006 energy1991 energy1993
                      carbo1993 fat1993 protein1993 logincomemedi1997
-                     sysdrug1991 diadrug1991 carbo1997 protein1997 energy1997
-                     fat1997 energy2009 carbo2009 fat2009 protein2009
-                     logincomemedi2009 bmi1991 sysdrug1993 diadrug1993
-                     sysdrug2009 diadrug2009 bmi1993 waist2009 bmi2009
-                     waist1993 sysdrug1997 diadrug1997 bmi1997 waist1997
-                     sysdrug2011 diadrug2011 waist2011 bmi2011 energy2011
-                     carbo2011 fat2011 protein2011 logincomemedi2011
-                     metstotal2006 metstotal2004 metstotal2009 metstotal2011
-                     metstotal2000 metstotal1997 waist1991 gender retireageg
-                     birthcohort area provinces communityid yrsinceretire1989
-                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
-                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
-                     yrsinceretire2009 yrsinceretire2011
+                     carbo1997 protein1997 energy1997 fat1997 energy2009
+                     carbo2009 fat2009 protein2009 logincomemedi2009
+                     sysdrug1993 diadrug1993 sysdrug2009 diadrug2009 bmi1993
+                     waist2009 bmi2009 waist1993 sysdrug1997 diadrug1997
+                     bmi1997 waist1997 sysdrug2011 diadrug2011 waist2011
+                     bmi2011 energy2011 carbo2011 fat2011 protein2011
+                     logincomemedi2011 metstotal2006 metstotal2004
+                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
+                     gender retireageg birthcohort area provinces communityid
+                     yrsinceretire1989 yrsinceretire1991 yrsinceretire1993
+                     yrsinceretire1997 yrsinceretire2000 yrsinceretire2004
+                     yrsinceretire2006 yrsinceretire2009 yrsinceretire2011
          carbo1991: regress carbo1991 i.education i.skills i.spouse
                      logincomemedi2000 carbo2000 fat2000 protein2000
                      energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
@@ -864,19 +829,18 @@ Conditional models:
                      sysdrug2006 diadrug2006 logincomemedi1993 waist2006
                      fat1991 protein1991 bmi2006 energy1991 energy1993
                      carbo1993 fat1993 protein1993 logincomemedi1997
-                     sysdrug1991 diadrug1991 carbo1997 protein1997 energy1997
-                     fat1997 energy2009 carbo2009 fat2009 protein2009
-                     logincomemedi2009 bmi1991 sysdrug1993 diadrug1993
-                     sysdrug2009 diadrug2009 bmi1993 waist2009 bmi2009
-                     waist1993 sysdrug1997 diadrug1997 bmi1997 waist1997
-                     sysdrug2011 diadrug2011 waist2011 bmi2011 energy2011
-                     carbo2011 fat2011 protein2011 logincomemedi2011
-                     metstotal2006 metstotal2004 metstotal2009 metstotal2011
-                     metstotal2000 metstotal1997 waist1991 gender retireageg
-                     birthcohort area provinces communityid yrsinceretire1989
-                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
-                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
-                     yrsinceretire2009 yrsinceretire2011
+                     carbo1997 protein1997 energy1997 fat1997 energy2009
+                     carbo2009 fat2009 protein2009 logincomemedi2009
+                     sysdrug1993 diadrug1993 sysdrug2009 diadrug2009 bmi1993
+                     waist2009 bmi2009 waist1993 sysdrug1997 diadrug1997
+                     bmi1997 waist1997 sysdrug2011 diadrug2011 waist2011
+                     bmi2011 energy2011 carbo2011 fat2011 protein2011
+                     logincomemedi2011 metstotal2006 metstotal2004
+                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
+                     gender retireageg birthcohort area provinces communityid
+                     yrsinceretire1989 yrsinceretire1991 yrsinceretire1993
+                     yrsinceretire1997 yrsinceretire2000 yrsinceretire2004
+                     yrsinceretire2006 yrsinceretire2009 yrsinceretire2011
            fat1991: regress fat1991 i.education i.skills i.spouse
                      logincomemedi2000 carbo2000 fat2000 protein2000
                      energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
@@ -887,19 +851,18 @@ Conditional models:
                      sysdrug2006 diadrug2006 logincomemedi1993 waist2006
                      carbo1991 protein1991 bmi2006 energy1991 energy1993
                      carbo1993 fat1993 protein1993 logincomemedi1997
-                     sysdrug1991 diadrug1991 carbo1997 protein1997 energy1997
-                     fat1997 energy2009 carbo2009 fat2009 protein2009
-                     logincomemedi2009 bmi1991 sysdrug1993 diadrug1993
-                     sysdrug2009 diadrug2009 bmi1993 waist2009 bmi2009
-                     waist1993 sysdrug1997 diadrug1997 bmi1997 waist1997
-                     sysdrug2011 diadrug2011 waist2011 bmi2011 energy2011
-                     carbo2011 fat2011 protein2011 logincomemedi2011
-                     metstotal2006 metstotal2004 metstotal2009 metstotal2011
-                     metstotal2000 metstotal1997 waist1991 gender retireageg
-                     birthcohort area provinces communityid yrsinceretire1989
-                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
-                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
-                     yrsinceretire2009 yrsinceretire2011
+                     carbo1997 protein1997 energy1997 fat1997 energy2009
+                     carbo2009 fat2009 protein2009 logincomemedi2009
+                     sysdrug1993 diadrug1993 sysdrug2009 diadrug2009 bmi1993
+                     waist2009 bmi2009 waist1993 sysdrug1997 diadrug1997
+                     bmi1997 waist1997 sysdrug2011 diadrug2011 waist2011
+                     bmi2011 energy2011 carbo2011 fat2011 protein2011
+                     logincomemedi2011 metstotal2006 metstotal2004
+                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
+                     gender retireageg birthcohort area provinces communityid
+                     yrsinceretire1989 yrsinceretire1991 yrsinceretire1993
+                     yrsinceretire1997 yrsinceretire2000 yrsinceretire2004
+                     yrsinceretire2006 yrsinceretire2009 yrsinceretire2011
        protein1991: regress protein1991 i.education i.skills i.spouse
                      logincomemedi2000 carbo2000 fat2000 protein2000
                      energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
@@ -910,19 +873,18 @@ Conditional models:
                      sysdrug2006 diadrug2006 logincomemedi1993 waist2006
                      carbo1991 fat1991 bmi2006 energy1991 energy1993
                      carbo1993 fat1993 protein1993 logincomemedi1997
-                     sysdrug1991 diadrug1991 carbo1997 protein1997 energy1997
-                     fat1997 energy2009 carbo2009 fat2009 protein2009
-                     logincomemedi2009 bmi1991 sysdrug1993 diadrug1993
-                     sysdrug2009 diadrug2009 bmi1993 waist2009 bmi2009
-                     waist1993 sysdrug1997 diadrug1997 bmi1997 waist1997
-                     sysdrug2011 diadrug2011 waist2011 bmi2011 energy2011
-                     carbo2011 fat2011 protein2011 logincomemedi2011
-                     metstotal2006 metstotal2004 metstotal2009 metstotal2011
-                     metstotal2000 metstotal1997 waist1991 gender retireageg
-                     birthcohort area provinces communityid yrsinceretire1989
-                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
-                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
-                     yrsinceretire2009 yrsinceretire2011
+                     carbo1997 protein1997 energy1997 fat1997 energy2009
+                     carbo2009 fat2009 protein2009 logincomemedi2009
+                     sysdrug1993 diadrug1993 sysdrug2009 diadrug2009 bmi1993
+                     waist2009 bmi2009 waist1993 sysdrug1997 diadrug1997
+                     bmi1997 waist1997 sysdrug2011 diadrug2011 waist2011
+                     bmi2011 energy2011 carbo2011 fat2011 protein2011
+                     logincomemedi2011 metstotal2006 metstotal2004
+                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
+                     gender retireageg birthcohort area provinces communityid
+                     yrsinceretire1989 yrsinceretire1991 yrsinceretire1993
+                     yrsinceretire1997 yrsinceretire2000 yrsinceretire2004
+                     yrsinceretire2006 yrsinceretire2009 yrsinceretire2011
            bmi2006: regress bmi2006 i.education i.skills i.spouse
                      logincomemedi2000 carbo2000 fat2000 protein2000
                      energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
@@ -933,19 +895,18 @@ Conditional models:
                      sysdrug2006 diadrug2006 logincomemedi1993 waist2006
                      carbo1991 fat1991 protein1991 energy1991 energy1993
                      carbo1993 fat1993 protein1993 logincomemedi1997
-                     sysdrug1991 diadrug1991 carbo1997 protein1997 energy1997
-                     fat1997 energy2009 carbo2009 fat2009 protein2009
-                     logincomemedi2009 bmi1991 sysdrug1993 diadrug1993
-                     sysdrug2009 diadrug2009 bmi1993 waist2009 bmi2009
-                     waist1993 sysdrug1997 diadrug1997 bmi1997 waist1997
-                     sysdrug2011 diadrug2011 waist2011 bmi2011 energy2011
-                     carbo2011 fat2011 protein2011 logincomemedi2011
-                     metstotal2006 metstotal2004 metstotal2009 metstotal2011
-                     metstotal2000 metstotal1997 waist1991 gender retireageg
-                     birthcohort area provinces communityid yrsinceretire1989
-                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
-                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
-                     yrsinceretire2009 yrsinceretire2011
+                     carbo1997 protein1997 energy1997 fat1997 energy2009
+                     carbo2009 fat2009 protein2009 logincomemedi2009
+                     sysdrug1993 diadrug1993 sysdrug2009 diadrug2009 bmi1993
+                     waist2009 bmi2009 waist1993 sysdrug1997 diadrug1997
+                     bmi1997 waist1997 sysdrug2011 diadrug2011 waist2011
+                     bmi2011 energy2011 carbo2011 fat2011 protein2011
+                     logincomemedi2011 metstotal2006 metstotal2004
+                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
+                     gender retireageg birthcohort area provinces communityid
+                     yrsinceretire1989 yrsinceretire1991 yrsinceretire1993
+                     yrsinceretire1997 yrsinceretire2000 yrsinceretire2004
+                     yrsinceretire2006 yrsinceretire2009 yrsinceretire2011
         energy1991: regress energy1991 i.education i.skills i.spouse
                      logincomemedi2000 carbo2000 fat2000 protein2000
                      energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
@@ -956,19 +917,18 @@ Conditional models:
                      sysdrug2006 diadrug2006 logincomemedi1993 waist2006
                      carbo1991 fat1991 protein1991 bmi2006 energy1993
                      carbo1993 fat1993 protein1993 logincomemedi1997
-                     sysdrug1991 diadrug1991 carbo1997 protein1997 energy1997
-                     fat1997 energy2009 carbo2009 fat2009 protein2009
-                     logincomemedi2009 bmi1991 sysdrug1993 diadrug1993
-                     sysdrug2009 diadrug2009 bmi1993 waist2009 bmi2009
-                     waist1993 sysdrug1997 diadrug1997 bmi1997 waist1997
-                     sysdrug2011 diadrug2011 waist2011 bmi2011 energy2011
-                     carbo2011 fat2011 protein2011 logincomemedi2011
-                     metstotal2006 metstotal2004 metstotal2009 metstotal2011
-                     metstotal2000 metstotal1997 waist1991 gender retireageg
-                     birthcohort area provinces communityid yrsinceretire1989
-                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
-                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
-                     yrsinceretire2009 yrsinceretire2011
+                     carbo1997 protein1997 energy1997 fat1997 energy2009
+                     carbo2009 fat2009 protein2009 logincomemedi2009
+                     sysdrug1993 diadrug1993 sysdrug2009 diadrug2009 bmi1993
+                     waist2009 bmi2009 waist1993 sysdrug1997 diadrug1997
+                     bmi1997 waist1997 sysdrug2011 diadrug2011 waist2011
+                     bmi2011 energy2011 carbo2011 fat2011 protein2011
+                     logincomemedi2011 metstotal2006 metstotal2004
+                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
+                     gender retireageg birthcohort area provinces communityid
+                     yrsinceretire1989 yrsinceretire1991 yrsinceretire1993
+                     yrsinceretire1997 yrsinceretire2000 yrsinceretire2004
+                     yrsinceretire2006 yrsinceretire2009 yrsinceretire2011
         energy1993: regress energy1993 i.education i.skills i.spouse
                      logincomemedi2000 carbo2000 fat2000 protein2000
                      energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
@@ -979,19 +939,18 @@ Conditional models:
                      sysdrug2006 diadrug2006 logincomemedi1993 waist2006
                      carbo1991 fat1991 protein1991 bmi2006 energy1991
                      carbo1993 fat1993 protein1993 logincomemedi1997
-                     sysdrug1991 diadrug1991 carbo1997 protein1997 energy1997
-                     fat1997 energy2009 carbo2009 fat2009 protein2009
-                     logincomemedi2009 bmi1991 sysdrug1993 diadrug1993
-                     sysdrug2009 diadrug2009 bmi1993 waist2009 bmi2009
-                     waist1993 sysdrug1997 diadrug1997 bmi1997 waist1997
-                     sysdrug2011 diadrug2011 waist2011 bmi2011 energy2011
-                     carbo2011 fat2011 protein2011 logincomemedi2011
-                     metstotal2006 metstotal2004 metstotal2009 metstotal2011
-                     metstotal2000 metstotal1997 waist1991 gender retireageg
-                     birthcohort area provinces communityid yrsinceretire1989
-                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
-                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
-                     yrsinceretire2009 yrsinceretire2011
+                     carbo1997 protein1997 energy1997 fat1997 energy2009
+                     carbo2009 fat2009 protein2009 logincomemedi2009
+                     sysdrug1993 diadrug1993 sysdrug2009 diadrug2009 bmi1993
+                     waist2009 bmi2009 waist1993 sysdrug1997 diadrug1997
+                     bmi1997 waist1997 sysdrug2011 diadrug2011 waist2011
+                     bmi2011 energy2011 carbo2011 fat2011 protein2011
+                     logincomemedi2011 metstotal2006 metstotal2004
+                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
+                     gender retireageg birthcohort area provinces communityid
+                     yrsinceretire1989 yrsinceretire1991 yrsinceretire1993
+                     yrsinceretire1997 yrsinceretire2000 yrsinceretire2004
+                     yrsinceretire2006 yrsinceretire2009 yrsinceretire2011
          carbo1993: regress carbo1993 i.education i.skills i.spouse
                      logincomemedi2000 carbo2000 fat2000 protein2000
                      energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
@@ -1002,19 +961,18 @@ Conditional models:
                      sysdrug2006 diadrug2006 logincomemedi1993 waist2006
                      carbo1991 fat1991 protein1991 bmi2006 energy1991
                      energy1993 fat1993 protein1993 logincomemedi1997
-                     sysdrug1991 diadrug1991 carbo1997 protein1997 energy1997
-                     fat1997 energy2009 carbo2009 fat2009 protein2009
-                     logincomemedi2009 bmi1991 sysdrug1993 diadrug1993
-                     sysdrug2009 diadrug2009 bmi1993 waist2009 bmi2009
-                     waist1993 sysdrug1997 diadrug1997 bmi1997 waist1997
-                     sysdrug2011 diadrug2011 waist2011 bmi2011 energy2011
-                     carbo2011 fat2011 protein2011 logincomemedi2011
-                     metstotal2006 metstotal2004 metstotal2009 metstotal2011
-                     metstotal2000 metstotal1997 waist1991 gender retireageg
-                     birthcohort area provinces communityid yrsinceretire1989
-                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
-                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
-                     yrsinceretire2009 yrsinceretire2011
+                     carbo1997 protein1997 energy1997 fat1997 energy2009
+                     carbo2009 fat2009 protein2009 logincomemedi2009
+                     sysdrug1993 diadrug1993 sysdrug2009 diadrug2009 bmi1993
+                     waist2009 bmi2009 waist1993 sysdrug1997 diadrug1997
+                     bmi1997 waist1997 sysdrug2011 diadrug2011 waist2011
+                     bmi2011 energy2011 carbo2011 fat2011 protein2011
+                     logincomemedi2011 metstotal2006 metstotal2004
+                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
+                     gender retireageg birthcohort area provinces communityid
+                     yrsinceretire1989 yrsinceretire1991 yrsinceretire1993
+                     yrsinceretire1997 yrsinceretire2000 yrsinceretire2004
+                     yrsinceretire2006 yrsinceretire2009 yrsinceretire2011
            fat1993: regress fat1993 i.education i.skills i.spouse
                      logincomemedi2000 carbo2000 fat2000 protein2000
                      energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
@@ -1025,19 +983,18 @@ Conditional models:
                      sysdrug2006 diadrug2006 logincomemedi1993 waist2006
                      carbo1991 fat1991 protein1991 bmi2006 energy1991
                      energy1993 carbo1993 protein1993 logincomemedi1997
-                     sysdrug1991 diadrug1991 carbo1997 protein1997 energy1997
-                     fat1997 energy2009 carbo2009 fat2009 protein2009
-                     logincomemedi2009 bmi1991 sysdrug1993 diadrug1993
-                     sysdrug2009 diadrug2009 bmi1993 waist2009 bmi2009
-                     waist1993 sysdrug1997 diadrug1997 bmi1997 waist1997
-                     sysdrug2011 diadrug2011 waist2011 bmi2011 energy2011
-                     carbo2011 fat2011 protein2011 logincomemedi2011
-                     metstotal2006 metstotal2004 metstotal2009 metstotal2011
-                     metstotal2000 metstotal1997 waist1991 gender retireageg
-                     birthcohort area provinces communityid yrsinceretire1989
-                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
-                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
-                     yrsinceretire2009 yrsinceretire2011
+                     carbo1997 protein1997 energy1997 fat1997 energy2009
+                     carbo2009 fat2009 protein2009 logincomemedi2009
+                     sysdrug1993 diadrug1993 sysdrug2009 diadrug2009 bmi1993
+                     waist2009 bmi2009 waist1993 sysdrug1997 diadrug1997
+                     bmi1997 waist1997 sysdrug2011 diadrug2011 waist2011
+                     bmi2011 energy2011 carbo2011 fat2011 protein2011
+                     logincomemedi2011 metstotal2006 metstotal2004
+                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
+                     gender retireageg birthcohort area provinces communityid
+                     yrsinceretire1989 yrsinceretire1991 yrsinceretire1993
+                     yrsinceretire1997 yrsinceretire2000 yrsinceretire2004
+                     yrsinceretire2006 yrsinceretire2009 yrsinceretire2011
        protein1993: regress protein1993 i.education i.skills i.spouse
                      logincomemedi2000 carbo2000 fat2000 protein2000
                      energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
@@ -1047,20 +1004,19 @@ Conditional models:
                      protein2006 sysdrug2004 diadrug2004 bmi2004 waist2004
                      sysdrug2006 diadrug2006 logincomemedi1993 waist2006
                      carbo1991 fat1991 protein1991 bmi2006 energy1991
-                     energy1993 carbo1993 fat1993 logincomemedi1997
-                     sysdrug1991 diadrug1991 carbo1997 protein1997 energy1997
-                     fat1997 energy2009 carbo2009 fat2009 protein2009
-                     logincomemedi2009 bmi1991 sysdrug1993 diadrug1993
-                     sysdrug2009 diadrug2009 bmi1993 waist2009 bmi2009
-                     waist1993 sysdrug1997 diadrug1997 bmi1997 waist1997
-                     sysdrug2011 diadrug2011 waist2011 bmi2011 energy2011
-                     carbo2011 fat2011 protein2011 logincomemedi2011
-                     metstotal2006 metstotal2004 metstotal2009 metstotal2011
-                     metstotal2000 metstotal1997 waist1991 gender retireageg
-                     birthcohort area provinces communityid yrsinceretire1989
-                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
-                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
-                     yrsinceretire2009 yrsinceretire2011
+                     energy1993 carbo1993 fat1993 logincomemedi1997 carbo1997
+                     protein1997 energy1997 fat1997 energy2009 carbo2009
+                     fat2009 protein2009 logincomemedi2009 sysdrug1993
+                     diadrug1993 sysdrug2009 diadrug2009 bmi1993 waist2009
+                     bmi2009 waist1993 sysdrug1997 diadrug1997 bmi1997
+                     waist1997 sysdrug2011 diadrug2011 waist2011 bmi2011
+                     energy2011 carbo2011 fat2011 protein2011
+                     logincomemedi2011 metstotal2006 metstotal2004
+                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
+                     gender retireageg birthcohort area provinces communityid
+                     yrsinceretire1989 yrsinceretire1991 yrsinceretire1993
+                     yrsinceretire1997 yrsinceretire2000 yrsinceretire2004
+                     yrsinceretire2006 yrsinceretire2009 yrsinceretire2011
     logincome~1997: regress logincomemedi1997 i.education i.skills i.spouse
                      logincomemedi2000 carbo2000 fat2000 protein2000
                      energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
@@ -1070,68 +1026,19 @@ Conditional models:
                      protein2006 sysdrug2004 diadrug2004 bmi2004 waist2004
                      sysdrug2006 diadrug2006 logincomemedi1993 waist2006
                      carbo1991 fat1991 protein1991 bmi2006 energy1991
-                     energy1993 carbo1993 fat1993 protein1993 sysdrug1991
-                     diadrug1991 carbo1997 protein1997 energy1997 fat1997
-                     energy2009 carbo2009 fat2009 protein2009
-                     logincomemedi2009 bmi1991 sysdrug1993 diadrug1993
-                     sysdrug2009 diadrug2009 bmi1993 waist2009 bmi2009
-                     waist1993 sysdrug1997 diadrug1997 bmi1997 waist1997
-                     sysdrug2011 diadrug2011 waist2011 bmi2011 energy2011
-                     carbo2011 fat2011 protein2011 logincomemedi2011
-                     metstotal2006 metstotal2004 metstotal2009 metstotal2011
-                     metstotal2000 metstotal1997 waist1991 gender retireageg
-                     birthcohort area provinces communityid yrsinceretire1989
-                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
-                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
-                     yrsinceretire2009 yrsinceretire2011
-       sysdrug1991: regress sysdrug1991 i.education i.skills i.spouse
-                     logincomemedi2000 carbo2000 fat2000 protein2000
-                     energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
-                     logincomemedi1989 logincomemedi1991 logincomemedi2004
-                     energy2004 carbo2004 fat2004 protein2004
-                     logincomemedi2006 energy2006 carbo2006 fat2006
-                     protein2006 sysdrug2004 diadrug2004 bmi2004 waist2004
-                     sysdrug2006 diadrug2006 logincomemedi1993 waist2006
-                     carbo1991 fat1991 protein1991 bmi2006 energy1991
-                     energy1993 carbo1993 fat1993 protein1993
-                     logincomemedi1997 diadrug1991 carbo1997 protein1997
-                     energy1997 fat1997 energy2009 carbo2009 fat2009
-                     protein2009 logincomemedi2009 bmi1991 sysdrug1993
+                     energy1993 carbo1993 fat1993 protein1993 carbo1997
+                     protein1997 energy1997 fat1997 energy2009 carbo2009
+                     fat2009 protein2009 logincomemedi2009 sysdrug1993
                      diadrug1993 sysdrug2009 diadrug2009 bmi1993 waist2009
                      bmi2009 waist1993 sysdrug1997 diadrug1997 bmi1997
                      waist1997 sysdrug2011 diadrug2011 waist2011 bmi2011
                      energy2011 carbo2011 fat2011 protein2011
                      logincomemedi2011 metstotal2006 metstotal2004
                      metstotal2009 metstotal2011 metstotal2000 metstotal1997
-                     waist1991 gender retireageg birthcohort area provinces
-                     communityid yrsinceretire1989 yrsinceretire1991
-                     yrsinceretire1993 yrsinceretire1997 yrsinceretire2000
-                     yrsinceretire2004 yrsinceretire2006 yrsinceretire2009
-                     yrsinceretire2011
-       diadrug1991: regress diadrug1991 i.education i.skills i.spouse
-                     logincomemedi2000 carbo2000 fat2000 protein2000
-                     energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
-                     logincomemedi1989 logincomemedi1991 logincomemedi2004
-                     energy2004 carbo2004 fat2004 protein2004
-                     logincomemedi2006 energy2006 carbo2006 fat2006
-                     protein2006 sysdrug2004 diadrug2004 bmi2004 waist2004
-                     sysdrug2006 diadrug2006 logincomemedi1993 waist2006
-                     carbo1991 fat1991 protein1991 bmi2006 energy1991
-                     energy1993 carbo1993 fat1993 protein1993
-                     logincomemedi1997 sysdrug1991 carbo1997 protein1997
-                     energy1997 fat1997 energy2009 carbo2009 fat2009
-                     protein2009 logincomemedi2009 bmi1991 sysdrug1993
-                     diadrug1993 sysdrug2009 diadrug2009 bmi1993 waist2009
-                     bmi2009 waist1993 sysdrug1997 diadrug1997 bmi1997
-                     waist1997 sysdrug2011 diadrug2011 waist2011 bmi2011
-                     energy2011 carbo2011 fat2011 protein2011
-                     logincomemedi2011 metstotal2006 metstotal2004
-                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
-                     waist1991 gender retireageg birthcohort area provinces
-                     communityid yrsinceretire1989 yrsinceretire1991
-                     yrsinceretire1993 yrsinceretire1997 yrsinceretire2000
-                     yrsinceretire2004 yrsinceretire2006 yrsinceretire2009
-                     yrsinceretire2011
+                     gender retireageg birthcohort area provinces communityid
+                     yrsinceretire1989 yrsinceretire1991 yrsinceretire1993
+                     yrsinceretire1997 yrsinceretire2000 yrsinceretire2004
+                     yrsinceretire2006 yrsinceretire2009 yrsinceretire2011
          carbo1997: regress carbo1997 i.education i.skills i.spouse
                      logincomemedi2000 carbo2000 fat2000 protein2000
                      energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
@@ -1142,20 +1049,19 @@ Conditional models:
                      sysdrug2006 diadrug2006 logincomemedi1993 waist2006
                      carbo1991 fat1991 protein1991 bmi2006 energy1991
                      energy1993 carbo1993 fat1993 protein1993
-                     logincomemedi1997 sysdrug1991 diadrug1991 protein1997
-                     energy1997 fat1997 energy2009 carbo2009 fat2009
-                     protein2009 logincomemedi2009 bmi1991 sysdrug1993
-                     diadrug1993 sysdrug2009 diadrug2009 bmi1993 waist2009
-                     bmi2009 waist1993 sysdrug1997 diadrug1997 bmi1997
-                     waist1997 sysdrug2011 diadrug2011 waist2011 bmi2011
-                     energy2011 carbo2011 fat2011 protein2011
-                     logincomemedi2011 metstotal2006 metstotal2004
-                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
-                     waist1991 gender retireageg birthcohort area provinces
-                     communityid yrsinceretire1989 yrsinceretire1991
-                     yrsinceretire1993 yrsinceretire1997 yrsinceretire2000
-                     yrsinceretire2004 yrsinceretire2006 yrsinceretire2009
-                     yrsinceretire2011
+                     logincomemedi1997 protein1997 energy1997 fat1997
+                     energy2009 carbo2009 fat2009 protein2009
+                     logincomemedi2009 sysdrug1993 diadrug1993 sysdrug2009
+                     diadrug2009 bmi1993 waist2009 bmi2009 waist1993
+                     sysdrug1997 diadrug1997 bmi1997 waist1997 sysdrug2011
+                     diadrug2011 waist2011 bmi2011 energy2011 carbo2011
+                     fat2011 protein2011 logincomemedi2011 metstotal2006
+                     metstotal2004 metstotal2009 metstotal2011 metstotal2000
+                     metstotal1997 gender retireageg birthcohort area
+                     provinces communityid yrsinceretire1989
+                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
+                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
+                     yrsinceretire2009 yrsinceretire2011
        protein1997: regress protein1997 i.education i.skills i.spouse
                      logincomemedi2000 carbo2000 fat2000 protein2000
                      energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
@@ -1166,20 +1072,19 @@ Conditional models:
                      sysdrug2006 diadrug2006 logincomemedi1993 waist2006
                      carbo1991 fat1991 protein1991 bmi2006 energy1991
                      energy1993 carbo1993 fat1993 protein1993
-                     logincomemedi1997 sysdrug1991 diadrug1991 carbo1997
-                     energy1997 fat1997 energy2009 carbo2009 fat2009
-                     protein2009 logincomemedi2009 bmi1991 sysdrug1993
-                     diadrug1993 sysdrug2009 diadrug2009 bmi1993 waist2009
-                     bmi2009 waist1993 sysdrug1997 diadrug1997 bmi1997
-                     waist1997 sysdrug2011 diadrug2011 waist2011 bmi2011
-                     energy2011 carbo2011 fat2011 protein2011
-                     logincomemedi2011 metstotal2006 metstotal2004
-                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
-                     waist1991 gender retireageg birthcohort area provinces
-                     communityid yrsinceretire1989 yrsinceretire1991
-                     yrsinceretire1993 yrsinceretire1997 yrsinceretire2000
-                     yrsinceretire2004 yrsinceretire2006 yrsinceretire2009
-                     yrsinceretire2011
+                     logincomemedi1997 carbo1997 energy1997 fat1997
+                     energy2009 carbo2009 fat2009 protein2009
+                     logincomemedi2009 sysdrug1993 diadrug1993 sysdrug2009
+                     diadrug2009 bmi1993 waist2009 bmi2009 waist1993
+                     sysdrug1997 diadrug1997 bmi1997 waist1997 sysdrug2011
+                     diadrug2011 waist2011 bmi2011 energy2011 carbo2011
+                     fat2011 protein2011 logincomemedi2011 metstotal2006
+                     metstotal2004 metstotal2009 metstotal2011 metstotal2000
+                     metstotal1997 gender retireageg birthcohort area
+                     provinces communityid yrsinceretire1989
+                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
+                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
+                     yrsinceretire2009 yrsinceretire2011
         energy1997: regress energy1997 i.education i.skills i.spouse
                      logincomemedi2000 carbo2000 fat2000 protein2000
                      energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
@@ -1190,20 +1095,19 @@ Conditional models:
                      sysdrug2006 diadrug2006 logincomemedi1993 waist2006
                      carbo1991 fat1991 protein1991 bmi2006 energy1991
                      energy1993 carbo1993 fat1993 protein1993
-                     logincomemedi1997 sysdrug1991 diadrug1991 carbo1997
-                     protein1997 fat1997 energy2009 carbo2009 fat2009
-                     protein2009 logincomemedi2009 bmi1991 sysdrug1993
-                     diadrug1993 sysdrug2009 diadrug2009 bmi1993 waist2009
-                     bmi2009 waist1993 sysdrug1997 diadrug1997 bmi1997
-                     waist1997 sysdrug2011 diadrug2011 waist2011 bmi2011
-                     energy2011 carbo2011 fat2011 protein2011
-                     logincomemedi2011 metstotal2006 metstotal2004
-                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
-                     waist1991 gender retireageg birthcohort area provinces
-                     communityid yrsinceretire1989 yrsinceretire1991
-                     yrsinceretire1993 yrsinceretire1997 yrsinceretire2000
-                     yrsinceretire2004 yrsinceretire2006 yrsinceretire2009
-                     yrsinceretire2011
+                     logincomemedi1997 carbo1997 protein1997 fat1997
+                     energy2009 carbo2009 fat2009 protein2009
+                     logincomemedi2009 sysdrug1993 diadrug1993 sysdrug2009
+                     diadrug2009 bmi1993 waist2009 bmi2009 waist1993
+                     sysdrug1997 diadrug1997 bmi1997 waist1997 sysdrug2011
+                     diadrug2011 waist2011 bmi2011 energy2011 carbo2011
+                     fat2011 protein2011 logincomemedi2011 metstotal2006
+                     metstotal2004 metstotal2009 metstotal2011 metstotal2000
+                     metstotal1997 gender retireageg birthcohort area
+                     provinces communityid yrsinceretire1989
+                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
+                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
+                     yrsinceretire2009 yrsinceretire2011
            fat1997: regress fat1997 i.education i.skills i.spouse
                      logincomemedi2000 carbo2000 fat2000 protein2000
                      energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
@@ -1214,20 +1118,19 @@ Conditional models:
                      sysdrug2006 diadrug2006 logincomemedi1993 waist2006
                      carbo1991 fat1991 protein1991 bmi2006 energy1991
                      energy1993 carbo1993 fat1993 protein1993
-                     logincomemedi1997 sysdrug1991 diadrug1991 carbo1997
-                     protein1997 energy1997 energy2009 carbo2009 fat2009
-                     protein2009 logincomemedi2009 bmi1991 sysdrug1993
-                     diadrug1993 sysdrug2009 diadrug2009 bmi1993 waist2009
-                     bmi2009 waist1993 sysdrug1997 diadrug1997 bmi1997
-                     waist1997 sysdrug2011 diadrug2011 waist2011 bmi2011
-                     energy2011 carbo2011 fat2011 protein2011
-                     logincomemedi2011 metstotal2006 metstotal2004
-                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
-                     waist1991 gender retireageg birthcohort area provinces
-                     communityid yrsinceretire1989 yrsinceretire1991
-                     yrsinceretire1993 yrsinceretire1997 yrsinceretire2000
-                     yrsinceretire2004 yrsinceretire2006 yrsinceretire2009
-                     yrsinceretire2011
+                     logincomemedi1997 carbo1997 protein1997 energy1997
+                     energy2009 carbo2009 fat2009 protein2009
+                     logincomemedi2009 sysdrug1993 diadrug1993 sysdrug2009
+                     diadrug2009 bmi1993 waist2009 bmi2009 waist1993
+                     sysdrug1997 diadrug1997 bmi1997 waist1997 sysdrug2011
+                     diadrug2011 waist2011 bmi2011 energy2011 carbo2011
+                     fat2011 protein2011 logincomemedi2011 metstotal2006
+                     metstotal2004 metstotal2009 metstotal2011 metstotal2000
+                     metstotal1997 gender retireageg birthcohort area
+                     provinces communityid yrsinceretire1989
+                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
+                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
+                     yrsinceretire2009 yrsinceretire2011
         energy2009: regress energy2009 i.education i.skills i.spouse
                      logincomemedi2000 carbo2000 fat2000 protein2000
                      energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
@@ -1238,20 +1141,18 @@ Conditional models:
                      sysdrug2006 diadrug2006 logincomemedi1993 waist2006
                      carbo1991 fat1991 protein1991 bmi2006 energy1991
                      energy1993 carbo1993 fat1993 protein1993
-                     logincomemedi1997 sysdrug1991 diadrug1991 carbo1997
-                     protein1997 energy1997 fat1997 carbo2009 fat2009
-                     protein2009 logincomemedi2009 bmi1991 sysdrug1993
-                     diadrug1993 sysdrug2009 diadrug2009 bmi1993 waist2009
-                     bmi2009 waist1993 sysdrug1997 diadrug1997 bmi1997
-                     waist1997 sysdrug2011 diadrug2011 waist2011 bmi2011
-                     energy2011 carbo2011 fat2011 protein2011
+                     logincomemedi1997 carbo1997 protein1997 energy1997
+                     fat1997 carbo2009 fat2009 protein2009 logincomemedi2009
+                     sysdrug1993 diadrug1993 sysdrug2009 diadrug2009 bmi1993
+                     waist2009 bmi2009 waist1993 sysdrug1997 diadrug1997
+                     bmi1997 waist1997 sysdrug2011 diadrug2011 waist2011
+                     bmi2011 energy2011 carbo2011 fat2011 protein2011
                      logincomemedi2011 metstotal2006 metstotal2004
                      metstotal2009 metstotal2011 metstotal2000 metstotal1997
-                     waist1991 gender retireageg birthcohort area provinces
-                     communityid yrsinceretire1989 yrsinceretire1991
-                     yrsinceretire1993 yrsinceretire1997 yrsinceretire2000
-                     yrsinceretire2004 yrsinceretire2006 yrsinceretire2009
-                     yrsinceretire2011
+                     gender retireageg birthcohort area provinces communityid
+                     yrsinceretire1989 yrsinceretire1991 yrsinceretire1993
+                     yrsinceretire1997 yrsinceretire2000 yrsinceretire2004
+                     yrsinceretire2006 yrsinceretire2009 yrsinceretire2011
          carbo2009: regress carbo2009 i.education i.skills i.spouse
                      logincomemedi2000 carbo2000 fat2000 protein2000
                      energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
@@ -1262,20 +1163,18 @@ Conditional models:
                      sysdrug2006 diadrug2006 logincomemedi1993 waist2006
                      carbo1991 fat1991 protein1991 bmi2006 energy1991
                      energy1993 carbo1993 fat1993 protein1993
-                     logincomemedi1997 sysdrug1991 diadrug1991 carbo1997
-                     protein1997 energy1997 fat1997 energy2009 fat2009
-                     protein2009 logincomemedi2009 bmi1991 sysdrug1993
-                     diadrug1993 sysdrug2009 diadrug2009 bmi1993 waist2009
-                     bmi2009 waist1993 sysdrug1997 diadrug1997 bmi1997
-                     waist1997 sysdrug2011 diadrug2011 waist2011 bmi2011
-                     energy2011 carbo2011 fat2011 protein2011
+                     logincomemedi1997 carbo1997 protein1997 energy1997
+                     fat1997 energy2009 fat2009 protein2009 logincomemedi2009
+                     sysdrug1993 diadrug1993 sysdrug2009 diadrug2009 bmi1993
+                     waist2009 bmi2009 waist1993 sysdrug1997 diadrug1997
+                     bmi1997 waist1997 sysdrug2011 diadrug2011 waist2011
+                     bmi2011 energy2011 carbo2011 fat2011 protein2011
                      logincomemedi2011 metstotal2006 metstotal2004
                      metstotal2009 metstotal2011 metstotal2000 metstotal1997
-                     waist1991 gender retireageg birthcohort area provinces
-                     communityid yrsinceretire1989 yrsinceretire1991
-                     yrsinceretire1993 yrsinceretire1997 yrsinceretire2000
-                     yrsinceretire2004 yrsinceretire2006 yrsinceretire2009
-                     yrsinceretire2011
+                     gender retireageg birthcohort area provinces communityid
+                     yrsinceretire1989 yrsinceretire1991 yrsinceretire1993
+                     yrsinceretire1997 yrsinceretire2000 yrsinceretire2004
+                     yrsinceretire2006 yrsinceretire2009 yrsinceretire2011
            fat2009: regress fat2009 i.education i.skills i.spouse
                      logincomemedi2000 carbo2000 fat2000 protein2000
                      energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
@@ -1286,20 +1185,19 @@ Conditional models:
                      sysdrug2006 diadrug2006 logincomemedi1993 waist2006
                      carbo1991 fat1991 protein1991 bmi2006 energy1991
                      energy1993 carbo1993 fat1993 protein1993
-                     logincomemedi1997 sysdrug1991 diadrug1991 carbo1997
-                     protein1997 energy1997 fat1997 energy2009 carbo2009
-                     protein2009 logincomemedi2009 bmi1991 sysdrug1993
-                     diadrug1993 sysdrug2009 diadrug2009 bmi1993 waist2009
-                     bmi2009 waist1993 sysdrug1997 diadrug1997 bmi1997
-                     waist1997 sysdrug2011 diadrug2011 waist2011 bmi2011
-                     energy2011 carbo2011 fat2011 protein2011
-                     logincomemedi2011 metstotal2006 metstotal2004
-                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
-                     waist1991 gender retireageg birthcohort area provinces
-                     communityid yrsinceretire1989 yrsinceretire1991
-                     yrsinceretire1993 yrsinceretire1997 yrsinceretire2000
-                     yrsinceretire2004 yrsinceretire2006 yrsinceretire2009
-                     yrsinceretire2011
+                     logincomemedi1997 carbo1997 protein1997 energy1997
+                     fat1997 energy2009 carbo2009 protein2009
+                     logincomemedi2009 sysdrug1993 diadrug1993 sysdrug2009
+                     diadrug2009 bmi1993 waist2009 bmi2009 waist1993
+                     sysdrug1997 diadrug1997 bmi1997 waist1997 sysdrug2011
+                     diadrug2011 waist2011 bmi2011 energy2011 carbo2011
+                     fat2011 protein2011 logincomemedi2011 metstotal2006
+                     metstotal2004 metstotal2009 metstotal2011 metstotal2000
+                     metstotal1997 gender retireageg birthcohort area
+                     provinces communityid yrsinceretire1989
+                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
+                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
+                     yrsinceretire2009 yrsinceretire2011
        protein2009: regress protein2009 i.education i.skills i.spouse
                      logincomemedi2000 carbo2000 fat2000 protein2000
                      energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
@@ -1310,20 +1208,18 @@ Conditional models:
                      sysdrug2006 diadrug2006 logincomemedi1993 waist2006
                      carbo1991 fat1991 protein1991 bmi2006 energy1991
                      energy1993 carbo1993 fat1993 protein1993
-                     logincomemedi1997 sysdrug1991 diadrug1991 carbo1997
-                     protein1997 energy1997 fat1997 energy2009 carbo2009
-                     fat2009 logincomemedi2009 bmi1991 sysdrug1993
-                     diadrug1993 sysdrug2009 diadrug2009 bmi1993 waist2009
-                     bmi2009 waist1993 sysdrug1997 diadrug1997 bmi1997
-                     waist1997 sysdrug2011 diadrug2011 waist2011 bmi2011
-                     energy2011 carbo2011 fat2011 protein2011
+                     logincomemedi1997 carbo1997 protein1997 energy1997
+                     fat1997 energy2009 carbo2009 fat2009 logincomemedi2009
+                     sysdrug1993 diadrug1993 sysdrug2009 diadrug2009 bmi1993
+                     waist2009 bmi2009 waist1993 sysdrug1997 diadrug1997
+                     bmi1997 waist1997 sysdrug2011 diadrug2011 waist2011
+                     bmi2011 energy2011 carbo2011 fat2011 protein2011
                      logincomemedi2011 metstotal2006 metstotal2004
                      metstotal2009 metstotal2011 metstotal2000 metstotal1997
-                     waist1991 gender retireageg birthcohort area provinces
-                     communityid yrsinceretire1989 yrsinceretire1991
-                     yrsinceretire1993 yrsinceretire1997 yrsinceretire2000
-                     yrsinceretire2004 yrsinceretire2006 yrsinceretire2009
-                     yrsinceretire2011
+                     gender retireageg birthcohort area provinces communityid
+                     yrsinceretire1989 yrsinceretire1991 yrsinceretire1993
+                     yrsinceretire1997 yrsinceretire2000 yrsinceretire2004
+                     yrsinceretire2006 yrsinceretire2009 yrsinceretire2011
     logincome~2009: regress logincomemedi2009 i.education i.skills i.spouse
                      logincomemedi2000 carbo2000 fat2000 protein2000
                      energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
@@ -1334,43 +1230,18 @@ Conditional models:
                      sysdrug2006 diadrug2006 logincomemedi1993 waist2006
                      carbo1991 fat1991 protein1991 bmi2006 energy1991
                      energy1993 carbo1993 fat1993 protein1993
-                     logincomemedi1997 sysdrug1991 diadrug1991 carbo1997
-                     protein1997 energy1997 fat1997 energy2009 carbo2009
-                     fat2009 protein2009 bmi1991 sysdrug1993 diadrug1993
-                     sysdrug2009 diadrug2009 bmi1993 waist2009 bmi2009
-                     waist1993 sysdrug1997 diadrug1997 bmi1997 waist1997
-                     sysdrug2011 diadrug2011 waist2011 bmi2011 energy2011
-                     carbo2011 fat2011 protein2011 logincomemedi2011
-                     metstotal2006 metstotal2004 metstotal2009 metstotal2011
-                     metstotal2000 metstotal1997 waist1991 gender retireageg
-                     birthcohort area provinces communityid yrsinceretire1989
-                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
-                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
-                     yrsinceretire2009 yrsinceretire2011
-           bmi1991: regress bmi1991 i.education i.skills i.spouse
-                     logincomemedi2000 carbo2000 fat2000 protein2000
-                     energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
-                     logincomemedi1989 logincomemedi1991 logincomemedi2004
-                     energy2004 carbo2004 fat2004 protein2004
-                     logincomemedi2006 energy2006 carbo2006 fat2006
-                     protein2006 sysdrug2004 diadrug2004 bmi2004 waist2004
-                     sysdrug2006 diadrug2006 logincomemedi1993 waist2006
-                     carbo1991 fat1991 protein1991 bmi2006 energy1991
-                     energy1993 carbo1993 fat1993 protein1993
-                     logincomemedi1997 sysdrug1991 diadrug1991 carbo1997
-                     protein1997 energy1997 fat1997 energy2009 carbo2009
-                     fat2009 protein2009 logincomemedi2009 sysdrug1993
-                     diadrug1993 sysdrug2009 diadrug2009 bmi1993 waist2009
-                     bmi2009 waist1993 sysdrug1997 diadrug1997 bmi1997
-                     waist1997 sysdrug2011 diadrug2011 waist2011 bmi2011
-                     energy2011 carbo2011 fat2011 protein2011
+                     logincomemedi1997 carbo1997 protein1997 energy1997
+                     fat1997 energy2009 carbo2009 fat2009 protein2009
+                     sysdrug1993 diadrug1993 sysdrug2009 diadrug2009 bmi1993
+                     waist2009 bmi2009 waist1993 sysdrug1997 diadrug1997
+                     bmi1997 waist1997 sysdrug2011 diadrug2011 waist2011
+                     bmi2011 energy2011 carbo2011 fat2011 protein2011
                      logincomemedi2011 metstotal2006 metstotal2004
                      metstotal2009 metstotal2011 metstotal2000 metstotal1997
-                     waist1991 gender retireageg birthcohort area provinces
-                     communityid yrsinceretire1989 yrsinceretire1991
-                     yrsinceretire1993 yrsinceretire1997 yrsinceretire2000
-                     yrsinceretire2004 yrsinceretire2006 yrsinceretire2009
-                     yrsinceretire2011
+                     gender retireageg birthcohort area provinces communityid
+                     yrsinceretire1989 yrsinceretire1991 yrsinceretire1993
+                     yrsinceretire1997 yrsinceretire2000 yrsinceretire2004
+                     yrsinceretire2006 yrsinceretire2009 yrsinceretire2011
        sysdrug1993: regress sysdrug1993 i.education i.skills i.spouse
                      logincomemedi2000 carbo2000 fat2000 protein2000
                      energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
@@ -1381,20 +1252,19 @@ Conditional models:
                      sysdrug2006 diadrug2006 logincomemedi1993 waist2006
                      carbo1991 fat1991 protein1991 bmi2006 energy1991
                      energy1993 carbo1993 fat1993 protein1993
-                     logincomemedi1997 sysdrug1991 diadrug1991 carbo1997
-                     protein1997 energy1997 fat1997 energy2009 carbo2009
-                     fat2009 protein2009 logincomemedi2009 bmi1991
-                     diadrug1993 sysdrug2009 diadrug2009 bmi1993 waist2009
-                     bmi2009 waist1993 sysdrug1997 diadrug1997 bmi1997
-                     waist1997 sysdrug2011 diadrug2011 waist2011 bmi2011
-                     energy2011 carbo2011 fat2011 protein2011
-                     logincomemedi2011 metstotal2006 metstotal2004
-                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
-                     waist1991 gender retireageg birthcohort area provinces
-                     communityid yrsinceretire1989 yrsinceretire1991
-                     yrsinceretire1993 yrsinceretire1997 yrsinceretire2000
-                     yrsinceretire2004 yrsinceretire2006 yrsinceretire2009
-                     yrsinceretire2011
+                     logincomemedi1997 carbo1997 protein1997 energy1997
+                     fat1997 energy2009 carbo2009 fat2009 protein2009
+                     logincomemedi2009 diadrug1993 sysdrug2009 diadrug2009
+                     bmi1993 waist2009 bmi2009 waist1993 sysdrug1997
+                     diadrug1997 bmi1997 waist1997 sysdrug2011 diadrug2011
+                     waist2011 bmi2011 energy2011 carbo2011 fat2011
+                     protein2011 logincomemedi2011 metstotal2006
+                     metstotal2004 metstotal2009 metstotal2011 metstotal2000
+                     metstotal1997 gender retireageg birthcohort area
+                     provinces communityid yrsinceretire1989
+                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
+                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
+                     yrsinceretire2009 yrsinceretire2011
        diadrug1993: regress diadrug1993 i.education i.skills i.spouse
                      logincomemedi2000 carbo2000 fat2000 protein2000
                      energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
@@ -1405,20 +1275,19 @@ Conditional models:
                      sysdrug2006 diadrug2006 logincomemedi1993 waist2006
                      carbo1991 fat1991 protein1991 bmi2006 energy1991
                      energy1993 carbo1993 fat1993 protein1993
-                     logincomemedi1997 sysdrug1991 diadrug1991 carbo1997
-                     protein1997 energy1997 fat1997 energy2009 carbo2009
-                     fat2009 protein2009 logincomemedi2009 bmi1991
-                     sysdrug1993 sysdrug2009 diadrug2009 bmi1993 waist2009
-                     bmi2009 waist1993 sysdrug1997 diadrug1997 bmi1997
-                     waist1997 sysdrug2011 diadrug2011 waist2011 bmi2011
-                     energy2011 carbo2011 fat2011 protein2011
-                     logincomemedi2011 metstotal2006 metstotal2004
-                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
-                     waist1991 gender retireageg birthcohort area provinces
-                     communityid yrsinceretire1989 yrsinceretire1991
-                     yrsinceretire1993 yrsinceretire1997 yrsinceretire2000
-                     yrsinceretire2004 yrsinceretire2006 yrsinceretire2009
-                     yrsinceretire2011
+                     logincomemedi1997 carbo1997 protein1997 energy1997
+                     fat1997 energy2009 carbo2009 fat2009 protein2009
+                     logincomemedi2009 sysdrug1993 sysdrug2009 diadrug2009
+                     bmi1993 waist2009 bmi2009 waist1993 sysdrug1997
+                     diadrug1997 bmi1997 waist1997 sysdrug2011 diadrug2011
+                     waist2011 bmi2011 energy2011 carbo2011 fat2011
+                     protein2011 logincomemedi2011 metstotal2006
+                     metstotal2004 metstotal2009 metstotal2011 metstotal2000
+                     metstotal1997 gender retireageg birthcohort area
+                     provinces communityid yrsinceretire1989
+                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
+                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
+                     yrsinceretire2009 yrsinceretire2011
        sysdrug2009: regress sysdrug2009 i.education i.skills i.spouse
                      logincomemedi2000 carbo2000 fat2000 protein2000
                      energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
@@ -1429,20 +1298,19 @@ Conditional models:
                      sysdrug2006 diadrug2006 logincomemedi1993 waist2006
                      carbo1991 fat1991 protein1991 bmi2006 energy1991
                      energy1993 carbo1993 fat1993 protein1993
-                     logincomemedi1997 sysdrug1991 diadrug1991 carbo1997
-                     protein1997 energy1997 fat1997 energy2009 carbo2009
-                     fat2009 protein2009 logincomemedi2009 bmi1991
-                     sysdrug1993 diadrug1993 diadrug2009 bmi1993 waist2009
-                     bmi2009 waist1993 sysdrug1997 diadrug1997 bmi1997
-                     waist1997 sysdrug2011 diadrug2011 waist2011 bmi2011
-                     energy2011 carbo2011 fat2011 protein2011
-                     logincomemedi2011 metstotal2006 metstotal2004
-                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
-                     waist1991 gender retireageg birthcohort area provinces
-                     communityid yrsinceretire1989 yrsinceretire1991
-                     yrsinceretire1993 yrsinceretire1997 yrsinceretire2000
-                     yrsinceretire2004 yrsinceretire2006 yrsinceretire2009
-                     yrsinceretire2011
+                     logincomemedi1997 carbo1997 protein1997 energy1997
+                     fat1997 energy2009 carbo2009 fat2009 protein2009
+                     logincomemedi2009 sysdrug1993 diadrug1993 diadrug2009
+                     bmi1993 waist2009 bmi2009 waist1993 sysdrug1997
+                     diadrug1997 bmi1997 waist1997 sysdrug2011 diadrug2011
+                     waist2011 bmi2011 energy2011 carbo2011 fat2011
+                     protein2011 logincomemedi2011 metstotal2006
+                     metstotal2004 metstotal2009 metstotal2011 metstotal2000
+                     metstotal1997 gender retireageg birthcohort area
+                     provinces communityid yrsinceretire1989
+                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
+                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
+                     yrsinceretire2009 yrsinceretire2011
        diadrug2009: regress diadrug2009 i.education i.skills i.spouse
                      logincomemedi2000 carbo2000 fat2000 protein2000
                      energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
@@ -1453,20 +1321,19 @@ Conditional models:
                      sysdrug2006 diadrug2006 logincomemedi1993 waist2006
                      carbo1991 fat1991 protein1991 bmi2006 energy1991
                      energy1993 carbo1993 fat1993 protein1993
-                     logincomemedi1997 sysdrug1991 diadrug1991 carbo1997
-                     protein1997 energy1997 fat1997 energy2009 carbo2009
-                     fat2009 protein2009 logincomemedi2009 bmi1991
-                     sysdrug1993 diadrug1993 sysdrug2009 bmi1993 waist2009
-                     bmi2009 waist1993 sysdrug1997 diadrug1997 bmi1997
-                     waist1997 sysdrug2011 diadrug2011 waist2011 bmi2011
-                     energy2011 carbo2011 fat2011 protein2011
-                     logincomemedi2011 metstotal2006 metstotal2004
-                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
-                     waist1991 gender retireageg birthcohort area provinces
-                     communityid yrsinceretire1989 yrsinceretire1991
-                     yrsinceretire1993 yrsinceretire1997 yrsinceretire2000
-                     yrsinceretire2004 yrsinceretire2006 yrsinceretire2009
-                     yrsinceretire2011
+                     logincomemedi1997 carbo1997 protein1997 energy1997
+                     fat1997 energy2009 carbo2009 fat2009 protein2009
+                     logincomemedi2009 sysdrug1993 diadrug1993 sysdrug2009
+                     bmi1993 waist2009 bmi2009 waist1993 sysdrug1997
+                     diadrug1997 bmi1997 waist1997 sysdrug2011 diadrug2011
+                     waist2011 bmi2011 energy2011 carbo2011 fat2011
+                     protein2011 logincomemedi2011 metstotal2006
+                     metstotal2004 metstotal2009 metstotal2011 metstotal2000
+                     metstotal1997 gender retireageg birthcohort area
+                     provinces communityid yrsinceretire1989
+                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
+                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
+                     yrsinceretire2009 yrsinceretire2011
            bmi1993: regress bmi1993 i.education i.skills i.spouse
                      logincomemedi2000 carbo2000 fat2000 protein2000
                      energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
@@ -1477,20 +1344,19 @@ Conditional models:
                      sysdrug2006 diadrug2006 logincomemedi1993 waist2006
                      carbo1991 fat1991 protein1991 bmi2006 energy1991
                      energy1993 carbo1993 fat1993 protein1993
-                     logincomemedi1997 sysdrug1991 diadrug1991 carbo1997
-                     protein1997 energy1997 fat1997 energy2009 carbo2009
-                     fat2009 protein2009 logincomemedi2009 bmi1991
-                     sysdrug1993 diadrug1993 sysdrug2009 diadrug2009
-                     waist2009 bmi2009 waist1993 sysdrug1997 diadrug1997
-                     bmi1997 waist1997 sysdrug2011 diadrug2011 waist2011
-                     bmi2011 energy2011 carbo2011 fat2011 protein2011
-                     logincomemedi2011 metstotal2006 metstotal2004
-                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
-                     waist1991 gender retireageg birthcohort area provinces
-                     communityid yrsinceretire1989 yrsinceretire1991
-                     yrsinceretire1993 yrsinceretire1997 yrsinceretire2000
-                     yrsinceretire2004 yrsinceretire2006 yrsinceretire2009
-                     yrsinceretire2011
+                     logincomemedi1997 carbo1997 protein1997 energy1997
+                     fat1997 energy2009 carbo2009 fat2009 protein2009
+                     logincomemedi2009 sysdrug1993 diadrug1993 sysdrug2009
+                     diadrug2009 waist2009 bmi2009 waist1993 sysdrug1997
+                     diadrug1997 bmi1997 waist1997 sysdrug2011 diadrug2011
+                     waist2011 bmi2011 energy2011 carbo2011 fat2011
+                     protein2011 logincomemedi2011 metstotal2006
+                     metstotal2004 metstotal2009 metstotal2011 metstotal2000
+                     metstotal1997 gender retireageg birthcohort area
+                     provinces communityid yrsinceretire1989
+                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
+                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
+                     yrsinceretire2009 yrsinceretire2011
          waist2009: regress waist2009 i.education i.skills i.spouse
                      logincomemedi2000 carbo2000 fat2000 protein2000
                      energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
@@ -1501,20 +1367,19 @@ Conditional models:
                      sysdrug2006 diadrug2006 logincomemedi1993 waist2006
                      carbo1991 fat1991 protein1991 bmi2006 energy1991
                      energy1993 carbo1993 fat1993 protein1993
-                     logincomemedi1997 sysdrug1991 diadrug1991 carbo1997
-                     protein1997 energy1997 fat1997 energy2009 carbo2009
-                     fat2009 protein2009 logincomemedi2009 bmi1991
-                     sysdrug1993 diadrug1993 sysdrug2009 diadrug2009 bmi1993
-                     bmi2009 waist1993 sysdrug1997 diadrug1997 bmi1997
-                     waist1997 sysdrug2011 diadrug2011 waist2011 bmi2011
-                     energy2011 carbo2011 fat2011 protein2011
-                     logincomemedi2011 metstotal2006 metstotal2004
-                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
-                     waist1991 gender retireageg birthcohort area provinces
-                     communityid yrsinceretire1989 yrsinceretire1991
-                     yrsinceretire1993 yrsinceretire1997 yrsinceretire2000
-                     yrsinceretire2004 yrsinceretire2006 yrsinceretire2009
-                     yrsinceretire2011
+                     logincomemedi1997 carbo1997 protein1997 energy1997
+                     fat1997 energy2009 carbo2009 fat2009 protein2009
+                     logincomemedi2009 sysdrug1993 diadrug1993 sysdrug2009
+                     diadrug2009 bmi1993 bmi2009 waist1993 sysdrug1997
+                     diadrug1997 bmi1997 waist1997 sysdrug2011 diadrug2011
+                     waist2011 bmi2011 energy2011 carbo2011 fat2011
+                     protein2011 logincomemedi2011 metstotal2006
+                     metstotal2004 metstotal2009 metstotal2011 metstotal2000
+                     metstotal1997 gender retireageg birthcohort area
+                     provinces communityid yrsinceretire1989
+                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
+                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
+                     yrsinceretire2009 yrsinceretire2011
            bmi2009: regress bmi2009 i.education i.skills i.spouse
                      logincomemedi2000 carbo2000 fat2000 protein2000
                      energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
@@ -1525,20 +1390,19 @@ Conditional models:
                      sysdrug2006 diadrug2006 logincomemedi1993 waist2006
                      carbo1991 fat1991 protein1991 bmi2006 energy1991
                      energy1993 carbo1993 fat1993 protein1993
-                     logincomemedi1997 sysdrug1991 diadrug1991 carbo1997
-                     protein1997 energy1997 fat1997 energy2009 carbo2009
-                     fat2009 protein2009 logincomemedi2009 bmi1991
-                     sysdrug1993 diadrug1993 sysdrug2009 diadrug2009 bmi1993
-                     waist2009 waist1993 sysdrug1997 diadrug1997 bmi1997
-                     waist1997 sysdrug2011 diadrug2011 waist2011 bmi2011
-                     energy2011 carbo2011 fat2011 protein2011
-                     logincomemedi2011 metstotal2006 metstotal2004
-                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
-                     waist1991 gender retireageg birthcohort area provinces
-                     communityid yrsinceretire1989 yrsinceretire1991
-                     yrsinceretire1993 yrsinceretire1997 yrsinceretire2000
-                     yrsinceretire2004 yrsinceretire2006 yrsinceretire2009
-                     yrsinceretire2011
+                     logincomemedi1997 carbo1997 protein1997 energy1997
+                     fat1997 energy2009 carbo2009 fat2009 protein2009
+                     logincomemedi2009 sysdrug1993 diadrug1993 sysdrug2009
+                     diadrug2009 bmi1993 waist2009 waist1993 sysdrug1997
+                     diadrug1997 bmi1997 waist1997 sysdrug2011 diadrug2011
+                     waist2011 bmi2011 energy2011 carbo2011 fat2011
+                     protein2011 logincomemedi2011 metstotal2006
+                     metstotal2004 metstotal2009 metstotal2011 metstotal2000
+                     metstotal1997 gender retireageg birthcohort area
+                     provinces communityid yrsinceretire1989
+                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
+                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
+                     yrsinceretire2009 yrsinceretire2011
          waist1993: regress waist1993 i.education i.skills i.spouse
                      logincomemedi2000 carbo2000 fat2000 protein2000
                      energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
@@ -1549,20 +1413,19 @@ Conditional models:
                      sysdrug2006 diadrug2006 logincomemedi1993 waist2006
                      carbo1991 fat1991 protein1991 bmi2006 energy1991
                      energy1993 carbo1993 fat1993 protein1993
-                     logincomemedi1997 sysdrug1991 diadrug1991 carbo1997
-                     protein1997 energy1997 fat1997 energy2009 carbo2009
-                     fat2009 protein2009 logincomemedi2009 bmi1991
-                     sysdrug1993 diadrug1993 sysdrug2009 diadrug2009 bmi1993
-                     waist2009 bmi2009 sysdrug1997 diadrug1997 bmi1997
-                     waist1997 sysdrug2011 diadrug2011 waist2011 bmi2011
-                     energy2011 carbo2011 fat2011 protein2011
-                     logincomemedi2011 metstotal2006 metstotal2004
-                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
-                     waist1991 gender retireageg birthcohort area provinces
-                     communityid yrsinceretire1989 yrsinceretire1991
-                     yrsinceretire1993 yrsinceretire1997 yrsinceretire2000
-                     yrsinceretire2004 yrsinceretire2006 yrsinceretire2009
-                     yrsinceretire2011
+                     logincomemedi1997 carbo1997 protein1997 energy1997
+                     fat1997 energy2009 carbo2009 fat2009 protein2009
+                     logincomemedi2009 sysdrug1993 diadrug1993 sysdrug2009
+                     diadrug2009 bmi1993 waist2009 bmi2009 sysdrug1997
+                     diadrug1997 bmi1997 waist1997 sysdrug2011 diadrug2011
+                     waist2011 bmi2011 energy2011 carbo2011 fat2011
+                     protein2011 logincomemedi2011 metstotal2006
+                     metstotal2004 metstotal2009 metstotal2011 metstotal2000
+                     metstotal1997 gender retireageg birthcohort area
+                     provinces communityid yrsinceretire1989
+                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
+                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
+                     yrsinceretire2009 yrsinceretire2011
        sysdrug1997: regress sysdrug1997 i.education i.skills i.spouse
                      logincomemedi2000 carbo2000 fat2000 protein2000
                      energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
@@ -1573,20 +1436,19 @@ Conditional models:
                      sysdrug2006 diadrug2006 logincomemedi1993 waist2006
                      carbo1991 fat1991 protein1991 bmi2006 energy1991
                      energy1993 carbo1993 fat1993 protein1993
-                     logincomemedi1997 sysdrug1991 diadrug1991 carbo1997
-                     protein1997 energy1997 fat1997 energy2009 carbo2009
-                     fat2009 protein2009 logincomemedi2009 bmi1991
-                     sysdrug1993 diadrug1993 sysdrug2009 diadrug2009 bmi1993
-                     waist2009 bmi2009 waist1993 diadrug1997 bmi1997
-                     waist1997 sysdrug2011 diadrug2011 waist2011 bmi2011
-                     energy2011 carbo2011 fat2011 protein2011
-                     logincomemedi2011 metstotal2006 metstotal2004
-                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
-                     waist1991 gender retireageg birthcohort area provinces
-                     communityid yrsinceretire1989 yrsinceretire1991
-                     yrsinceretire1993 yrsinceretire1997 yrsinceretire2000
-                     yrsinceretire2004 yrsinceretire2006 yrsinceretire2009
-                     yrsinceretire2011
+                     logincomemedi1997 carbo1997 protein1997 energy1997
+                     fat1997 energy2009 carbo2009 fat2009 protein2009
+                     logincomemedi2009 sysdrug1993 diadrug1993 sysdrug2009
+                     diadrug2009 bmi1993 waist2009 bmi2009 waist1993
+                     diadrug1997 bmi1997 waist1997 sysdrug2011 diadrug2011
+                     waist2011 bmi2011 energy2011 carbo2011 fat2011
+                     protein2011 logincomemedi2011 metstotal2006
+                     metstotal2004 metstotal2009 metstotal2011 metstotal2000
+                     metstotal1997 gender retireageg birthcohort area
+                     provinces communityid yrsinceretire1989
+                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
+                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
+                     yrsinceretire2009 yrsinceretire2011
        diadrug1997: regress diadrug1997 i.education i.skills i.spouse
                      logincomemedi2000 carbo2000 fat2000 protein2000
                      energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
@@ -1597,20 +1459,19 @@ Conditional models:
                      sysdrug2006 diadrug2006 logincomemedi1993 waist2006
                      carbo1991 fat1991 protein1991 bmi2006 energy1991
                      energy1993 carbo1993 fat1993 protein1993
-                     logincomemedi1997 sysdrug1991 diadrug1991 carbo1997
-                     protein1997 energy1997 fat1997 energy2009 carbo2009
-                     fat2009 protein2009 logincomemedi2009 bmi1991
-                     sysdrug1993 diadrug1993 sysdrug2009 diadrug2009 bmi1993
-                     waist2009 bmi2009 waist1993 sysdrug1997 bmi1997
-                     waist1997 sysdrug2011 diadrug2011 waist2011 bmi2011
-                     energy2011 carbo2011 fat2011 protein2011
-                     logincomemedi2011 metstotal2006 metstotal2004
-                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
-                     waist1991 gender retireageg birthcohort area provinces
-                     communityid yrsinceretire1989 yrsinceretire1991
-                     yrsinceretire1993 yrsinceretire1997 yrsinceretire2000
-                     yrsinceretire2004 yrsinceretire2006 yrsinceretire2009
-                     yrsinceretire2011
+                     logincomemedi1997 carbo1997 protein1997 energy1997
+                     fat1997 energy2009 carbo2009 fat2009 protein2009
+                     logincomemedi2009 sysdrug1993 diadrug1993 sysdrug2009
+                     diadrug2009 bmi1993 waist2009 bmi2009 waist1993
+                     sysdrug1997 bmi1997 waist1997 sysdrug2011 diadrug2011
+                     waist2011 bmi2011 energy2011 carbo2011 fat2011
+                     protein2011 logincomemedi2011 metstotal2006
+                     metstotal2004 metstotal2009 metstotal2011 metstotal2000
+                     metstotal1997 gender retireageg birthcohort area
+                     provinces communityid yrsinceretire1989
+                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
+                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
+                     yrsinceretire2009 yrsinceretire2011
            bmi1997: regress bmi1997 i.education i.skills i.spouse
                      logincomemedi2000 carbo2000 fat2000 protein2000
                      energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
@@ -1621,20 +1482,19 @@ Conditional models:
                      sysdrug2006 diadrug2006 logincomemedi1993 waist2006
                      carbo1991 fat1991 protein1991 bmi2006 energy1991
                      energy1993 carbo1993 fat1993 protein1993
-                     logincomemedi1997 sysdrug1991 diadrug1991 carbo1997
-                     protein1997 energy1997 fat1997 energy2009 carbo2009
-                     fat2009 protein2009 logincomemedi2009 bmi1991
-                     sysdrug1993 diadrug1993 sysdrug2009 diadrug2009 bmi1993
-                     waist2009 bmi2009 waist1993 sysdrug1997 diadrug1997
-                     waist1997 sysdrug2011 diadrug2011 waist2011 bmi2011
-                     energy2011 carbo2011 fat2011 protein2011
-                     logincomemedi2011 metstotal2006 metstotal2004
-                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
-                     waist1991 gender retireageg birthcohort area provinces
-                     communityid yrsinceretire1989 yrsinceretire1991
-                     yrsinceretire1993 yrsinceretire1997 yrsinceretire2000
-                     yrsinceretire2004 yrsinceretire2006 yrsinceretire2009
-                     yrsinceretire2011
+                     logincomemedi1997 carbo1997 protein1997 energy1997
+                     fat1997 energy2009 carbo2009 fat2009 protein2009
+                     logincomemedi2009 sysdrug1993 diadrug1993 sysdrug2009
+                     diadrug2009 bmi1993 waist2009 bmi2009 waist1993
+                     sysdrug1997 diadrug1997 waist1997 sysdrug2011
+                     diadrug2011 waist2011 bmi2011 energy2011 carbo2011
+                     fat2011 protein2011 logincomemedi2011 metstotal2006
+                     metstotal2004 metstotal2009 metstotal2011 metstotal2000
+                     metstotal1997 gender retireageg birthcohort area
+                     provinces communityid yrsinceretire1989
+                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
+                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
+                     yrsinceretire2009 yrsinceretire2011
          waist1997: regress waist1997 i.education i.skills i.spouse
                      logincomemedi2000 carbo2000 fat2000 protein2000
                      energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
@@ -1645,20 +1505,19 @@ Conditional models:
                      sysdrug2006 diadrug2006 logincomemedi1993 waist2006
                      carbo1991 fat1991 protein1991 bmi2006 energy1991
                      energy1993 carbo1993 fat1993 protein1993
-                     logincomemedi1997 sysdrug1991 diadrug1991 carbo1997
-                     protein1997 energy1997 fat1997 energy2009 carbo2009
-                     fat2009 protein2009 logincomemedi2009 bmi1991
-                     sysdrug1993 diadrug1993 sysdrug2009 diadrug2009 bmi1993
-                     waist2009 bmi2009 waist1993 sysdrug1997 diadrug1997
-                     bmi1997 sysdrug2011 diadrug2011 waist2011 bmi2011
-                     energy2011 carbo2011 fat2011 protein2011
-                     logincomemedi2011 metstotal2006 metstotal2004
-                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
-                     waist1991 gender retireageg birthcohort area provinces
-                     communityid yrsinceretire1989 yrsinceretire1991
-                     yrsinceretire1993 yrsinceretire1997 yrsinceretire2000
-                     yrsinceretire2004 yrsinceretire2006 yrsinceretire2009
-                     yrsinceretire2011
+                     logincomemedi1997 carbo1997 protein1997 energy1997
+                     fat1997 energy2009 carbo2009 fat2009 protein2009
+                     logincomemedi2009 sysdrug1993 diadrug1993 sysdrug2009
+                     diadrug2009 bmi1993 waist2009 bmi2009 waist1993
+                     sysdrug1997 diadrug1997 bmi1997 sysdrug2011 diadrug2011
+                     waist2011 bmi2011 energy2011 carbo2011 fat2011
+                     protein2011 logincomemedi2011 metstotal2006
+                     metstotal2004 metstotal2009 metstotal2011 metstotal2000
+                     metstotal1997 gender retireageg birthcohort area
+                     provinces communityid yrsinceretire1989
+                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
+                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
+                     yrsinceretire2009 yrsinceretire2011
        sysdrug2011: regress sysdrug2011 i.education i.skills i.spouse
                      logincomemedi2000 carbo2000 fat2000 protein2000
                      energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
@@ -1669,20 +1528,19 @@ Conditional models:
                      sysdrug2006 diadrug2006 logincomemedi1993 waist2006
                      carbo1991 fat1991 protein1991 bmi2006 energy1991
                      energy1993 carbo1993 fat1993 protein1993
-                     logincomemedi1997 sysdrug1991 diadrug1991 carbo1997
-                     protein1997 energy1997 fat1997 energy2009 carbo2009
-                     fat2009 protein2009 logincomemedi2009 bmi1991
-                     sysdrug1993 diadrug1993 sysdrug2009 diadrug2009 bmi1993
-                     waist2009 bmi2009 waist1993 sysdrug1997 diadrug1997
-                     bmi1997 waist1997 diadrug2011 waist2011 bmi2011
-                     energy2011 carbo2011 fat2011 protein2011
-                     logincomemedi2011 metstotal2006 metstotal2004
-                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
-                     waist1991 gender retireageg birthcohort area provinces
-                     communityid yrsinceretire1989 yrsinceretire1991
-                     yrsinceretire1993 yrsinceretire1997 yrsinceretire2000
-                     yrsinceretire2004 yrsinceretire2006 yrsinceretire2009
-                     yrsinceretire2011
+                     logincomemedi1997 carbo1997 protein1997 energy1997
+                     fat1997 energy2009 carbo2009 fat2009 protein2009
+                     logincomemedi2009 sysdrug1993 diadrug1993 sysdrug2009
+                     diadrug2009 bmi1993 waist2009 bmi2009 waist1993
+                     sysdrug1997 diadrug1997 bmi1997 waist1997 diadrug2011
+                     waist2011 bmi2011 energy2011 carbo2011 fat2011
+                     protein2011 logincomemedi2011 metstotal2006
+                     metstotal2004 metstotal2009 metstotal2011 metstotal2000
+                     metstotal1997 gender retireageg birthcohort area
+                     provinces communityid yrsinceretire1989
+                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
+                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
+                     yrsinceretire2009 yrsinceretire2011
        diadrug2011: regress diadrug2011 i.education i.skills i.spouse
                      logincomemedi2000 carbo2000 fat2000 protein2000
                      energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
@@ -1693,20 +1551,19 @@ Conditional models:
                      sysdrug2006 diadrug2006 logincomemedi1993 waist2006
                      carbo1991 fat1991 protein1991 bmi2006 energy1991
                      energy1993 carbo1993 fat1993 protein1993
-                     logincomemedi1997 sysdrug1991 diadrug1991 carbo1997
-                     protein1997 energy1997 fat1997 energy2009 carbo2009
-                     fat2009 protein2009 logincomemedi2009 bmi1991
-                     sysdrug1993 diadrug1993 sysdrug2009 diadrug2009 bmi1993
-                     waist2009 bmi2009 waist1993 sysdrug1997 diadrug1997
-                     bmi1997 waist1997 sysdrug2011 waist2011 bmi2011
-                     energy2011 carbo2011 fat2011 protein2011
-                     logincomemedi2011 metstotal2006 metstotal2004
-                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
-                     waist1991 gender retireageg birthcohort area provinces
-                     communityid yrsinceretire1989 yrsinceretire1991
-                     yrsinceretire1993 yrsinceretire1997 yrsinceretire2000
-                     yrsinceretire2004 yrsinceretire2006 yrsinceretire2009
-                     yrsinceretire2011
+                     logincomemedi1997 carbo1997 protein1997 energy1997
+                     fat1997 energy2009 carbo2009 fat2009 protein2009
+                     logincomemedi2009 sysdrug1993 diadrug1993 sysdrug2009
+                     diadrug2009 bmi1993 waist2009 bmi2009 waist1993
+                     sysdrug1997 diadrug1997 bmi1997 waist1997 sysdrug2011
+                     waist2011 bmi2011 energy2011 carbo2011 fat2011
+                     protein2011 logincomemedi2011 metstotal2006
+                     metstotal2004 metstotal2009 metstotal2011 metstotal2000
+                     metstotal1997 gender retireageg birthcohort area
+                     provinces communityid yrsinceretire1989
+                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
+                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
+                     yrsinceretire2009 yrsinceretire2011
          waist2011: regress waist2011 i.education i.skills i.spouse
                      logincomemedi2000 carbo2000 fat2000 protein2000
                      energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
@@ -1717,20 +1574,19 @@ Conditional models:
                      sysdrug2006 diadrug2006 logincomemedi1993 waist2006
                      carbo1991 fat1991 protein1991 bmi2006 energy1991
                      energy1993 carbo1993 fat1993 protein1993
-                     logincomemedi1997 sysdrug1991 diadrug1991 carbo1997
-                     protein1997 energy1997 fat1997 energy2009 carbo2009
-                     fat2009 protein2009 logincomemedi2009 bmi1991
-                     sysdrug1993 diadrug1993 sysdrug2009 diadrug2009 bmi1993
-                     waist2009 bmi2009 waist1993 sysdrug1997 diadrug1997
-                     bmi1997 waist1997 sysdrug2011 diadrug2011 bmi2011
-                     energy2011 carbo2011 fat2011 protein2011
-                     logincomemedi2011 metstotal2006 metstotal2004
-                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
-                     waist1991 gender retireageg birthcohort area provinces
-                     communityid yrsinceretire1989 yrsinceretire1991
-                     yrsinceretire1993 yrsinceretire1997 yrsinceretire2000
-                     yrsinceretire2004 yrsinceretire2006 yrsinceretire2009
-                     yrsinceretire2011
+                     logincomemedi1997 carbo1997 protein1997 energy1997
+                     fat1997 energy2009 carbo2009 fat2009 protein2009
+                     logincomemedi2009 sysdrug1993 diadrug1993 sysdrug2009
+                     diadrug2009 bmi1993 waist2009 bmi2009 waist1993
+                     sysdrug1997 diadrug1997 bmi1997 waist1997 sysdrug2011
+                     diadrug2011 bmi2011 energy2011 carbo2011 fat2011
+                     protein2011 logincomemedi2011 metstotal2006
+                     metstotal2004 metstotal2009 metstotal2011 metstotal2000
+                     metstotal1997 gender retireageg birthcohort area
+                     provinces communityid yrsinceretire1989
+                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
+                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
+                     yrsinceretire2009 yrsinceretire2011
            bmi2011: regress bmi2011 i.education i.skills i.spouse
                      logincomemedi2000 carbo2000 fat2000 protein2000
                      energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
@@ -1741,20 +1597,19 @@ Conditional models:
                      sysdrug2006 diadrug2006 logincomemedi1993 waist2006
                      carbo1991 fat1991 protein1991 bmi2006 energy1991
                      energy1993 carbo1993 fat1993 protein1993
-                     logincomemedi1997 sysdrug1991 diadrug1991 carbo1997
-                     protein1997 energy1997 fat1997 energy2009 carbo2009
-                     fat2009 protein2009 logincomemedi2009 bmi1991
-                     sysdrug1993 diadrug1993 sysdrug2009 diadrug2009 bmi1993
-                     waist2009 bmi2009 waist1993 sysdrug1997 diadrug1997
-                     bmi1997 waist1997 sysdrug2011 diadrug2011 waist2011
-                     energy2011 carbo2011 fat2011 protein2011
-                     logincomemedi2011 metstotal2006 metstotal2004
-                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
-                     waist1991 gender retireageg birthcohort area provinces
-                     communityid yrsinceretire1989 yrsinceretire1991
-                     yrsinceretire1993 yrsinceretire1997 yrsinceretire2000
-                     yrsinceretire2004 yrsinceretire2006 yrsinceretire2009
-                     yrsinceretire2011
+                     logincomemedi1997 carbo1997 protein1997 energy1997
+                     fat1997 energy2009 carbo2009 fat2009 protein2009
+                     logincomemedi2009 sysdrug1993 diadrug1993 sysdrug2009
+                     diadrug2009 bmi1993 waist2009 bmi2009 waist1993
+                     sysdrug1997 diadrug1997 bmi1997 waist1997 sysdrug2011
+                     diadrug2011 waist2011 energy2011 carbo2011 fat2011
+                     protein2011 logincomemedi2011 metstotal2006
+                     metstotal2004 metstotal2009 metstotal2011 metstotal2000
+                     metstotal1997 gender retireageg birthcohort area
+                     provinces communityid yrsinceretire1989
+                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
+                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
+                     yrsinceretire2009 yrsinceretire2011
         energy2011: regress energy2011 i.education i.skills i.spouse
                      logincomemedi2000 carbo2000 fat2000 protein2000
                      energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
@@ -1765,16 +1620,16 @@ Conditional models:
                      sysdrug2006 diadrug2006 logincomemedi1993 waist2006
                      carbo1991 fat1991 protein1991 bmi2006 energy1991
                      energy1993 carbo1993 fat1993 protein1993
-                     logincomemedi1997 sysdrug1991 diadrug1991 carbo1997
-                     protein1997 energy1997 fat1997 energy2009 carbo2009
-                     fat2009 protein2009 logincomemedi2009 bmi1991
-                     sysdrug1993 diadrug1993 sysdrug2009 diadrug2009 bmi1993
-                     waist2009 bmi2009 waist1993 sysdrug1997 diadrug1997
-                     bmi1997 waist1997 sysdrug2011 diadrug2011 waist2011
-                     bmi2011 carbo2011 fat2011 protein2011 logincomemedi2011
-                     metstotal2006 metstotal2004 metstotal2009 metstotal2011
-                     metstotal2000 metstotal1997 waist1991 gender retireageg
-                     birthcohort area provinces communityid yrsinceretire1989
+                     logincomemedi1997 carbo1997 protein1997 energy1997
+                     fat1997 energy2009 carbo2009 fat2009 protein2009
+                     logincomemedi2009 sysdrug1993 diadrug1993 sysdrug2009
+                     diadrug2009 bmi1993 waist2009 bmi2009 waist1993
+                     sysdrug1997 diadrug1997 bmi1997 waist1997 sysdrug2011
+                     diadrug2011 waist2011 bmi2011 carbo2011 fat2011
+                     protein2011 logincomemedi2011 metstotal2006
+                     metstotal2004 metstotal2009 metstotal2011 metstotal2000
+                     metstotal1997 gender retireageg birthcohort area
+                     provinces communityid yrsinceretire1989
                      yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
                      yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
                      yrsinceretire2009 yrsinceretire2011
@@ -1788,16 +1643,16 @@ Conditional models:
                      sysdrug2006 diadrug2006 logincomemedi1993 waist2006
                      carbo1991 fat1991 protein1991 bmi2006 energy1991
                      energy1993 carbo1993 fat1993 protein1993
-                     logincomemedi1997 sysdrug1991 diadrug1991 carbo1997
-                     protein1997 energy1997 fat1997 energy2009 carbo2009
-                     fat2009 protein2009 logincomemedi2009 bmi1991
-                     sysdrug1993 diadrug1993 sysdrug2009 diadrug2009 bmi1993
-                     waist2009 bmi2009 waist1993 sysdrug1997 diadrug1997
-                     bmi1997 waist1997 sysdrug2011 diadrug2011 waist2011
-                     bmi2011 energy2011 fat2011 protein2011 logincomemedi2011
-                     metstotal2006 metstotal2004 metstotal2009 metstotal2011
-                     metstotal2000 metstotal1997 waist1991 gender retireageg
-                     birthcohort area provinces communityid yrsinceretire1989
+                     logincomemedi1997 carbo1997 protein1997 energy1997
+                     fat1997 energy2009 carbo2009 fat2009 protein2009
+                     logincomemedi2009 sysdrug1993 diadrug1993 sysdrug2009
+                     diadrug2009 bmi1993 waist2009 bmi2009 waist1993
+                     sysdrug1997 diadrug1997 bmi1997 waist1997 sysdrug2011
+                     diadrug2011 waist2011 bmi2011 energy2011 fat2011
+                     protein2011 logincomemedi2011 metstotal2006
+                     metstotal2004 metstotal2009 metstotal2011 metstotal2000
+                     metstotal1997 gender retireageg birthcohort area
+                     provinces communityid yrsinceretire1989
                      yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
                      yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
                      yrsinceretire2009 yrsinceretire2011
@@ -1811,20 +1666,19 @@ Conditional models:
                      sysdrug2006 diadrug2006 logincomemedi1993 waist2006
                      carbo1991 fat1991 protein1991 bmi2006 energy1991
                      energy1993 carbo1993 fat1993 protein1993
-                     logincomemedi1997 sysdrug1991 diadrug1991 carbo1997
-                     protein1997 energy1997 fat1997 energy2009 carbo2009
-                     fat2009 protein2009 logincomemedi2009 bmi1991
-                     sysdrug1993 diadrug1993 sysdrug2009 diadrug2009 bmi1993
-                     waist2009 bmi2009 waist1993 sysdrug1997 diadrug1997
-                     bmi1997 waist1997 sysdrug2011 diadrug2011 waist2011
-                     bmi2011 energy2011 carbo2011 protein2011
-                     logincomemedi2011 metstotal2006 metstotal2004
-                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
-                     waist1991 gender retireageg birthcohort area provinces
-                     communityid yrsinceretire1989 yrsinceretire1991
-                     yrsinceretire1993 yrsinceretire1997 yrsinceretire2000
-                     yrsinceretire2004 yrsinceretire2006 yrsinceretire2009
-                     yrsinceretire2011
+                     logincomemedi1997 carbo1997 protein1997 energy1997
+                     fat1997 energy2009 carbo2009 fat2009 protein2009
+                     logincomemedi2009 sysdrug1993 diadrug1993 sysdrug2009
+                     diadrug2009 bmi1993 waist2009 bmi2009 waist1993
+                     sysdrug1997 diadrug1997 bmi1997 waist1997 sysdrug2011
+                     diadrug2011 waist2011 bmi2011 energy2011 carbo2011
+                     protein2011 logincomemedi2011 metstotal2006
+                     metstotal2004 metstotal2009 metstotal2011 metstotal2000
+                     metstotal1997 gender retireageg birthcohort area
+                     provinces communityid yrsinceretire1989
+                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
+                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
+                     yrsinceretire2009 yrsinceretire2011
        protein2011: regress protein2011 i.education i.skills i.spouse
                      logincomemedi2000 carbo2000 fat2000 protein2000
                      energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
@@ -1835,19 +1689,18 @@ Conditional models:
                      sysdrug2006 diadrug2006 logincomemedi1993 waist2006
                      carbo1991 fat1991 protein1991 bmi2006 energy1991
                      energy1993 carbo1993 fat1993 protein1993
-                     logincomemedi1997 sysdrug1991 diadrug1991 carbo1997
-                     protein1997 energy1997 fat1997 energy2009 carbo2009
-                     fat2009 protein2009 logincomemedi2009 bmi1991
-                     sysdrug1993 diadrug1993 sysdrug2009 diadrug2009 bmi1993
-                     waist2009 bmi2009 waist1993 sysdrug1997 diadrug1997
-                     bmi1997 waist1997 sysdrug2011 diadrug2011 waist2011
-                     bmi2011 energy2011 carbo2011 fat2011 logincomemedi2011
-                     metstotal2006 metstotal2004 metstotal2009 metstotal2011
-                     metstotal2000 metstotal1997 waist1991 gender retireageg
-                     birthcohort area provinces communityid yrsinceretire1989
-                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
-                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
-                     yrsinceretire2009 yrsinceretire2011
+                     logincomemedi1997 carbo1997 protein1997 energy1997
+                     fat1997 energy2009 carbo2009 fat2009 protein2009
+                     logincomemedi2009 sysdrug1993 diadrug1993 sysdrug2009
+                     diadrug2009 bmi1993 waist2009 bmi2009 waist1993
+                     sysdrug1997 diadrug1997 bmi1997 waist1997 sysdrug2011
+                     diadrug2011 waist2011 bmi2011 energy2011 carbo2011
+                     fat2011 logincomemedi2011 metstotal2006 metstotal2004
+                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
+                     gender retireageg birthcohort area provinces communityid
+                     yrsinceretire1989 yrsinceretire1991 yrsinceretire1993
+                     yrsinceretire1997 yrsinceretire2000 yrsinceretire2004
+                     yrsinceretire2006 yrsinceretire2009 yrsinceretire2011
     logincome~2011: regress logincomemedi2011 i.education i.skills i.spouse
                      logincomemedi2000 carbo2000 fat2000 protein2000
                      energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
@@ -1858,19 +1711,18 @@ Conditional models:
                      sysdrug2006 diadrug2006 logincomemedi1993 waist2006
                      carbo1991 fat1991 protein1991 bmi2006 energy1991
                      energy1993 carbo1993 fat1993 protein1993
-                     logincomemedi1997 sysdrug1991 diadrug1991 carbo1997
-                     protein1997 energy1997 fat1997 energy2009 carbo2009
-                     fat2009 protein2009 logincomemedi2009 bmi1991
-                     sysdrug1993 diadrug1993 sysdrug2009 diadrug2009 bmi1993
-                     waist2009 bmi2009 waist1993 sysdrug1997 diadrug1997
-                     bmi1997 waist1997 sysdrug2011 diadrug2011 waist2011
-                     bmi2011 energy2011 carbo2011 fat2011 protein2011
-                     metstotal2006 metstotal2004 metstotal2009 metstotal2011
-                     metstotal2000 metstotal1997 waist1991 gender retireageg
-                     birthcohort area provinces communityid yrsinceretire1989
-                     yrsinceretire1991 yrsinceretire1993 yrsinceretire1997
-                     yrsinceretire2000 yrsinceretire2004 yrsinceretire2006
-                     yrsinceretire2009 yrsinceretire2011
+                     logincomemedi1997 carbo1997 protein1997 energy1997
+                     fat1997 energy2009 carbo2009 fat2009 protein2009
+                     logincomemedi2009 sysdrug1993 diadrug1993 sysdrug2009
+                     diadrug2009 bmi1993 waist2009 bmi2009 waist1993
+                     sysdrug1997 diadrug1997 bmi1997 waist1997 sysdrug2011
+                     diadrug2011 waist2011 bmi2011 energy2011 carbo2011
+                     fat2011 protein2011 metstotal2006 metstotal2004
+                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
+                     gender retireageg birthcohort area provinces communityid
+                     yrsinceretire1989 yrsinceretire1991 yrsinceretire1993
+                     yrsinceretire1997 yrsinceretire2000 yrsinceretire2004
+                     yrsinceretire2006 yrsinceretire2009 yrsinceretire2011
      metstotal2006: regress metstotal2006 i.education i.skills i.spouse
                      logincomemedi2000 carbo2000 fat2000 protein2000
                      energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
@@ -1881,15 +1733,14 @@ Conditional models:
                      sysdrug2006 diadrug2006 logincomemedi1993 waist2006
                      carbo1991 fat1991 protein1991 bmi2006 energy1991
                      energy1993 carbo1993 fat1993 protein1993
-                     logincomemedi1997 sysdrug1991 diadrug1991 carbo1997
-                     protein1997 energy1997 fat1997 energy2009 carbo2009
-                     fat2009 protein2009 logincomemedi2009 bmi1991
-                     sysdrug1993 diadrug1993 sysdrug2009 diadrug2009 bmi1993
-                     waist2009 bmi2009 waist1993 sysdrug1997 diadrug1997
-                     bmi1997 waist1997 sysdrug2011 diadrug2011 waist2011
-                     bmi2011 energy2011 carbo2011 fat2011 protein2011
-                     logincomemedi2011 metstotal2004 metstotal2009
-                     metstotal2011 metstotal2000 metstotal1997 waist1991
+                     logincomemedi1997 carbo1997 protein1997 energy1997
+                     fat1997 energy2009 carbo2009 fat2009 protein2009
+                     logincomemedi2009 sysdrug1993 diadrug1993 sysdrug2009
+                     diadrug2009 bmi1993 waist2009 bmi2009 waist1993
+                     sysdrug1997 diadrug1997 bmi1997 waist1997 sysdrug2011
+                     diadrug2011 waist2011 bmi2011 energy2011 carbo2011
+                     fat2011 protein2011 logincomemedi2011 metstotal2004
+                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
                      gender retireageg birthcohort area provinces communityid
                      yrsinceretire1989 yrsinceretire1991 yrsinceretire1993
                      yrsinceretire1997 yrsinceretire2000 yrsinceretire2004
@@ -1904,15 +1755,14 @@ Conditional models:
                      sysdrug2006 diadrug2006 logincomemedi1993 waist2006
                      carbo1991 fat1991 protein1991 bmi2006 energy1991
                      energy1993 carbo1993 fat1993 protein1993
-                     logincomemedi1997 sysdrug1991 diadrug1991 carbo1997
-                     protein1997 energy1997 fat1997 energy2009 carbo2009
-                     fat2009 protein2009 logincomemedi2009 bmi1991
-                     sysdrug1993 diadrug1993 sysdrug2009 diadrug2009 bmi1993
-                     waist2009 bmi2009 waist1993 sysdrug1997 diadrug1997
-                     bmi1997 waist1997 sysdrug2011 diadrug2011 waist2011
-                     bmi2011 energy2011 carbo2011 fat2011 protein2011
-                     logincomemedi2011 metstotal2006 metstotal2009
-                     metstotal2011 metstotal2000 metstotal1997 waist1991
+                     logincomemedi1997 carbo1997 protein1997 energy1997
+                     fat1997 energy2009 carbo2009 fat2009 protein2009
+                     logincomemedi2009 sysdrug1993 diadrug1993 sysdrug2009
+                     diadrug2009 bmi1993 waist2009 bmi2009 waist1993
+                     sysdrug1997 diadrug1997 bmi1997 waist1997 sysdrug2011
+                     diadrug2011 waist2011 bmi2011 energy2011 carbo2011
+                     fat2011 protein2011 logincomemedi2011 metstotal2006
+                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
                      gender retireageg birthcohort area provinces communityid
                      yrsinceretire1989 yrsinceretire1991 yrsinceretire1993
                      yrsinceretire1997 yrsinceretire2000 yrsinceretire2004
@@ -1927,15 +1777,14 @@ Conditional models:
                      sysdrug2006 diadrug2006 logincomemedi1993 waist2006
                      carbo1991 fat1991 protein1991 bmi2006 energy1991
                      energy1993 carbo1993 fat1993 protein1993
-                     logincomemedi1997 sysdrug1991 diadrug1991 carbo1997
-                     protein1997 energy1997 fat1997 energy2009 carbo2009
-                     fat2009 protein2009 logincomemedi2009 bmi1991
-                     sysdrug1993 diadrug1993 sysdrug2009 diadrug2009 bmi1993
-                     waist2009 bmi2009 waist1993 sysdrug1997 diadrug1997
-                     bmi1997 waist1997 sysdrug2011 diadrug2011 waist2011
-                     bmi2011 energy2011 carbo2011 fat2011 protein2011
-                     logincomemedi2011 metstotal2006 metstotal2004
-                     metstotal2011 metstotal2000 metstotal1997 waist1991
+                     logincomemedi1997 carbo1997 protein1997 energy1997
+                     fat1997 energy2009 carbo2009 fat2009 protein2009
+                     logincomemedi2009 sysdrug1993 diadrug1993 sysdrug2009
+                     diadrug2009 bmi1993 waist2009 bmi2009 waist1993
+                     sysdrug1997 diadrug1997 bmi1997 waist1997 sysdrug2011
+                     diadrug2011 waist2011 bmi2011 energy2011 carbo2011
+                     fat2011 protein2011 logincomemedi2011 metstotal2006
+                     metstotal2004 metstotal2011 metstotal2000 metstotal1997
                      gender retireageg birthcohort area provinces communityid
                      yrsinceretire1989 yrsinceretire1991 yrsinceretire1993
                      yrsinceretire1997 yrsinceretire2000 yrsinceretire2004
@@ -1950,15 +1799,14 @@ Conditional models:
                      sysdrug2006 diadrug2006 logincomemedi1993 waist2006
                      carbo1991 fat1991 protein1991 bmi2006 energy1991
                      energy1993 carbo1993 fat1993 protein1993
-                     logincomemedi1997 sysdrug1991 diadrug1991 carbo1997
-                     protein1997 energy1997 fat1997 energy2009 carbo2009
-                     fat2009 protein2009 logincomemedi2009 bmi1991
-                     sysdrug1993 diadrug1993 sysdrug2009 diadrug2009 bmi1993
-                     waist2009 bmi2009 waist1993 sysdrug1997 diadrug1997
-                     bmi1997 waist1997 sysdrug2011 diadrug2011 waist2011
-                     bmi2011 energy2011 carbo2011 fat2011 protein2011
-                     logincomemedi2011 metstotal2006 metstotal2004
-                     metstotal2009 metstotal2000 metstotal1997 waist1991
+                     logincomemedi1997 carbo1997 protein1997 energy1997
+                     fat1997 energy2009 carbo2009 fat2009 protein2009
+                     logincomemedi2009 sysdrug1993 diadrug1993 sysdrug2009
+                     diadrug2009 bmi1993 waist2009 bmi2009 waist1993
+                     sysdrug1997 diadrug1997 bmi1997 waist1997 sysdrug2011
+                     diadrug2011 waist2011 bmi2011 energy2011 carbo2011
+                     fat2011 protein2011 logincomemedi2011 metstotal2006
+                     metstotal2004 metstotal2009 metstotal2000 metstotal1997
                      gender retireageg birthcohort area provinces communityid
                      yrsinceretire1989 yrsinceretire1991 yrsinceretire1993
                      yrsinceretire1997 yrsinceretire2000 yrsinceretire2004
@@ -1973,15 +1821,14 @@ Conditional models:
                      sysdrug2006 diadrug2006 logincomemedi1993 waist2006
                      carbo1991 fat1991 protein1991 bmi2006 energy1991
                      energy1993 carbo1993 fat1993 protein1993
-                     logincomemedi1997 sysdrug1991 diadrug1991 carbo1997
-                     protein1997 energy1997 fat1997 energy2009 carbo2009
-                     fat2009 protein2009 logincomemedi2009 bmi1991
-                     sysdrug1993 diadrug1993 sysdrug2009 diadrug2009 bmi1993
-                     waist2009 bmi2009 waist1993 sysdrug1997 diadrug1997
-                     bmi1997 waist1997 sysdrug2011 diadrug2011 waist2011
-                     bmi2011 energy2011 carbo2011 fat2011 protein2011
-                     logincomemedi2011 metstotal2006 metstotal2004
-                     metstotal2009 metstotal2011 metstotal1997 waist1991
+                     logincomemedi1997 carbo1997 protein1997 energy1997
+                     fat1997 energy2009 carbo2009 fat2009 protein2009
+                     logincomemedi2009 sysdrug1993 diadrug1993 sysdrug2009
+                     diadrug2009 bmi1993 waist2009 bmi2009 waist1993
+                     sysdrug1997 diadrug1997 bmi1997 waist1997 sysdrug2011
+                     diadrug2011 waist2011 bmi2011 energy2011 carbo2011
+                     fat2011 protein2011 logincomemedi2011 metstotal2006
+                     metstotal2004 metstotal2009 metstotal2011 metstotal1997
                      gender retireageg birthcohort area provinces communityid
                      yrsinceretire1989 yrsinceretire1991 yrsinceretire1993
                      yrsinceretire1997 yrsinceretire2000 yrsinceretire2004
@@ -1996,60 +1843,46 @@ Conditional models:
                      sysdrug2006 diadrug2006 logincomemedi1993 waist2006
                      carbo1991 fat1991 protein1991 bmi2006 energy1991
                      energy1993 carbo1993 fat1993 protein1993
-                     logincomemedi1997 sysdrug1991 diadrug1991 carbo1997
-                     protein1997 energy1997 fat1997 energy2009 carbo2009
-                     fat2009 protein2009 logincomemedi2009 bmi1991
-                     sysdrug1993 diadrug1993 sysdrug2009 diadrug2009 bmi1993
-                     waist2009 bmi2009 waist1993 sysdrug1997 diadrug1997
-                     bmi1997 waist1997 sysdrug2011 diadrug2011 waist2011
-                     bmi2011 energy2011 carbo2011 fat2011 protein2011
-                     logincomemedi2011 metstotal2006 metstotal2004
-                     metstotal2009 metstotal2011 metstotal2000 waist1991
-                     gender retireageg birthcohort area provinces communityid
-                     yrsinceretire1989 yrsinceretire1991 yrsinceretire1993
-                     yrsinceretire1997 yrsinceretire2000 yrsinceretire2004
-                     yrsinceretire2006 yrsinceretire2009 yrsinceretire2011
-         waist1991: regress waist1991 i.education i.skills i.spouse
-                     logincomemedi2000 carbo2000 fat2000 protein2000
-                     energy2000 sysdrug2000 diadrug2000 bmi2000 waist2000
-                     logincomemedi1989 logincomemedi1991 logincomemedi2004
-                     energy2004 carbo2004 fat2004 protein2004
-                     logincomemedi2006 energy2006 carbo2006 fat2006
-                     protein2006 sysdrug2004 diadrug2004 bmi2004 waist2004
-                     sysdrug2006 diadrug2006 logincomemedi1993 waist2006
-                     carbo1991 fat1991 protein1991 bmi2006 energy1991
-                     energy1993 carbo1993 fat1993 protein1993
-                     logincomemedi1997 sysdrug1991 diadrug1991 carbo1997
-                     protein1997 energy1997 fat1997 energy2009 carbo2009
-                     fat2009 protein2009 logincomemedi2009 bmi1991
-                     sysdrug1993 diadrug1993 sysdrug2009 diadrug2009 bmi1993
-                     waist2009 bmi2009 waist1993 sysdrug1997 diadrug1997
-                     bmi1997 waist1997 sysdrug2011 diadrug2011 waist2011
-                     bmi2011 energy2011 carbo2011 fat2011 protein2011
-                     logincomemedi2011 metstotal2006 metstotal2004
-                     metstotal2009 metstotal2011 metstotal2000 metstotal1997
+                     logincomemedi1997 carbo1997 protein1997 energy1997
+                     fat1997 energy2009 carbo2009 fat2009 protein2009
+                     logincomemedi2009 sysdrug1993 diadrug1993 sysdrug2009
+                     diadrug2009 bmi1993 waist2009 bmi2009 waist1993
+                     sysdrug1997 diadrug1997 bmi1997 waist1997 sysdrug2011
+                     diadrug2011 waist2011 bmi2011 energy2011 carbo2011
+                     fat2011 protein2011 logincomemedi2011 metstotal2006
+                     metstotal2004 metstotal2009 metstotal2011 metstotal2000
                      gender retireageg birthcohort area provinces communityid
                      yrsinceretire1989 yrsinceretire1991 yrsinceretire1993
                      yrsinceretire1997 yrsinceretire2000 yrsinceretire2004
                      yrsinceretire2006 yrsinceretire2009 yrsinceretire2011
 
 Performing chained iterations ...
-3_spouse_from_working_to_non_wor invalid name
+matsize too small
+    You have attempted to create a matrix with too many rows or columns or
+    attempted to fit a model with too many variables.  You need to increase
+    matsize; it is currently 400.  Use set matsize; see help matsize.
+
+    If you are using factor variables and included an interaction that has
+    lots of missing cells, either increase matsize or set emptycells drop to
+    reduce the required matrix size; see help set emptycells.
+
+    If you are using factor variables, you might have accidentally treated a
+    continuous variable as a categorical, resulting in lots of categories.
+    Use the c. operator on such variables.
 error occurred during imputation of spouse education skills logincomemedi1989
 logincomemedi1991 logincomemedi1993 logincomemedi1997 logincomemedi2000
 logincomemedi2004 logincomemedi2006 logincomemedi2009 logincomemedi2011
-waist1991 bmi1991 sysdrug1991 diadrug1991 waist1993 bmi1993 sysdrug1993
-diadrug1993 waist1997 bmi1997 sysdrug1997 diadrug1997 waist2000 bmi2000
-sysdrug2000 diadrug2000 waist2004 bmi2004 sysdrug2004 diadrug2004 waist2006
-bmi2006 sysdrug2006 diadrug2006 waist2009 bmi2009 sysdrug2009 diadrug2009
-waist2011 bmi2011 sysdrug2011 diadrug2011 energy1991 carbo1991 fat1991
-protein1991 energy1993 carbo1993 fat1993 protein1993 energy1997 carbo1997
-fat1997 protein1997 energy2000 carbo2000 fat2000 protein2000 energy2004
-carbo2004 fat2004 protein2004 energy2006 carbo2006 fat2006 protein2006
-energy2009 carbo2009 fat2009 protein2009 energy2011 carbo2011 fat2011
-protein2011 metstotal1997 metstotal2000 metstotal2004 metstotal2006
-metstotal2009 metstotal2011 on m = 1
-r(198);
+waist1993 bmi1993 sysdrug1993 diadrug1993 waist1997 bmi1997 sysdrug1997
+diadrug1997 waist2000 bmi2000 sysdrug2000 diadrug2000 waist2004 bmi2004
+sysdrug2004 diadrug2004 waist2006 bmi2006 sysdrug2006 diadrug2006 waist2009
+bmi2009 sysdrug2009 diadrug2009 waist2011 bmi2011 sysdrug2011 diadrug2011
+energy1991 carbo1991 fat1991 protein1991 energy1993 carbo1993 fat1993
+protein1993 energy1997 carbo1997 fat1997 protein1997 energy2000 carbo2000
+fat2000 protein2000 energy2004 carbo2004 fat2004 protein2004 energy2006
+carbo2006 fat2006 protein2006 energy2009 carbo2009 fat2009 protein2009
+energy2011 carbo2011 fat2011 protein2011 metstotal1997 metstotal2000
+metstotal2004 metstotal2006 metstotal2009 metstotal2011 on m = 1
+r(908);
 
 end of do-file
-r(198);
+r(908);
