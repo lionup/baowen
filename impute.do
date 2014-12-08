@@ -1,4 +1,8 @@
-use "C:\Dropbox\baowen\highspeed\missingwide.dta", clear
+cd ~/git/baowen/
+
+log using log_mi, text replace
+
+use missingwide, clear
 mi set flong
 mi xtset,clear
 
@@ -47,3 +51,5 @@ metstotal1997 metstotal2000 metstotal2004 metstotal2006 metstotal2009 metstotal2
 yrsinceretire1989 yrsinceretire1991 yrsinceretire1993 yrsinceretire1997 ///
 yrsinceretire2000 yrsinceretire2004 yrsinceretire2006 yrsinceretire2009 yrsinceretire2011 ///
 ,add(5) burn(10) rseed(1389) 
+
+log close
