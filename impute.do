@@ -1,8 +1,10 @@
 cd ~/git/baowen/
 
 use missingwide, clear
+
 mi set flong
 mi xtset,clear
+set matsize 10000
 
 label define spouse 0" working" 1 "notwork" 2 " nospouse" 3" wtonotw" 4" nottowork" 5" stonos" 6" nostos"
 label value spouse spouse
