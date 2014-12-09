@@ -31,9 +31,12 @@ Note:  Your site can add messages to the introduction by editing the file
 . use missingwide, clear
 (SAVASTATA created this dataset on 01JAN2014)
 
+. 
 . mi set flong
 
 . mi xtset,clear
+
+. set matsize 10000
 
 . 
 . label define spouse 0" working" 1 "notwork" 2 " nospouse" 3" wtonotw" 4" nott
@@ -1857,18 +1860,9 @@ Conditional models:
                      yrsinceretire2006 yrsinceretire2009 yrsinceretire2011
 
 Performing chained iterations ...
-matsize too small
-    You have attempted to create a matrix with too many rows or columns or
-    attempted to fit a model with too many variables.  You need to increase
-    matsize; it is currently 400.  Use set matsize; see help matsize.
-
-    If you are using factor variables and included an interaction that has
-    lots of missing cells, either increase matsize or set emptycells drop to
-    reduce the required matrix size; see help set emptycells.
-
-    If you are using factor variables, you might have accidentally treated a
-    continuous variable as a categorical, resulting in lots of categories.
-    Use the c. operator on such variables.
+convergence not achieved
+convergence not achieved
+mlogit failed to converge on observed data
 error occurred during imputation of spouse education skills logincomemedi1989
 logincomemedi1991 logincomemedi1993 logincomemedi1997 logincomemedi2000
 logincomemedi2004 logincomemedi2006 logincomemedi2009 logincomemedi2011
@@ -1882,7 +1876,7 @@ fat2000 protein2000 energy2004 carbo2004 fat2004 protein2004 energy2006
 carbo2006 fat2006 protein2006 energy2009 carbo2009 fat2009 protein2009
 energy2011 carbo2011 fat2011 protein2011 metstotal1997 metstotal2000
 metstotal2004 metstotal2006 metstotal2009 metstotal2011 on m = 1
-r(908);
+r(430);
 
 end of do-file
-r(908);
+r(430);
