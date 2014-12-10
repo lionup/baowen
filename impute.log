@@ -1135,4 +1135,9 @@ Warning: the sets of predictors of the imputation model vary across
          imputations or iterations
 
 . 
+. saveold mied, replace
+(note: file mied.dta not found)
+file mied.dta saved
+
+. 
 end of do-file
