@@ -38,3 +38,5 @@ energy2011 carbo2011 fat2011 protein2011 ///
 metstotal1997 metstotal2000 metstotal2004 metstotal2006 metstotal2009 metstotal2011 ///
 = gender retireageg lastmarriage birthcohort area provinces communityid yrsinceretire1989 since1989sq intergender interarea  ///
 ,add(10) rseed(1389)augment
+
+saveold mied, replace
