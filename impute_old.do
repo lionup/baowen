@@ -1,8 +1,13 @@
 cd ~/git/baowen/
 
 use missingwide, clear
+
 mi set flong
 mi xtset,clear
+set matsize 10000
+
+label define spouse 0" working" 1 "notwork" 2 " nospouse" 3" wtonotw" 4" nottowork" 5" stonos" 6" nostos"
+label value spouse spouse
 
 mi register imputed education skills spouse ///
 smoking1989 alcoholgroup1989 logincomemedi1989 smoking1991 alcoholgroup1991 logincomemedi1991 ///
@@ -26,12 +31,11 @@ energy2011 carbo2011 fat2011 protein2011 ///
 metstotal1997 metstotal2000 metstotal2004 metstotal2006 metstotal2009 metstotal2011 
 
 
- mi impute chained ///
+mi impute chained ///
 (mlogit, augment)spouse ///
 (ologit) education skills ///
 (regress) logincomemedi1989 logincomemedi1991 logincomemedi1993 logincomemedi1997 ///
-logincomemedi2000 logincomemedi2004 logincomemedi2006 logincomemedi2009 logincomemedi2011 ///
-waist1991 bmi1991 sysdrug1991 diadrug1991 ///
+logincomemedi2000 logincomemedi2004 logincomemedi2006 logincomemedi2009 logincomemedi2011 /// bmi1991 sysdrug1991 diadrug1991 ///
 waist1993 bmi1993 sysdrug1993 diadrug1993 ///
 waist1997 bmi1997 sysdrug1997 diadrug1997 ///
 waist2000 bmi2000 sysdrug2000 diadrug2000 ///
@@ -49,3 +53,13 @@ metstotal1997 metstotal2000 metstotal2004 metstotal2006 metstotal2009 metstotal2
 yrsinceretire1989 yrsinceretire1991 yrsinceretire1993 yrsinceretire1997 ///
 yrsinceretire2000 yrsinceretire2004 yrsinceretire2006 yrsinceretire2009 yrsinceretire2011 ///
 ,add(5) burn(10) rseed(1389) 
+
+
+
+
+
+
+
+
+
+
