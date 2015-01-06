@@ -11,4 +11,4 @@ module load stata/1-wrapper
 echo "loaded modules"
 module list
 
-stata --qsub -b do  highspeedmi.do
+stata --slots 4 --largemem --qsub -b do  highspeedmi.do
