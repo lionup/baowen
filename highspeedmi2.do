@@ -12,7 +12,7 @@ replace workspouse=3 if lastmarriage==1
 gen since1989sq=yrsinceretire1989^2
 
 
-mi register imputed education skills lastsmoke workspouse jointretire childcare lastsmoke ///
+mi register imputed education skills lastsmoke workspouse jointretire childcare ///
 logincome1989 logincome1991 logincome1993 logincome1997 ///
 logincome2000 logincome2004 logincome2006 logincome2009 logincome2011 ///
 bismoking1989 bismoking1991 bismoking1993 bismoking1997 ///
@@ -26,17 +26,18 @@ energy2011 carbo2011 fat2011 protein2011 ///
 mettotal1997 mettotal2000 mettotal2004 mettotal2006 mettotal2009 mettotal2011 ///
 alcohol1997 alcohol2000 alcohol2004 alcohol2006 alcohol2009 alcohol2011
 
-
-
 mi impute chained ///
-(ologit)education skills ///
-(logit if lastmarriage==0)workspouse ///
-(logit,iter(50))childcare ///
-(logit,iter(50))lastsmoke bismoking2004 ///
-(logit,iter(50)) bismoking2000 ///
-(logit,iter(50)) bismoking1997 ///
-(regress) lastsysdrug lastdiadrug lastwaist lastbmi ///
-(pmm)logincome1989 logincome1991 logincome1993 logincome1997 ///
+(ologit ,omit(i.bismoking2009 i.bismoking1997 i.bismoking2000 i.bismoking2004 i.bismoking2006 i.bismoking2011))education skills ///
+(logit if lastmarriage==0,omit(i.bismoking2009 i.bismoking1997 i.bismoking2000 i.bismoking2004 i.bismoking2006 i.bismoking2011))workspouse ///
+(logit,iter(20) omit(i.bismoking2009 i.bismoking1997 i.bismoking2000 i.bismoking2004 i.bismoking2006 i.bismoking2011))childcare ///
+(logit,iter(20) omit(i.bismoking1997 i.bismoking2000 i.bismoking2004 i.bismoking2006)) bismoking2011 ///
+(logit,iter(20) omit(i.bismoking1997 i.bismoking2000 i.bismoking2004))bismoking2009 ///
+(logit,iter(20) omit(i.bismoking1997 i.bismoking2000 i.bismoking2011))bismoking2006 ///
+(logit,iter(20) omit(i.bismoking1997 i.bismoking2009 i.bismoking2011))bismoking2004 ///
+(logit,iter(20) omit(i.bismoking2006 i.bismoking2009 i.bismoking2011))bismoking2000 ///
+(logit,iter(20) omit(i.bismoking2004 i.bismoking2006 i.bismoking2009 i.bismoking2011)) bismoking1997 ///
+(regress,omit(i.bismoking2009 i.bismoking1997 i.bismoking2000 i.bismoking2004 i.bismoking2006 i.bismoking2011)) lastsysdrug lastdiadrug lastwaist lastbmi ///
+(pmm,omit(i.bismoking2009 i.bismoking1997 i.bismoking2000 i.bismoking2004 i.bismoking2006 i.bismoking2011))logincome1989 logincome1991 logincome1993 logincome1997 ///
 logincome2000 logincome2004 logincome2006 logincome2009 logincome2011 ///
 energy1991 carbo1991 fat1991 protein1991 ///
 energy1993 carbo1993 fat1993 protein1993 energy1997 carbo1997 fat1997 protein1997 ///
