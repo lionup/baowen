@@ -12,7 +12,7 @@ replace workspouse=3 if lastmarriage==1
 gen since1989sq=yrsinceretire1989^2
 
 
-mi register imputed education skills lastsmoke workspouse jointretire childcare lastsmoke ///
+mi register imputed education skills lastsmoke workspouse jointretire childcare ///
 logincome1989 logincome1991 logincome1993 logincome1997 ///
 logincome2000 logincome2004 logincome2006 logincome2009 logincome2011 ///
 bismoking1989 bismoking1991 bismoking1993 bismoking1997 ///
