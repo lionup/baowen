@@ -1,0 +1,1338 @@
+
+  ___  ____  ____  ____  ____ (R)
+ /__    /   ____/   /   ____/
+___/   /   /___/   /   /___/   13.1   Copyright 1985-2013 StataCorp LP
+  Statistics/Data Analysis            StataCorp
+                                      4905 Lakeway Drive
+     MP - Parallel Edition            College Station, Texas 77845 USA
+                                      800-STATA-PC        http://www.stata.com
+                                      979-696-4600        stata@stata.com
+                                      979-696-4601 (fax)
+
+5-user 4-core Stata network perpetual license:
+       Serial number:  501306214279
+         Licensed to:  Department of Economics
+                       University College London
+
+Notes:
+      1.  (-v# option or -set maxvar-) 5000 maximum variables
+      2.  Command line editing disabled
+      3.  Stata running in batch mode
+
+Note:  Your site can add messages to the introduction by editing the file
+       stata.msg in the directory where Stata is installed.
+
+. do highspeedmi.do 
+
+. cd ~/git/baowen/
+/data/uctprgu/git/baowen
+
+. use missingwide, clear
+(SAVASTATA created this dataset on 01JAN2014)
+
+. 
+. mi set flong
+
+. mi xtset,clear
+
+. set matsize 10000
+
+. 
+. gen intergender=gender*yrsinceretire1989
+
+. gen interarea=area*yrsinceretire1989
+
+. gen interchildcare=childcare*yrsinceretire1989
+(143 missing values generated)
+
+. replace workspouse=3 if lastmarriage==1
+(97 real changes made)
+
+. gen since1989sq=yrsinceretire1989^2
+
+. 
+. 
+. mi register imputed education skills lastsmoke workspouse jointretire childca
+> re ///
+> logincome1989 logincome1991 logincome1993 logincome1997 ///
+> logincome2000 logincome2004 logincome2006 logincome2009 logincome2011 ///
+> bismoking1989 bismoking1991 bismoking1993 bismoking1997 ///
+> bismoking2000 bismoking2004 bismoking2006 bismoking2009 bismoking2011 ///
+> lastsysdrug lastdiadrug lastwaist lastbmi ///
+> energy1991 carbo1991 fat1991 protein1991 ///
+> energy1993 carbo1993 fat1993 protein1993 energy1997 carbo1997 fat1997 protein
+> 1997 ///
+> energy2000 carbo2000 fat2000 protein2000 energy2004 carbo2004 fat2004 protein
+> 2004 ///
+> energy2006 carbo2006 fat2006 protein2006 energy2009 carbo2009 fat2009 protein
+> 2009 ///
+> energy2011 carbo2011 fat2011 protein2011 ///
+> mettotal1997 mettotal2000 mettotal2004 mettotal2006 mettotal2009 mettotal2011
+>  ///
+> alcohol1997 alcohol2000 alcohol2004 alcohol2006 alcohol2009 alcohol2011
+(1238 m=0 obs. now marked as incomplete)
+
+. 
+. mi impute chained ///
+> (ologit ,omit(i.bismoking2009 i.bismoking1997 i.bismoking2000 i.bismoking2004
+>  i.bismoking2006 i.bismoking2011))education skills ///
+> (logit if lastmarriage==0,omit(i.bismoking2009 i.bismoking1997 i.bismoking200
+> 0 i.bismoking2004 i.bismoking2006 i.bismoking2011))workspouse ///
+> (logit,iter(20) omit(i.bismoking2009 i.bismoking1997 i.bismoking2000 i.bismok
+> ing2004 i.bismoking2006 i.bismoking2011))childcare ///
+> (logit,iter(20) omit(i.bismoking1997 i.bismoking2000 i.bismoking2004 i.bismok
+> ing2006)) bismoking2011 ///
+> (logit,iter(20) omit(i.bismoking1997 i.bismoking2000 i.bismoking2004))bismoki
+> ng2009 ///
+> (logit,iter(20) omit(i.bismoking1997 i.bismoking2000 i.bismoking2011))bismoki
+> ng2006 ///
+> (logit,iter(20) omit(i.bismoking1997 i.bismoking2009 i.bismoking2011))bismoki
+> ng2004 ///
+> (logit,iter(20) omit(i.bismoking2006 i.bismoking2009 i.bismoking2011))bismoki
+> ng2000 ///
+> (logit,iter(20) omit(i.bismoking2004 i.bismoking2006 i.bismoking2009 i.bismok
+> ing2011)) bismoking1997 ///
+> (regress,omit(i.bismoking2009 i.bismoking1997 i.bismoking2000 i.bismoking2004
+>  i.bismoking2006 i.bismoking2011)) lastsysdrug lastdiadrug lastwaist lastbmi 
+> ///
+> (pmm,omit(i.bismoking2009 i.bismoking1997 i.bismoking2000 i.bismoking2004 i.b
+> ismoking2006 i.bismoking2011))logincome1989 logincome1991 logincome1993 login
+> come1997 ///
+> logincome2000 logincome2004 logincome2006 logincome2009 logincome2011 ///
+> energy1991 carbo1991 fat1991 protein1991 ///
+> energy1993 carbo1993 fat1993 protein1993 energy1997 carbo1997 fat1997 protein
+> 1997 ///
+> energy2000 carbo2000 fat2000 protein2000 energy2004 carbo2004 fat2004 protein
+> 2004 ///
+> energy2006 carbo2006 fat2006 protein2006 energy2009 carbo2009 fat2009 protein
+> 2009 ///
+> energy2011 carbo2011 fat2011 protein2011 ///
+> mettotal1997 mettotal2000 mettotal2004 mettotal2006 mettotal2009 mettotal2011
+>  ///
+> alcohol1997 alcohol2000 alcohol2004 alcohol2006 alcohol2009 alcohol2011 ///
+> = jointretire gender retireageg  birthcohort area provinces communityid yrsin
+> ceretire1989 since1989sq intergender interarea ///
+>  prepost1991 prepost1993 prepost1997 ///
+> prepost2000 prepost2004 prepost2006 prepost2009 ///
+> ,add(20) burnin(100) rseed(1389)augment 
+
+Conditional models:
+         education: ologit education i.workspouse i.skills i.childcare
+                     lastsysdrug lastdiadrug lastbmi logincome2000 carbo2000
+                     fat2000 protein2000 energy2000 lastwaist logincome1989
+                     logincome1991 logincome2004 energy2004 carbo2004 fat2004
+                     protein2004 alcohol2000 logincome2006 energy2006
+                     carbo2006 fat2006 protein2006 alcohol2004 logincome1993
+                     alcohol2006 carbo1991 fat1991 protein1991 energy1991
+                     energy1993 carbo1993 fat1993 protein1993 logincome1997
+                     logincome2009 carbo1997 protein1997 energy1997 fat1997
+                     energy2009 carbo2009 fat2009 protein2009 alcohol1997
+                     alcohol2009 logincome2011 mettotal2006 energy2011
+                     carbo2011 fat2011 protein2011 alcohol2011 mettotal2009
+                     mettotal2004 mettotal2011 mettotal2000 mettotal1997
+                     jointretire gender retireageg birthcohort area provinces
+                     communityid yrsinceretire1989 since1989sq intergender
+                     interarea prepost1991 prepost1993 prepost1997
+                     prepost2000 prepost2004 prepost2006 prepost2009 ,
+                     augment
+        workspouse: logit workspouse i.education i.skills i.childcare
+                     lastsysdrug lastdiadrug lastbmi logincome2000 carbo2000
+                     fat2000 protein2000 energy2000 lastwaist logincome1989
+                     logincome1991 logincome2004 energy2004 carbo2004 fat2004
+                     protein2004 alcohol2000 logincome2006 energy2006
+                     carbo2006 fat2006 protein2006 alcohol2004 logincome1993
+                     alcohol2006 carbo1991 fat1991 protein1991 energy1991
+                     energy1993 carbo1993 fat1993 protein1993 logincome1997
+                     logincome2009 carbo1997 protein1997 energy1997 fat1997
+                     energy2009 carbo2009 fat2009 protein2009 alcohol1997
+                     alcohol2009 logincome2011 mettotal2006 energy2011
+                     carbo2011 fat2011 protein2011 alcohol2011 mettotal2009
+                     mettotal2004 mettotal2011 mettotal2000 mettotal1997
+                     jointretire gender retireageg birthcohort area provinces
+                     communityid yrsinceretire1989 since1989sq intergender
+                     interarea prepost1991 prepost1993 prepost1997
+                     prepost2000 prepost2004 prepost2006 prepost2009 if
+                     lastmarriage==0, augment
+            skills: ologit skills i.education i.workspouse i.childcare
+                     lastsysdrug lastdiadrug lastbmi logincome2000 carbo2000
+                     fat2000 protein2000 energy2000 lastwaist logincome1989
+                     logincome1991 logincome2004 energy2004 carbo2004 fat2004
+                     protein2004 alcohol2000 logincome2006 energy2006
+                     carbo2006 fat2006 protein2006 alcohol2004 logincome1993
+                     alcohol2006 carbo1991 fat1991 protein1991 energy1991
+                     energy1993 carbo1993 fat1993 protein1993 logincome1997
+                     logincome2009 carbo1997 protein1997 energy1997 fat1997
+                     energy2009 carbo2009 fat2009 protein2009 alcohol1997
+                     alcohol2009 logincome2011 mettotal2006 energy2011
+                     carbo2011 fat2011 protein2011 alcohol2011 mettotal2009
+                     mettotal2004 mettotal2011 mettotal2000 mettotal1997
+                     jointretire gender retireageg birthcohort area provinces
+                     communityid yrsinceretire1989 since1989sq intergender
+                     interarea prepost1991 prepost1993 prepost1997
+                     prepost2000 prepost2004 prepost2006 prepost2009 ,
+                     augment
+         childcare: logit childcare i.education i.workspouse i.skills
+                     lastsysdrug lastdiadrug lastbmi logincome2000 carbo2000
+                     fat2000 protein2000 energy2000 lastwaist logincome1989
+                     logincome1991 logincome2004 energy2004 carbo2004 fat2004
+                     protein2004 alcohol2000 logincome2006 energy2006
+                     carbo2006 fat2006 protein2006 alcohol2004 logincome1993
+                     alcohol2006 carbo1991 fat1991 protein1991 energy1991
+                     energy1993 carbo1993 fat1993 protein1993 logincome1997
+                     logincome2009 carbo1997 protein1997 energy1997 fat1997
+                     energy2009 carbo2009 fat2009 protein2009 alcohol1997
+                     alcohol2009 logincome2011 mettotal2006 energy2011
+                     carbo2011 fat2011 protein2011 alcohol2011 mettotal2009
+                     mettotal2004 mettotal2011 mettotal2000 mettotal1997
+                     jointretire gender retireageg birthcohort area provinces
+                     communityid yrsinceretire1989 since1989sq intergender
+                     interarea prepost1991 prepost1993 prepost1997
+                     prepost2000 prepost2004 prepost2006 prepost2009 ,
+                     augment iter(20)
+       lastsysdrug: regress lastsysdrug i.education i.workspouse i.skills
+                     i.childcare lastdiadrug lastbmi logincome2000 carbo2000
+                     fat2000 protein2000 energy2000 lastwaist logincome1989
+                     logincome1991 logincome2004 energy2004 carbo2004 fat2004
+                     protein2004 alcohol2000 logincome2006 energy2006
+                     carbo2006 fat2006 protein2006 alcohol2004 logincome1993
+                     alcohol2006 carbo1991 fat1991 protein1991 energy1991
+                     energy1993 carbo1993 fat1993 protein1993 logincome1997
+                     logincome2009 carbo1997 protein1997 energy1997 fat1997
+                     energy2009 carbo2009 fat2009 protein2009 alcohol1997
+                     alcohol2009 logincome2011 mettotal2006 energy2011
+                     carbo2011 fat2011 protein2011 alcohol2011 mettotal2009
+                     mettotal2004 mettotal2011 mettotal2000 mettotal1997
+                     jointretire gender retireageg birthcohort area provinces
+                     communityid yrsinceretire1989 since1989sq intergender
+                     interarea prepost1991 prepost1993 prepost1997
+                     prepost2000 prepost2004 prepost2006 prepost2009
+       lastdiadrug: regress lastdiadrug i.education i.workspouse i.skills
+                     i.childcare lastsysdrug lastbmi logincome2000 carbo2000
+                     fat2000 protein2000 energy2000 lastwaist logincome1989
+                     logincome1991 logincome2004 energy2004 carbo2004 fat2004
+                     protein2004 alcohol2000 logincome2006 energy2006
+                     carbo2006 fat2006 protein2006 alcohol2004 logincome1993
+                     alcohol2006 carbo1991 fat1991 protein1991 energy1991
+                     energy1993 carbo1993 fat1993 protein1993 logincome1997
+                     logincome2009 carbo1997 protein1997 energy1997 fat1997
+                     energy2009 carbo2009 fat2009 protein2009 alcohol1997
+                     alcohol2009 logincome2011 mettotal2006 energy2011
+                     carbo2011 fat2011 protein2011 alcohol2011 mettotal2009
+                     mettotal2004 mettotal2011 mettotal2000 mettotal1997
+                     jointretire gender retireageg birthcohort area provinces
+                     communityid yrsinceretire1989 since1989sq intergender
+                     interarea prepost1991 prepost1993 prepost1997
+                     prepost2000 prepost2004 prepost2006 prepost2009
+           lastbmi: regress lastbmi i.education i.workspouse i.skills
+                     i.childcare lastsysdrug lastdiadrug logincome2000
+                     carbo2000 fat2000 protein2000 energy2000 lastwaist
+                     logincome1989 logincome1991 logincome2004 energy2004
+                     carbo2004 fat2004 protein2004 alcohol2000 logincome2006
+                     energy2006 carbo2006 fat2006 protein2006 alcohol2004
+                     logincome1993 alcohol2006 carbo1991 fat1991 protein1991
+                     energy1991 energy1993 carbo1993 fat1993 protein1993
+                     logincome1997 logincome2009 carbo1997 protein1997
+                     energy1997 fat1997 energy2009 carbo2009 fat2009
+                     protein2009 alcohol1997 alcohol2009 logincome2011
+                     mettotal2006 energy2011 carbo2011 fat2011 protein2011
+                     alcohol2011 mettotal2009 mettotal2004 mettotal2011
+                     mettotal2000 mettotal1997 jointretire gender retireageg
+                     birthcohort area provinces communityid yrsinceretire1989
+                     since1989sq intergender interarea prepost1991
+                     prepost1993 prepost1997 prepost2000 prepost2004
+                     prepost2006 prepost2009
+     logincome2000: pmm logincome2000 i.education i.workspouse i.skills
+                     i.childcare lastsysdrug lastdiadrug lastbmi carbo2000
+                     fat2000 protein2000 energy2000 lastwaist logincome1989
+                     logincome1991 logincome2004 energy2004 carbo2004 fat2004
+                     protein2004 alcohol2000 logincome2006 energy2006
+                     carbo2006 fat2006 protein2006 alcohol2004 logincome1993
+                     alcohol2006 carbo1991 fat1991 protein1991 energy1991
+                     energy1993 carbo1993 fat1993 protein1993 logincome1997
+                     logincome2009 carbo1997 protein1997 energy1997 fat1997
+                     energy2009 carbo2009 fat2009 protein2009 alcohol1997
+                     alcohol2009 logincome2011 mettotal2006 energy2011
+                     carbo2011 fat2011 protein2011 alcohol2011 mettotal2009
+                     mettotal2004 mettotal2011 mettotal2000 mettotal1997
+                     jointretire gender retireageg birthcohort area provinces
+                     communityid yrsinceretire1989 since1989sq intergender
+                     interarea prepost1991 prepost1993 prepost1997
+                     prepost2000 prepost2004 prepost2006 prepost2009
+         carbo2000: pmm carbo2000 i.education i.workspouse i.skills
+                     i.childcare lastsysdrug lastdiadrug lastbmi
+                     logincome2000 fat2000 protein2000 energy2000 lastwaist
+                     logincome1989 logincome1991 logincome2004 energy2004
+                     carbo2004 fat2004 protein2004 alcohol2000 logincome2006
+                     energy2006 carbo2006 fat2006 protein2006 alcohol2004
+                     logincome1993 alcohol2006 carbo1991 fat1991 protein1991
+                     energy1991 energy1993 carbo1993 fat1993 protein1993
+                     logincome1997 logincome2009 carbo1997 protein1997
+                     energy1997 fat1997 energy2009 carbo2009 fat2009
+                     protein2009 alcohol1997 alcohol2009 logincome2011
+                     mettotal2006 energy2011 carbo2011 fat2011 protein2011
+                     alcohol2011 mettotal2009 mettotal2004 mettotal2011
+                     mettotal2000 mettotal1997 jointretire gender retireageg
+                     birthcohort area provinces communityid yrsinceretire1989
+                     since1989sq intergender interarea prepost1991
+                     prepost1993 prepost1997 prepost2000 prepost2004
+                     prepost2006 prepost2009
+           fat2000: pmm fat2000 i.education i.workspouse i.skills i.childcare
+                     lastsysdrug lastdiadrug lastbmi logincome2000 carbo2000
+                     protein2000 energy2000 lastwaist logincome1989
+                     logincome1991 logincome2004 energy2004 carbo2004 fat2004
+                     protein2004 alcohol2000 logincome2006 energy2006
+                     carbo2006 fat2006 protein2006 alcohol2004 logincome1993
+                     alcohol2006 carbo1991 fat1991 protein1991 energy1991
+                     energy1993 carbo1993 fat1993 protein1993 logincome1997
+                     logincome2009 carbo1997 protein1997 energy1997 fat1997
+                     energy2009 carbo2009 fat2009 protein2009 alcohol1997
+                     alcohol2009 logincome2011 mettotal2006 energy2011
+                     carbo2011 fat2011 protein2011 alcohol2011 mettotal2009
+                     mettotal2004 mettotal2011 mettotal2000 mettotal1997
+                     jointretire gender retireageg birthcohort area provinces
+                     communityid yrsinceretire1989 since1989sq intergender
+                     interarea prepost1991 prepost1993 prepost1997
+                     prepost2000 prepost2004 prepost2006 prepost2009
+       protein2000: pmm protein2000 i.education i.workspouse i.skills
+                     i.childcare lastsysdrug lastdiadrug lastbmi
+                     logincome2000 carbo2000 fat2000 energy2000 lastwaist
+                     logincome1989 logincome1991 logincome2004 energy2004
+                     carbo2004 fat2004 protein2004 alcohol2000 logincome2006
+                     energy2006 carbo2006 fat2006 protein2006 alcohol2004
+                     logincome1993 alcohol2006 carbo1991 fat1991 protein1991
+                     energy1991 energy1993 carbo1993 fat1993 protein1993
+                     logincome1997 logincome2009 carbo1997 protein1997
+                     energy1997 fat1997 energy2009 carbo2009 fat2009
+                     protein2009 alcohol1997 alcohol2009 logincome2011
+                     mettotal2006 energy2011 carbo2011 fat2011 protein2011
+                     alcohol2011 mettotal2009 mettotal2004 mettotal2011
+                     mettotal2000 mettotal1997 jointretire gender retireageg
+                     birthcohort area provinces communityid yrsinceretire1989
+                     since1989sq intergender interarea prepost1991
+                     prepost1993 prepost1997 prepost2000 prepost2004
+                     prepost2006 prepost2009
+        energy2000: pmm energy2000 i.education i.workspouse i.skills
+                     i.childcare lastsysdrug lastdiadrug lastbmi
+                     logincome2000 carbo2000 fat2000 protein2000 lastwaist
+                     logincome1989 logincome1991 logincome2004 energy2004
+                     carbo2004 fat2004 protein2004 alcohol2000 logincome2006
+                     energy2006 carbo2006 fat2006 protein2006 alcohol2004
+                     logincome1993 alcohol2006 carbo1991 fat1991 protein1991
+                     energy1991 energy1993 carbo1993 fat1993 protein1993
+                     logincome1997 logincome2009 carbo1997 protein1997
+                     energy1997 fat1997 energy2009 carbo2009 fat2009
+                     protein2009 alcohol1997 alcohol2009 logincome2011
+                     mettotal2006 energy2011 carbo2011 fat2011 protein2011
+                     alcohol2011 mettotal2009 mettotal2004 mettotal2011
+                     mettotal2000 mettotal1997 jointretire gender retireageg
+                     birthcohort area provinces communityid yrsinceretire1989
+                     since1989sq intergender interarea prepost1991
+                     prepost1993 prepost1997 prepost2000 prepost2004
+                     prepost2006 prepost2009
+         lastwaist: regress lastwaist i.education i.workspouse i.skills
+                     i.childcare lastsysdrug lastdiadrug lastbmi
+                     logincome2000 carbo2000 fat2000 protein2000 energy2000
+                     logincome1989 logincome1991 logincome2004 energy2004
+                     carbo2004 fat2004 protein2004 alcohol2000 logincome2006
+                     energy2006 carbo2006 fat2006 protein2006 alcohol2004
+                     logincome1993 alcohol2006 carbo1991 fat1991 protein1991
+                     energy1991 energy1993 carbo1993 fat1993 protein1993
+                     logincome1997 logincome2009 carbo1997 protein1997
+                     energy1997 fat1997 energy2009 carbo2009 fat2009
+                     protein2009 alcohol1997 alcohol2009 logincome2011
+                     mettotal2006 energy2011 carbo2011 fat2011 protein2011
+                     alcohol2011 mettotal2009 mettotal2004 mettotal2011
+                     mettotal2000 mettotal1997 jointretire gender retireageg
+                     birthcohort area provinces communityid yrsinceretire1989
+                     since1989sq intergender interarea prepost1991
+                     prepost1993 prepost1997 prepost2000 prepost2004
+                     prepost2006 prepost2009
+     bismoking2000: logit bismoking2000 i.education i.workspouse i.skills
+                     i.childcare lastsysdrug lastdiadrug lastbmi
+                     logincome2000 carbo2000 fat2000 protein2000 energy2000
+                     lastwaist logincome1989 i.bismoking2004 logincome1991
+                     logincome2004 energy2004 carbo2004 fat2004 protein2004
+                     alcohol2000 logincome2006 energy2006 carbo2006 fat2006
+                     protein2006 alcohol2004 logincome1993 alcohol2006
+                     carbo1991 fat1991 protein1991 energy1991 energy1993
+                     carbo1993 fat1993 protein1993 i.bismoking1997
+                     logincome1997 logincome2009 carbo1997 protein1997
+                     energy1997 fat1997 energy2009 carbo2009 fat2009
+                     protein2009 alcohol1997 alcohol2009 logincome2011
+                     mettotal2006 energy2011 carbo2011 fat2011 protein2011
+                     alcohol2011 mettotal2009 mettotal2004 mettotal2011
+                     mettotal2000 mettotal1997 jointretire gender retireageg
+                     birthcohort area provinces communityid yrsinceretire1989
+                     since1989sq intergender interarea prepost1991
+                     prepost1993 prepost1997 prepost2000 prepost2004
+                     prepost2006 prepost2009 , augment iter(20)
+     logincome1989: pmm logincome1989 i.education i.workspouse i.skills
+                     i.childcare lastsysdrug lastdiadrug lastbmi
+                     logincome2000 carbo2000 fat2000 protein2000 energy2000
+                     lastwaist logincome1991 logincome2004 energy2004
+                     carbo2004 fat2004 protein2004 alcohol2000 logincome2006
+                     energy2006 carbo2006 fat2006 protein2006 alcohol2004
+                     logincome1993 alcohol2006 carbo1991 fat1991 protein1991
+                     energy1991 energy1993 carbo1993 fat1993 protein1993
+                     logincome1997 logincome2009 carbo1997 protein1997
+                     energy1997 fat1997 energy2009 carbo2009 fat2009
+                     protein2009 alcohol1997 alcohol2009 logincome2011
+                     mettotal2006 energy2011 carbo2011 fat2011 protein2011
+                     alcohol2011 mettotal2009 mettotal2004 mettotal2011
+                     mettotal2000 mettotal1997 jointretire gender retireageg
+                     birthcohort area provinces communityid yrsinceretire1989
+                     since1989sq intergender interarea prepost1991
+                     prepost1993 prepost1997 prepost2000 prepost2004
+                     prepost2006 prepost2009
+     bismoking2004: logit bismoking2004 i.education i.workspouse i.skills
+                     i.childcare lastsysdrug lastdiadrug lastbmi
+                     logincome2000 carbo2000 fat2000 protein2000 energy2000
+                     lastwaist i.bismoking2000 logincome1989 logincome1991
+                     logincome2004 energy2004 carbo2004 fat2004 protein2004
+                     alcohol2000 i.bismoking2006 logincome2006 energy2006
+                     carbo2006 fat2006 protein2006 alcohol2004 logincome1993
+                     alcohol2006 carbo1991 fat1991 protein1991 energy1991
+                     energy1993 carbo1993 fat1993 protein1993 logincome1997
+                     logincome2009 carbo1997 protein1997 energy1997 fat1997
+                     energy2009 carbo2009 fat2009 protein2009 alcohol1997
+                     alcohol2009 logincome2011 mettotal2006 energy2011
+                     carbo2011 fat2011 protein2011 alcohol2011 mettotal2009
+                     mettotal2004 mettotal2011 mettotal2000 mettotal1997
+                     jointretire gender retireageg birthcohort area provinces
+                     communityid yrsinceretire1989 since1989sq intergender
+                     interarea prepost1991 prepost1993 prepost1997
+                     prepost2000 prepost2004 prepost2006 prepost2009 ,
+                     augment iter(20)
+     logincome1991: pmm logincome1991 i.education i.workspouse i.skills
+                     i.childcare lastsysdrug lastdiadrug lastbmi
+                     logincome2000 carbo2000 fat2000 protein2000 energy2000
+                     lastwaist logincome1989 logincome2004 energy2004
+                     carbo2004 fat2004 protein2004 alcohol2000 logincome2006
+                     energy2006 carbo2006 fat2006 protein2006 alcohol2004
+                     logincome1993 alcohol2006 carbo1991 fat1991 protein1991
+                     energy1991 energy1993 carbo1993 fat1993 protein1993
+                     logincome1997 logincome2009 carbo1997 protein1997
+                     energy1997 fat1997 energy2009 carbo2009 fat2009
+                     protein2009 alcohol1997 alcohol2009 logincome2011
+                     mettotal2006 energy2011 carbo2011 fat2011 protein2011
+                     alcohol2011 mettotal2009 mettotal2004 mettotal2011
+                     mettotal2000 mettotal1997 jointretire gender retireageg
+                     birthcohort area provinces communityid yrsinceretire1989
+                     since1989sq intergender interarea prepost1991
+                     prepost1993 prepost1997 prepost2000 prepost2004
+                     prepost2006 prepost2009
+     logincome2004: pmm logincome2004 i.education i.workspouse i.skills
+                     i.childcare lastsysdrug lastdiadrug lastbmi
+                     logincome2000 carbo2000 fat2000 protein2000 energy2000
+                     lastwaist logincome1989 logincome1991 energy2004
+                     carbo2004 fat2004 protein2004 alcohol2000 logincome2006
+                     energy2006 carbo2006 fat2006 protein2006 alcohol2004
+                     logincome1993 alcohol2006 carbo1991 fat1991 protein1991
+                     energy1991 energy1993 carbo1993 fat1993 protein1993
+                     logincome1997 logincome2009 carbo1997 protein1997
+                     energy1997 fat1997 energy2009 carbo2009 fat2009
+                     protein2009 alcohol1997 alcohol2009 logincome2011
+                     mettotal2006 energy2011 carbo2011 fat2011 protein2011
+                     alcohol2011 mettotal2009 mettotal2004 mettotal2011
+                     mettotal2000 mettotal1997 jointretire gender retireageg
+                     birthcohort area provinces communityid yrsinceretire1989
+                     since1989sq intergender interarea prepost1991
+                     prepost1993 prepost1997 prepost2000 prepost2004
+                     prepost2006 prepost2009
+        energy2004: pmm energy2004 i.education i.workspouse i.skills
+                     i.childcare lastsysdrug lastdiadrug lastbmi
+                     logincome2000 carbo2000 fat2000 protein2000 energy2000
+                     lastwaist logincome1989 logincome1991 logincome2004
+                     carbo2004 fat2004 protein2004 alcohol2000 logincome2006
+                     energy2006 carbo2006 fat2006 protein2006 alcohol2004
+                     logincome1993 alcohol2006 carbo1991 fat1991 protein1991
+                     energy1991 energy1993 carbo1993 fat1993 protein1993
+                     logincome1997 logincome2009 carbo1997 protein1997
+                     energy1997 fat1997 energy2009 carbo2009 fat2009
+                     protein2009 alcohol1997 alcohol2009 logincome2011
+                     mettotal2006 energy2011 carbo2011 fat2011 protein2011
+                     alcohol2011 mettotal2009 mettotal2004 mettotal2011
+                     mettotal2000 mettotal1997 jointretire gender retireageg
+                     birthcohort area provinces communityid yrsinceretire1989
+                     since1989sq intergender interarea prepost1991
+                     prepost1993 prepost1997 prepost2000 prepost2004
+                     prepost2006 prepost2009
+         carbo2004: pmm carbo2004 i.education i.workspouse i.skills
+                     i.childcare lastsysdrug lastdiadrug lastbmi
+                     logincome2000 carbo2000 fat2000 protein2000 energy2000
+                     lastwaist logincome1989 logincome1991 logincome2004
+                     energy2004 fat2004 protein2004 alcohol2000 logincome2006
+                     energy2006 carbo2006 fat2006 protein2006 alcohol2004
+                     logincome1993 alcohol2006 carbo1991 fat1991 protein1991
+                     energy1991 energy1993 carbo1993 fat1993 protein1993
+                     logincome1997 logincome2009 carbo1997 protein1997
+                     energy1997 fat1997 energy2009 carbo2009 fat2009
+                     protein2009 alcohol1997 alcohol2009 logincome2011
+                     mettotal2006 energy2011 carbo2011 fat2011 protein2011
+                     alcohol2011 mettotal2009 mettotal2004 mettotal2011
+                     mettotal2000 mettotal1997 jointretire gender retireageg
+                     birthcohort area provinces communityid yrsinceretire1989
+                     since1989sq intergender interarea prepost1991
+                     prepost1993 prepost1997 prepost2000 prepost2004
+                     prepost2006 prepost2009
+           fat2004: pmm fat2004 i.education i.workspouse i.skills i.childcare
+                     lastsysdrug lastdiadrug lastbmi logincome2000 carbo2000
+                     fat2000 protein2000 energy2000 lastwaist logincome1989
+                     logincome1991 logincome2004 energy2004 carbo2004
+                     protein2004 alcohol2000 logincome2006 energy2006
+                     carbo2006 fat2006 protein2006 alcohol2004 logincome1993
+                     alcohol2006 carbo1991 fat1991 protein1991 energy1991
+                     energy1993 carbo1993 fat1993 protein1993 logincome1997
+                     logincome2009 carbo1997 protein1997 energy1997 fat1997
+                     energy2009 carbo2009 fat2009 protein2009 alcohol1997
+                     alcohol2009 logincome2011 mettotal2006 energy2011
+                     carbo2011 fat2011 protein2011 alcohol2011 mettotal2009
+                     mettotal2004 mettotal2011 mettotal2000 mettotal1997
+                     jointretire gender retireageg birthcohort area provinces
+                     communityid yrsinceretire1989 since1989sq intergender
+                     interarea prepost1991 prepost1993 prepost1997
+                     prepost2000 prepost2004 prepost2006 prepost2009
+       protein2004: pmm protein2004 i.education i.workspouse i.skills
+                     i.childcare lastsysdrug lastdiadrug lastbmi
+                     logincome2000 carbo2000 fat2000 protein2000 energy2000
+                     lastwaist logincome1989 logincome1991 logincome2004
+                     energy2004 carbo2004 fat2004 alcohol2000 logincome2006
+                     energy2006 carbo2006 fat2006 protein2006 alcohol2004
+                     logincome1993 alcohol2006 carbo1991 fat1991 protein1991
+                     energy1991 energy1993 carbo1993 fat1993 protein1993
+                     logincome1997 logincome2009 carbo1997 protein1997
+                     energy1997 fat1997 energy2009 carbo2009 fat2009
+                     protein2009 alcohol1997 alcohol2009 logincome2011
+                     mettotal2006 energy2011 carbo2011 fat2011 protein2011
+                     alcohol2011 mettotal2009 mettotal2004 mettotal2011
+                     mettotal2000 mettotal1997 jointretire gender retireageg
+                     birthcohort area provinces communityid yrsinceretire1989
+                     since1989sq intergender interarea prepost1991
+                     prepost1993 prepost1997 prepost2000 prepost2004
+                     prepost2006 prepost2009
+       alcohol2000: pmm alcohol2000 i.education i.workspouse i.skills
+                     i.childcare lastsysdrug lastdiadrug lastbmi
+                     logincome2000 carbo2000 fat2000 protein2000 energy2000
+                     lastwaist logincome1989 logincome1991 logincome2004
+                     energy2004 carbo2004 fat2004 protein2004 logincome2006
+                     energy2006 carbo2006 fat2006 protein2006 alcohol2004
+                     logincome1993 alcohol2006 carbo1991 fat1991 protein1991
+                     energy1991 energy1993 carbo1993 fat1993 protein1993
+                     logincome1997 logincome2009 carbo1997 protein1997
+                     energy1997 fat1997 energy2009 carbo2009 fat2009
+                     protein2009 alcohol1997 alcohol2009 logincome2011
+                     mettotal2006 energy2011 carbo2011 fat2011 protein2011
+                     alcohol2011 mettotal2009 mettotal2004 mettotal2011
+                     mettotal2000 mettotal1997 jointretire gender retireageg
+                     birthcohort area provinces communityid yrsinceretire1989
+                     since1989sq intergender interarea prepost1991
+                     prepost1993 prepost1997 prepost2000 prepost2004
+                     prepost2006 prepost2009
+     bismoking2006: logit bismoking2006 i.education i.workspouse i.skills
+                     i.childcare lastsysdrug lastdiadrug lastbmi
+                     logincome2000 carbo2000 fat2000 protein2000 energy2000
+                     lastwaist logincome1989 i.bismoking2004 logincome1991
+                     logincome2004 energy2004 carbo2004 fat2004 protein2004
+                     alcohol2000 logincome2006 energy2006 carbo2006 fat2006
+                     protein2006 alcohol2004 logincome1993 alcohol2006
+                     carbo1991 fat1991 protein1991 energy1991 energy1993
+                     carbo1993 fat1993 protein1993 logincome1997
+                     i.bismoking2009 logincome2009 carbo1997 protein1997
+                     energy1997 fat1997 energy2009 carbo2009 fat2009
+                     protein2009 alcohol1997 alcohol2009 logincome2011
+                     mettotal2006 energy2011 carbo2011 fat2011 protein2011
+                     alcohol2011 mettotal2009 mettotal2004 mettotal2011
+                     mettotal2000 mettotal1997 jointretire gender retireageg
+                     birthcohort area provinces communityid yrsinceretire1989
+                     since1989sq intergender interarea prepost1991
+                     prepost1993 prepost1997 prepost2000 prepost2004
+                     prepost2006 prepost2009 , augment iter(20)
+     logincome2006: pmm logincome2006 i.education i.workspouse i.skills
+                     i.childcare lastsysdrug lastdiadrug lastbmi
+                     logincome2000 carbo2000 fat2000 protein2000 energy2000
+                     lastwaist logincome1989 logincome1991 logincome2004
+                     energy2004 carbo2004 fat2004 protein2004 alcohol2000
+                     energy2006 carbo2006 fat2006 protein2006 alcohol2004
+                     logincome1993 alcohol2006 carbo1991 fat1991 protein1991
+                     energy1991 energy1993 carbo1993 fat1993 protein1993
+                     logincome1997 logincome2009 carbo1997 protein1997
+                     energy1997 fat1997 energy2009 carbo2009 fat2009
+                     protein2009 alcohol1997 alcohol2009 logincome2011
+                     mettotal2006 energy2011 carbo2011 fat2011 protein2011
+                     alcohol2011 mettotal2009 mettotal2004 mettotal2011
+                     mettotal2000 mettotal1997 jointretire gender retireageg
+                     birthcohort area provinces communityid yrsinceretire1989
+                     since1989sq intergender interarea prepost1991
+                     prepost1993 prepost1997 prepost2000 prepost2004
+                     prepost2006 prepost2009
+        energy2006: pmm energy2006 i.education i.workspouse i.skills
+                     i.childcare lastsysdrug lastdiadrug lastbmi
+                     logincome2000 carbo2000 fat2000 protein2000 energy2000
+                     lastwaist logincome1989 logincome1991 logincome2004
+                     energy2004 carbo2004 fat2004 protein2004 alcohol2000
+                     logincome2006 carbo2006 fat2006 protein2006 alcohol2004
+                     logincome1993 alcohol2006 carbo1991 fat1991 protein1991
+                     energy1991 energy1993 carbo1993 fat1993 protein1993
+                     logincome1997 logincome2009 carbo1997 protein1997
+                     energy1997 fat1997 energy2009 carbo2009 fat2009
+                     protein2009 alcohol1997 alcohol2009 logincome2011
+                     mettotal2006 energy2011 carbo2011 fat2011 protein2011
+                     alcohol2011 mettotal2009 mettotal2004 mettotal2011
+                     mettotal2000 mettotal1997 jointretire gender retireageg
+                     birthcohort area provinces communityid yrsinceretire1989
+                     since1989sq intergender interarea prepost1991
+                     prepost1993 prepost1997 prepost2000 prepost2004
+                     prepost2006 prepost2009
+         carbo2006: pmm carbo2006 i.education i.workspouse i.skills
+                     i.childcare lastsysdrug lastdiadrug lastbmi
+                     logincome2000 carbo2000 fat2000 protein2000 energy2000
+                     lastwaist logincome1989 logincome1991 logincome2004
+                     energy2004 carbo2004 fat2004 protein2004 alcohol2000
+                     logincome2006 energy2006 fat2006 protein2006 alcohol2004
+                     logincome1993 alcohol2006 carbo1991 fat1991 protein1991
+                     energy1991 energy1993 carbo1993 fat1993 protein1993
+                     logincome1997 logincome2009 carbo1997 protein1997
+                     energy1997 fat1997 energy2009 carbo2009 fat2009
+                     protein2009 alcohol1997 alcohol2009 logincome2011
+                     mettotal2006 energy2011 carbo2011 fat2011 protein2011
+                     alcohol2011 mettotal2009 mettotal2004 mettotal2011
+                     mettotal2000 mettotal1997 jointretire gender retireageg
+                     birthcohort area provinces communityid yrsinceretire1989
+                     since1989sq intergender interarea prepost1991
+                     prepost1993 prepost1997 prepost2000 prepost2004
+                     prepost2006 prepost2009
+           fat2006: pmm fat2006 i.education i.workspouse i.skills i.childcare
+                     lastsysdrug lastdiadrug lastbmi logincome2000 carbo2000
+                     fat2000 protein2000 energy2000 lastwaist logincome1989
+                     logincome1991 logincome2004 energy2004 carbo2004 fat2004
+                     protein2004 alcohol2000 logincome2006 energy2006
+                     carbo2006 protein2006 alcohol2004 logincome1993
+                     alcohol2006 carbo1991 fat1991 protein1991 energy1991
+                     energy1993 carbo1993 fat1993 protein1993 logincome1997
+                     logincome2009 carbo1997 protein1997 energy1997 fat1997
+                     energy2009 carbo2009 fat2009 protein2009 alcohol1997
+                     alcohol2009 logincome2011 mettotal2006 energy2011
+                     carbo2011 fat2011 protein2011 alcohol2011 mettotal2009
+                     mettotal2004 mettotal2011 mettotal2000 mettotal1997
+                     jointretire gender retireageg birthcohort area provinces
+                     communityid yrsinceretire1989 since1989sq intergender
+                     interarea prepost1991 prepost1993 prepost1997
+                     prepost2000 prepost2004 prepost2006 prepost2009
+       protein2006: pmm protein2006 i.education i.workspouse i.skills
+                     i.childcare lastsysdrug lastdiadrug lastbmi
+                     logincome2000 carbo2000 fat2000 protein2000 energy2000
+                     lastwaist logincome1989 logincome1991 logincome2004
+                     energy2004 carbo2004 fat2004 protein2004 alcohol2000
+                     logincome2006 energy2006 carbo2006 fat2006 alcohol2004
+                     logincome1993 alcohol2006 carbo1991 fat1991 protein1991
+                     energy1991 energy1993 carbo1993 fat1993 protein1993
+                     logincome1997 logincome2009 carbo1997 protein1997
+                     energy1997 fat1997 energy2009 carbo2009 fat2009
+                     protein2009 alcohol1997 alcohol2009 logincome2011
+                     mettotal2006 energy2011 carbo2011 fat2011 protein2011
+                     alcohol2011 mettotal2009 mettotal2004 mettotal2011
+                     mettotal2000 mettotal1997 jointretire gender retireageg
+                     birthcohort area provinces communityid yrsinceretire1989
+                     since1989sq intergender interarea prepost1991
+                     prepost1993 prepost1997 prepost2000 prepost2004
+                     prepost2006 prepost2009
+       alcohol2004: pmm alcohol2004 i.education i.workspouse i.skills
+                     i.childcare lastsysdrug lastdiadrug lastbmi
+                     logincome2000 carbo2000 fat2000 protein2000 energy2000
+                     lastwaist logincome1989 logincome1991 logincome2004
+                     energy2004 carbo2004 fat2004 protein2004 alcohol2000
+                     logincome2006 energy2006 carbo2006 fat2006 protein2006
+                     logincome1993 alcohol2006 carbo1991 fat1991 protein1991
+                     energy1991 energy1993 carbo1993 fat1993 protein1993
+                     logincome1997 logincome2009 carbo1997 protein1997
+                     energy1997 fat1997 energy2009 carbo2009 fat2009
+                     protein2009 alcohol1997 alcohol2009 logincome2011
+                     mettotal2006 energy2011 carbo2011 fat2011 protein2011
+                     alcohol2011 mettotal2009 mettotal2004 mettotal2011
+                     mettotal2000 mettotal1997 jointretire gender retireageg
+                     birthcohort area provinces communityid yrsinceretire1989
+                     since1989sq intergender interarea prepost1991
+                     prepost1993 prepost1997 prepost2000 prepost2004
+                     prepost2006 prepost2009
+     logincome1993: pmm logincome1993 i.education i.workspouse i.skills
+                     i.childcare lastsysdrug lastdiadrug lastbmi
+                     logincome2000 carbo2000 fat2000 protein2000 energy2000
+                     lastwaist logincome1989 logincome1991 logincome2004
+                     energy2004 carbo2004 fat2004 protein2004 alcohol2000
+                     logincome2006 energy2006 carbo2006 fat2006 protein2006
+                     alcohol2004 alcohol2006 carbo1991 fat1991 protein1991
+                     energy1991 energy1993 carbo1993 fat1993 protein1993
+                     logincome1997 logincome2009 carbo1997 protein1997
+                     energy1997 fat1997 energy2009 carbo2009 fat2009
+                     protein2009 alcohol1997 alcohol2009 logincome2011
+                     mettotal2006 energy2011 carbo2011 fat2011 protein2011
+                     alcohol2011 mettotal2009 mettotal2004 mettotal2011
+                     mettotal2000 mettotal1997 jointretire gender retireageg
+                     birthcohort area provinces communityid yrsinceretire1989
+                     since1989sq intergender interarea prepost1991
+                     prepost1993 prepost1997 prepost2000 prepost2004
+                     prepost2006 prepost2009
+       alcohol2006: pmm alcohol2006 i.education i.workspouse i.skills
+                     i.childcare lastsysdrug lastdiadrug lastbmi
+                     logincome2000 carbo2000 fat2000 protein2000 energy2000
+                     lastwaist logincome1989 logincome1991 logincome2004
+                     energy2004 carbo2004 fat2004 protein2004 alcohol2000
+                     logincome2006 energy2006 carbo2006 fat2006 protein2006
+                     alcohol2004 logincome1993 carbo1991 fat1991 protein1991
+                     energy1991 energy1993 carbo1993 fat1993 protein1993
+                     logincome1997 logincome2009 carbo1997 protein1997
+                     energy1997 fat1997 energy2009 carbo2009 fat2009
+                     protein2009 alcohol1997 alcohol2009 logincome2011
+                     mettotal2006 energy2011 carbo2011 fat2011 protein2011
+                     alcohol2011 mettotal2009 mettotal2004 mettotal2011
+                     mettotal2000 mettotal1997 jointretire gender retireageg
+                     birthcohort area provinces communityid yrsinceretire1989
+                     since1989sq intergender interarea prepost1991
+                     prepost1993 prepost1997 prepost2000 prepost2004
+                     prepost2006 prepost2009
+         carbo1991: pmm carbo1991 i.education i.workspouse i.skills
+                     i.childcare lastsysdrug lastdiadrug lastbmi
+                     logincome2000 carbo2000 fat2000 protein2000 energy2000
+                     lastwaist logincome1989 logincome1991 logincome2004
+                     energy2004 carbo2004 fat2004 protein2004 alcohol2000
+                     logincome2006 energy2006 carbo2006 fat2006 protein2006
+                     alcohol2004 logincome1993 alcohol2006 fat1991
+                     protein1991 energy1991 energy1993 carbo1993 fat1993
+                     protein1993 logincome1997 logincome2009 carbo1997
+                     protein1997 energy1997 fat1997 energy2009 carbo2009
+                     fat2009 protein2009 alcohol1997 alcohol2009
+                     logincome2011 mettotal2006 energy2011 carbo2011 fat2011
+                     protein2011 alcohol2011 mettotal2009 mettotal2004
+                     mettotal2011 mettotal2000 mettotal1997 jointretire
+                     gender retireageg birthcohort area provinces communityid
+                     yrsinceretire1989 since1989sq intergender interarea
+                     prepost1991 prepost1993 prepost1997 prepost2000
+                     prepost2004 prepost2006 prepost2009
+           fat1991: pmm fat1991 i.education i.workspouse i.skills i.childcare
+                     lastsysdrug lastdiadrug lastbmi logincome2000 carbo2000
+                     fat2000 protein2000 energy2000 lastwaist logincome1989
+                     logincome1991 logincome2004 energy2004 carbo2004 fat2004
+                     protein2004 alcohol2000 logincome2006 energy2006
+                     carbo2006 fat2006 protein2006 alcohol2004 logincome1993
+                     alcohol2006 carbo1991 protein1991 energy1991 energy1993
+                     carbo1993 fat1993 protein1993 logincome1997
+                     logincome2009 carbo1997 protein1997 energy1997 fat1997
+                     energy2009 carbo2009 fat2009 protein2009 alcohol1997
+                     alcohol2009 logincome2011 mettotal2006 energy2011
+                     carbo2011 fat2011 protein2011 alcohol2011 mettotal2009
+                     mettotal2004 mettotal2011 mettotal2000 mettotal1997
+                     jointretire gender retireageg birthcohort area provinces
+                     communityid yrsinceretire1989 since1989sq intergender
+                     interarea prepost1991 prepost1993 prepost1997
+                     prepost2000 prepost2004 prepost2006 prepost2009
+       protein1991: pmm protein1991 i.education i.workspouse i.skills
+                     i.childcare lastsysdrug lastdiadrug lastbmi
+                     logincome2000 carbo2000 fat2000 protein2000 energy2000
+                     lastwaist logincome1989 logincome1991 logincome2004
+                     energy2004 carbo2004 fat2004 protein2004 alcohol2000
+                     logincome2006 energy2006 carbo2006 fat2006 protein2006
+                     alcohol2004 logincome1993 alcohol2006 carbo1991 fat1991
+                     energy1991 energy1993 carbo1993 fat1993 protein1993
+                     logincome1997 logincome2009 carbo1997 protein1997
+                     energy1997 fat1997 energy2009 carbo2009 fat2009
+                     protein2009 alcohol1997 alcohol2009 logincome2011
+                     mettotal2006 energy2011 carbo2011 fat2011 protein2011
+                     alcohol2011 mettotal2009 mettotal2004 mettotal2011
+                     mettotal2000 mettotal1997 jointretire gender retireageg
+                     birthcohort area provinces communityid yrsinceretire1989
+                     since1989sq intergender interarea prepost1991
+                     prepost1993 prepost1997 prepost2000 prepost2004
+                     prepost2006 prepost2009
+        energy1991: pmm energy1991 i.education i.workspouse i.skills
+                     i.childcare lastsysdrug lastdiadrug lastbmi
+                     logincome2000 carbo2000 fat2000 protein2000 energy2000
+                     lastwaist logincome1989 logincome1991 logincome2004
+                     energy2004 carbo2004 fat2004 protein2004 alcohol2000
+                     logincome2006 energy2006 carbo2006 fat2006 protein2006
+                     alcohol2004 logincome1993 alcohol2006 carbo1991 fat1991
+                     protein1991 energy1993 carbo1993 fat1993 protein1993
+                     logincome1997 logincome2009 carbo1997 protein1997
+                     energy1997 fat1997 energy2009 carbo2009 fat2009
+                     protein2009 alcohol1997 alcohol2009 logincome2011
+                     mettotal2006 energy2011 carbo2011 fat2011 protein2011
+                     alcohol2011 mettotal2009 mettotal2004 mettotal2011
+                     mettotal2000 mettotal1997 jointretire gender retireageg
+                     birthcohort area provinces communityid yrsinceretire1989
+                     since1989sq intergender interarea prepost1991
+                     prepost1993 prepost1997 prepost2000 prepost2004
+                     prepost2006 prepost2009
+        energy1993: pmm energy1993 i.education i.workspouse i.skills
+                     i.childcare lastsysdrug lastdiadrug lastbmi
+                     logincome2000 carbo2000 fat2000 protein2000 energy2000
+                     lastwaist logincome1989 logincome1991 logincome2004
+                     energy2004 carbo2004 fat2004 protein2004 alcohol2000
+                     logincome2006 energy2006 carbo2006 fat2006 protein2006
+                     alcohol2004 logincome1993 alcohol2006 carbo1991 fat1991
+                     protein1991 energy1991 carbo1993 fat1993 protein1993
+                     logincome1997 logincome2009 carbo1997 protein1997
+                     energy1997 fat1997 energy2009 carbo2009 fat2009
+                     protein2009 alcohol1997 alcohol2009 logincome2011
+                     mettotal2006 energy2011 carbo2011 fat2011 protein2011
+                     alcohol2011 mettotal2009 mettotal2004 mettotal2011
+                     mettotal2000 mettotal1997 jointretire gender retireageg
+                     birthcohort area provinces communityid yrsinceretire1989
+                     since1989sq intergender interarea prepost1991
+                     prepost1993 prepost1997 prepost2000 prepost2004
+                     prepost2006 prepost2009
+         carbo1993: pmm carbo1993 i.education i.workspouse i.skills
+                     i.childcare lastsysdrug lastdiadrug lastbmi
+                     logincome2000 carbo2000 fat2000 protein2000 energy2000
+                     lastwaist logincome1989 logincome1991 logincome2004
+                     energy2004 carbo2004 fat2004 protein2004 alcohol2000
+                     logincome2006 energy2006 carbo2006 fat2006 protein2006
+                     alcohol2004 logincome1993 alcohol2006 carbo1991 fat1991
+                     protein1991 energy1991 energy1993 fat1993 protein1993
+                     logincome1997 logincome2009 carbo1997 protein1997
+                     energy1997 fat1997 energy2009 carbo2009 fat2009
+                     protein2009 alcohol1997 alcohol2009 logincome2011
+                     mettotal2006 energy2011 carbo2011 fat2011 protein2011
+                     alcohol2011 mettotal2009 mettotal2004 mettotal2011
+                     mettotal2000 mettotal1997 jointretire gender retireageg
+                     birthcohort area provinces communityid yrsinceretire1989
+                     since1989sq intergender interarea prepost1991
+                     prepost1993 prepost1997 prepost2000 prepost2004
+                     prepost2006 prepost2009
+           fat1993: pmm fat1993 i.education i.workspouse i.skills i.childcare
+                     lastsysdrug lastdiadrug lastbmi logincome2000 carbo2000
+                     fat2000 protein2000 energy2000 lastwaist logincome1989
+                     logincome1991 logincome2004 energy2004 carbo2004 fat2004
+                     protein2004 alcohol2000 logincome2006 energy2006
+                     carbo2006 fat2006 protein2006 alcohol2004 logincome1993
+                     alcohol2006 carbo1991 fat1991 protein1991 energy1991
+                     energy1993 carbo1993 protein1993 logincome1997
+                     logincome2009 carbo1997 protein1997 energy1997 fat1997
+                     energy2009 carbo2009 fat2009 protein2009 alcohol1997
+                     alcohol2009 logincome2011 mettotal2006 energy2011
+                     carbo2011 fat2011 protein2011 alcohol2011 mettotal2009
+                     mettotal2004 mettotal2011 mettotal2000 mettotal1997
+                     jointretire gender retireageg birthcohort area provinces
+                     communityid yrsinceretire1989 since1989sq intergender
+                     interarea prepost1991 prepost1993 prepost1997
+                     prepost2000 prepost2004 prepost2006 prepost2009
+       protein1993: pmm protein1993 i.education i.workspouse i.skills
+                     i.childcare lastsysdrug lastdiadrug lastbmi
+                     logincome2000 carbo2000 fat2000 protein2000 energy2000
+                     lastwaist logincome1989 logincome1991 logincome2004
+                     energy2004 carbo2004 fat2004 protein2004 alcohol2000
+                     logincome2006 energy2006 carbo2006 fat2006 protein2006
+                     alcohol2004 logincome1993 alcohol2006 carbo1991 fat1991
+                     protein1991 energy1991 energy1993 carbo1993 fat1993
+                     logincome1997 logincome2009 carbo1997 protein1997
+                     energy1997 fat1997 energy2009 carbo2009 fat2009
+                     protein2009 alcohol1997 alcohol2009 logincome2011
+                     mettotal2006 energy2011 carbo2011 fat2011 protein2011
+                     alcohol2011 mettotal2009 mettotal2004 mettotal2011
+                     mettotal2000 mettotal1997 jointretire gender retireageg
+                     birthcohort area provinces communityid yrsinceretire1989
+                     since1989sq intergender interarea prepost1991
+                     prepost1993 prepost1997 prepost2000 prepost2004
+                     prepost2006 prepost2009
+     bismoking1997: logit bismoking1997 i.education i.workspouse i.skills
+                     i.childcare lastsysdrug lastdiadrug lastbmi
+                     logincome2000 carbo2000 fat2000 protein2000 energy2000
+                     lastwaist i.bismoking2000 logincome1989 logincome1991
+                     logincome2004 energy2004 carbo2004 fat2004 protein2004
+                     alcohol2000 logincome2006 energy2006 carbo2006 fat2006
+                     protein2006 alcohol2004 logincome1993 alcohol2006
+                     carbo1991 fat1991 protein1991 energy1991 energy1993
+                     carbo1993 fat1993 protein1993 logincome1997
+                     logincome2009 carbo1997 protein1997 energy1997 fat1997
+                     energy2009 carbo2009 fat2009 protein2009 alcohol1997
+                     alcohol2009 logincome2011 mettotal2006 energy2011
+                     carbo2011 fat2011 protein2011 alcohol2011 mettotal2009
+                     mettotal2004 mettotal2011 mettotal2000 mettotal1997
+                     jointretire gender retireageg birthcohort area provinces
+                     communityid yrsinceretire1989 since1989sq intergender
+                     interarea prepost1991 prepost1993 prepost1997
+                     prepost2000 prepost2004 prepost2006 prepost2009 ,
+                     augment iter(20)
+     logincome1997: pmm logincome1997 i.education i.workspouse i.skills
+                     i.childcare lastsysdrug lastdiadrug lastbmi
+                     logincome2000 carbo2000 fat2000 protein2000 energy2000
+                     lastwaist logincome1989 logincome1991 logincome2004
+                     energy2004 carbo2004 fat2004 protein2004 alcohol2000
+                     logincome2006 energy2006 carbo2006 fat2006 protein2006
+                     alcohol2004 logincome1993 alcohol2006 carbo1991 fat1991
+                     protein1991 energy1991 energy1993 carbo1993 fat1993
+                     protein1993 logincome2009 carbo1997 protein1997
+                     energy1997 fat1997 energy2009 carbo2009 fat2009
+                     protein2009 alcohol1997 alcohol2009 logincome2011
+                     mettotal2006 energy2011 carbo2011 fat2011 protein2011
+                     alcohol2011 mettotal2009 mettotal2004 mettotal2011
+                     mettotal2000 mettotal1997 jointretire gender retireageg
+                     birthcohort area provinces communityid yrsinceretire1989
+                     since1989sq intergender interarea prepost1991
+                     prepost1993 prepost1997 prepost2000 prepost2004
+                     prepost2006 prepost2009
+     bismoking2009: logit bismoking2009 i.education i.workspouse i.skills
+                     i.childcare lastsysdrug lastdiadrug lastbmi
+                     logincome2000 carbo2000 fat2000 protein2000 energy2000
+                     lastwaist logincome1989 logincome1991 logincome2004
+                     energy2004 carbo2004 fat2004 protein2004 alcohol2000
+                     i.bismoking2006 logincome2006 energy2006 carbo2006
+                     fat2006 protein2006 alcohol2004 logincome1993
+                     alcohol2006 carbo1991 fat1991 protein1991 energy1991
+                     energy1993 carbo1993 fat1993 protein1993 logincome1997
+                     logincome2009 carbo1997 protein1997 energy1997 fat1997
+                     energy2009 carbo2009 fat2009 protein2009 alcohol1997
+                     alcohol2009 i.bismoking2011 logincome2011 mettotal2006
+                     energy2011 carbo2011 fat2011 protein2011 alcohol2011
+                     mettotal2009 mettotal2004 mettotal2011 mettotal2000
+                     mettotal1997 jointretire gender retireageg birthcohort
+                     area provinces communityid yrsinceretire1989 since1989sq
+                     intergender interarea prepost1991 prepost1993
+                     prepost1997 prepost2000 prepost2004 prepost2006
+                     prepost2009 , augment iter(20)
+     logincome2009: pmm logincome2009 i.education i.workspouse i.skills
+                     i.childcare lastsysdrug lastdiadrug lastbmi
+                     logincome2000 carbo2000 fat2000 protein2000 energy2000
+                     lastwaist logincome1989 logincome1991 logincome2004
+                     energy2004 carbo2004 fat2004 protein2004 alcohol2000
+                     logincome2006 energy2006 carbo2006 fat2006 protein2006
+                     alcohol2004 logincome1993 alcohol2006 carbo1991 fat1991
+                     protein1991 energy1991 energy1993 carbo1993 fat1993
+                     protein1993 logincome1997 carbo1997 protein1997
+                     energy1997 fat1997 energy2009 carbo2009 fat2009
+                     protein2009 alcohol1997 alcohol2009 logincome2011
+                     mettotal2006 energy2011 carbo2011 fat2011 protein2011
+                     alcohol2011 mettotal2009 mettotal2004 mettotal2011
+                     mettotal2000 mettotal1997 jointretire gender retireageg
+                     birthcohort area provinces communityid yrsinceretire1989
+                     since1989sq intergender interarea prepost1991
+                     prepost1993 prepost1997 prepost2000 prepost2004
+                     prepost2006 prepost2009
+         carbo1997: pmm carbo1997 i.education i.workspouse i.skills
+                     i.childcare lastsysdrug lastdiadrug lastbmi
+                     logincome2000 carbo2000 fat2000 protein2000 energy2000
+                     lastwaist logincome1989 logincome1991 logincome2004
+                     energy2004 carbo2004 fat2004 protein2004 alcohol2000
+                     logincome2006 energy2006 carbo2006 fat2006 protein2006
+                     alcohol2004 logincome1993 alcohol2006 carbo1991 fat1991
+                     protein1991 energy1991 energy1993 carbo1993 fat1993
+                     protein1993 logincome1997 logincome2009 protein1997
+                     energy1997 fat1997 energy2009 carbo2009 fat2009
+                     protein2009 alcohol1997 alcohol2009 logincome2011
+                     mettotal2006 energy2011 carbo2011 fat2011 protein2011
+                     alcohol2011 mettotal2009 mettotal2004 mettotal2011
+                     mettotal2000 mettotal1997 jointretire gender retireageg
+                     birthcohort area provinces communityid yrsinceretire1989
+                     since1989sq intergender interarea prepost1991
+                     prepost1993 prepost1997 prepost2000 prepost2004
+                     prepost2006 prepost2009
+       protein1997: pmm protein1997 i.education i.workspouse i.skills
+                     i.childcare lastsysdrug lastdiadrug lastbmi
+                     logincome2000 carbo2000 fat2000 protein2000 energy2000
+                     lastwaist logincome1989 logincome1991 logincome2004
+                     energy2004 carbo2004 fat2004 protein2004 alcohol2000
+                     logincome2006 energy2006 carbo2006 fat2006 protein2006
+                     alcohol2004 logincome1993 alcohol2006 carbo1991 fat1991
+                     protein1991 energy1991 energy1993 carbo1993 fat1993
+                     protein1993 logincome1997 logincome2009 carbo1997
+                     energy1997 fat1997 energy2009 carbo2009 fat2009
+                     protein2009 alcohol1997 alcohol2009 logincome2011
+                     mettotal2006 energy2011 carbo2011 fat2011 protein2011
+                     alcohol2011 mettotal2009 mettotal2004 mettotal2011
+                     mettotal2000 mettotal1997 jointretire gender retireageg
+                     birthcohort area provinces communityid yrsinceretire1989
+                     since1989sq intergender interarea prepost1991
+                     prepost1993 prepost1997 prepost2000 prepost2004
+                     prepost2006 prepost2009
+        energy1997: pmm energy1997 i.education i.workspouse i.skills
+                     i.childcare lastsysdrug lastdiadrug lastbmi
+                     logincome2000 carbo2000 fat2000 protein2000 energy2000
+                     lastwaist logincome1989 logincome1991 logincome2004
+                     energy2004 carbo2004 fat2004 protein2004 alcohol2000
+                     logincome2006 energy2006 carbo2006 fat2006 protein2006
+                     alcohol2004 logincome1993 alcohol2006 carbo1991 fat1991
+                     protein1991 energy1991 energy1993 carbo1993 fat1993
+                     protein1993 logincome1997 logincome2009 carbo1997
+                     protein1997 fat1997 energy2009 carbo2009 fat2009
+                     protein2009 alcohol1997 alcohol2009 logincome2011
+                     mettotal2006 energy2011 carbo2011 fat2011 protein2011
+                     alcohol2011 mettotal2009 mettotal2004 mettotal2011
+                     mettotal2000 mettotal1997 jointretire gender retireageg
+                     birthcohort area provinces communityid yrsinceretire1989
+                     since1989sq intergender interarea prepost1991
+                     prepost1993 prepost1997 prepost2000 prepost2004
+                     prepost2006 prepost2009
+           fat1997: pmm fat1997 i.education i.workspouse i.skills i.childcare
+                     lastsysdrug lastdiadrug lastbmi logincome2000 carbo2000
+                     fat2000 protein2000 energy2000 lastwaist logincome1989
+                     logincome1991 logincome2004 energy2004 carbo2004 fat2004
+                     protein2004 alcohol2000 logincome2006 energy2006
+                     carbo2006 fat2006 protein2006 alcohol2004 logincome1993
+                     alcohol2006 carbo1991 fat1991 protein1991 energy1991
+                     energy1993 carbo1993 fat1993 protein1993 logincome1997
+                     logincome2009 carbo1997 protein1997 energy1997
+                     energy2009 carbo2009 fat2009 protein2009 alcohol1997
+                     alcohol2009 logincome2011 mettotal2006 energy2011
+                     carbo2011 fat2011 protein2011 alcohol2011 mettotal2009
+                     mettotal2004 mettotal2011 mettotal2000 mettotal1997
+                     jointretire gender retireageg birthcohort area provinces
+                     communityid yrsinceretire1989 since1989sq intergender
+                     interarea prepost1991 prepost1993 prepost1997
+                     prepost2000 prepost2004 prepost2006 prepost2009
+        energy2009: pmm energy2009 i.education i.workspouse i.skills
+                     i.childcare lastsysdrug lastdiadrug lastbmi
+                     logincome2000 carbo2000 fat2000 protein2000 energy2000
+                     lastwaist logincome1989 logincome1991 logincome2004
+                     energy2004 carbo2004 fat2004 protein2004 alcohol2000
+                     logincome2006 energy2006 carbo2006 fat2006 protein2006
+                     alcohol2004 logincome1993 alcohol2006 carbo1991 fat1991
+                     protein1991 energy1991 energy1993 carbo1993 fat1993
+                     protein1993 logincome1997 logincome2009 carbo1997
+                     protein1997 energy1997 fat1997 carbo2009 fat2009
+                     protein2009 alcohol1997 alcohol2009 logincome2011
+                     mettotal2006 energy2011 carbo2011 fat2011 protein2011
+                     alcohol2011 mettotal2009 mettotal2004 mettotal2011
+                     mettotal2000 mettotal1997 jointretire gender retireageg
+                     birthcohort area provinces communityid yrsinceretire1989
+                     since1989sq intergender interarea prepost1991
+                     prepost1993 prepost1997 prepost2000 prepost2004
+                     prepost2006 prepost2009
+         carbo2009: pmm carbo2009 i.education i.workspouse i.skills
+                     i.childcare lastsysdrug lastdiadrug lastbmi
+                     logincome2000 carbo2000 fat2000 protein2000 energy2000
+                     lastwaist logincome1989 logincome1991 logincome2004
+                     energy2004 carbo2004 fat2004 protein2004 alcohol2000
+                     logincome2006 energy2006 carbo2006 fat2006 protein2006
+                     alcohol2004 logincome1993 alcohol2006 carbo1991 fat1991
+                     protein1991 energy1991 energy1993 carbo1993 fat1993
+                     protein1993 logincome1997 logincome2009 carbo1997
+                     protein1997 energy1997 fat1997 energy2009 fat2009
+                     protein2009 alcohol1997 alcohol2009 logincome2011
+                     mettotal2006 energy2011 carbo2011 fat2011 protein2011
+                     alcohol2011 mettotal2009 mettotal2004 mettotal2011
+                     mettotal2000 mettotal1997 jointretire gender retireageg
+                     birthcohort area provinces communityid yrsinceretire1989
+                     since1989sq intergender interarea prepost1991
+                     prepost1993 prepost1997 prepost2000 prepost2004
+                     prepost2006 prepost2009
+           fat2009: pmm fat2009 i.education i.workspouse i.skills i.childcare
+                     lastsysdrug lastdiadrug lastbmi logincome2000 carbo2000
+                     fat2000 protein2000 energy2000 lastwaist logincome1989
+                     logincome1991 logincome2004 energy2004 carbo2004 fat2004
+                     protein2004 alcohol2000 logincome2006 energy2006
+                     carbo2006 fat2006 protein2006 alcohol2004 logincome1993
+                     alcohol2006 carbo1991 fat1991 protein1991 energy1991
+                     energy1993 carbo1993 fat1993 protein1993 logincome1997
+                     logincome2009 carbo1997 protein1997 energy1997 fat1997
+                     energy2009 carbo2009 protein2009 alcohol1997 alcohol2009
+                     logincome2011 mettotal2006 energy2011 carbo2011 fat2011
+                     protein2011 alcohol2011 mettotal2009 mettotal2004
+                     mettotal2011 mettotal2000 mettotal1997 jointretire
+                     gender retireageg birthcohort area provinces communityid
+                     yrsinceretire1989 since1989sq intergender interarea
+                     prepost1991 prepost1993 prepost1997 prepost2000
+                     prepost2004 prepost2006 prepost2009
+       protein2009: pmm protein2009 i.education i.workspouse i.skills
+                     i.childcare lastsysdrug lastdiadrug lastbmi
+                     logincome2000 carbo2000 fat2000 protein2000 energy2000
+                     lastwaist logincome1989 logincome1991 logincome2004
+                     energy2004 carbo2004 fat2004 protein2004 alcohol2000
+                     logincome2006 energy2006 carbo2006 fat2006 protein2006
+                     alcohol2004 logincome1993 alcohol2006 carbo1991 fat1991
+                     protein1991 energy1991 energy1993 carbo1993 fat1993
+                     protein1993 logincome1997 logincome2009 carbo1997
+                     protein1997 energy1997 fat1997 energy2009 carbo2009
+                     fat2009 alcohol1997 alcohol2009 logincome2011
+                     mettotal2006 energy2011 carbo2011 fat2011 protein2011
+                     alcohol2011 mettotal2009 mettotal2004 mettotal2011
+                     mettotal2000 mettotal1997 jointretire gender retireageg
+                     birthcohort area provinces communityid yrsinceretire1989
+                     since1989sq intergender interarea prepost1991
+                     prepost1993 prepost1997 prepost2000 prepost2004
+                     prepost2006 prepost2009
+       alcohol1997: pmm alcohol1997 i.education i.workspouse i.skills
+                     i.childcare lastsysdrug lastdiadrug lastbmi
+                     logincome2000 carbo2000 fat2000 protein2000 energy2000
+                     lastwaist logincome1989 logincome1991 logincome2004
+                     energy2004 carbo2004 fat2004 protein2004 alcohol2000
+                     logincome2006 energy2006 carbo2006 fat2006 protein2006
+                     alcohol2004 logincome1993 alcohol2006 carbo1991 fat1991
+                     protein1991 energy1991 energy1993 carbo1993 fat1993
+                     protein1993 logincome1997 logincome2009 carbo1997
+                     protein1997 energy1997 fat1997 energy2009 carbo2009
+                     fat2009 protein2009 alcohol2009 logincome2011
+                     mettotal2006 energy2011 carbo2011 fat2011 protein2011
+                     alcohol2011 mettotal2009 mettotal2004 mettotal2011
+                     mettotal2000 mettotal1997 jointretire gender retireageg
+                     birthcohort area provinces communityid yrsinceretire1989
+                     since1989sq intergender interarea prepost1991
+                     prepost1993 prepost1997 prepost2000 prepost2004
+                     prepost2006 prepost2009
+       alcohol2009: pmm alcohol2009 i.education i.workspouse i.skills
+                     i.childcare lastsysdrug lastdiadrug lastbmi
+                     logincome2000 carbo2000 fat2000 protein2000 energy2000
+                     lastwaist logincome1989 logincome1991 logincome2004
+                     energy2004 carbo2004 fat2004 protein2004 alcohol2000
+                     logincome2006 energy2006 carbo2006 fat2006 protein2006
+                     alcohol2004 logincome1993 alcohol2006 carbo1991 fat1991
+                     protein1991 energy1991 energy1993 carbo1993 fat1993
+                     protein1993 logincome1997 logincome2009 carbo1997
+                     protein1997 energy1997 fat1997 energy2009 carbo2009
+                     fat2009 protein2009 alcohol1997 logincome2011
+                     mettotal2006 energy2011 carbo2011 fat2011 protein2011
+                     alcohol2011 mettotal2009 mettotal2004 mettotal2011
+                     mettotal2000 mettotal1997 jointretire gender retireageg
+                     birthcohort area provinces communityid yrsinceretire1989
+                     since1989sq intergender interarea prepost1991
+                     prepost1993 prepost1997 prepost2000 prepost2004
+                     prepost2006 prepost2009
+     bismoking2011: logit bismoking2011 i.education i.workspouse i.skills
+                     i.childcare lastsysdrug lastdiadrug lastbmi
+                     logincome2000 carbo2000 fat2000 protein2000 energy2000
+                     lastwaist logincome1989 logincome1991 logincome2004
+                     energy2004 carbo2004 fat2004 protein2004 alcohol2000
+                     logincome2006 energy2006 carbo2006 fat2006 protein2006
+                     alcohol2004 logincome1993 alcohol2006 carbo1991 fat1991
+                     protein1991 energy1991 energy1993 carbo1993 fat1993
+                     protein1993 logincome1997 i.bismoking2009 logincome2009
+                     carbo1997 protein1997 energy1997 fat1997 energy2009
+                     carbo2009 fat2009 protein2009 alcohol1997 alcohol2009
+                     logincome2011 mettotal2006 energy2011 carbo2011 fat2011
+                     protein2011 alcohol2011 mettotal2009 mettotal2004
+                     mettotal2011 mettotal2000 mettotal1997 jointretire
+                     gender retireageg birthcohort area provinces communityid
+                     yrsinceretire1989 since1989sq intergender interarea
+                     prepost1991 prepost1993 prepost1997 prepost2000
+                     prepost2004 prepost2006 prepost2009 , augment iter(20)
+     logincome2011: pmm logincome2011 i.education i.workspouse i.skills
+                     i.childcare lastsysdrug lastdiadrug lastbmi
+                     logincome2000 carbo2000 fat2000 protein2000 energy2000
+                     lastwaist logincome1989 logincome1991 logincome2004
+                     energy2004 carbo2004 fat2004 protein2004 alcohol2000
+                     logincome2006 energy2006 carbo2006 fat2006 protein2006
+                     alcohol2004 logincome1993 alcohol2006 carbo1991 fat1991
+                     protein1991 energy1991 energy1993 carbo1993 fat1993
+                     protein1993 logincome1997 logincome2009 carbo1997
+                     protein1997 energy1997 fat1997 energy2009 carbo2009
+                     fat2009 protein2009 alcohol1997 alcohol2009 mettotal2006
+                     energy2011 carbo2011 fat2011 protein2011 alcohol2011
+                     mettotal2009 mettotal2004 mettotal2011 mettotal2000
+                     mettotal1997 jointretire gender retireageg birthcohort
+                     area provinces communityid yrsinceretire1989 since1989sq
+                     intergender interarea prepost1991 prepost1993
+                     prepost1997 prepost2000 prepost2004 prepost2006
+                     prepost2009
+      mettotal2006: pmm mettotal2006 i.education i.workspouse i.skills
+                     i.childcare lastsysdrug lastdiadrug lastbmi
+                     logincome2000 carbo2000 fat2000 protein2000 energy2000
+                     lastwaist logincome1989 logincome1991 logincome2004
+                     energy2004 carbo2004 fat2004 protein2004 alcohol2000
+                     logincome2006 energy2006 carbo2006 fat2006 protein2006
+                     alcohol2004 logincome1993 alcohol2006 carbo1991 fat1991
+                     protein1991 energy1991 energy1993 carbo1993 fat1993
+                     protein1993 logincome1997 logincome2009 carbo1997
+                     protein1997 energy1997 fat1997 energy2009 carbo2009
+                     fat2009 protein2009 alcohol1997 alcohol2009
+                     logincome2011 energy2011 carbo2011 fat2011 protein2011
+                     alcohol2011 mettotal2009 mettotal2004 mettotal2011
+                     mettotal2000 mettotal1997 jointretire gender retireageg
+                     birthcohort area provinces communityid yrsinceretire1989
+                     since1989sq intergender interarea prepost1991
+                     prepost1993 prepost1997 prepost2000 prepost2004
+                     prepost2006 prepost2009
+        energy2011: pmm energy2011 i.education i.workspouse i.skills
+                     i.childcare lastsysdrug lastdiadrug lastbmi
+                     logincome2000 carbo2000 fat2000 protein2000 energy2000
+                     lastwaist logincome1989 logincome1991 logincome2004
+                     energy2004 carbo2004 fat2004 protein2004 alcohol2000
+                     logincome2006 energy2006 carbo2006 fat2006 protein2006
+                     alcohol2004 logincome1993 alcohol2006 carbo1991 fat1991
+                     protein1991 energy1991 energy1993 carbo1993 fat1993
+                     protein1993 logincome1997 logincome2009 carbo1997
+                     protein1997 energy1997 fat1997 energy2009 carbo2009
+                     fat2009 protein2009 alcohol1997 alcohol2009
+                     logincome2011 mettotal2006 carbo2011 fat2011 protein2011
+                     alcohol2011 mettotal2009 mettotal2004 mettotal2011
+                     mettotal2000 mettotal1997 jointretire gender retireageg
+                     birthcohort area provinces communityid yrsinceretire1989
+                     since1989sq intergender interarea prepost1991
+                     prepost1993 prepost1997 prepost2000 prepost2004
+                     prepost2006 prepost2009
+         carbo2011: pmm carbo2011 i.education i.workspouse i.skills
+                     i.childcare lastsysdrug lastdiadrug lastbmi
+                     logincome2000 carbo2000 fat2000 protein2000 energy2000
+                     lastwaist logincome1989 logincome1991 logincome2004
+                     energy2004 carbo2004 fat2004 protein2004 alcohol2000
+                     logincome2006 energy2006 carbo2006 fat2006 protein2006
+                     alcohol2004 logincome1993 alcohol2006 carbo1991 fat1991
+                     protein1991 energy1991 energy1993 carbo1993 fat1993
+                     protein1993 logincome1997 logincome2009 carbo1997
+                     protein1997 energy1997 fat1997 energy2009 carbo2009
+                     fat2009 protein2009 alcohol1997 alcohol2009
+                     logincome2011 mettotal2006 energy2011 fat2011
+                     protein2011 alcohol2011 mettotal2009 mettotal2004
+                     mettotal2011 mettotal2000 mettotal1997 jointretire
+                     gender retireageg birthcohort area provinces communityid
+                     yrsinceretire1989 since1989sq intergender interarea
+                     prepost1991 prepost1993 prepost1997 prepost2000
+                     prepost2004 prepost2006 prepost2009
+           fat2011: pmm fat2011 i.education i.workspouse i.skills i.childcare
+                     lastsysdrug lastdiadrug lastbmi logincome2000 carbo2000
+                     fat2000 protein2000 energy2000 lastwaist logincome1989
+                     logincome1991 logincome2004 energy2004 carbo2004 fat2004
+                     protein2004 alcohol2000 logincome2006 energy2006
+                     carbo2006 fat2006 protein2006 alcohol2004 logincome1993
+                     alcohol2006 carbo1991 fat1991 protein1991 energy1991
+                     energy1993 carbo1993 fat1993 protein1993 logincome1997
+                     logincome2009 carbo1997 protein1997 energy1997 fat1997
+                     energy2009 carbo2009 fat2009 protein2009 alcohol1997
+                     alcohol2009 logincome2011 mettotal2006 energy2011
+                     carbo2011 protein2011 alcohol2011 mettotal2009
+                     mettotal2004 mettotal2011 mettotal2000 mettotal1997
+                     jointretire gender retireageg birthcohort area provinces
+                     communityid yrsinceretire1989 since1989sq intergender
+                     interarea prepost1991 prepost1993 prepost1997
+                     prepost2000 prepost2004 prepost2006 prepost2009
+       protein2011: pmm protein2011 i.education i.workspouse i.skills
+                     i.childcare lastsysdrug lastdiadrug lastbmi
+                     logincome2000 carbo2000 fat2000 protein2000 energy2000
+                     lastwaist logincome1989 logincome1991 logincome2004
+                     energy2004 carbo2004 fat2004 protein2004 alcohol2000
+                     logincome2006 energy2006 carbo2006 fat2006 protein2006
+                     alcohol2004 logincome1993 alcohol2006 carbo1991 fat1991
+                     protein1991 energy1991 energy1993 carbo1993 fat1993
+                     protein1993 logincome1997 logincome2009 carbo1997
+                     protein1997 energy1997 fat1997 energy2009 carbo2009
+                     fat2009 protein2009 alcohol1997 alcohol2009
+                     logincome2011 mettotal2006 energy2011 carbo2011 fat2011
+                     alcohol2011 mettotal2009 mettotal2004 mettotal2011
+                     mettotal2000 mettotal1997 jointretire gender retireageg
+                     birthcohort area provinces communityid yrsinceretire1989
+                     since1989sq intergender interarea prepost1991
+                     prepost1993 prepost1997 prepost2000 prepost2004
+                     prepost2006 prepost2009
+       alcohol2011: pmm alcohol2011 i.education i.workspouse i.skills
+                     i.childcare lastsysdrug lastdiadrug lastbmi
+                     logincome2000 carbo2000 fat2000 protein2000 energy2000
+                     lastwaist logincome1989 logincome1991 logincome2004
+                     energy2004 carbo2004 fat2004 protein2004 alcohol2000
+                     logincome2006 energy2006 carbo2006 fat2006 protein2006
+                     alcohol2004 logincome1993 alcohol2006 carbo1991 fat1991
+                     protein1991 energy1991 energy1993 carbo1993 fat1993
+                     protein1993 logincome1997 logincome2009 carbo1997
+                     protein1997 energy1997 fat1997 energy2009 carbo2009
+                     fat2009 protein2009 alcohol1997 alcohol2009
+                     logincome2011 mettotal2006 energy2011 carbo2011 fat2011
+                     protein2011 mettotal2009 mettotal2004 mettotal2011
+                     mettotal2000 mettotal1997 jointretire gender retireageg
+                     birthcohort area provinces communityid yrsinceretire1989
+                     since1989sq intergender interarea prepost1991
+                     prepost1993 prepost1997 prepost2000 prepost2004
+                     prepost2006 prepost2009
+      mettotal2009: pmm mettotal2009 i.education i.workspouse i.skills
+                     i.childcare lastsysdrug lastdiadrug lastbmi
+                     logincome2000 carbo2000 fat2000 protein2000 energy2000
+                     lastwaist logincome1989 logincome1991 logincome2004
+                     energy2004 carbo2004 fat2004 protein2004 alcohol2000
+                     logincome2006 energy2006 carbo2006 fat2006 protein2006
+                     alcohol2004 logincome1993 alcohol2006 carbo1991 fat1991
+                     protein1991 energy1991 energy1993 carbo1993 fat1993
+                     protein1993 logincome1997 logincome2009 carbo1997
+                     protein1997 energy1997 fat1997 energy2009 carbo2009
+                     fat2009 protein2009 alcohol1997 alcohol2009
+                     logincome2011 mettotal2006 energy2011 carbo2011 fat2011
+                     protein2011 alcohol2011 mettotal2004 mettotal2011
+                     mettotal2000 mettotal1997 jointretire gender retireageg
+                     birthcohort area provinces communityid yrsinceretire1989
+                     since1989sq intergender interarea prepost1991
+                     prepost1993 prepost1997 prepost2000 prepost2004
+                     prepost2006 prepost2009
+      mettotal2004: pmm mettotal2004 i.education i.workspouse i.skills
+                     i.childcare lastsysdrug lastdiadrug lastbmi
+                     logincome2000 carbo2000 fat2000 protein2000 energy2000
+                     lastwaist logincome1989 logincome1991 logincome2004
+                     energy2004 carbo2004 fat2004 protein2004 alcohol2000
+                     logincome2006 energy2006 carbo2006 fat2006 protein2006
+                     alcohol2004 logincome1993 alcohol2006 carbo1991 fat1991
+                     protein1991 energy1991 energy1993 carbo1993 fat1993
+                     protein1993 logincome1997 logincome2009 carbo1997
+                     protein1997 energy1997 fat1997 energy2009 carbo2009
+                     fat2009 protein2009 alcohol1997 alcohol2009
+                     logincome2011 mettotal2006 energy2011 carbo2011 fat2011
+                     protein2011 alcohol2011 mettotal2009 mettotal2011
+                     mettotal2000 mettotal1997 jointretire gender retireageg
+                     birthcohort area provinces communityid yrsinceretire1989
+                     since1989sq intergender interarea prepost1991
+                     prepost1993 prepost1997 prepost2000 prepost2004
+                     prepost2006 prepost2009
+      mettotal2011: pmm mettotal2011 i.education i.workspouse i.skills
+                     i.childcare lastsysdrug lastdiadrug lastbmi
+                     logincome2000 carbo2000 fat2000 protein2000 energy2000
+                     lastwaist logincome1989 logincome1991 logincome2004
+                     energy2004 carbo2004 fat2004 protein2004 alcohol2000
+                     logincome2006 energy2006 carbo2006 fat2006 protein2006
+                     alcohol2004 logincome1993 alcohol2006 carbo1991 fat1991
+                     protein1991 energy1991 energy1993 carbo1993 fat1993
+                     protein1993 logincome1997 logincome2009 carbo1997
+                     protein1997 energy1997 fat1997 energy2009 carbo2009
+                     fat2009 protein2009 alcohol1997 alcohol2009
+                     logincome2011 mettotal2006 energy2011 carbo2011 fat2011
+                     protein2011 alcohol2011 mettotal2009 mettotal2004
+                     mettotal2000 mettotal1997 jointretire gender retireageg
+                     birthcohort area provinces communityid yrsinceretire1989
+                     since1989sq intergender interarea prepost1991
+                     prepost1993 prepost1997 prepost2000 prepost2004
+                     prepost2006 prepost2009
+      mettotal2000: pmm mettotal2000 i.education i.workspouse i.skills
+                     i.childcare lastsysdrug lastdiadrug lastbmi
+                     logincome2000 carbo2000 fat2000 protein2000 energy2000
+                     lastwaist logincome1989 logincome1991 logincome2004
+                     energy2004 carbo2004 fat2004 protein2004 alcohol2000
+                     logincome2006 energy2006 carbo2006 fat2006 protein2006
+                     alcohol2004 logincome1993 alcohol2006 carbo1991 fat1991
+                     protein1991 energy1991 energy1993 carbo1993 fat1993
+                     protein1993 logincome1997 logincome2009 carbo1997
+                     protein1997 energy1997 fat1997 energy2009 carbo2009
+                     fat2009 protein2009 alcohol1997 alcohol2009
+                     logincome2011 mettotal2006 energy2011 carbo2011 fat2011
+                     protein2011 alcohol2011 mettotal2009 mettotal2004
+                     mettotal2011 mettotal1997 jointretire gender retireageg
+                     birthcohort area provinces communityid yrsinceretire1989
+                     since1989sq intergender interarea prepost1991
+                     prepost1993 prepost1997 prepost2000 prepost2004
+                     prepost2006 prepost2009
+      mettotal1997: pmm mettotal1997 i.education i.workspouse i.skills
+                     i.childcare lastsysdrug lastdiadrug lastbmi
+                     logincome2000 carbo2000 fat2000 protein2000 energy2000
+                     lastwaist logincome1989 logincome1991 logincome2004
+                     energy2004 carbo2004 fat2004 protein2004 alcohol2000
+                     logincome2006 energy2006 carbo2006 fat2006 protein2006
+                     alcohol2004 logincome1993 alcohol2006 carbo1991 fat1991
+                     protein1991 energy1991 energy1993 carbo1993 fat1993
+                     protein1993 logincome1997 logincome2009 carbo1997
+                     protein1997 energy1997 fat1997 energy2009 carbo2009
+                     fat2009 protein2009 alcohol1997 alcohol2009
+                     logincome2011 mettotal2006 energy2011 carbo2011 fat2011
+                     protein2011 alcohol2011 mettotal2009 mettotal2004
+                     mettotal2011 mettotal2000 jointretire gender retireageg
+                     birthcohort area provinces communityid yrsinceretire1989
+                     since1989sq intergender interarea prepost1991
+                     prepost1993 prepost1997 prepost2000 prepost2004
+                     prepost2006 prepost2009
+
+Performing chained iterations ...
+logit failed to converge on observed data
+error occurred during imputation of education skills workspouse childcare
+bismoking2011 bismoking2009 bismoking2006 bismoking2004 bismoking2000
+bismoking1997 lastsysdrug lastdiadrug lastwaist lastbmi logincome1989
+logincome1991 logincome1993 logincome1997 logincome2000 logincome2004
+logincome2006 logincome2009 logincome2011 energy1991 carbo1991 fat1991
+protein1991 energy1993 carbo1993 fat1993 protein1993 energy1997 carbo1997
+fat1997 protein1997 energy2000 carbo2000 fat2000 protein2000 energy2004
+carbo2004 fat2004 protein2004 energy2006 carbo2006 fat2006 protein2006
+energy2009 carbo2009 fat2009 protein2009 energy2011 carbo2011 fat2011
+protein2011 mettotal1997 mettotal2000 mettotal2004 mettotal2006 mettotal2009
+mettotal2011 alcohol1997 alcohol2000 alcohol2004 alcohol2006 alcohol2009
+alcohol2011 on m = 4
+r(430);
+
+end of do-file
+r(430);
