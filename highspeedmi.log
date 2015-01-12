@@ -33,6 +33,7 @@ Note:  Your site can add messages to the introduction by editing the file
 . 
 . mi set flong
 
+. 
 . mi xtset,clear
 
 . set matsize 10000
@@ -51,8 +52,6 @@ Note:  Your site can add messages to the introduction by editing the file
 (143 missing values generated)
 
 . 
-. gen since1989sq=yrsinceretire1989^2
-
 . 
 . replace workspouse=3 if lastmarriage==1
 (97 real changes made)
@@ -78,10 +77,10 @@ Note:  Your site can add messages to the introduction by editing the file
 >  ///
 > alcohol1997 alcohol2000 alcohol2004 alcohol2006 alcohol2009 alcohol2011 ///
 > flag1989 flag1991 flag1993 flag1997 flag2000 flag2004 flag2006 flag2009 flag2
-> 011 ///
-> 
+> 011 
 (1239 m=0 obs. now marked as incomplete)
 
+. 
 . 
 . 
 . ***************
@@ -105,9 +104,9 @@ Note:  Your site can add messages to the introduction by editing the file
 >  ///
 > alcohol1997 alcohol2000 alcohol2004 alcohol2006 alcohol2009 alcohol2011 ///
 > =  gender retireageg  birthcohort area provinces communityid yrsinceretire198
-> 9 since1989sq  ///
-> prepost1991 prepost1993 prepost1997 ///
-> prepost2000 prepost2004 prepost2006 prepost2009 ///
+> 9 ///
+> prepost1989 prepost1991 prepost1993 prepost1997 ///
+> prepost2000 prepost2004 prepost2006 prepost2009 prepost2011 ///
 > xgender xarea  ///
 > ,add(20) burnin(100) rseed(1389)augment 
 
@@ -128,10 +127,10 @@ Conditional models:
                      mettotal2006 energy2011 carbo2011 fat2011 protein2011
                      alcohol2011 mettotal2009 mettotal2004 mettotal2011
                      mettotal2000 mettotal1997 gender retireageg birthcohort
-                     area provinces communityid yrsinceretire1989 since1989sq
+                     area provinces communityid yrsinceretire1989 prepost1989
                      prepost1991 prepost1993 prepost1997 prepost2000
-                     prepost2004 prepost2006 prepost2009 xgender xarea ,
-                     augment iter(20)
+                     prepost2004 prepost2006 prepost2009 prepost2011 xgender
+                     xarea , augment iter(20)
         workspouse: logit workspouse i.education i.skills i.jointretire
                      i.lastsmoke i.childcare lastsysdrug lastdiadrug lastbmi
                      i.lastalcohol logincome2000 carbo2000 fat2000
@@ -148,10 +147,10 @@ Conditional models:
                      mettotal2006 energy2011 carbo2011 fat2011 protein2011
                      alcohol2011 mettotal2009 mettotal2004 mettotal2011
                      mettotal2000 mettotal1997 gender retireageg birthcohort
-                     area provinces communityid yrsinceretire1989 since1989sq
+                     area provinces communityid yrsinceretire1989 prepost1989
                      prepost1991 prepost1993 prepost1997 prepost2000
-                     prepost2004 prepost2006 prepost2009 xgender xarea if
-                     lastmarriage==0, augment
+                     prepost2004 prepost2006 prepost2009 prepost2011 xgender
+                     xarea if lastmarriage==0, augment
             skills: ologit skills i.education i.workspouse i.jointretire
                      i.lastsmoke i.childcare lastsysdrug lastdiadrug lastbmi
                      i.lastalcohol logincome2000 carbo2000 fat2000
@@ -168,10 +167,10 @@ Conditional models:
                      mettotal2006 energy2011 carbo2011 fat2011 protein2011
                      alcohol2011 mettotal2009 mettotal2004 mettotal2011
                      mettotal2000 mettotal1997 gender retireageg birthcohort
-                     area provinces communityid yrsinceretire1989 since1989sq
+                     area provinces communityid yrsinceretire1989 prepost1989
                      prepost1991 prepost1993 prepost1997 prepost2000
-                     prepost2004 prepost2006 prepost2009 xgender xarea ,
-                     augment iter(20)
+                     prepost2004 prepost2006 prepost2009 prepost2011 xgender
+                     xarea , augment iter(20)
        jointretire: logit jointretire i.education i.workspouse i.skills
                      i.lastsmoke i.childcare lastsysdrug lastdiadrug lastbmi
                      i.lastalcohol logincome2000 carbo2000 fat2000
@@ -188,10 +187,10 @@ Conditional models:
                      mettotal2006 energy2011 carbo2011 fat2011 protein2011
                      alcohol2011 mettotal2009 mettotal2004 mettotal2011
                      mettotal2000 mettotal1997 gender retireageg birthcohort
-                     area provinces communityid yrsinceretire1989 since1989sq
+                     area provinces communityid yrsinceretire1989 prepost1989
                      prepost1991 prepost1993 prepost1997 prepost2000
-                     prepost2004 prepost2006 prepost2009 xgender xarea ,
-                     augment iter(20)
+                     prepost2004 prepost2006 prepost2009 prepost2011 xgender
+                     xarea , augment iter(20)
          lastsmoke: logit lastsmoke i.education i.workspouse i.skills
                      i.jointretire i.childcare lastsysdrug lastdiadrug
                      lastbmi i.lastalcohol logincome2000 carbo2000 fat2000
@@ -208,10 +207,10 @@ Conditional models:
                      mettotal2006 energy2011 carbo2011 fat2011 protein2011
                      alcohol2011 mettotal2009 mettotal2004 mettotal2011
                      mettotal2000 mettotal1997 gender retireageg birthcohort
-                     area provinces communityid yrsinceretire1989 since1989sq
+                     area provinces communityid yrsinceretire1989 prepost1989
                      prepost1991 prepost1993 prepost1997 prepost2000
-                     prepost2004 prepost2006 prepost2009 xgender xarea ,
-                     augment iter(20)
+                     prepost2004 prepost2006 prepost2009 prepost2011 xgender
+                     xarea , augment iter(20)
          childcare: logit childcare i.education i.workspouse i.skills
                      i.jointretire i.lastsmoke lastsysdrug lastdiadrug
                      lastbmi i.lastalcohol logincome2000 carbo2000 fat2000
@@ -228,10 +227,10 @@ Conditional models:
                      mettotal2006 energy2011 carbo2011 fat2011 protein2011
                      alcohol2011 mettotal2009 mettotal2004 mettotal2011
                      mettotal2000 mettotal1997 gender retireageg birthcohort
-                     area provinces communityid yrsinceretire1989 since1989sq
+                     area provinces communityid yrsinceretire1989 prepost1989
                      prepost1991 prepost1993 prepost1997 prepost2000
-                     prepost2004 prepost2006 prepost2009 xgender xarea ,
-                     augment iter(20)
+                     prepost2004 prepost2006 prepost2009 prepost2011 xgender
+                     xarea , augment iter(20)
        lastsysdrug: regress lastsysdrug i.education i.workspouse i.skills
                      i.jointretire i.lastsmoke i.childcare lastdiadrug
                      lastbmi i.lastalcohol logincome2000 carbo2000 fat2000
@@ -248,9 +247,10 @@ Conditional models:
                      mettotal2006 energy2011 carbo2011 fat2011 protein2011
                      alcohol2011 mettotal2009 mettotal2004 mettotal2011
                      mettotal2000 mettotal1997 gender retireageg birthcohort
-                     area provinces communityid yrsinceretire1989 since1989sq
+                     area provinces communityid yrsinceretire1989 prepost1989
                      prepost1991 prepost1993 prepost1997 prepost2000
-                     prepost2004 prepost2006 prepost2009 xgender xarea
+                     prepost2004 prepost2006 prepost2009 prepost2011 xgender
+                     xarea
        lastdiadrug: regress lastdiadrug i.education i.workspouse i.skills
                      i.jointretire i.lastsmoke i.childcare lastsysdrug
                      lastbmi i.lastalcohol logincome2000 carbo2000 fat2000
@@ -267,9 +267,10 @@ Conditional models:
                      mettotal2006 energy2011 carbo2011 fat2011 protein2011
                      alcohol2011 mettotal2009 mettotal2004 mettotal2011
                      mettotal2000 mettotal1997 gender retireageg birthcohort
-                     area provinces communityid yrsinceretire1989 since1989sq
+                     area provinces communityid yrsinceretire1989 prepost1989
                      prepost1991 prepost1993 prepost1997 prepost2000
-                     prepost2004 prepost2006 prepost2009 xgender xarea
+                     prepost2004 prepost2006 prepost2009 prepost2011 xgender
+                     xarea
            lastbmi: regress lastbmi i.education i.workspouse i.skills
                      i.jointretire i.lastsmoke i.childcare lastsysdrug
                      lastdiadrug i.lastalcohol logincome2000 carbo2000
@@ -286,9 +287,10 @@ Conditional models:
                      mettotal2006 energy2011 carbo2011 fat2011 protein2011
                      alcohol2011 mettotal2009 mettotal2004 mettotal2011
                      mettotal2000 mettotal1997 gender retireageg birthcohort
-                     area provinces communityid yrsinceretire1989 since1989sq
+                     area provinces communityid yrsinceretire1989 prepost1989
                      prepost1991 prepost1993 prepost1997 prepost2000
-                     prepost2004 prepost2006 prepost2009 xgender xarea
+                     prepost2004 prepost2006 prepost2009 prepost2011 xgender
+                     xarea
        lastalcohol: ologit lastalcohol i.education i.workspouse i.skills
                      i.jointretire i.lastsmoke i.childcare lastsysdrug
                      lastdiadrug lastbmi logincome2000 carbo2000 fat2000
@@ -305,10 +307,10 @@ Conditional models:
                      mettotal2006 energy2011 carbo2011 fat2011 protein2011
                      alcohol2011 mettotal2009 mettotal2004 mettotal2011
                      mettotal2000 mettotal1997 gender retireageg birthcohort
-                     area provinces communityid yrsinceretire1989 since1989sq
+                     area provinces communityid yrsinceretire1989 prepost1989
                      prepost1991 prepost1993 prepost1997 prepost2000
-                     prepost2004 prepost2006 prepost2009 xgender xarea ,
-                     augment iter(20)
+                     prepost2004 prepost2006 prepost2009 prepost2011 xgender
+                     xarea , augment iter(20)
      logincome2000: pmm logincome2000 i.education i.workspouse i.skills
                      i.jointretire i.lastsmoke i.childcare lastsysdrug
                      lastdiadrug lastbmi i.lastalcohol carbo2000 fat2000
@@ -325,9 +327,10 @@ Conditional models:
                      mettotal2006 energy2011 carbo2011 fat2011 protein2011
                      alcohol2011 mettotal2009 mettotal2004 mettotal2011
                      mettotal2000 mettotal1997 gender retireageg birthcohort
-                     area provinces communityid yrsinceretire1989 since1989sq
+                     area provinces communityid yrsinceretire1989 prepost1989
                      prepost1991 prepost1993 prepost1997 prepost2000
-                     prepost2004 prepost2006 prepost2009 xgender xarea
+                     prepost2004 prepost2006 prepost2009 prepost2011 xgender
+                     xarea
          carbo2000: pmm carbo2000 i.education i.workspouse i.skills
                      i.jointretire i.lastsmoke i.childcare lastsysdrug
                      lastdiadrug lastbmi i.lastalcohol logincome2000 fat2000
@@ -344,9 +347,10 @@ Conditional models:
                      mettotal2006 energy2011 carbo2011 fat2011 protein2011
                      alcohol2011 mettotal2009 mettotal2004 mettotal2011
                      mettotal2000 mettotal1997 gender retireageg birthcohort
-                     area provinces communityid yrsinceretire1989 since1989sq
+                     area provinces communityid yrsinceretire1989 prepost1989
                      prepost1991 prepost1993 prepost1997 prepost2000
-                     prepost2004 prepost2006 prepost2009 xgender xarea
+                     prepost2004 prepost2006 prepost2009 prepost2011 xgender
+                     xarea
            fat2000: pmm fat2000 i.education i.workspouse i.skills
                      i.jointretire i.lastsmoke i.childcare lastsysdrug
                      lastdiadrug lastbmi i.lastalcohol logincome2000
@@ -363,9 +367,10 @@ Conditional models:
                      mettotal2006 energy2011 carbo2011 fat2011 protein2011
                      alcohol2011 mettotal2009 mettotal2004 mettotal2011
                      mettotal2000 mettotal1997 gender retireageg birthcohort
-                     area provinces communityid yrsinceretire1989 since1989sq
+                     area provinces communityid yrsinceretire1989 prepost1989
                      prepost1991 prepost1993 prepost1997 prepost2000
-                     prepost2004 prepost2006 prepost2009 xgender xarea
+                     prepost2004 prepost2006 prepost2009 prepost2011 xgender
+                     xarea
        protein2000: pmm protein2000 i.education i.workspouse i.skills
                      i.jointretire i.lastsmoke i.childcare lastsysdrug
                      lastdiadrug lastbmi i.lastalcohol logincome2000
@@ -382,9 +387,10 @@ Conditional models:
                      mettotal2006 energy2011 carbo2011 fat2011 protein2011
                      alcohol2011 mettotal2009 mettotal2004 mettotal2011
                      mettotal2000 mettotal1997 gender retireageg birthcohort
-                     area provinces communityid yrsinceretire1989 since1989sq
+                     area provinces communityid yrsinceretire1989 prepost1989
                      prepost1991 prepost1993 prepost1997 prepost2000
-                     prepost2004 prepost2006 prepost2009 xgender xarea
+                     prepost2004 prepost2006 prepost2009 prepost2011 xgender
+                     xarea
         energy2000: pmm energy2000 i.education i.workspouse i.skills
                      i.jointretire i.lastsmoke i.childcare lastsysdrug
                      lastdiadrug lastbmi i.lastalcohol logincome2000
@@ -401,9 +407,10 @@ Conditional models:
                      mettotal2006 energy2011 carbo2011 fat2011 protein2011
                      alcohol2011 mettotal2009 mettotal2004 mettotal2011
                      mettotal2000 mettotal1997 gender retireageg birthcohort
-                     area provinces communityid yrsinceretire1989 since1989sq
+                     area provinces communityid yrsinceretire1989 prepost1989
                      prepost1991 prepost1993 prepost1997 prepost2000
-                     prepost2004 prepost2006 prepost2009 xgender xarea
+                     prepost2004 prepost2006 prepost2009 prepost2011 xgender
+                     xarea
          lastwaist: regress lastwaist i.education i.workspouse i.skills
                      i.jointretire i.lastsmoke i.childcare lastsysdrug
                      lastdiadrug lastbmi i.lastalcohol logincome2000
@@ -420,9 +427,10 @@ Conditional models:
                      mettotal2006 energy2011 carbo2011 fat2011 protein2011
                      alcohol2011 mettotal2009 mettotal2004 mettotal2011
                      mettotal2000 mettotal1997 gender retireageg birthcohort
-                     area provinces communityid yrsinceretire1989 since1989sq
+                     area provinces communityid yrsinceretire1989 prepost1989
                      prepost1991 prepost1993 prepost1997 prepost2000
-                     prepost2004 prepost2006 prepost2009 xgender xarea
+                     prepost2004 prepost2006 prepost2009 prepost2011 xgender
+                     xarea
      bismoking2000: logit bismoking2000 i.education i.workspouse i.skills
                      i.jointretire i.lastsmoke i.childcare lastsysdrug
                      lastdiadrug lastbmi i.lastalcohol logincome2000
@@ -439,10 +447,10 @@ Conditional models:
                      mettotal2006 energy2011 carbo2011 fat2011 protein2011
                      alcohol2011 mettotal2009 mettotal2004 mettotal2011
                      mettotal2000 mettotal1997 gender retireageg birthcohort
-                     area provinces communityid yrsinceretire1989 since1989sq
+                     area provinces communityid yrsinceretire1989 prepost1989
                      prepost1991 prepost1993 prepost1997 prepost2000
-                     prepost2004 prepost2006 prepost2009 xgender xarea ,
-                     augment iter(20)
+                     prepost2004 prepost2006 prepost2009 prepost2011 xgender
+                     xarea , augment iter(20)
      logincome1989: pmm logincome1989 i.education i.workspouse i.skills
                      i.jointretire i.lastsmoke i.childcare lastsysdrug
                      lastdiadrug lastbmi i.lastalcohol logincome2000
@@ -459,9 +467,10 @@ Conditional models:
                      mettotal2006 energy2011 carbo2011 fat2011 protein2011
                      alcohol2011 mettotal2009 mettotal2004 mettotal2011
                      mettotal2000 mettotal1997 gender retireageg birthcohort
-                     area provinces communityid yrsinceretire1989 since1989sq
+                     area provinces communityid yrsinceretire1989 prepost1989
                      prepost1991 prepost1993 prepost1997 prepost2000
-                     prepost2004 prepost2006 prepost2009 xgender xarea
+                     prepost2004 prepost2006 prepost2009 prepost2011 xgender
+                     xarea
      bismoking2004: logit bismoking2004 i.education i.workspouse i.skills
                      i.jointretire i.lastsmoke i.childcare lastsysdrug
                      lastdiadrug lastbmi i.lastalcohol logincome2000
@@ -478,10 +487,10 @@ Conditional models:
                      mettotal2006 energy2011 carbo2011 fat2011 protein2011
                      alcohol2011 mettotal2009 mettotal2004 mettotal2011
                      mettotal2000 mettotal1997 gender retireageg birthcohort
-                     area provinces communityid yrsinceretire1989 since1989sq
+                     area provinces communityid yrsinceretire1989 prepost1989
                      prepost1991 prepost1993 prepost1997 prepost2000
-                     prepost2004 prepost2006 prepost2009 xgender xarea ,
-                     augment iter(20)
+                     prepost2004 prepost2006 prepost2009 prepost2011 xgender
+                     xarea , augment iter(20)
      logincome1991: pmm logincome1991 i.education i.workspouse i.skills
                      i.jointretire i.lastsmoke i.childcare lastsysdrug
                      lastdiadrug lastbmi i.lastalcohol logincome2000
@@ -498,9 +507,10 @@ Conditional models:
                      mettotal2006 energy2011 carbo2011 fat2011 protein2011
                      alcohol2011 mettotal2009 mettotal2004 mettotal2011
                      mettotal2000 mettotal1997 gender retireageg birthcohort
-                     area provinces communityid yrsinceretire1989 since1989sq
+                     area provinces communityid yrsinceretire1989 prepost1989
                      prepost1991 prepost1993 prepost1997 prepost2000
-                     prepost2004 prepost2006 prepost2009 xgender xarea
+                     prepost2004 prepost2006 prepost2009 prepost2011 xgender
+                     xarea
      logincome2004: pmm logincome2004 i.education i.workspouse i.skills
                      i.jointretire i.lastsmoke i.childcare lastsysdrug
                      lastdiadrug lastbmi i.lastalcohol logincome2000
@@ -517,9 +527,10 @@ Conditional models:
                      mettotal2006 energy2011 carbo2011 fat2011 protein2011
                      alcohol2011 mettotal2009 mettotal2004 mettotal2011
                      mettotal2000 mettotal1997 gender retireageg birthcohort
-                     area provinces communityid yrsinceretire1989 since1989sq
+                     area provinces communityid yrsinceretire1989 prepost1989
                      prepost1991 prepost1993 prepost1997 prepost2000
-                     prepost2004 prepost2006 prepost2009 xgender xarea
+                     prepost2004 prepost2006 prepost2009 prepost2011 xgender
+                     xarea
         energy2004: pmm energy2004 i.education i.workspouse i.skills
                      i.jointretire i.lastsmoke i.childcare lastsysdrug
                      lastdiadrug lastbmi i.lastalcohol logincome2000
@@ -536,9 +547,10 @@ Conditional models:
                      mettotal2006 energy2011 carbo2011 fat2011 protein2011
                      alcohol2011 mettotal2009 mettotal2004 mettotal2011
                      mettotal2000 mettotal1997 gender retireageg birthcohort
-                     area provinces communityid yrsinceretire1989 since1989sq
+                     area provinces communityid yrsinceretire1989 prepost1989
                      prepost1991 prepost1993 prepost1997 prepost2000
-                     prepost2004 prepost2006 prepost2009 xgender xarea
+                     prepost2004 prepost2006 prepost2009 prepost2011 xgender
+                     xarea
          carbo2004: pmm carbo2004 i.education i.workspouse i.skills
                      i.jointretire i.lastsmoke i.childcare lastsysdrug
                      lastdiadrug lastbmi i.lastalcohol logincome2000
@@ -555,9 +567,10 @@ Conditional models:
                      mettotal2006 energy2011 carbo2011 fat2011 protein2011
                      alcohol2011 mettotal2009 mettotal2004 mettotal2011
                      mettotal2000 mettotal1997 gender retireageg birthcohort
-                     area provinces communityid yrsinceretire1989 since1989sq
+                     area provinces communityid yrsinceretire1989 prepost1989
                      prepost1991 prepost1993 prepost1997 prepost2000
-                     prepost2004 prepost2006 prepost2009 xgender xarea
+                     prepost2004 prepost2006 prepost2009 prepost2011 xgender
+                     xarea
            fat2004: pmm fat2004 i.education i.workspouse i.skills
                      i.jointretire i.lastsmoke i.childcare lastsysdrug
                      lastdiadrug lastbmi i.lastalcohol logincome2000
@@ -574,9 +587,10 @@ Conditional models:
                      mettotal2006 energy2011 carbo2011 fat2011 protein2011
                      alcohol2011 mettotal2009 mettotal2004 mettotal2011
                      mettotal2000 mettotal1997 gender retireageg birthcohort
-                     area provinces communityid yrsinceretire1989 since1989sq
+                     area provinces communityid yrsinceretire1989 prepost1989
                      prepost1991 prepost1993 prepost1997 prepost2000
-                     prepost2004 prepost2006 prepost2009 xgender xarea
+                     prepost2004 prepost2006 prepost2009 prepost2011 xgender
+                     xarea
        protein2004: pmm protein2004 i.education i.workspouse i.skills
                      i.jointretire i.lastsmoke i.childcare lastsysdrug
                      lastdiadrug lastbmi i.lastalcohol logincome2000
@@ -593,9 +607,10 @@ Conditional models:
                      mettotal2006 energy2011 carbo2011 fat2011 protein2011
                      alcohol2011 mettotal2009 mettotal2004 mettotal2011
                      mettotal2000 mettotal1997 gender retireageg birthcohort
-                     area provinces communityid yrsinceretire1989 since1989sq
+                     area provinces communityid yrsinceretire1989 prepost1989
                      prepost1991 prepost1993 prepost1997 prepost2000
-                     prepost2004 prepost2006 prepost2009 xgender xarea
+                     prepost2004 prepost2006 prepost2009 prepost2011 xgender
+                     xarea
        alcohol2000: pmm alcohol2000 i.education i.workspouse i.skills
                      i.jointretire i.lastsmoke i.childcare lastsysdrug
                      lastdiadrug lastbmi i.lastalcohol logincome2000
@@ -612,9 +627,10 @@ Conditional models:
                      mettotal2006 energy2011 carbo2011 fat2011 protein2011
                      alcohol2011 mettotal2009 mettotal2004 mettotal2011
                      mettotal2000 mettotal1997 gender retireageg birthcohort
-                     area provinces communityid yrsinceretire1989 since1989sq
+                     area provinces communityid yrsinceretire1989 prepost1989
                      prepost1991 prepost1993 prepost1997 prepost2000
-                     prepost2004 prepost2006 prepost2009 xgender xarea
+                     prepost2004 prepost2006 prepost2009 prepost2011 xgender
+                     xarea
      logincome2006: pmm logincome2006 i.education i.workspouse i.skills
                      i.jointretire i.lastsmoke i.childcare lastsysdrug
                      lastdiadrug lastbmi i.lastalcohol logincome2000
@@ -631,9 +647,10 @@ Conditional models:
                      mettotal2006 energy2011 carbo2011 fat2011 protein2011
                      alcohol2011 mettotal2009 mettotal2004 mettotal2011
                      mettotal2000 mettotal1997 gender retireageg birthcohort
-                     area provinces communityid yrsinceretire1989 since1989sq
+                     area provinces communityid yrsinceretire1989 prepost1989
                      prepost1991 prepost1993 prepost1997 prepost2000
-                     prepost2004 prepost2006 prepost2009 xgender xarea
+                     prepost2004 prepost2006 prepost2009 prepost2011 xgender
+                     xarea
         energy2006: pmm energy2006 i.education i.workspouse i.skills
                      i.jointretire i.lastsmoke i.childcare lastsysdrug
                      lastdiadrug lastbmi i.lastalcohol logincome2000
@@ -650,9 +667,10 @@ Conditional models:
                      mettotal2006 energy2011 carbo2011 fat2011 protein2011
                      alcohol2011 mettotal2009 mettotal2004 mettotal2011
                      mettotal2000 mettotal1997 gender retireageg birthcohort
-                     area provinces communityid yrsinceretire1989 since1989sq
+                     area provinces communityid yrsinceretire1989 prepost1989
                      prepost1991 prepost1993 prepost1997 prepost2000
-                     prepost2004 prepost2006 prepost2009 xgender xarea
+                     prepost2004 prepost2006 prepost2009 prepost2011 xgender
+                     xarea
          carbo2006: pmm carbo2006 i.education i.workspouse i.skills
                      i.jointretire i.lastsmoke i.childcare lastsysdrug
                      lastdiadrug lastbmi i.lastalcohol logincome2000
@@ -669,9 +687,10 @@ Conditional models:
                      mettotal2006 energy2011 carbo2011 fat2011 protein2011
                      alcohol2011 mettotal2009 mettotal2004 mettotal2011
                      mettotal2000 mettotal1997 gender retireageg birthcohort
-                     area provinces communityid yrsinceretire1989 since1989sq
+                     area provinces communityid yrsinceretire1989 prepost1989
                      prepost1991 prepost1993 prepost1997 prepost2000
-                     prepost2004 prepost2006 prepost2009 xgender xarea
+                     prepost2004 prepost2006 prepost2009 prepost2011 xgender
+                     xarea
            fat2006: pmm fat2006 i.education i.workspouse i.skills
                      i.jointretire i.lastsmoke i.childcare lastsysdrug
                      lastdiadrug lastbmi i.lastalcohol logincome2000
@@ -688,9 +707,10 @@ Conditional models:
                      mettotal2006 energy2011 carbo2011 fat2011 protein2011
                      alcohol2011 mettotal2009 mettotal2004 mettotal2011
                      mettotal2000 mettotal1997 gender retireageg birthcohort
-                     area provinces communityid yrsinceretire1989 since1989sq
+                     area provinces communityid yrsinceretire1989 prepost1989
                      prepost1991 prepost1993 prepost1997 prepost2000
-                     prepost2004 prepost2006 prepost2009 xgender xarea
+                     prepost2004 prepost2006 prepost2009 prepost2011 xgender
+                     xarea
        protein2006: pmm protein2006 i.education i.workspouse i.skills
                      i.jointretire i.lastsmoke i.childcare lastsysdrug
                      lastdiadrug lastbmi i.lastalcohol logincome2000
@@ -707,9 +727,10 @@ Conditional models:
                      mettotal2006 energy2011 carbo2011 fat2011 protein2011
                      alcohol2011 mettotal2009 mettotal2004 mettotal2011
                      mettotal2000 mettotal1997 gender retireageg birthcohort
-                     area provinces communityid yrsinceretire1989 since1989sq
+                     area provinces communityid yrsinceretire1989 prepost1989
                      prepost1991 prepost1993 prepost1997 prepost2000
-                     prepost2004 prepost2006 prepost2009 xgender xarea
+                     prepost2004 prepost2006 prepost2009 prepost2011 xgender
+                     xarea
        alcohol2004: pmm alcohol2004 i.education i.workspouse i.skills
                      i.jointretire i.lastsmoke i.childcare lastsysdrug
                      lastdiadrug lastbmi i.lastalcohol logincome2000
@@ -726,9 +747,10 @@ Conditional models:
                      mettotal2006 energy2011 carbo2011 fat2011 protein2011
                      alcohol2011 mettotal2009 mettotal2004 mettotal2011
                      mettotal2000 mettotal1997 gender retireageg birthcohort
-                     area provinces communityid yrsinceretire1989 since1989sq
+                     area provinces communityid yrsinceretire1989 prepost1989
                      prepost1991 prepost1993 prepost1997 prepost2000
-                     prepost2004 prepost2006 prepost2009 xgender xarea
+                     prepost2004 prepost2006 prepost2009 prepost2011 xgender
+                     xarea
      logincome1993: pmm logincome1993 i.education i.workspouse i.skills
                      i.jointretire i.lastsmoke i.childcare lastsysdrug
                      lastdiadrug lastbmi i.lastalcohol logincome2000
@@ -745,9 +767,10 @@ Conditional models:
                      mettotal2006 energy2011 carbo2011 fat2011 protein2011
                      alcohol2011 mettotal2009 mettotal2004 mettotal2011
                      mettotal2000 mettotal1997 gender retireageg birthcohort
-                     area provinces communityid yrsinceretire1989 since1989sq
+                     area provinces communityid yrsinceretire1989 prepost1989
                      prepost1991 prepost1993 prepost1997 prepost2000
-                     prepost2004 prepost2006 prepost2009 xgender xarea
+                     prepost2004 prepost2006 prepost2009 prepost2011 xgender
+                     xarea
        alcohol2006: pmm alcohol2006 i.education i.workspouse i.skills
                      i.jointretire i.lastsmoke i.childcare lastsysdrug
                      lastdiadrug lastbmi i.lastalcohol logincome2000
@@ -764,9 +787,10 @@ Conditional models:
                      mettotal2006 energy2011 carbo2011 fat2011 protein2011
                      alcohol2011 mettotal2009 mettotal2004 mettotal2011
                      mettotal2000 mettotal1997 gender retireageg birthcohort
-                     area provinces communityid yrsinceretire1989 since1989sq
+                     area provinces communityid yrsinceretire1989 prepost1989
                      prepost1991 prepost1993 prepost1997 prepost2000
-                     prepost2004 prepost2006 prepost2009 xgender xarea
+                     prepost2004 prepost2006 prepost2009 prepost2011 xgender
+                     xarea
          carbo1991: pmm carbo1991 i.education i.workspouse i.skills
                      i.jointretire i.lastsmoke i.childcare lastsysdrug
                      lastdiadrug lastbmi i.lastalcohol logincome2000
@@ -783,9 +807,10 @@ Conditional models:
                      mettotal2006 energy2011 carbo2011 fat2011 protein2011
                      alcohol2011 mettotal2009 mettotal2004 mettotal2011
                      mettotal2000 mettotal1997 gender retireageg birthcohort
-                     area provinces communityid yrsinceretire1989 since1989sq
+                     area provinces communityid yrsinceretire1989 prepost1989
                      prepost1991 prepost1993 prepost1997 prepost2000
-                     prepost2004 prepost2006 prepost2009 xgender xarea
+                     prepost2004 prepost2006 prepost2009 prepost2011 xgender
+                     xarea
            fat1991: pmm fat1991 i.education i.workspouse i.skills
                      i.jointretire i.lastsmoke i.childcare lastsysdrug
                      lastdiadrug lastbmi i.lastalcohol logincome2000
@@ -802,9 +827,10 @@ Conditional models:
                      mettotal2006 energy2011 carbo2011 fat2011 protein2011
                      alcohol2011 mettotal2009 mettotal2004 mettotal2011
                      mettotal2000 mettotal1997 gender retireageg birthcohort
-                     area provinces communityid yrsinceretire1989 since1989sq
+                     area provinces communityid yrsinceretire1989 prepost1989
                      prepost1991 prepost1993 prepost1997 prepost2000
-                     prepost2004 prepost2006 prepost2009 xgender xarea
+                     prepost2004 prepost2006 prepost2009 prepost2011 xgender
+                     xarea
        protein1991: pmm protein1991 i.education i.workspouse i.skills
                      i.jointretire i.lastsmoke i.childcare lastsysdrug
                      lastdiadrug lastbmi i.lastalcohol logincome2000
@@ -821,9 +847,10 @@ Conditional models:
                      mettotal2006 energy2011 carbo2011 fat2011 protein2011
                      alcohol2011 mettotal2009 mettotal2004 mettotal2011
                      mettotal2000 mettotal1997 gender retireageg birthcohort
-                     area provinces communityid yrsinceretire1989 since1989sq
+                     area provinces communityid yrsinceretire1989 prepost1989
                      prepost1991 prepost1993 prepost1997 prepost2000
-                     prepost2004 prepost2006 prepost2009 xgender xarea
+                     prepost2004 prepost2006 prepost2009 prepost2011 xgender
+                     xarea
         energy1991: pmm energy1991 i.education i.workspouse i.skills
                      i.jointretire i.lastsmoke i.childcare lastsysdrug
                      lastdiadrug lastbmi i.lastalcohol logincome2000
@@ -840,9 +867,10 @@ Conditional models:
                      mettotal2006 energy2011 carbo2011 fat2011 protein2011
                      alcohol2011 mettotal2009 mettotal2004 mettotal2011
                      mettotal2000 mettotal1997 gender retireageg birthcohort
-                     area provinces communityid yrsinceretire1989 since1989sq
+                     area provinces communityid yrsinceretire1989 prepost1989
                      prepost1991 prepost1993 prepost1997 prepost2000
-                     prepost2004 prepost2006 prepost2009 xgender xarea
+                     prepost2004 prepost2006 prepost2009 prepost2011 xgender
+                     xarea
         energy1993: pmm energy1993 i.education i.workspouse i.skills
                      i.jointretire i.lastsmoke i.childcare lastsysdrug
                      lastdiadrug lastbmi i.lastalcohol logincome2000
@@ -859,9 +887,10 @@ Conditional models:
                      mettotal2006 energy2011 carbo2011 fat2011 protein2011
                      alcohol2011 mettotal2009 mettotal2004 mettotal2011
                      mettotal2000 mettotal1997 gender retireageg birthcohort
-                     area provinces communityid yrsinceretire1989 since1989sq
+                     area provinces communityid yrsinceretire1989 prepost1989
                      prepost1991 prepost1993 prepost1997 prepost2000
-                     prepost2004 prepost2006 prepost2009 xgender xarea
+                     prepost2004 prepost2006 prepost2009 prepost2011 xgender
+                     xarea
          carbo1993: pmm carbo1993 i.education i.workspouse i.skills
                      i.jointretire i.lastsmoke i.childcare lastsysdrug
                      lastdiadrug lastbmi i.lastalcohol logincome2000
@@ -878,9 +907,10 @@ Conditional models:
                      mettotal2006 energy2011 carbo2011 fat2011 protein2011
                      alcohol2011 mettotal2009 mettotal2004 mettotal2011
                      mettotal2000 mettotal1997 gender retireageg birthcohort
-                     area provinces communityid yrsinceretire1989 since1989sq
+                     area provinces communityid yrsinceretire1989 prepost1989
                      prepost1991 prepost1993 prepost1997 prepost2000
-                     prepost2004 prepost2006 prepost2009 xgender xarea
+                     prepost2004 prepost2006 prepost2009 prepost2011 xgender
+                     xarea
            fat1993: pmm fat1993 i.education i.workspouse i.skills
                      i.jointretire i.lastsmoke i.childcare lastsysdrug
                      lastdiadrug lastbmi i.lastalcohol logincome2000
@@ -897,9 +927,10 @@ Conditional models:
                      mettotal2006 energy2011 carbo2011 fat2011 protein2011
                      alcohol2011 mettotal2009 mettotal2004 mettotal2011
                      mettotal2000 mettotal1997 gender retireageg birthcohort
-                     area provinces communityid yrsinceretire1989 since1989sq
+                     area provinces communityid yrsinceretire1989 prepost1989
                      prepost1991 prepost1993 prepost1997 prepost2000
-                     prepost2004 prepost2006 prepost2009 xgender xarea
+                     prepost2004 prepost2006 prepost2009 prepost2011 xgender
+                     xarea
        protein1993: pmm protein1993 i.education i.workspouse i.skills
                      i.jointretire i.lastsmoke i.childcare lastsysdrug
                      lastdiadrug lastbmi i.lastalcohol logincome2000
@@ -916,9 +947,10 @@ Conditional models:
                      mettotal2006 energy2011 carbo2011 fat2011 protein2011
                      alcohol2011 mettotal2009 mettotal2004 mettotal2011
                      mettotal2000 mettotal1997 gender retireageg birthcohort
-                     area provinces communityid yrsinceretire1989 since1989sq
+                     area provinces communityid yrsinceretire1989 prepost1989
                      prepost1991 prepost1993 prepost1997 prepost2000
-                     prepost2004 prepost2006 prepost2009 xgender xarea
+                     prepost2004 prepost2006 prepost2009 prepost2011 xgender
+                     xarea
      bismoking1997: logit bismoking1997 i.education i.workspouse i.skills
                      i.jointretire i.lastsmoke i.childcare lastsysdrug
                      lastdiadrug lastbmi i.lastalcohol logincome2000
@@ -935,9 +967,9 @@ Conditional models:
                      carbo2011 fat2011 protein2011 alcohol2011 mettotal2009
                      mettotal2004 mettotal2011 mettotal2000 mettotal1997
                      gender retireageg birthcohort area provinces communityid
-                     yrsinceretire1989 since1989sq prepost1991 prepost1993
+                     yrsinceretire1989 prepost1989 prepost1991 prepost1993
                      prepost1997 prepost2000 prepost2004 prepost2006
-                     prepost2009 xgender xarea , augment iter(20)
+                     prepost2009 prepost2011 xgender xarea , augment iter(20)
      logincome1997: pmm logincome1997 i.education i.workspouse i.skills
                      i.jointretire i.lastsmoke i.childcare lastsysdrug
                      lastdiadrug lastbmi i.lastalcohol logincome2000
@@ -954,9 +986,9 @@ Conditional models:
                      carbo2011 fat2011 protein2011 alcohol2011 mettotal2009
                      mettotal2004 mettotal2011 mettotal2000 mettotal1997
                      gender retireageg birthcohort area provinces communityid
-                     yrsinceretire1989 since1989sq prepost1991 prepost1993
+                     yrsinceretire1989 prepost1989 prepost1991 prepost1993
                      prepost1997 prepost2000 prepost2004 prepost2006
-                     prepost2009 xgender xarea
+                     prepost2009 prepost2011 xgender xarea
      logincome2009: pmm logincome2009 i.education i.workspouse i.skills
                      i.jointretire i.lastsmoke i.childcare lastsysdrug
                      lastdiadrug lastbmi i.lastalcohol logincome2000
@@ -973,9 +1005,9 @@ Conditional models:
                      carbo2011 fat2011 protein2011 alcohol2011 mettotal2009
                      mettotal2004 mettotal2011 mettotal2000 mettotal1997
                      gender retireageg birthcohort area provinces communityid
-                     yrsinceretire1989 since1989sq prepost1991 prepost1993
+                     yrsinceretire1989 prepost1989 prepost1991 prepost1993
                      prepost1997 prepost2000 prepost2004 prepost2006
-                     prepost2009 xgender xarea
+                     prepost2009 prepost2011 xgender xarea
          carbo1997: pmm carbo1997 i.education i.workspouse i.skills
                      i.jointretire i.lastsmoke i.childcare lastsysdrug
                      lastdiadrug lastbmi i.lastalcohol logincome2000
@@ -992,9 +1024,10 @@ Conditional models:
                      energy2011 carbo2011 fat2011 protein2011 alcohol2011
                      mettotal2009 mettotal2004 mettotal2011 mettotal2000
                      mettotal1997 gender retireageg birthcohort area
-                     provinces communityid yrsinceretire1989 since1989sq
+                     provinces communityid yrsinceretire1989 prepost1989
                      prepost1991 prepost1993 prepost1997 prepost2000
-                     prepost2004 prepost2006 prepost2009 xgender xarea
+                     prepost2004 prepost2006 prepost2009 prepost2011 xgender
+                     xarea
        protein1997: pmm protein1997 i.education i.workspouse i.skills
                      i.jointretire i.lastsmoke i.childcare lastsysdrug
                      lastdiadrug lastbmi i.lastalcohol logincome2000
@@ -1011,9 +1044,9 @@ Conditional models:
                      carbo2011 fat2011 protein2011 alcohol2011 mettotal2009
                      mettotal2004 mettotal2011 mettotal2000 mettotal1997
                      gender retireageg birthcohort area provinces communityid
-                     yrsinceretire1989 since1989sq prepost1991 prepost1993
+                     yrsinceretire1989 prepost1989 prepost1991 prepost1993
                      prepost1997 prepost2000 prepost2004 prepost2006
-                     prepost2009 xgender xarea
+                     prepost2009 prepost2011 xgender xarea
         energy1997: pmm energy1997 i.education i.workspouse i.skills
                      i.jointretire i.lastsmoke i.childcare lastsysdrug
                      lastdiadrug lastbmi i.lastalcohol logincome2000
@@ -1030,9 +1063,10 @@ Conditional models:
                      energy2011 carbo2011 fat2011 protein2011 alcohol2011
                      mettotal2009 mettotal2004 mettotal2011 mettotal2000
                      mettotal1997 gender retireageg birthcohort area
-                     provinces communityid yrsinceretire1989 since1989sq
+                     provinces communityid yrsinceretire1989 prepost1989
                      prepost1991 prepost1993 prepost1997 prepost2000
-                     prepost2004 prepost2006 prepost2009 xgender xarea
+                     prepost2004 prepost2006 prepost2009 prepost2011 xgender
+                     xarea
            fat1997: pmm fat1997 i.education i.workspouse i.skills
                      i.jointretire i.lastsmoke i.childcare lastsysdrug
                      lastdiadrug lastbmi i.lastalcohol logincome2000
@@ -1049,9 +1083,10 @@ Conditional models:
                      energy2011 carbo2011 fat2011 protein2011 alcohol2011
                      mettotal2009 mettotal2004 mettotal2011 mettotal2000
                      mettotal1997 gender retireageg birthcohort area
-                     provinces communityid yrsinceretire1989 since1989sq
+                     provinces communityid yrsinceretire1989 prepost1989
                      prepost1991 prepost1993 prepost1997 prepost2000
-                     prepost2004 prepost2006 prepost2009 xgender xarea
+                     prepost2004 prepost2006 prepost2009 prepost2011 xgender
+                     xarea
         energy2009: pmm energy2009 i.education i.workspouse i.skills
                      i.jointretire i.lastsmoke i.childcare lastsysdrug
                      lastdiadrug lastbmi i.lastalcohol logincome2000
@@ -1068,9 +1103,10 @@ Conditional models:
                      energy2011 carbo2011 fat2011 protein2011 alcohol2011
                      mettotal2009 mettotal2004 mettotal2011 mettotal2000
                      mettotal1997 gender retireageg birthcohort area
-                     provinces communityid yrsinceretire1989 since1989sq
+                     provinces communityid yrsinceretire1989 prepost1989
                      prepost1991 prepost1993 prepost1997 prepost2000
-                     prepost2004 prepost2006 prepost2009 xgender xarea
+                     prepost2004 prepost2006 prepost2009 prepost2011 xgender
+                     xarea
          carbo2009: pmm carbo2009 i.education i.workspouse i.skills
                      i.jointretire i.lastsmoke i.childcare lastsysdrug
                      lastdiadrug lastbmi i.lastalcohol logincome2000
@@ -1087,9 +1123,10 @@ Conditional models:
                      energy2011 carbo2011 fat2011 protein2011 alcohol2011
                      mettotal2009 mettotal2004 mettotal2011 mettotal2000
                      mettotal1997 gender retireageg birthcohort area
-                     provinces communityid yrsinceretire1989 since1989sq
+                     provinces communityid yrsinceretire1989 prepost1989
                      prepost1991 prepost1993 prepost1997 prepost2000
-                     prepost2004 prepost2006 prepost2009 xgender xarea
+                     prepost2004 prepost2006 prepost2009 prepost2011 xgender
+                     xarea
            fat2009: pmm fat2009 i.education i.workspouse i.skills
                      i.jointretire i.lastsmoke i.childcare lastsysdrug
                      lastdiadrug lastbmi i.lastalcohol logincome2000
@@ -1106,9 +1143,10 @@ Conditional models:
                      energy2011 carbo2011 fat2011 protein2011 alcohol2011
                      mettotal2009 mettotal2004 mettotal2011 mettotal2000
                      mettotal1997 gender retireageg birthcohort area
-                     provinces communityid yrsinceretire1989 since1989sq
+                     provinces communityid yrsinceretire1989 prepost1989
                      prepost1991 prepost1993 prepost1997 prepost2000
-                     prepost2004 prepost2006 prepost2009 xgender xarea
+                     prepost2004 prepost2006 prepost2009 prepost2011 xgender
+                     xarea
        protein2009: pmm protein2009 i.education i.workspouse i.skills
                      i.jointretire i.lastsmoke i.childcare lastsysdrug
                      lastdiadrug lastbmi i.lastalcohol logincome2000
@@ -1125,9 +1163,10 @@ Conditional models:
                      energy2011 carbo2011 fat2011 protein2011 alcohol2011
                      mettotal2009 mettotal2004 mettotal2011 mettotal2000
                      mettotal1997 gender retireageg birthcohort area
-                     provinces communityid yrsinceretire1989 since1989sq
+                     provinces communityid yrsinceretire1989 prepost1989
                      prepost1991 prepost1993 prepost1997 prepost2000
-                     prepost2004 prepost2006 prepost2009 xgender xarea
+                     prepost2004 prepost2006 prepost2009 prepost2011 xgender
+                     xarea
        alcohol1997: pmm alcohol1997 i.education i.workspouse i.skills
                      i.jointretire i.lastsmoke i.childcare lastsysdrug
                      lastdiadrug lastbmi i.lastalcohol logincome2000
@@ -1144,9 +1183,10 @@ Conditional models:
                      energy2011 carbo2011 fat2011 protein2011 alcohol2011
                      mettotal2009 mettotal2004 mettotal2011 mettotal2000
                      mettotal1997 gender retireageg birthcohort area
-                     provinces communityid yrsinceretire1989 since1989sq
+                     provinces communityid yrsinceretire1989 prepost1989
                      prepost1991 prepost1993 prepost1997 prepost2000
-                     prepost2004 prepost2006 prepost2009 xgender xarea
+                     prepost2004 prepost2006 prepost2009 prepost2011 xgender
+                     xarea
        alcohol2009: pmm alcohol2009 i.education i.workspouse i.skills
                      i.jointretire i.lastsmoke i.childcare lastsysdrug
                      lastdiadrug lastbmi i.lastalcohol logincome2000
@@ -1163,9 +1203,10 @@ Conditional models:
                      energy2011 carbo2011 fat2011 protein2011 alcohol2011
                      mettotal2009 mettotal2004 mettotal2011 mettotal2000
                      mettotal1997 gender retireageg birthcohort area
-                     provinces communityid yrsinceretire1989 since1989sq
+                     provinces communityid yrsinceretire1989 prepost1989
                      prepost1991 prepost1993 prepost1997 prepost2000
-                     prepost2004 prepost2006 prepost2009 xgender xarea
+                     prepost2004 prepost2006 prepost2009 prepost2011 xgender
+                     xarea
      logincome2011: pmm logincome2011 i.education i.workspouse i.skills
                      i.jointretire i.lastsmoke i.childcare lastsysdrug
                      lastdiadrug lastbmi i.lastalcohol logincome2000
@@ -1182,9 +1223,10 @@ Conditional models:
                      energy2011 carbo2011 fat2011 protein2011 alcohol2011
                      mettotal2009 mettotal2004 mettotal2011 mettotal2000
                      mettotal1997 gender retireageg birthcohort area
-                     provinces communityid yrsinceretire1989 since1989sq
+                     provinces communityid yrsinceretire1989 prepost1989
                      prepost1991 prepost1993 prepost1997 prepost2000
-                     prepost2004 prepost2006 prepost2009 xgender xarea
+                     prepost2004 prepost2006 prepost2009 prepost2011 xgender
+                     xarea
       mettotal2006: pmm mettotal2006 i.education i.workspouse i.skills
                      i.jointretire i.lastsmoke i.childcare lastsysdrug
                      lastdiadrug lastbmi i.lastalcohol logincome2000
@@ -1201,9 +1243,10 @@ Conditional models:
                      energy2011 carbo2011 fat2011 protein2011 alcohol2011
                      mettotal2009 mettotal2004 mettotal2011 mettotal2000
                      mettotal1997 gender retireageg birthcohort area
-                     provinces communityid yrsinceretire1989 since1989sq
+                     provinces communityid yrsinceretire1989 prepost1989
                      prepost1991 prepost1993 prepost1997 prepost2000
-                     prepost2004 prepost2006 prepost2009 xgender xarea
+                     prepost2004 prepost2006 prepost2009 prepost2011 xgender
+                     xarea
         energy2011: pmm energy2011 i.education i.workspouse i.skills
                      i.jointretire i.lastsmoke i.childcare lastsysdrug
                      lastdiadrug lastbmi i.lastalcohol logincome2000
@@ -1220,9 +1263,10 @@ Conditional models:
                      mettotal2006 carbo2011 fat2011 protein2011 alcohol2011
                      mettotal2009 mettotal2004 mettotal2011 mettotal2000
                      mettotal1997 gender retireageg birthcohort area
-                     provinces communityid yrsinceretire1989 since1989sq
+                     provinces communityid yrsinceretire1989 prepost1989
                      prepost1991 prepost1993 prepost1997 prepost2000
-                     prepost2004 prepost2006 prepost2009 xgender xarea
+                     prepost2004 prepost2006 prepost2009 prepost2011 xgender
+                     xarea
          carbo2011: pmm carbo2011 i.education i.workspouse i.skills
                      i.jointretire i.lastsmoke i.childcare lastsysdrug
                      lastdiadrug lastbmi i.lastalcohol logincome2000
@@ -1239,9 +1283,10 @@ Conditional models:
                      mettotal2006 energy2011 fat2011 protein2011 alcohol2011
                      mettotal2009 mettotal2004 mettotal2011 mettotal2000
                      mettotal1997 gender retireageg birthcohort area
-                     provinces communityid yrsinceretire1989 since1989sq
+                     provinces communityid yrsinceretire1989 prepost1989
                      prepost1991 prepost1993 prepost1997 prepost2000
-                     prepost2004 prepost2006 prepost2009 xgender xarea
+                     prepost2004 prepost2006 prepost2009 prepost2011 xgender
+                     xarea
            fat2011: pmm fat2011 i.education i.workspouse i.skills
                      i.jointretire i.lastsmoke i.childcare lastsysdrug
                      lastdiadrug lastbmi i.lastalcohol logincome2000
@@ -1258,9 +1303,10 @@ Conditional models:
                      mettotal2006 energy2011 carbo2011 protein2011
                      alcohol2011 mettotal2009 mettotal2004 mettotal2011
                      mettotal2000 mettotal1997 gender retireageg birthcohort
-                     area provinces communityid yrsinceretire1989 since1989sq
+                     area provinces communityid yrsinceretire1989 prepost1989
                      prepost1991 prepost1993 prepost1997 prepost2000
-                     prepost2004 prepost2006 prepost2009 xgender xarea
+                     prepost2004 prepost2006 prepost2009 prepost2011 xgender
+                     xarea
        protein2011: pmm protein2011 i.education i.workspouse i.skills
                      i.jointretire i.lastsmoke i.childcare lastsysdrug
                      lastdiadrug lastbmi i.lastalcohol logincome2000
@@ -1277,9 +1323,10 @@ Conditional models:
                      mettotal2006 energy2011 carbo2011 fat2011 alcohol2011
                      mettotal2009 mettotal2004 mettotal2011 mettotal2000
                      mettotal1997 gender retireageg birthcohort area
-                     provinces communityid yrsinceretire1989 since1989sq
+                     provinces communityid yrsinceretire1989 prepost1989
                      prepost1991 prepost1993 prepost1997 prepost2000
-                     prepost2004 prepost2006 prepost2009 xgender xarea
+                     prepost2004 prepost2006 prepost2009 prepost2011 xgender
+                     xarea
        alcohol2011: pmm alcohol2011 i.education i.workspouse i.skills
                      i.jointretire i.lastsmoke i.childcare lastsysdrug
                      lastdiadrug lastbmi i.lastalcohol logincome2000
@@ -1296,9 +1343,10 @@ Conditional models:
                      mettotal2006 energy2011 carbo2011 fat2011 protein2011
                      mettotal2009 mettotal2004 mettotal2011 mettotal2000
                      mettotal1997 gender retireageg birthcohort area
-                     provinces communityid yrsinceretire1989 since1989sq
+                     provinces communityid yrsinceretire1989 prepost1989
                      prepost1991 prepost1993 prepost1997 prepost2000
-                     prepost2004 prepost2006 prepost2009 xgender xarea
+                     prepost2004 prepost2006 prepost2009 prepost2011 xgender
+                     xarea
       mettotal2009: pmm mettotal2009 i.education i.workspouse i.skills
                      i.jointretire i.lastsmoke i.childcare lastsysdrug
                      lastdiadrug lastbmi i.lastalcohol logincome2000
@@ -1315,9 +1363,10 @@ Conditional models:
                      mettotal2006 energy2011 carbo2011 fat2011 protein2011
                      alcohol2011 mettotal2004 mettotal2011 mettotal2000
                      mettotal1997 gender retireageg birthcohort area
-                     provinces communityid yrsinceretire1989 since1989sq
+                     provinces communityid yrsinceretire1989 prepost1989
                      prepost1991 prepost1993 prepost1997 prepost2000
-                     prepost2004 prepost2006 prepost2009 xgender xarea
+                     prepost2004 prepost2006 prepost2009 prepost2011 xgender
+                     xarea
       mettotal2004: pmm mettotal2004 i.education i.workspouse i.skills
                      i.jointretire i.lastsmoke i.childcare lastsysdrug
                      lastdiadrug lastbmi i.lastalcohol logincome2000
@@ -1334,9 +1383,10 @@ Conditional models:
                      mettotal2006 energy2011 carbo2011 fat2011 protein2011
                      alcohol2011 mettotal2009 mettotal2011 mettotal2000
                      mettotal1997 gender retireageg birthcohort area
-                     provinces communityid yrsinceretire1989 since1989sq
+                     provinces communityid yrsinceretire1989 prepost1989
                      prepost1991 prepost1993 prepost1997 prepost2000
-                     prepost2004 prepost2006 prepost2009 xgender xarea
+                     prepost2004 prepost2006 prepost2009 prepost2011 xgender
+                     xarea
       mettotal2011: pmm mettotal2011 i.education i.workspouse i.skills
                      i.jointretire i.lastsmoke i.childcare lastsysdrug
                      lastdiadrug lastbmi i.lastalcohol logincome2000
@@ -1353,9 +1403,10 @@ Conditional models:
                      mettotal2006 energy2011 carbo2011 fat2011 protein2011
                      alcohol2011 mettotal2009 mettotal2004 mettotal2000
                      mettotal1997 gender retireageg birthcohort area
-                     provinces communityid yrsinceretire1989 since1989sq
+                     provinces communityid yrsinceretire1989 prepost1989
                      prepost1991 prepost1993 prepost1997 prepost2000
-                     prepost2004 prepost2006 prepost2009 xgender xarea
+                     prepost2004 prepost2006 prepost2009 prepost2011 xgender
+                     xarea
       mettotal2000: pmm mettotal2000 i.education i.workspouse i.skills
                      i.jointretire i.lastsmoke i.childcare lastsysdrug
                      lastdiadrug lastbmi i.lastalcohol logincome2000
@@ -1372,9 +1423,10 @@ Conditional models:
                      mettotal2006 energy2011 carbo2011 fat2011 protein2011
                      alcohol2011 mettotal2009 mettotal2004 mettotal2011
                      mettotal1997 gender retireageg birthcohort area
-                     provinces communityid yrsinceretire1989 since1989sq
+                     provinces communityid yrsinceretire1989 prepost1989
                      prepost1991 prepost1993 prepost1997 prepost2000
-                     prepost2004 prepost2006 prepost2009 xgender xarea
+                     prepost2004 prepost2006 prepost2009 prepost2011 xgender
+                     xarea
       mettotal1997: pmm mettotal1997 i.education i.workspouse i.skills
                      i.jointretire i.lastsmoke i.childcare lastsysdrug
                      lastdiadrug lastbmi i.lastalcohol logincome2000
@@ -1391,169 +1443,17 @@ Conditional models:
                      mettotal2006 energy2011 carbo2011 fat2011 protein2011
                      alcohol2011 mettotal2009 mettotal2004 mettotal2011
                      mettotal2000 gender retireageg birthcohort area
-                     provinces communityid yrsinceretire1989 since1989sq
+                     provinces communityid yrsinceretire1989 prepost1989
                      prepost1991 prepost1993 prepost1997 prepost2000
-                     prepost2004 prepost2006 prepost2009 xgender xarea
+                     prepost2004 prepost2006 prepost2009 prepost2011 xgender
+                     xarea
 
 Performing chained iterations ...
+education: missing imputed values produced
+    This may occur when imputation variables are used as independent
+    variables or when independent variables contain missing values.  You can
+    specify option force if you wish to proceed anyway.
+r(498);
 
-Multivariate imputation                     Imputations =       20
-Chained equations                                 added =       20
-Imputed: m=1 through m=20                       updated =        0
-
-Initialization: monotone                     Iterations =     2000
-                                                burn-in =      100
-
-         education: ordered logistic regression
-            skills: ordered logistic regression
-       lastalcohol: augmented ordered logistic regression
-        workspouse: augmented logistic regression
-         childcare: logistic regression
-       jointretire: augmented logistic regression
-         lastsmoke: augmented logistic regression
-     bismoking2004: logistic regression
-     bismoking2000: logistic regression
-     bismoking1997: logistic regression
-       lastsysdrug: linear regression
-       lastdiadrug: linear regression
-         lastwaist: linear regression
-           lastbmi: linear regression
-     logincome1989: predictive mean matching
-     logincome1991: predictive mean matching
-     logincome1993: predictive mean matching
-     logincome1997: predictive mean matching
-     logincome2000: predictive mean matching
-     logincome2004: predictive mean matching
-     logincome2006: predictive mean matching
-     logincome2009: predictive mean matching
-     logincome2011: predictive mean matching
-        energy1991: predictive mean matching
-         carbo1991: predictive mean matching
-           fat1991: predictive mean matching
-       protein1991: predictive mean matching
-        energy1993: predictive mean matching
-         carbo1993: predictive mean matching
-           fat1993: predictive mean matching
-       protein1993: predictive mean matching
-        energy1997: predictive mean matching
-         carbo1997: predictive mean matching
-           fat1997: predictive mean matching
-       protein1997: predictive mean matching
-        energy2000: predictive mean matching
-         carbo2000: predictive mean matching
-           fat2000: predictive mean matching
-       protein2000: predictive mean matching
-        energy2004: predictive mean matching
-         carbo2004: predictive mean matching
-           fat2004: predictive mean matching
-       protein2004: predictive mean matching
-        energy2006: predictive mean matching
-         carbo2006: predictive mean matching
-           fat2006: predictive mean matching
-       protein2006: predictive mean matching
-        energy2009: predictive mean matching
-         carbo2009: predictive mean matching
-           fat2009: predictive mean matching
-       protein2009: predictive mean matching
-        energy2011: predictive mean matching
-         carbo2011: predictive mean matching
-           fat2011: predictive mean matching
-       protein2011: predictive mean matching
-      mettotal1997: predictive mean matching
-      mettotal2000: predictive mean matching
-      mettotal2004: predictive mean matching
-      mettotal2006: predictive mean matching
-      mettotal2009: predictive mean matching
-      mettotal2011: predictive mean matching
-       alcohol1997: predictive mean matching
-       alcohol2000: predictive mean matching
-       alcohol2004: predictive mean matching
-       alcohol2006: predictive mean matching
-       alcohol2009: predictive mean matching
-       alcohol2011: predictive mean matching
-
-------------------------------------------------------------------
-                   |               Observations per m             
-                   |----------------------------------------------
-          Variable |   Complete   Incomplete   Imputed |     Total
--------------------+-----------------------------------+----------
-         education |       1251            3         3 |      1254
-            skills |       1229           25        25 |      1254
-       lastalcohol |        965          289       289 |      1254
-        workspouse |       1139           18        18 |      1157
-         childcare |       1111          143       143 |      1254
-       jointretire |       1218           36        36 |      1254
-         lastsmoke |       1141          113       113 |      1254
-     bismoking2004 |        849          405       405 |      1254
-     bismoking2000 |        881          373       373 |      1254
-     bismoking1997 |        781          473       473 |      1254
-       lastsysdrug |       1028          226       226 |      1254
-       lastdiadrug |       1028          226       226 |      1254
-         lastwaist |        893          361       361 |      1254
-           lastbmi |       1024          230       230 |      1254
-     logincome1989 |        859          395       395 |      1254
-     logincome1991 |        849          405       405 |      1254
-     logincome1993 |        815          439       439 |      1254
-     logincome1997 |        780          474       474 |      1254
-     logincome2000 |        932          322       322 |      1254
-     logincome2004 |        848          406       406 |      1254
-     logincome2006 |        835          419       419 |      1254
-     logincome2009 |        755          499       499 |      1254
-     logincome2011 |        638          616       616 |      1254
-        energy1991 |        803          451       451 |      1254
-         carbo1991 |        804          450       450 |      1254
-           fat1991 |        804          450       450 |      1254
-       protein1991 |        804          450       450 |      1254
-        energy1993 |        785          469       469 |      1254
-         carbo1993 |        785          469       469 |      1254
-           fat1993 |        785          469       469 |      1254
-       protein1993 |        785          469       469 |      1254
-        energy1997 |        751          503       503 |      1254
-         carbo1997 |        752          502       502 |      1254
-           fat1997 |        751          503       503 |      1254
-       protein1997 |        752          502       502 |      1254
-        energy2000 |        922          332       332 |      1254
-         carbo2000 |        923          331       331 |      1254
-           fat2000 |        923          331       331 |      1254
-       protein2000 |        923          331       331 |      1254
-        energy2004 |        846          408       408 |      1254
-         carbo2004 |        846          408       408 |      1254
-           fat2004 |        846          408       408 |      1254
-       protein2004 |        846          408       408 |      1254
-        energy2006 |        826          428       428 |      1254
-         carbo2006 |        826          428       428 |      1254
-           fat2006 |        826          428       428 |      1254
-       protein2006 |        826          428       428 |      1254
-        energy2009 |        748          506       506 |      1254
-         carbo2009 |        748          506       506 |      1254
-           fat2009 |        748          506       506 |      1254
-       protein2009 |        748          506       506 |      1254
-        energy2011 |        637          617       617 |      1254
-         carbo2011 |        637          617       617 |      1254
-           fat2011 |        637          617       617 |      1254
-       protein2011 |        637          617       617 |      1254
-      mettotal1997 |        413          841       841 |      1254
-      mettotal2000 |        466          788       788 |      1254
-      mettotal2004 |        617          637       637 |      1254
-      mettotal2006 |        638          616       616 |      1254
-      mettotal2009 |        629          625       625 |      1254
-      mettotal2011 |        538          716       716 |      1254
-       alcohol1997 |        741          513       513 |      1254
-       alcohol2000 |        839          415       415 |      1254
-       alcohol2004 |        821          433       433 |      1254
-       alcohol2006 |        807          447       447 |      1254
-       alcohol2009 |        741          513       513 |      1254
-       alcohol2011 |        634          620       620 |      1254
-------------------------------------------------------------------
-(complete + incomplete = total; imputed is the minimum across m
- of the number of filled-in observations.)
-
-Warning: the sets of predictors of the imputation model vary across
-         imputations or iterations
-
-. 
-. saveold mied, replace
-file mied.dta saved
-
-. 
 end of do-file
+r(498);
