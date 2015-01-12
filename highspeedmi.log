@@ -31,7 +31,6 @@ Note:  Your site can add messages to the introduction by editing the file
 (SAVASTATA created this dataset on 01JAN2014)
 
 . 
-. 
 . mi set flong
 
 . mi xtset,clear
@@ -108,7 +107,7 @@ Note:  Your site can add messages to the introduction by editing the file
 > prepost1989 prepost1991 prepost1993 prepost1997 ///
 > prepost2000 prepost2004 prepost2006 prepost2009 prepost2011 ///
 > xgender xarea  ///
-> ,add(5) burnin(10) rseed(1389)augment 
+> ,add(20) burnin(100) rseed(1389)augment 
 
 Conditional models:
          education: ologit education i.workspouse i.skills i.jointretire
@@ -1450,12 +1449,12 @@ Conditional models:
 
 Performing chained iterations ...
 
-Multivariate imputation                     Imputations =        5
-Chained equations                                 added =        5
-Imputed: m=1 through m=5                        updated =        0
+Multivariate imputation                     Imputations =       20
+Chained equations                                 added =       20
+Imputed: m=1 through m=20                       updated =        0
 
-Initialization: monotone                     Iterations =       50
-                                                burn-in =       10
+Initialization: monotone                     Iterations =     2000
+                                                burn-in =      100
 
          education: ordered logistic regression
             skills: ordered logistic regression
