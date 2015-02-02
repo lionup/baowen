@@ -12,6 +12,7 @@ gen xarea=area*yrsinceretire1989
 gen xjoint=jointretire*yrsinceretire1989
 gen xchildcare=childcare*yrsinceretire1989
 
+gen since1989sq=yrsinceretire1989^2
 
 replace workspouse=3 if lastmarriage==1
 
@@ -49,10 +50,11 @@ energy2006 carbo2006 fat2006 protein2006 energy2009 carbo2009 fat2009 protein200
 energy2011 carbo2011 fat2011 protein2011 ///
 mettotal1997 mettotal2000 mettotal2004 mettotal2006 mettotal2009 mettotal2011 ///
 alcohol1997 alcohol2000 alcohol2004 alcohol2006 alcohol2009 alcohol2011 ///
-=  gender retireageg  birthcohort area provinces communityid yrsinceretire1989 ///
-prepost1989 prepost1991 prepost1993 prepost1997 ///
-prepost2000 prepost2004 prepost2006 prepost2009 prepost2011 ///
+=  gender retireageg  birthcohort area provinces communityid yrsinceretire1989 since1989sq  ///
+prepost1991 prepost1993 prepost1997 ///
+prepost2000 prepost2004 prepost2006 prepost2009 ///
 xgender xarea  ///
-,add(20) burnin(100) rseed(1389)augment 
+,add(20) burnin(100) rseed(1389)augment
 
 saveold mied, replace
+
