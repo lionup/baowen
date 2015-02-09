@@ -45,7 +45,7 @@ Note:  Your site can add messages to the introduction by editing the file
 
 . 
 . gen xjoint=jointretire*yrsinceretire1989
-(36 missing values generated)
+(39 missing values generated)
 
 . gen xchildcare=childcare*yrsinceretire1989
 (143 missing values generated)
@@ -1482,7 +1482,7 @@ Initialization: monotone                     Iterations =     2000
        lastalcohol |        965          289       289 |      1254
         workspouse |       1139           18        18 |      1157
          childcare |       1111          143       143 |      1254
-       jointretire |       1218           36        36 |      1254
+       jointretire |       1215           39        39 |      1254
          lastsmoke |       1141          113       113 |      1254
      bismoking2004 |        849          405       405 |      1254
      bismoking2000 |        881          373       373 |      1254
@@ -1552,9 +1552,9 @@ Warning: the sets of predictors of the imputation model vary across
          imputations or iterations
 
 . 
-. saveold mied, replace
-file mied.dta saved
+. saveold newmied.dta, replace
+(note: file newmied.dta not found)
+file newmied.dta saved
 
-. 
 . 
 end of do-file
