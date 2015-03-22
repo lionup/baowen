@@ -81,15 +81,12 @@ Note:  Your site can add messages to the introduction by editing the file
 . 
 . ***************
 . mi impute chained ///
-> (ologit,iter(20))education skills manual lastalcohol ///
+> (ologit,iter(20))education skills lastalcohol manual ///
 > (logit if lastmarriage==0)workspouse ///
 > (logit,iter(20))childcare jointretire ///
 > (logit,iter(20))lastsmoke bismoking2004 bismoking2000 bismoking1997 ///
 > (regress) lastsysdrug lastdiadrug lastwaist lastbmi ///
-> (pmm) perhhincome1989 perhhincome1991 perhhincome1993 perhhincome1997 ///
-> perhhincome2000 perhhincome2004 perhhincome2006 perhhincome2009 perhhincome20
-> 11 ///
-> energy1991 carbo1991 fat1991 protein1991 ///
+> (pmm) energy1991 carbo1991 fat1991 protein1991 ///
 > energy1993 carbo1993 fat1993 protein1993 energy1997 carbo1997 fat1997 protein
 > 1997 ///
 > energy2000 carbo2000 fat2000 protein2000 energy2004 carbo2004 fat2004 protein
@@ -97,11 +94,10 @@ Note:  Your site can add messages to the introduction by editing the file
 > energy2006 carbo2006 fat2006 protein2006 energy2009 carbo2009 fat2009 protein
 > 2009 ///
 > energy2011 carbo2011 fat2011 protein2011 ///
-> mettotal1991 mettotal1993 mettotal1997 mettotal2000 mettotal2004 mettotal2006
->  mettotal2009 mettotal2011 ///
-> alcohol1991 alcohol1993 alcohol1997 alcohol2000 alcohol2004 alcohol2006 alcoh
-> ol2009 alcohol2011 ///
-> =  gender retireage  birthcohort urban provinces communityid yrsinceretire198
+> mettotal1997 mettotal2000 mettotal2004 mettotal2006 mettotal2009 mettotal2011
+>  ///
+> alcohol1997 alcohol2000 alcohol2004 alcohol2006 alcohol2009 alcohol2011 ///
+> =  gender retireageg birthcohort urban provinces communityid yrsinceretire198
 > 9 since1989sq  ///
 > prepost1991 prepost1993 prepost1997 ///
 > prepost2000 prepost2004 prepost2006 prepost2009 ///
@@ -111,1533 +107,1150 @@ Note:  Your site can add messages to the introduction by editing the file
 Conditional models:
          education: ologit education i.workspouse i.skills i.manual
                      i.jointretire i.lastsmoke i.childcare lastsysdrug
-                     lastdiadrug lastbmi i.lastalcohol perhhincome2000
-                     carbo2000 fat2000 protein2000 energy2000 lastwaist
-                     i.bismoking2000 perhhincome1989 i.bismoking2004
-                     perhhincome1991 perhhincome2004 energy2004 carbo2004
-                     fat2004 protein2004 alcohol2000 perhhincome2006
-                     energy2006 carbo2006 fat2006 protein2006 alcohol2004
-                     perhhincome1993 alcohol2006 carbo1991 fat1991
-                     protein1991 energy1991 energy1993 carbo1993 fat1993
-                     protein1993 i.bismoking1997 perhhincome1997
-                     perhhincome2009 carbo1997 protein1997 energy1997 fat1997
+                     lastdiadrug lastbmi i.lastalcohol carbo2000 fat2000
+                     protein2000 energy2000 lastwaist i.bismoking2000
+                     i.bismoking2004 energy2004 carbo2004 fat2004 protein2004
+                     alcohol2000 energy2006 carbo2006 fat2006 protein2006
+                     alcohol2004 alcohol2006 carbo1991 fat1991 protein1991
+                     energy1991 energy1993 carbo1993 fat1993 protein1993
+                     i.bismoking1997 carbo1997 protein1997 energy1997 fat1997
                      energy2009 carbo2009 fat2009 protein2009 alcohol1997
-                     alcohol2009 alcohol1993 perhhincome2011 mettotal2006
-                     energy2011 carbo2011 fat2011 protein2011 alcohol2011
-                     mettotal2009 mettotal2004 mettotal2011 mettotal2000
-                     alcohol1991 mettotal1997 mettotal1991 mettotal1993
-                     gender retireage birthcohort urban provinces communityid
+                     alcohol2009 mettotal2006 energy2011 carbo2011 fat2011
+                     protein2011 alcohol2011 mettotal2009 mettotal2004
+                     mettotal2011 mettotal2000 mettotal1997 gender retireageg
+                     birthcohort urban provinces communityid
                      yrsinceretire1989 since1989sq prepost1991 prepost1993
                      prepost1997 prepost2000 prepost2004 prepost2006
                      prepost2009 xgender xurban , augment iter(20)
         workspouse: logit workspouse i.education i.skills i.manual
                      i.jointretire i.lastsmoke i.childcare lastsysdrug
-                     lastdiadrug lastbmi i.lastalcohol perhhincome2000
-                     carbo2000 fat2000 protein2000 energy2000 lastwaist
-                     i.bismoking2000 perhhincome1989 i.bismoking2004
-                     perhhincome1991 perhhincome2004 energy2004 carbo2004
-                     fat2004 protein2004 alcohol2000 perhhincome2006
-                     energy2006 carbo2006 fat2006 protein2006 alcohol2004
-                     perhhincome1993 alcohol2006 carbo1991 fat1991
-                     protein1991 energy1991 energy1993 carbo1993 fat1993
-                     protein1993 i.bismoking1997 perhhincome1997
-                     perhhincome2009 carbo1997 protein1997 energy1997 fat1997
+                     lastdiadrug lastbmi i.lastalcohol carbo2000 fat2000
+                     protein2000 energy2000 lastwaist i.bismoking2000
+                     i.bismoking2004 energy2004 carbo2004 fat2004 protein2004
+                     alcohol2000 energy2006 carbo2006 fat2006 protein2006
+                     alcohol2004 alcohol2006 carbo1991 fat1991 protein1991
+                     energy1991 energy1993 carbo1993 fat1993 protein1993
+                     i.bismoking1997 carbo1997 protein1997 energy1997 fat1997
                      energy2009 carbo2009 fat2009 protein2009 alcohol1997
-                     alcohol2009 alcohol1993 perhhincome2011 mettotal2006
-                     energy2011 carbo2011 fat2011 protein2011 alcohol2011
-                     mettotal2009 mettotal2004 mettotal2011 mettotal2000
-                     alcohol1991 mettotal1997 mettotal1991 mettotal1993
-                     gender retireage birthcohort urban provinces communityid
+                     alcohol2009 mettotal2006 energy2011 carbo2011 fat2011
+                     protein2011 alcohol2011 mettotal2009 mettotal2004
+                     mettotal2011 mettotal2000 mettotal1997 gender retireageg
+                     birthcohort urban provinces communityid
                      yrsinceretire1989 since1989sq prepost1991 prepost1993
                      prepost1997 prepost2000 prepost2004 prepost2006
                      prepost2009 xgender xurban if lastmarriage==0, augment
             skills: ologit skills i.education i.workspouse i.manual
                      i.jointretire i.lastsmoke i.childcare lastsysdrug
-                     lastdiadrug lastbmi i.lastalcohol perhhincome2000
-                     carbo2000 fat2000 protein2000 energy2000 lastwaist
-                     i.bismoking2000 perhhincome1989 i.bismoking2004
-                     perhhincome1991 perhhincome2004 energy2004 carbo2004
-                     fat2004 protein2004 alcohol2000 perhhincome2006
-                     energy2006 carbo2006 fat2006 protein2006 alcohol2004
-                     perhhincome1993 alcohol2006 carbo1991 fat1991
-                     protein1991 energy1991 energy1993 carbo1993 fat1993
-                     protein1993 i.bismoking1997 perhhincome1997
-                     perhhincome2009 carbo1997 protein1997 energy1997 fat1997
+                     lastdiadrug lastbmi i.lastalcohol carbo2000 fat2000
+                     protein2000 energy2000 lastwaist i.bismoking2000
+                     i.bismoking2004 energy2004 carbo2004 fat2004 protein2004
+                     alcohol2000 energy2006 carbo2006 fat2006 protein2006
+                     alcohol2004 alcohol2006 carbo1991 fat1991 protein1991
+                     energy1991 energy1993 carbo1993 fat1993 protein1993
+                     i.bismoking1997 carbo1997 protein1997 energy1997 fat1997
                      energy2009 carbo2009 fat2009 protein2009 alcohol1997
-                     alcohol2009 alcohol1993 perhhincome2011 mettotal2006
-                     energy2011 carbo2011 fat2011 protein2011 alcohol2011
-                     mettotal2009 mettotal2004 mettotal2011 mettotal2000
-                     alcohol1991 mettotal1997 mettotal1991 mettotal1993
-                     gender retireage birthcohort urban provinces communityid
+                     alcohol2009 mettotal2006 energy2011 carbo2011 fat2011
+                     protein2011 alcohol2011 mettotal2009 mettotal2004
+                     mettotal2011 mettotal2000 mettotal1997 gender retireageg
+                     birthcohort urban provinces communityid
                      yrsinceretire1989 since1989sq prepost1991 prepost1993
                      prepost1997 prepost2000 prepost2004 prepost2006
                      prepost2009 xgender xurban , augment iter(20)
             manual: ologit manual i.education i.workspouse i.skills
                      i.jointretire i.lastsmoke i.childcare lastsysdrug
-                     lastdiadrug lastbmi i.lastalcohol perhhincome2000
-                     carbo2000 fat2000 protein2000 energy2000 lastwaist
-                     i.bismoking2000 perhhincome1989 i.bismoking2004
-                     perhhincome1991 perhhincome2004 energy2004 carbo2004
-                     fat2004 protein2004 alcohol2000 perhhincome2006
-                     energy2006 carbo2006 fat2006 protein2006 alcohol2004
-                     perhhincome1993 alcohol2006 carbo1991 fat1991
-                     protein1991 energy1991 energy1993 carbo1993 fat1993
-                     protein1993 i.bismoking1997 perhhincome1997
-                     perhhincome2009 carbo1997 protein1997 energy1997 fat1997
+                     lastdiadrug lastbmi i.lastalcohol carbo2000 fat2000
+                     protein2000 energy2000 lastwaist i.bismoking2000
+                     i.bismoking2004 energy2004 carbo2004 fat2004 protein2004
+                     alcohol2000 energy2006 carbo2006 fat2006 protein2006
+                     alcohol2004 alcohol2006 carbo1991 fat1991 protein1991
+                     energy1991 energy1993 carbo1993 fat1993 protein1993
+                     i.bismoking1997 carbo1997 protein1997 energy1997 fat1997
                      energy2009 carbo2009 fat2009 protein2009 alcohol1997
-                     alcohol2009 alcohol1993 perhhincome2011 mettotal2006
-                     energy2011 carbo2011 fat2011 protein2011 alcohol2011
-                     mettotal2009 mettotal2004 mettotal2011 mettotal2000
-                     alcohol1991 mettotal1997 mettotal1991 mettotal1993
-                     gender retireage birthcohort urban provinces communityid
+                     alcohol2009 mettotal2006 energy2011 carbo2011 fat2011
+                     protein2011 alcohol2011 mettotal2009 mettotal2004
+                     mettotal2011 mettotal2000 mettotal1997 gender retireageg
+                     birthcohort urban provinces communityid
                      yrsinceretire1989 since1989sq prepost1991 prepost1993
                      prepost1997 prepost2000 prepost2004 prepost2006
                      prepost2009 xgender xurban , augment iter(20)
        jointretire: logit jointretire i.education i.workspouse i.skills
                      i.manual i.lastsmoke i.childcare lastsysdrug lastdiadrug
-                     lastbmi i.lastalcohol perhhincome2000 carbo2000 fat2000
-                     protein2000 energy2000 lastwaist i.bismoking2000
-                     perhhincome1989 i.bismoking2004 perhhincome1991
-                     perhhincome2004 energy2004 carbo2004 fat2004 protein2004
-                     alcohol2000 perhhincome2006 energy2006 carbo2006 fat2006
-                     protein2006 alcohol2004 perhhincome1993 alcohol2006
-                     carbo1991 fat1991 protein1991 energy1991 energy1993
-                     carbo1993 fat1993 protein1993 i.bismoking1997
-                     perhhincome1997 perhhincome2009 carbo1997 protein1997
-                     energy1997 fat1997 energy2009 carbo2009 fat2009
-                     protein2009 alcohol1997 alcohol2009 alcohol1993
-                     perhhincome2011 mettotal2006 energy2011 carbo2011
-                     fat2011 protein2011 alcohol2011 mettotal2009
-                     mettotal2004 mettotal2011 mettotal2000 alcohol1991
-                     mettotal1997 mettotal1991 mettotal1993 gender retireage
-                     birthcohort urban provinces communityid
-                     yrsinceretire1989 since1989sq prepost1991 prepost1993
-                     prepost1997 prepost2000 prepost2004 prepost2006
-                     prepost2009 xgender xurban , augment iter(20)
+                     lastbmi i.lastalcohol carbo2000 fat2000 protein2000
+                     energy2000 lastwaist i.bismoking2000 i.bismoking2004
+                     energy2004 carbo2004 fat2004 protein2004 alcohol2000
+                     energy2006 carbo2006 fat2006 protein2006 alcohol2004
+                     alcohol2006 carbo1991 fat1991 protein1991 energy1991
+                     energy1993 carbo1993 fat1993 protein1993 i.bismoking1997
+                     carbo1997 protein1997 energy1997 fat1997 energy2009
+                     carbo2009 fat2009 protein2009 alcohol1997 alcohol2009
+                     mettotal2006 energy2011 carbo2011 fat2011 protein2011
+                     alcohol2011 mettotal2009 mettotal2004 mettotal2011
+                     mettotal2000 mettotal1997 gender retireageg birthcohort
+                     urban provinces communityid yrsinceretire1989
+                     since1989sq prepost1991 prepost1993 prepost1997
+                     prepost2000 prepost2004 prepost2006 prepost2009 xgender
+                     xurban , augment iter(20)
          lastsmoke: logit lastsmoke i.education i.workspouse i.skills
                      i.manual i.jointretire i.childcare lastsysdrug
-                     lastdiadrug lastbmi i.lastalcohol perhhincome2000
-                     carbo2000 fat2000 protein2000 energy2000 lastwaist
-                     i.bismoking2000 perhhincome1989 i.bismoking2004
-                     perhhincome1991 perhhincome2004 energy2004 carbo2004
-                     fat2004 protein2004 alcohol2000 perhhincome2006
-                     energy2006 carbo2006 fat2006 protein2006 alcohol2004
-                     perhhincome1993 alcohol2006 carbo1991 fat1991
-                     protein1991 energy1991 energy1993 carbo1993 fat1993
-                     protein1993 i.bismoking1997 perhhincome1997
-                     perhhincome2009 carbo1997 protein1997 energy1997 fat1997
+                     lastdiadrug lastbmi i.lastalcohol carbo2000 fat2000
+                     protein2000 energy2000 lastwaist i.bismoking2000
+                     i.bismoking2004 energy2004 carbo2004 fat2004 protein2004
+                     alcohol2000 energy2006 carbo2006 fat2006 protein2006
+                     alcohol2004 alcohol2006 carbo1991 fat1991 protein1991
+                     energy1991 energy1993 carbo1993 fat1993 protein1993
+                     i.bismoking1997 carbo1997 protein1997 energy1997 fat1997
                      energy2009 carbo2009 fat2009 protein2009 alcohol1997
-                     alcohol2009 alcohol1993 perhhincome2011 mettotal2006
-                     energy2011 carbo2011 fat2011 protein2011 alcohol2011
-                     mettotal2009 mettotal2004 mettotal2011 mettotal2000
-                     alcohol1991 mettotal1997 mettotal1991 mettotal1993
-                     gender retireage birthcohort urban provinces communityid
+                     alcohol2009 mettotal2006 energy2011 carbo2011 fat2011
+                     protein2011 alcohol2011 mettotal2009 mettotal2004
+                     mettotal2011 mettotal2000 mettotal1997 gender retireageg
+                     birthcohort urban provinces communityid
                      yrsinceretire1989 since1989sq prepost1991 prepost1993
                      prepost1997 prepost2000 prepost2004 prepost2006
                      prepost2009 xgender xurban , augment iter(20)
          childcare: logit childcare i.education i.workspouse i.skills
                      i.manual i.jointretire i.lastsmoke lastsysdrug
-                     lastdiadrug lastbmi i.lastalcohol perhhincome2000
-                     carbo2000 fat2000 protein2000 energy2000 lastwaist
-                     i.bismoking2000 perhhincome1989 i.bismoking2004
-                     perhhincome1991 perhhincome2004 energy2004 carbo2004
-                     fat2004 protein2004 alcohol2000 perhhincome2006
-                     energy2006 carbo2006 fat2006 protein2006 alcohol2004
-                     perhhincome1993 alcohol2006 carbo1991 fat1991
-                     protein1991 energy1991 energy1993 carbo1993 fat1993
-                     protein1993 i.bismoking1997 perhhincome1997
-                     perhhincome2009 carbo1997 protein1997 energy1997 fat1997
+                     lastdiadrug lastbmi i.lastalcohol carbo2000 fat2000
+                     protein2000 energy2000 lastwaist i.bismoking2000
+                     i.bismoking2004 energy2004 carbo2004 fat2004 protein2004
+                     alcohol2000 energy2006 carbo2006 fat2006 protein2006
+                     alcohol2004 alcohol2006 carbo1991 fat1991 protein1991
+                     energy1991 energy1993 carbo1993 fat1993 protein1993
+                     i.bismoking1997 carbo1997 protein1997 energy1997 fat1997
                      energy2009 carbo2009 fat2009 protein2009 alcohol1997
-                     alcohol2009 alcohol1993 perhhincome2011 mettotal2006
-                     energy2011 carbo2011 fat2011 protein2011 alcohol2011
-                     mettotal2009 mettotal2004 mettotal2011 mettotal2000
-                     alcohol1991 mettotal1997 mettotal1991 mettotal1993
-                     gender retireage birthcohort urban provinces communityid
+                     alcohol2009 mettotal2006 energy2011 carbo2011 fat2011
+                     protein2011 alcohol2011 mettotal2009 mettotal2004
+                     mettotal2011 mettotal2000 mettotal1997 gender retireageg
+                     birthcohort urban provinces communityid
                      yrsinceretire1989 since1989sq prepost1991 prepost1993
                      prepost1997 prepost2000 prepost2004 prepost2006
                      prepost2009 xgender xurban , augment iter(20)
        lastsysdrug: regress lastsysdrug i.education i.workspouse i.skills
                      i.manual i.jointretire i.lastsmoke i.childcare
-                     lastdiadrug lastbmi i.lastalcohol perhhincome2000
-                     carbo2000 fat2000 protein2000 energy2000 lastwaist
-                     i.bismoking2000 perhhincome1989 i.bismoking2004
-                     perhhincome1991 perhhincome2004 energy2004 carbo2004
-                     fat2004 protein2004 alcohol2000 perhhincome2006
-                     energy2006 carbo2006 fat2006 protein2006 alcohol2004
-                     perhhincome1993 alcohol2006 carbo1991 fat1991
-                     protein1991 energy1991 energy1993 carbo1993 fat1993
-                     protein1993 i.bismoking1997 perhhincome1997
-                     perhhincome2009 carbo1997 protein1997 energy1997 fat1997
+                     lastdiadrug lastbmi i.lastalcohol carbo2000 fat2000
+                     protein2000 energy2000 lastwaist i.bismoking2000
+                     i.bismoking2004 energy2004 carbo2004 fat2004 protein2004
+                     alcohol2000 energy2006 carbo2006 fat2006 protein2006
+                     alcohol2004 alcohol2006 carbo1991 fat1991 protein1991
+                     energy1991 energy1993 carbo1993 fat1993 protein1993
+                     i.bismoking1997 carbo1997 protein1997 energy1997 fat1997
                      energy2009 carbo2009 fat2009 protein2009 alcohol1997
-                     alcohol2009 alcohol1993 perhhincome2011 mettotal2006
-                     energy2011 carbo2011 fat2011 protein2011 alcohol2011
-                     mettotal2009 mettotal2004 mettotal2011 mettotal2000
-                     alcohol1991 mettotal1997 mettotal1991 mettotal1993
-                     gender retireage birthcohort urban provinces communityid
+                     alcohol2009 mettotal2006 energy2011 carbo2011 fat2011
+                     protein2011 alcohol2011 mettotal2009 mettotal2004
+                     mettotal2011 mettotal2000 mettotal1997 gender retireageg
+                     birthcohort urban provinces communityid
                      yrsinceretire1989 since1989sq prepost1991 prepost1993
                      prepost1997 prepost2000 prepost2004 prepost2006
                      prepost2009 xgender xurban
        lastdiadrug: regress lastdiadrug i.education i.workspouse i.skills
                      i.manual i.jointretire i.lastsmoke i.childcare
-                     lastsysdrug lastbmi i.lastalcohol perhhincome2000
-                     carbo2000 fat2000 protein2000 energy2000 lastwaist
-                     i.bismoking2000 perhhincome1989 i.bismoking2004
-                     perhhincome1991 perhhincome2004 energy2004 carbo2004
-                     fat2004 protein2004 alcohol2000 perhhincome2006
-                     energy2006 carbo2006 fat2006 protein2006 alcohol2004
-                     perhhincome1993 alcohol2006 carbo1991 fat1991
-                     protein1991 energy1991 energy1993 carbo1993 fat1993
-                     protein1993 i.bismoking1997 perhhincome1997
-                     perhhincome2009 carbo1997 protein1997 energy1997 fat1997
+                     lastsysdrug lastbmi i.lastalcohol carbo2000 fat2000
+                     protein2000 energy2000 lastwaist i.bismoking2000
+                     i.bismoking2004 energy2004 carbo2004 fat2004 protein2004
+                     alcohol2000 energy2006 carbo2006 fat2006 protein2006
+                     alcohol2004 alcohol2006 carbo1991 fat1991 protein1991
+                     energy1991 energy1993 carbo1993 fat1993 protein1993
+                     i.bismoking1997 carbo1997 protein1997 energy1997 fat1997
                      energy2009 carbo2009 fat2009 protein2009 alcohol1997
-                     alcohol2009 alcohol1993 perhhincome2011 mettotal2006
-                     energy2011 carbo2011 fat2011 protein2011 alcohol2011
-                     mettotal2009 mettotal2004 mettotal2011 mettotal2000
-                     alcohol1991 mettotal1997 mettotal1991 mettotal1993
-                     gender retireage birthcohort urban provinces communityid
+                     alcohol2009 mettotal2006 energy2011 carbo2011 fat2011
+                     protein2011 alcohol2011 mettotal2009 mettotal2004
+                     mettotal2011 mettotal2000 mettotal1997 gender retireageg
+                     birthcohort urban provinces communityid
                      yrsinceretire1989 since1989sq prepost1991 prepost1993
                      prepost1997 prepost2000 prepost2004 prepost2006
                      prepost2009 xgender xurban
            lastbmi: regress lastbmi i.education i.workspouse i.skills
                      i.manual i.jointretire i.lastsmoke i.childcare
-                     lastsysdrug lastdiadrug i.lastalcohol perhhincome2000
-                     carbo2000 fat2000 protein2000 energy2000 lastwaist
-                     i.bismoking2000 perhhincome1989 i.bismoking2004
-                     perhhincome1991 perhhincome2004 energy2004 carbo2004
-                     fat2004 protein2004 alcohol2000 perhhincome2006
-                     energy2006 carbo2006 fat2006 protein2006 alcohol2004
-                     perhhincome1993 alcohol2006 carbo1991 fat1991
-                     protein1991 energy1991 energy1993 carbo1993 fat1993
-                     protein1993 i.bismoking1997 perhhincome1997
-                     perhhincome2009 carbo1997 protein1997 energy1997 fat1997
+                     lastsysdrug lastdiadrug i.lastalcohol carbo2000 fat2000
+                     protein2000 energy2000 lastwaist i.bismoking2000
+                     i.bismoking2004 energy2004 carbo2004 fat2004 protein2004
+                     alcohol2000 energy2006 carbo2006 fat2006 protein2006
+                     alcohol2004 alcohol2006 carbo1991 fat1991 protein1991
+                     energy1991 energy1993 carbo1993 fat1993 protein1993
+                     i.bismoking1997 carbo1997 protein1997 energy1997 fat1997
                      energy2009 carbo2009 fat2009 protein2009 alcohol1997
-                     alcohol2009 alcohol1993 perhhincome2011 mettotal2006
-                     energy2011 carbo2011 fat2011 protein2011 alcohol2011
-                     mettotal2009 mettotal2004 mettotal2011 mettotal2000
-                     alcohol1991 mettotal1997 mettotal1991 mettotal1993
-                     gender retireage birthcohort urban provinces communityid
+                     alcohol2009 mettotal2006 energy2011 carbo2011 fat2011
+                     protein2011 alcohol2011 mettotal2009 mettotal2004
+                     mettotal2011 mettotal2000 mettotal1997 gender retireageg
+                     birthcohort urban provinces communityid
                      yrsinceretire1989 since1989sq prepost1991 prepost1993
                      prepost1997 prepost2000 prepost2004 prepost2006
                      prepost2009 xgender xurban
        lastalcohol: ologit lastalcohol i.education i.workspouse i.skills
                      i.manual i.jointretire i.lastsmoke i.childcare
-                     lastsysdrug lastdiadrug lastbmi perhhincome2000
-                     carbo2000 fat2000 protein2000 energy2000 lastwaist
-                     i.bismoking2000 perhhincome1989 i.bismoking2004
-                     perhhincome1991 perhhincome2004 energy2004 carbo2004
-                     fat2004 protein2004 alcohol2000 perhhincome2006
-                     energy2006 carbo2006 fat2006 protein2006 alcohol2004
-                     perhhincome1993 alcohol2006 carbo1991 fat1991
-                     protein1991 energy1991 energy1993 carbo1993 fat1993
-                     protein1993 i.bismoking1997 perhhincome1997
-                     perhhincome2009 carbo1997 protein1997 energy1997 fat1997
+                     lastsysdrug lastdiadrug lastbmi carbo2000 fat2000
+                     protein2000 energy2000 lastwaist i.bismoking2000
+                     i.bismoking2004 energy2004 carbo2004 fat2004 protein2004
+                     alcohol2000 energy2006 carbo2006 fat2006 protein2006
+                     alcohol2004 alcohol2006 carbo1991 fat1991 protein1991
+                     energy1991 energy1993 carbo1993 fat1993 protein1993
+                     i.bismoking1997 carbo1997 protein1997 energy1997 fat1997
                      energy2009 carbo2009 fat2009 protein2009 alcohol1997
-                     alcohol2009 alcohol1993 perhhincome2011 mettotal2006
-                     energy2011 carbo2011 fat2011 protein2011 alcohol2011
-                     mettotal2009 mettotal2004 mettotal2011 mettotal2000
-                     alcohol1991 mettotal1997 mettotal1991 mettotal1993
-                     gender retireage birthcohort urban provinces communityid
+                     alcohol2009 mettotal2006 energy2011 carbo2011 fat2011
+                     protein2011 alcohol2011 mettotal2009 mettotal2004
+                     mettotal2011 mettotal2000 mettotal1997 gender retireageg
+                     birthcohort urban provinces communityid
                      yrsinceretire1989 since1989sq prepost1991 prepost1993
                      prepost1997 prepost2000 prepost2004 prepost2006
                      prepost2009 xgender xurban , augment iter(20)
-    perhhinco~2000: pmm perhhincome2000 i.education i.workspouse i.skills
-                     i.manual i.jointretire i.lastsmoke i.childcare
-                     lastsysdrug lastdiadrug lastbmi i.lastalcohol carbo2000
-                     fat2000 protein2000 energy2000 lastwaist i.bismoking2000
-                     perhhincome1989 i.bismoking2004 perhhincome1991
-                     perhhincome2004 energy2004 carbo2004 fat2004 protein2004
-                     alcohol2000 perhhincome2006 energy2006 carbo2006 fat2006
-                     protein2006 alcohol2004 perhhincome1993 alcohol2006
-                     carbo1991 fat1991 protein1991 energy1991 energy1993
-                     carbo1993 fat1993 protein1993 i.bismoking1997
-                     perhhincome1997 perhhincome2009 carbo1997 protein1997
-                     energy1997 fat1997 energy2009 carbo2009 fat2009
-                     protein2009 alcohol1997 alcohol2009 alcohol1993
-                     perhhincome2011 mettotal2006 energy2011 carbo2011
-                     fat2011 protein2011 alcohol2011 mettotal2009
-                     mettotal2004 mettotal2011 mettotal2000 alcohol1991
-                     mettotal1997 mettotal1991 mettotal1993 gender retireage
-                     birthcohort urban provinces communityid
-                     yrsinceretire1989 since1989sq prepost1991 prepost1993
-                     prepost1997 prepost2000 prepost2004 prepost2006
-                     prepost2009 xgender xurban
          carbo2000: pmm carbo2000 i.education i.workspouse i.skills i.manual
                      i.jointretire i.lastsmoke i.childcare lastsysdrug
-                     lastdiadrug lastbmi i.lastalcohol perhhincome2000
-                     fat2000 protein2000 energy2000 lastwaist i.bismoking2000
-                     perhhincome1989 i.bismoking2004 perhhincome1991
-                     perhhincome2004 energy2004 carbo2004 fat2004 protein2004
-                     alcohol2000 perhhincome2006 energy2006 carbo2006 fat2006
-                     protein2006 alcohol2004 perhhincome1993 alcohol2006
-                     carbo1991 fat1991 protein1991 energy1991 energy1993
-                     carbo1993 fat1993 protein1993 i.bismoking1997
-                     perhhincome1997 perhhincome2009 carbo1997 protein1997
-                     energy1997 fat1997 energy2009 carbo2009 fat2009
-                     protein2009 alcohol1997 alcohol2009 alcohol1993
-                     perhhincome2011 mettotal2006 energy2011 carbo2011
-                     fat2011 protein2011 alcohol2011 mettotal2009
-                     mettotal2004 mettotal2011 mettotal2000 alcohol1991
-                     mettotal1997 mettotal1991 mettotal1993 gender retireage
-                     birthcohort urban provinces communityid
-                     yrsinceretire1989 since1989sq prepost1991 prepost1993
-                     prepost1997 prepost2000 prepost2004 prepost2006
-                     prepost2009 xgender xurban
+                     lastdiadrug lastbmi i.lastalcohol fat2000 protein2000
+                     energy2000 lastwaist i.bismoking2000 i.bismoking2004
+                     energy2004 carbo2004 fat2004 protein2004 alcohol2000
+                     energy2006 carbo2006 fat2006 protein2006 alcohol2004
+                     alcohol2006 carbo1991 fat1991 protein1991 energy1991
+                     energy1993 carbo1993 fat1993 protein1993 i.bismoking1997
+                     carbo1997 protein1997 energy1997 fat1997 energy2009
+                     carbo2009 fat2009 protein2009 alcohol1997 alcohol2009
+                     mettotal2006 energy2011 carbo2011 fat2011 protein2011
+                     alcohol2011 mettotal2009 mettotal2004 mettotal2011
+                     mettotal2000 mettotal1997 gender retireageg birthcohort
+                     urban provinces communityid yrsinceretire1989
+                     since1989sq prepost1991 prepost1993 prepost1997
+                     prepost2000 prepost2004 prepost2006 prepost2009 xgender
+                     xurban
            fat2000: pmm fat2000 i.education i.workspouse i.skills i.manual
                      i.jointretire i.lastsmoke i.childcare lastsysdrug
-                     lastdiadrug lastbmi i.lastalcohol perhhincome2000
-                     carbo2000 protein2000 energy2000 lastwaist
-                     i.bismoking2000 perhhincome1989 i.bismoking2004
-                     perhhincome1991 perhhincome2004 energy2004 carbo2004
-                     fat2004 protein2004 alcohol2000 perhhincome2006
+                     lastdiadrug lastbmi i.lastalcohol carbo2000 protein2000
+                     energy2000 lastwaist i.bismoking2000 i.bismoking2004
+                     energy2004 carbo2004 fat2004 protein2004 alcohol2000
                      energy2006 carbo2006 fat2006 protein2006 alcohol2004
-                     perhhincome1993 alcohol2006 carbo1991 fat1991
-                     protein1991 energy1991 energy1993 carbo1993 fat1993
-                     protein1993 i.bismoking1997 perhhincome1997
-                     perhhincome2009 carbo1997 protein1997 energy1997 fat1997
-                     energy2009 carbo2009 fat2009 protein2009 alcohol1997
-                     alcohol2009 alcohol1993 perhhincome2011 mettotal2006
-                     energy2011 carbo2011 fat2011 protein2011 alcohol2011
-                     mettotal2009 mettotal2004 mettotal2011 mettotal2000
-                     alcohol1991 mettotal1997 mettotal1991 mettotal1993
-                     gender retireage birthcohort urban provinces communityid
-                     yrsinceretire1989 since1989sq prepost1991 prepost1993
-                     prepost1997 prepost2000 prepost2004 prepost2006
-                     prepost2009 xgender xurban
+                     alcohol2006 carbo1991 fat1991 protein1991 energy1991
+                     energy1993 carbo1993 fat1993 protein1993 i.bismoking1997
+                     carbo1997 protein1997 energy1997 fat1997 energy2009
+                     carbo2009 fat2009 protein2009 alcohol1997 alcohol2009
+                     mettotal2006 energy2011 carbo2011 fat2011 protein2011
+                     alcohol2011 mettotal2009 mettotal2004 mettotal2011
+                     mettotal2000 mettotal1997 gender retireageg birthcohort
+                     urban provinces communityid yrsinceretire1989
+                     since1989sq prepost1991 prepost1993 prepost1997
+                     prepost2000 prepost2004 prepost2006 prepost2009 xgender
+                     xurban
        protein2000: pmm protein2000 i.education i.workspouse i.skills
                      i.manual i.jointretire i.lastsmoke i.childcare
-                     lastsysdrug lastdiadrug lastbmi i.lastalcohol
-                     perhhincome2000 carbo2000 fat2000 energy2000 lastwaist
-                     i.bismoking2000 perhhincome1989 i.bismoking2004
-                     perhhincome1991 perhhincome2004 energy2004 carbo2004
-                     fat2004 protein2004 alcohol2000 perhhincome2006
-                     energy2006 carbo2006 fat2006 protein2006 alcohol2004
-                     perhhincome1993 alcohol2006 carbo1991 fat1991
-                     protein1991 energy1991 energy1993 carbo1993 fat1993
-                     protein1993 i.bismoking1997 perhhincome1997
-                     perhhincome2009 carbo1997 protein1997 energy1997 fat1997
+                     lastsysdrug lastdiadrug lastbmi i.lastalcohol carbo2000
+                     fat2000 energy2000 lastwaist i.bismoking2000
+                     i.bismoking2004 energy2004 carbo2004 fat2004 protein2004
+                     alcohol2000 energy2006 carbo2006 fat2006 protein2006
+                     alcohol2004 alcohol2006 carbo1991 fat1991 protein1991
+                     energy1991 energy1993 carbo1993 fat1993 protein1993
+                     i.bismoking1997 carbo1997 protein1997 energy1997 fat1997
                      energy2009 carbo2009 fat2009 protein2009 alcohol1997
-                     alcohol2009 alcohol1993 perhhincome2011 mettotal2006
-                     energy2011 carbo2011 fat2011 protein2011 alcohol2011
-                     mettotal2009 mettotal2004 mettotal2011 mettotal2000
-                     alcohol1991 mettotal1997 mettotal1991 mettotal1993
-                     gender retireage birthcohort urban provinces communityid
+                     alcohol2009 mettotal2006 energy2011 carbo2011 fat2011
+                     protein2011 alcohol2011 mettotal2009 mettotal2004
+                     mettotal2011 mettotal2000 mettotal1997 gender retireageg
+                     birthcohort urban provinces communityid
                      yrsinceretire1989 since1989sq prepost1991 prepost1993
                      prepost1997 prepost2000 prepost2004 prepost2006
                      prepost2009 xgender xurban
         energy2000: pmm energy2000 i.education i.workspouse i.skills i.manual
                      i.jointretire i.lastsmoke i.childcare lastsysdrug
-                     lastdiadrug lastbmi i.lastalcohol perhhincome2000
-                     carbo2000 fat2000 protein2000 lastwaist i.bismoking2000
-                     perhhincome1989 i.bismoking2004 perhhincome1991
-                     perhhincome2004 energy2004 carbo2004 fat2004 protein2004
-                     alcohol2000 perhhincome2006 energy2006 carbo2006 fat2006
-                     protein2006 alcohol2004 perhhincome1993 alcohol2006
-                     carbo1991 fat1991 protein1991 energy1991 energy1993
-                     carbo1993 fat1993 protein1993 i.bismoking1997
-                     perhhincome1997 perhhincome2009 carbo1997 protein1997
-                     energy1997 fat1997 energy2009 carbo2009 fat2009
-                     protein2009 alcohol1997 alcohol2009 alcohol1993
-                     perhhincome2011 mettotal2006 energy2011 carbo2011
-                     fat2011 protein2011 alcohol2011 mettotal2009
-                     mettotal2004 mettotal2011 mettotal2000 alcohol1991
-                     mettotal1997 mettotal1991 mettotal1993 gender retireage
-                     birthcohort urban provinces communityid
-                     yrsinceretire1989 since1989sq prepost1991 prepost1993
-                     prepost1997 prepost2000 prepost2004 prepost2006
-                     prepost2009 xgender xurban
+                     lastdiadrug lastbmi i.lastalcohol carbo2000 fat2000
+                     protein2000 lastwaist i.bismoking2000 i.bismoking2004
+                     energy2004 carbo2004 fat2004 protein2004 alcohol2000
+                     energy2006 carbo2006 fat2006 protein2006 alcohol2004
+                     alcohol2006 carbo1991 fat1991 protein1991 energy1991
+                     energy1993 carbo1993 fat1993 protein1993 i.bismoking1997
+                     carbo1997 protein1997 energy1997 fat1997 energy2009
+                     carbo2009 fat2009 protein2009 alcohol1997 alcohol2009
+                     mettotal2006 energy2011 carbo2011 fat2011 protein2011
+                     alcohol2011 mettotal2009 mettotal2004 mettotal2011
+                     mettotal2000 mettotal1997 gender retireageg birthcohort
+                     urban provinces communityid yrsinceretire1989
+                     since1989sq prepost1991 prepost1993 prepost1997
+                     prepost2000 prepost2004 prepost2006 prepost2009 xgender
+                     xurban
          lastwaist: regress lastwaist i.education i.workspouse i.skills
                      i.manual i.jointretire i.lastsmoke i.childcare
-                     lastsysdrug lastdiadrug lastbmi i.lastalcohol
-                     perhhincome2000 carbo2000 fat2000 protein2000 energy2000
-                     i.bismoking2000 perhhincome1989 i.bismoking2004
-                     perhhincome1991 perhhincome2004 energy2004 carbo2004
-                     fat2004 protein2004 alcohol2000 perhhincome2006
-                     energy2006 carbo2006 fat2006 protein2006 alcohol2004
-                     perhhincome1993 alcohol2006 carbo1991 fat1991
-                     protein1991 energy1991 energy1993 carbo1993 fat1993
-                     protein1993 i.bismoking1997 perhhincome1997
-                     perhhincome2009 carbo1997 protein1997 energy1997 fat1997
+                     lastsysdrug lastdiadrug lastbmi i.lastalcohol carbo2000
+                     fat2000 protein2000 energy2000 i.bismoking2000
+                     i.bismoking2004 energy2004 carbo2004 fat2004 protein2004
+                     alcohol2000 energy2006 carbo2006 fat2006 protein2006
+                     alcohol2004 alcohol2006 carbo1991 fat1991 protein1991
+                     energy1991 energy1993 carbo1993 fat1993 protein1993
+                     i.bismoking1997 carbo1997 protein1997 energy1997 fat1997
                      energy2009 carbo2009 fat2009 protein2009 alcohol1997
-                     alcohol2009 alcohol1993 perhhincome2011 mettotal2006
-                     energy2011 carbo2011 fat2011 protein2011 alcohol2011
-                     mettotal2009 mettotal2004 mettotal2011 mettotal2000
-                     alcohol1991 mettotal1997 mettotal1991 mettotal1993
-                     gender retireage birthcohort urban provinces communityid
+                     alcohol2009 mettotal2006 energy2011 carbo2011 fat2011
+                     protein2011 alcohol2011 mettotal2009 mettotal2004
+                     mettotal2011 mettotal2000 mettotal1997 gender retireageg
+                     birthcohort urban provinces communityid
                      yrsinceretire1989 since1989sq prepost1991 prepost1993
                      prepost1997 prepost2000 prepost2004 prepost2006
                      prepost2009 xgender xurban
      bismoking2000: logit bismoking2000 i.education i.workspouse i.skills
                      i.manual i.jointretire i.lastsmoke i.childcare
-                     lastsysdrug lastdiadrug lastbmi i.lastalcohol
-                     perhhincome2000 carbo2000 fat2000 protein2000 energy2000
-                     lastwaist perhhincome1989 i.bismoking2004
-                     perhhincome1991 perhhincome2004 energy2004 carbo2004
-                     fat2004 protein2004 alcohol2000 perhhincome2006
+                     lastsysdrug lastdiadrug lastbmi i.lastalcohol carbo2000
+                     fat2000 protein2000 energy2000 lastwaist i.bismoking2004
+                     energy2004 carbo2004 fat2004 protein2004 alcohol2000
                      energy2006 carbo2006 fat2006 protein2006 alcohol2004
-                     perhhincome1993 alcohol2006 carbo1991 fat1991
-                     protein1991 energy1991 energy1993 carbo1993 fat1993
-                     protein1993 i.bismoking1997 perhhincome1997
-                     perhhincome2009 carbo1997 protein1997 energy1997 fat1997
-                     energy2009 carbo2009 fat2009 protein2009 alcohol1997
-                     alcohol2009 alcohol1993 perhhincome2011 mettotal2006
-                     energy2011 carbo2011 fat2011 protein2011 alcohol2011
-                     mettotal2009 mettotal2004 mettotal2011 mettotal2000
-                     alcohol1991 mettotal1997 mettotal1991 mettotal1993
-                     gender retireage birthcohort urban provinces communityid
-                     yrsinceretire1989 since1989sq prepost1991 prepost1993
-                     prepost1997 prepost2000 prepost2004 prepost2006
-                     prepost2009 xgender xurban , augment iter(20)
-    perhhinco~1989: pmm perhhincome1989 i.education i.workspouse i.skills
-                     i.manual i.jointretire i.lastsmoke i.childcare
-                     lastsysdrug lastdiadrug lastbmi i.lastalcohol
-                     perhhincome2000 carbo2000 fat2000 protein2000 energy2000
-                     lastwaist i.bismoking2000 i.bismoking2004
-                     perhhincome1991 perhhincome2004 energy2004 carbo2004
-                     fat2004 protein2004 alcohol2000 perhhincome2006
-                     energy2006 carbo2006 fat2006 protein2006 alcohol2004
-                     perhhincome1993 alcohol2006 carbo1991 fat1991
-                     protein1991 energy1991 energy1993 carbo1993 fat1993
-                     protein1993 i.bismoking1997 perhhincome1997
-                     perhhincome2009 carbo1997 protein1997 energy1997 fat1997
-                     energy2009 carbo2009 fat2009 protein2009 alcohol1997
-                     alcohol2009 alcohol1993 perhhincome2011 mettotal2006
-                     energy2011 carbo2011 fat2011 protein2011 alcohol2011
-                     mettotal2009 mettotal2004 mettotal2011 mettotal2000
-                     alcohol1991 mettotal1997 mettotal1991 mettotal1993
-                     gender retireage birthcohort urban provinces communityid
-                     yrsinceretire1989 since1989sq prepost1991 prepost1993
-                     prepost1997 prepost2000 prepost2004 prepost2006
-                     prepost2009 xgender xurban
+                     alcohol2006 carbo1991 fat1991 protein1991 energy1991
+                     energy1993 carbo1993 fat1993 protein1993 i.bismoking1997
+                     carbo1997 protein1997 energy1997 fat1997 energy2009
+                     carbo2009 fat2009 protein2009 alcohol1997 alcohol2009
+                     mettotal2006 energy2011 carbo2011 fat2011 protein2011
+                     alcohol2011 mettotal2009 mettotal2004 mettotal2011
+                     mettotal2000 mettotal1997 gender retireageg birthcohort
+                     urban provinces communityid yrsinceretire1989
+                     since1989sq prepost1991 prepost1993 prepost1997
+                     prepost2000 prepost2004 prepost2006 prepost2009 xgender
+                     xurban , augment iter(20)
      bismoking2004: logit bismoking2004 i.education i.workspouse i.skills
                      i.manual i.jointretire i.lastsmoke i.childcare
-                     lastsysdrug lastdiadrug lastbmi i.lastalcohol
-                     perhhincome2000 carbo2000 fat2000 protein2000 energy2000
-                     lastwaist i.bismoking2000 perhhincome1989
-                     perhhincome1991 perhhincome2004 energy2004 carbo2004
-                     fat2004 protein2004 alcohol2000 perhhincome2006
+                     lastsysdrug lastdiadrug lastbmi i.lastalcohol carbo2000
+                     fat2000 protein2000 energy2000 lastwaist i.bismoking2000
+                     energy2004 carbo2004 fat2004 protein2004 alcohol2000
                      energy2006 carbo2006 fat2006 protein2006 alcohol2004
-                     perhhincome1993 alcohol2006 carbo1991 fat1991
-                     protein1991 energy1991 energy1993 carbo1993 fat1993
-                     protein1993 i.bismoking1997 perhhincome1997
-                     perhhincome2009 carbo1997 protein1997 energy1997 fat1997
-                     energy2009 carbo2009 fat2009 protein2009 alcohol1997
-                     alcohol2009 alcohol1993 perhhincome2011 mettotal2006
-                     energy2011 carbo2011 fat2011 protein2011 alcohol2011
-                     mettotal2009 mettotal2004 mettotal2011 mettotal2000
-                     alcohol1991 mettotal1997 mettotal1991 mettotal1993
-                     gender retireage birthcohort urban provinces communityid
-                     yrsinceretire1989 since1989sq prepost1991 prepost1993
-                     prepost1997 prepost2000 prepost2004 prepost2006
-                     prepost2009 xgender xurban , augment iter(20)
-    perhhinco~1991: pmm perhhincome1991 i.education i.workspouse i.skills
-                     i.manual i.jointretire i.lastsmoke i.childcare
-                     lastsysdrug lastdiadrug lastbmi i.lastalcohol
-                     perhhincome2000 carbo2000 fat2000 protein2000 energy2000
-                     lastwaist i.bismoking2000 perhhincome1989
-                     i.bismoking2004 perhhincome2004 energy2004 carbo2004
-                     fat2004 protein2004 alcohol2000 perhhincome2006
-                     energy2006 carbo2006 fat2006 protein2006 alcohol2004
-                     perhhincome1993 alcohol2006 carbo1991 fat1991
-                     protein1991 energy1991 energy1993 carbo1993 fat1993
-                     protein1993 i.bismoking1997 perhhincome1997
-                     perhhincome2009 carbo1997 protein1997 energy1997 fat1997
-                     energy2009 carbo2009 fat2009 protein2009 alcohol1997
-                     alcohol2009 alcohol1993 perhhincome2011 mettotal2006
-                     energy2011 carbo2011 fat2011 protein2011 alcohol2011
-                     mettotal2009 mettotal2004 mettotal2011 mettotal2000
-                     alcohol1991 mettotal1997 mettotal1991 mettotal1993
-                     gender retireage birthcohort urban provinces communityid
-                     yrsinceretire1989 since1989sq prepost1991 prepost1993
-                     prepost1997 prepost2000 prepost2004 prepost2006
-                     prepost2009 xgender xurban
-    perhhinco~2004: pmm perhhincome2004 i.education i.workspouse i.skills
-                     i.manual i.jointretire i.lastsmoke i.childcare
-                     lastsysdrug lastdiadrug lastbmi i.lastalcohol
-                     perhhincome2000 carbo2000 fat2000 protein2000 energy2000
-                     lastwaist i.bismoking2000 perhhincome1989
-                     i.bismoking2004 perhhincome1991 energy2004 carbo2004
-                     fat2004 protein2004 alcohol2000 perhhincome2006
-                     energy2006 carbo2006 fat2006 protein2006 alcohol2004
-                     perhhincome1993 alcohol2006 carbo1991 fat1991
-                     protein1991 energy1991 energy1993 carbo1993 fat1993
-                     protein1993 i.bismoking1997 perhhincome1997
-                     perhhincome2009 carbo1997 protein1997 energy1997 fat1997
-                     energy2009 carbo2009 fat2009 protein2009 alcohol1997
-                     alcohol2009 alcohol1993 perhhincome2011 mettotal2006
-                     energy2011 carbo2011 fat2011 protein2011 alcohol2011
-                     mettotal2009 mettotal2004 mettotal2011 mettotal2000
-                     alcohol1991 mettotal1997 mettotal1991 mettotal1993
-                     gender retireage birthcohort urban provinces communityid
-                     yrsinceretire1989 since1989sq prepost1991 prepost1993
-                     prepost1997 prepost2000 prepost2004 prepost2006
-                     prepost2009 xgender xurban
+                     alcohol2006 carbo1991 fat1991 protein1991 energy1991
+                     energy1993 carbo1993 fat1993 protein1993 i.bismoking1997
+                     carbo1997 protein1997 energy1997 fat1997 energy2009
+                     carbo2009 fat2009 protein2009 alcohol1997 alcohol2009
+                     mettotal2006 energy2011 carbo2011 fat2011 protein2011
+                     alcohol2011 mettotal2009 mettotal2004 mettotal2011
+                     mettotal2000 mettotal1997 gender retireageg birthcohort
+                     urban provinces communityid yrsinceretire1989
+                     since1989sq prepost1991 prepost1993 prepost1997
+                     prepost2000 prepost2004 prepost2006 prepost2009 xgender
+                     xurban , augment iter(20)
         energy2004: pmm energy2004 i.education i.workspouse i.skills i.manual
                      i.jointretire i.lastsmoke i.childcare lastsysdrug
-                     lastdiadrug lastbmi i.lastalcohol perhhincome2000
-                     carbo2000 fat2000 protein2000 energy2000 lastwaist
-                     i.bismoking2000 perhhincome1989 i.bismoking2004
-                     perhhincome1991 perhhincome2004 carbo2004 fat2004
-                     protein2004 alcohol2000 perhhincome2006 energy2006
-                     carbo2006 fat2006 protein2006 alcohol2004
-                     perhhincome1993 alcohol2006 carbo1991 fat1991
-                     protein1991 energy1991 energy1993 carbo1993 fat1993
-                     protein1993 i.bismoking1997 perhhincome1997
-                     perhhincome2009 carbo1997 protein1997 energy1997 fat1997
+                     lastdiadrug lastbmi i.lastalcohol carbo2000 fat2000
+                     protein2000 energy2000 lastwaist i.bismoking2000
+                     i.bismoking2004 carbo2004 fat2004 protein2004
+                     alcohol2000 energy2006 carbo2006 fat2006 protein2006
+                     alcohol2004 alcohol2006 carbo1991 fat1991 protein1991
+                     energy1991 energy1993 carbo1993 fat1993 protein1993
+                     i.bismoking1997 carbo1997 protein1997 energy1997 fat1997
                      energy2009 carbo2009 fat2009 protein2009 alcohol1997
-                     alcohol2009 alcohol1993 perhhincome2011 mettotal2006
-                     energy2011 carbo2011 fat2011 protein2011 alcohol2011
-                     mettotal2009 mettotal2004 mettotal2011 mettotal2000
-                     alcohol1991 mettotal1997 mettotal1991 mettotal1993
-                     gender retireage birthcohort urban provinces communityid
+                     alcohol2009 mettotal2006 energy2011 carbo2011 fat2011
+                     protein2011 alcohol2011 mettotal2009 mettotal2004
+                     mettotal2011 mettotal2000 mettotal1997 gender retireageg
+                     birthcohort urban provinces communityid
                      yrsinceretire1989 since1989sq prepost1991 prepost1993
                      prepost1997 prepost2000 prepost2004 prepost2006
                      prepost2009 xgender xurban
          carbo2004: pmm carbo2004 i.education i.workspouse i.skills i.manual
                      i.jointretire i.lastsmoke i.childcare lastsysdrug
-                     lastdiadrug lastbmi i.lastalcohol perhhincome2000
-                     carbo2000 fat2000 protein2000 energy2000 lastwaist
-                     i.bismoking2000 perhhincome1989 i.bismoking2004
-                     perhhincome1991 perhhincome2004 energy2004 fat2004
-                     protein2004 alcohol2000 perhhincome2006 energy2006
-                     carbo2006 fat2006 protein2006 alcohol2004
-                     perhhincome1993 alcohol2006 carbo1991 fat1991
-                     protein1991 energy1991 energy1993 carbo1993 fat1993
-                     protein1993 i.bismoking1997 perhhincome1997
-                     perhhincome2009 carbo1997 protein1997 energy1997 fat1997
+                     lastdiadrug lastbmi i.lastalcohol carbo2000 fat2000
+                     protein2000 energy2000 lastwaist i.bismoking2000
+                     i.bismoking2004 energy2004 fat2004 protein2004
+                     alcohol2000 energy2006 carbo2006 fat2006 protein2006
+                     alcohol2004 alcohol2006 carbo1991 fat1991 protein1991
+                     energy1991 energy1993 carbo1993 fat1993 protein1993
+                     i.bismoking1997 carbo1997 protein1997 energy1997 fat1997
                      energy2009 carbo2009 fat2009 protein2009 alcohol1997
-                     alcohol2009 alcohol1993 perhhincome2011 mettotal2006
-                     energy2011 carbo2011 fat2011 protein2011 alcohol2011
-                     mettotal2009 mettotal2004 mettotal2011 mettotal2000
-                     alcohol1991 mettotal1997 mettotal1991 mettotal1993
-                     gender retireage birthcohort urban provinces communityid
+                     alcohol2009 mettotal2006 energy2011 carbo2011 fat2011
+                     protein2011 alcohol2011 mettotal2009 mettotal2004
+                     mettotal2011 mettotal2000 mettotal1997 gender retireageg
+                     birthcohort urban provinces communityid
                      yrsinceretire1989 since1989sq prepost1991 prepost1993
                      prepost1997 prepost2000 prepost2004 prepost2006
                      prepost2009 xgender xurban
            fat2004: pmm fat2004 i.education i.workspouse i.skills i.manual
                      i.jointretire i.lastsmoke i.childcare lastsysdrug
-                     lastdiadrug lastbmi i.lastalcohol perhhincome2000
-                     carbo2000 fat2000 protein2000 energy2000 lastwaist
-                     i.bismoking2000 perhhincome1989 i.bismoking2004
-                     perhhincome1991 perhhincome2004 energy2004 carbo2004
-                     protein2004 alcohol2000 perhhincome2006 energy2006
-                     carbo2006 fat2006 protein2006 alcohol2004
-                     perhhincome1993 alcohol2006 carbo1991 fat1991
-                     protein1991 energy1991 energy1993 carbo1993 fat1993
-                     protein1993 i.bismoking1997 perhhincome1997
-                     perhhincome2009 carbo1997 protein1997 energy1997 fat1997
+                     lastdiadrug lastbmi i.lastalcohol carbo2000 fat2000
+                     protein2000 energy2000 lastwaist i.bismoking2000
+                     i.bismoking2004 energy2004 carbo2004 protein2004
+                     alcohol2000 energy2006 carbo2006 fat2006 protein2006
+                     alcohol2004 alcohol2006 carbo1991 fat1991 protein1991
+                     energy1991 energy1993 carbo1993 fat1993 protein1993
+                     i.bismoking1997 carbo1997 protein1997 energy1997 fat1997
                      energy2009 carbo2009 fat2009 protein2009 alcohol1997
-                     alcohol2009 alcohol1993 perhhincome2011 mettotal2006
-                     energy2011 carbo2011 fat2011 protein2011 alcohol2011
-                     mettotal2009 mettotal2004 mettotal2011 mettotal2000
-                     alcohol1991 mettotal1997 mettotal1991 mettotal1993
-                     gender retireage birthcohort urban provinces communityid
+                     alcohol2009 mettotal2006 energy2011 carbo2011 fat2011
+                     protein2011 alcohol2011 mettotal2009 mettotal2004
+                     mettotal2011 mettotal2000 mettotal1997 gender retireageg
+                     birthcohort urban provinces communityid
                      yrsinceretire1989 since1989sq prepost1991 prepost1993
                      prepost1997 prepost2000 prepost2004 prepost2006
                      prepost2009 xgender xurban
        protein2004: pmm protein2004 i.education i.workspouse i.skills
                      i.manual i.jointretire i.lastsmoke i.childcare
-                     lastsysdrug lastdiadrug lastbmi i.lastalcohol
-                     perhhincome2000 carbo2000 fat2000 protein2000 energy2000
-                     lastwaist i.bismoking2000 perhhincome1989
-                     i.bismoking2004 perhhincome1991 perhhincome2004
-                     energy2004 carbo2004 fat2004 alcohol2000 perhhincome2006
+                     lastsysdrug lastdiadrug lastbmi i.lastalcohol carbo2000
+                     fat2000 protein2000 energy2000 lastwaist i.bismoking2000
+                     i.bismoking2004 energy2004 carbo2004 fat2004 alcohol2000
                      energy2006 carbo2006 fat2006 protein2006 alcohol2004
-                     perhhincome1993 alcohol2006 carbo1991 fat1991
-                     protein1991 energy1991 energy1993 carbo1993 fat1993
-                     protein1993 i.bismoking1997 perhhincome1997
-                     perhhincome2009 carbo1997 protein1997 energy1997 fat1997
-                     energy2009 carbo2009 fat2009 protein2009 alcohol1997
-                     alcohol2009 alcohol1993 perhhincome2011 mettotal2006
-                     energy2011 carbo2011 fat2011 protein2011 alcohol2011
-                     mettotal2009 mettotal2004 mettotal2011 mettotal2000
-                     alcohol1991 mettotal1997 mettotal1991 mettotal1993
-                     gender retireage birthcohort urban provinces communityid
-                     yrsinceretire1989 since1989sq prepost1991 prepost1993
-                     prepost1997 prepost2000 prepost2004 prepost2006
-                     prepost2009 xgender xurban
+                     alcohol2006 carbo1991 fat1991 protein1991 energy1991
+                     energy1993 carbo1993 fat1993 protein1993 i.bismoking1997
+                     carbo1997 protein1997 energy1997 fat1997 energy2009
+                     carbo2009 fat2009 protein2009 alcohol1997 alcohol2009
+                     mettotal2006 energy2011 carbo2011 fat2011 protein2011
+                     alcohol2011 mettotal2009 mettotal2004 mettotal2011
+                     mettotal2000 mettotal1997 gender retireageg birthcohort
+                     urban provinces communityid yrsinceretire1989
+                     since1989sq prepost1991 prepost1993 prepost1997
+                     prepost2000 prepost2004 prepost2006 prepost2009 xgender
+                     xurban
        alcohol2000: pmm alcohol2000 i.education i.workspouse i.skills
                      i.manual i.jointretire i.lastsmoke i.childcare
-                     lastsysdrug lastdiadrug lastbmi i.lastalcohol
-                     perhhincome2000 carbo2000 fat2000 protein2000 energy2000
-                     lastwaist i.bismoking2000 perhhincome1989
-                     i.bismoking2004 perhhincome1991 perhhincome2004
-                     energy2004 carbo2004 fat2004 protein2004 perhhincome2006
+                     lastsysdrug lastdiadrug lastbmi i.lastalcohol carbo2000
+                     fat2000 protein2000 energy2000 lastwaist i.bismoking2000
+                     i.bismoking2004 energy2004 carbo2004 fat2004 protein2004
                      energy2006 carbo2006 fat2006 protein2006 alcohol2004
-                     perhhincome1993 alcohol2006 carbo1991 fat1991
-                     protein1991 energy1991 energy1993 carbo1993 fat1993
-                     protein1993 i.bismoking1997 perhhincome1997
-                     perhhincome2009 carbo1997 protein1997 energy1997 fat1997
-                     energy2009 carbo2009 fat2009 protein2009 alcohol1997
-                     alcohol2009 alcohol1993 perhhincome2011 mettotal2006
-                     energy2011 carbo2011 fat2011 protein2011 alcohol2011
-                     mettotal2009 mettotal2004 mettotal2011 mettotal2000
-                     alcohol1991 mettotal1997 mettotal1991 mettotal1993
-                     gender retireage birthcohort urban provinces communityid
-                     yrsinceretire1989 since1989sq prepost1991 prepost1993
-                     prepost1997 prepost2000 prepost2004 prepost2006
-                     prepost2009 xgender xurban
-    perhhinco~2006: pmm perhhincome2006 i.education i.workspouse i.skills
-                     i.manual i.jointretire i.lastsmoke i.childcare
-                     lastsysdrug lastdiadrug lastbmi i.lastalcohol
-                     perhhincome2000 carbo2000 fat2000 protein2000 energy2000
-                     lastwaist i.bismoking2000 perhhincome1989
-                     i.bismoking2004 perhhincome1991 perhhincome2004
-                     energy2004 carbo2004 fat2004 protein2004 alcohol2000
-                     energy2006 carbo2006 fat2006 protein2006 alcohol2004
-                     perhhincome1993 alcohol2006 carbo1991 fat1991
-                     protein1991 energy1991 energy1993 carbo1993 fat1993
-                     protein1993 i.bismoking1997 perhhincome1997
-                     perhhincome2009 carbo1997 protein1997 energy1997 fat1997
-                     energy2009 carbo2009 fat2009 protein2009 alcohol1997
-                     alcohol2009 alcohol1993 perhhincome2011 mettotal2006
-                     energy2011 carbo2011 fat2011 protein2011 alcohol2011
-                     mettotal2009 mettotal2004 mettotal2011 mettotal2000
-                     alcohol1991 mettotal1997 mettotal1991 mettotal1993
-                     gender retireage birthcohort urban provinces communityid
-                     yrsinceretire1989 since1989sq prepost1991 prepost1993
-                     prepost1997 prepost2000 prepost2004 prepost2006
-                     prepost2009 xgender xurban
+                     alcohol2006 carbo1991 fat1991 protein1991 energy1991
+                     energy1993 carbo1993 fat1993 protein1993 i.bismoking1997
+                     carbo1997 protein1997 energy1997 fat1997 energy2009
+                     carbo2009 fat2009 protein2009 alcohol1997 alcohol2009
+                     mettotal2006 energy2011 carbo2011 fat2011 protein2011
+                     alcohol2011 mettotal2009 mettotal2004 mettotal2011
+                     mettotal2000 mettotal1997 gender retireageg birthcohort
+                     urban provinces communityid yrsinceretire1989
+                     since1989sq prepost1991 prepost1993 prepost1997
+                     prepost2000 prepost2004 prepost2006 prepost2009 xgender
+                     xurban
         energy2006: pmm energy2006 i.education i.workspouse i.skills i.manual
                      i.jointretire i.lastsmoke i.childcare lastsysdrug
-                     lastdiadrug lastbmi i.lastalcohol perhhincome2000
-                     carbo2000 fat2000 protein2000 energy2000 lastwaist
-                     i.bismoking2000 perhhincome1989 i.bismoking2004
-                     perhhincome1991 perhhincome2004 energy2004 carbo2004
-                     fat2004 protein2004 alcohol2000 perhhincome2006
-                     carbo2006 fat2006 protein2006 alcohol2004
-                     perhhincome1993 alcohol2006 carbo1991 fat1991
-                     protein1991 energy1991 energy1993 carbo1993 fat1993
-                     protein1993 i.bismoking1997 perhhincome1997
-                     perhhincome2009 carbo1997 protein1997 energy1997 fat1997
-                     energy2009 carbo2009 fat2009 protein2009 alcohol1997
-                     alcohol2009 alcohol1993 perhhincome2011 mettotal2006
-                     energy2011 carbo2011 fat2011 protein2011 alcohol2011
-                     mettotal2009 mettotal2004 mettotal2011 mettotal2000
-                     alcohol1991 mettotal1997 mettotal1991 mettotal1993
-                     gender retireage birthcohort urban provinces communityid
-                     yrsinceretire1989 since1989sq prepost1991 prepost1993
-                     prepost1997 prepost2000 prepost2004 prepost2006
-                     prepost2009 xgender xurban
+                     lastdiadrug lastbmi i.lastalcohol carbo2000 fat2000
+                     protein2000 energy2000 lastwaist i.bismoking2000
+                     i.bismoking2004 energy2004 carbo2004 fat2004 protein2004
+                     alcohol2000 carbo2006 fat2006 protein2006 alcohol2004
+                     alcohol2006 carbo1991 fat1991 protein1991 energy1991
+                     energy1993 carbo1993 fat1993 protein1993 i.bismoking1997
+                     carbo1997 protein1997 energy1997 fat1997 energy2009
+                     carbo2009 fat2009 protein2009 alcohol1997 alcohol2009
+                     mettotal2006 energy2011 carbo2011 fat2011 protein2011
+                     alcohol2011 mettotal2009 mettotal2004 mettotal2011
+                     mettotal2000 mettotal1997 gender retireageg birthcohort
+                     urban provinces communityid yrsinceretire1989
+                     since1989sq prepost1991 prepost1993 prepost1997
+                     prepost2000 prepost2004 prepost2006 prepost2009 xgender
+                     xurban
          carbo2006: pmm carbo2006 i.education i.workspouse i.skills i.manual
                      i.jointretire i.lastsmoke i.childcare lastsysdrug
-                     lastdiadrug lastbmi i.lastalcohol perhhincome2000
-                     carbo2000 fat2000 protein2000 energy2000 lastwaist
-                     i.bismoking2000 perhhincome1989 i.bismoking2004
-                     perhhincome1991 perhhincome2004 energy2004 carbo2004
-                     fat2004 protein2004 alcohol2000 perhhincome2006
-                     energy2006 fat2006 protein2006 alcohol2004
-                     perhhincome1993 alcohol2006 carbo1991 fat1991
-                     protein1991 energy1991 energy1993 carbo1993 fat1993
-                     protein1993 i.bismoking1997 perhhincome1997
-                     perhhincome2009 carbo1997 protein1997 energy1997 fat1997
-                     energy2009 carbo2009 fat2009 protein2009 alcohol1997
-                     alcohol2009 alcohol1993 perhhincome2011 mettotal2006
-                     energy2011 carbo2011 fat2011 protein2011 alcohol2011
-                     mettotal2009 mettotal2004 mettotal2011 mettotal2000
-                     alcohol1991 mettotal1997 mettotal1991 mettotal1993
-                     gender retireage birthcohort urban provinces communityid
-                     yrsinceretire1989 since1989sq prepost1991 prepost1993
-                     prepost1997 prepost2000 prepost2004 prepost2006
-                     prepost2009 xgender xurban
+                     lastdiadrug lastbmi i.lastalcohol carbo2000 fat2000
+                     protein2000 energy2000 lastwaist i.bismoking2000
+                     i.bismoking2004 energy2004 carbo2004 fat2004 protein2004
+                     alcohol2000 energy2006 fat2006 protein2006 alcohol2004
+                     alcohol2006 carbo1991 fat1991 protein1991 energy1991
+                     energy1993 carbo1993 fat1993 protein1993 i.bismoking1997
+                     carbo1997 protein1997 energy1997 fat1997 energy2009
+                     carbo2009 fat2009 protein2009 alcohol1997 alcohol2009
+                     mettotal2006 energy2011 carbo2011 fat2011 protein2011
+                     alcohol2011 mettotal2009 mettotal2004 mettotal2011
+                     mettotal2000 mettotal1997 gender retireageg birthcohort
+                     urban provinces communityid yrsinceretire1989
+                     since1989sq prepost1991 prepost1993 prepost1997
+                     prepost2000 prepost2004 prepost2006 prepost2009 xgender
+                     xurban
            fat2006: pmm fat2006 i.education i.workspouse i.skills i.manual
                      i.jointretire i.lastsmoke i.childcare lastsysdrug
-                     lastdiadrug lastbmi i.lastalcohol perhhincome2000
-                     carbo2000 fat2000 protein2000 energy2000 lastwaist
-                     i.bismoking2000 perhhincome1989 i.bismoking2004
-                     perhhincome1991 perhhincome2004 energy2004 carbo2004
-                     fat2004 protein2004 alcohol2000 perhhincome2006
-                     energy2006 carbo2006 protein2006 alcohol2004
-                     perhhincome1993 alcohol2006 carbo1991 fat1991
-                     protein1991 energy1991 energy1993 carbo1993 fat1993
-                     protein1993 i.bismoking1997 perhhincome1997
-                     perhhincome2009 carbo1997 protein1997 energy1997 fat1997
-                     energy2009 carbo2009 fat2009 protein2009 alcohol1997
-                     alcohol2009 alcohol1993 perhhincome2011 mettotal2006
-                     energy2011 carbo2011 fat2011 protein2011 alcohol2011
-                     mettotal2009 mettotal2004 mettotal2011 mettotal2000
-                     alcohol1991 mettotal1997 mettotal1991 mettotal1993
-                     gender retireage birthcohort urban provinces communityid
-                     yrsinceretire1989 since1989sq prepost1991 prepost1993
-                     prepost1997 prepost2000 prepost2004 prepost2006
-                     prepost2009 xgender xurban
+                     lastdiadrug lastbmi i.lastalcohol carbo2000 fat2000
+                     protein2000 energy2000 lastwaist i.bismoking2000
+                     i.bismoking2004 energy2004 carbo2004 fat2004 protein2004
+                     alcohol2000 energy2006 carbo2006 protein2006 alcohol2004
+                     alcohol2006 carbo1991 fat1991 protein1991 energy1991
+                     energy1993 carbo1993 fat1993 protein1993 i.bismoking1997
+                     carbo1997 protein1997 energy1997 fat1997 energy2009
+                     carbo2009 fat2009 protein2009 alcohol1997 alcohol2009
+                     mettotal2006 energy2011 carbo2011 fat2011 protein2011
+                     alcohol2011 mettotal2009 mettotal2004 mettotal2011
+                     mettotal2000 mettotal1997 gender retireageg birthcohort
+                     urban provinces communityid yrsinceretire1989
+                     since1989sq prepost1991 prepost1993 prepost1997
+                     prepost2000 prepost2004 prepost2006 prepost2009 xgender
+                     xurban
        protein2006: pmm protein2006 i.education i.workspouse i.skills
                      i.manual i.jointretire i.lastsmoke i.childcare
-                     lastsysdrug lastdiadrug lastbmi i.lastalcohol
-                     perhhincome2000 carbo2000 fat2000 protein2000 energy2000
-                     lastwaist i.bismoking2000 perhhincome1989
-                     i.bismoking2004 perhhincome1991 perhhincome2004
-                     energy2004 carbo2004 fat2004 protein2004 alcohol2000
-                     perhhincome2006 energy2006 carbo2006 fat2006 alcohol2004
-                     perhhincome1993 alcohol2006 carbo1991 fat1991
-                     protein1991 energy1991 energy1993 carbo1993 fat1993
-                     protein1993 i.bismoking1997 perhhincome1997
-                     perhhincome2009 carbo1997 protein1997 energy1997 fat1997
-                     energy2009 carbo2009 fat2009 protein2009 alcohol1997
-                     alcohol2009 alcohol1993 perhhincome2011 mettotal2006
-                     energy2011 carbo2011 fat2011 protein2011 alcohol2011
-                     mettotal2009 mettotal2004 mettotal2011 mettotal2000
-                     alcohol1991 mettotal1997 mettotal1991 mettotal1993
-                     gender retireage birthcohort urban provinces communityid
-                     yrsinceretire1989 since1989sq prepost1991 prepost1993
-                     prepost1997 prepost2000 prepost2004 prepost2006
-                     prepost2009 xgender xurban
+                     lastsysdrug lastdiadrug lastbmi i.lastalcohol carbo2000
+                     fat2000 protein2000 energy2000 lastwaist i.bismoking2000
+                     i.bismoking2004 energy2004 carbo2004 fat2004 protein2004
+                     alcohol2000 energy2006 carbo2006 fat2006 alcohol2004
+                     alcohol2006 carbo1991 fat1991 protein1991 energy1991
+                     energy1993 carbo1993 fat1993 protein1993 i.bismoking1997
+                     carbo1997 protein1997 energy1997 fat1997 energy2009
+                     carbo2009 fat2009 protein2009 alcohol1997 alcohol2009
+                     mettotal2006 energy2011 carbo2011 fat2011 protein2011
+                     alcohol2011 mettotal2009 mettotal2004 mettotal2011
+                     mettotal2000 mettotal1997 gender retireageg birthcohort
+                     urban provinces communityid yrsinceretire1989
+                     since1989sq prepost1991 prepost1993 prepost1997
+                     prepost2000 prepost2004 prepost2006 prepost2009 xgender
+                     xurban
        alcohol2004: pmm alcohol2004 i.education i.workspouse i.skills
                      i.manual i.jointretire i.lastsmoke i.childcare
-                     lastsysdrug lastdiadrug lastbmi i.lastalcohol
-                     perhhincome2000 carbo2000 fat2000 protein2000 energy2000
-                     lastwaist i.bismoking2000 perhhincome1989
-                     i.bismoking2004 perhhincome1991 perhhincome2004
-                     energy2004 carbo2004 fat2004 protein2004 alcohol2000
-                     perhhincome2006 energy2006 carbo2006 fat2006 protein2006
-                     perhhincome1993 alcohol2006 carbo1991 fat1991
-                     protein1991 energy1991 energy1993 carbo1993 fat1993
-                     protein1993 i.bismoking1997 perhhincome1997
-                     perhhincome2009 carbo1997 protein1997 energy1997 fat1997
-                     energy2009 carbo2009 fat2009 protein2009 alcohol1997
-                     alcohol2009 alcohol1993 perhhincome2011 mettotal2006
-                     energy2011 carbo2011 fat2011 protein2011 alcohol2011
-                     mettotal2009 mettotal2004 mettotal2011 mettotal2000
-                     alcohol1991 mettotal1997 mettotal1991 mettotal1993
-                     gender retireage birthcohort urban provinces communityid
-                     yrsinceretire1989 since1989sq prepost1991 prepost1993
-                     prepost1997 prepost2000 prepost2004 prepost2006
-                     prepost2009 xgender xurban
-    perhhinco~1993: pmm perhhincome1993 i.education i.workspouse i.skills
-                     i.manual i.jointretire i.lastsmoke i.childcare
-                     lastsysdrug lastdiadrug lastbmi i.lastalcohol
-                     perhhincome2000 carbo2000 fat2000 protein2000 energy2000
-                     lastwaist i.bismoking2000 perhhincome1989
-                     i.bismoking2004 perhhincome1991 perhhincome2004
-                     energy2004 carbo2004 fat2004 protein2004 alcohol2000
-                     perhhincome2006 energy2006 carbo2006 fat2006 protein2006
-                     alcohol2004 alcohol2006 carbo1991 fat1991 protein1991
-                     energy1991 energy1993 carbo1993 fat1993 protein1993
-                     i.bismoking1997 perhhincome1997 perhhincome2009
+                     lastsysdrug lastdiadrug lastbmi i.lastalcohol carbo2000
+                     fat2000 protein2000 energy2000 lastwaist i.bismoking2000
+                     i.bismoking2004 energy2004 carbo2004 fat2004 protein2004
+                     alcohol2000 energy2006 carbo2006 fat2006 protein2006
+                     alcohol2006 carbo1991 fat1991 protein1991 energy1991
+                     energy1993 carbo1993 fat1993 protein1993 i.bismoking1997
                      carbo1997 protein1997 energy1997 fat1997 energy2009
                      carbo2009 fat2009 protein2009 alcohol1997 alcohol2009
-                     alcohol1993 perhhincome2011 mettotal2006 energy2011
-                     carbo2011 fat2011 protein2011 alcohol2011 mettotal2009
-                     mettotal2004 mettotal2011 mettotal2000 alcohol1991
-                     mettotal1997 mettotal1991 mettotal1993 gender retireage
-                     birthcohort urban provinces communityid
-                     yrsinceretire1989 since1989sq prepost1991 prepost1993
-                     prepost1997 prepost2000 prepost2004 prepost2006
-                     prepost2009 xgender xurban
+                     mettotal2006 energy2011 carbo2011 fat2011 protein2011
+                     alcohol2011 mettotal2009 mettotal2004 mettotal2011
+                     mettotal2000 mettotal1997 gender retireageg birthcohort
+                     urban provinces communityid yrsinceretire1989
+                     since1989sq prepost1991 prepost1993 prepost1997
+                     prepost2000 prepost2004 prepost2006 prepost2009 xgender
+                     xurban
        alcohol2006: pmm alcohol2006 i.education i.workspouse i.skills
                      i.manual i.jointretire i.lastsmoke i.childcare
-                     lastsysdrug lastdiadrug lastbmi i.lastalcohol
-                     perhhincome2000 carbo2000 fat2000 protein2000 energy2000
-                     lastwaist i.bismoking2000 perhhincome1989
-                     i.bismoking2004 perhhincome1991 perhhincome2004
-                     energy2004 carbo2004 fat2004 protein2004 alcohol2000
-                     perhhincome2006 energy2006 carbo2006 fat2006 protein2006
-                     alcohol2004 perhhincome1993 carbo1991 fat1991
-                     protein1991 energy1991 energy1993 carbo1993 fat1993
-                     protein1993 i.bismoking1997 perhhincome1997
-                     perhhincome2009 carbo1997 protein1997 energy1997 fat1997
-                     energy2009 carbo2009 fat2009 protein2009 alcohol1997
-                     alcohol2009 alcohol1993 perhhincome2011 mettotal2006
-                     energy2011 carbo2011 fat2011 protein2011 alcohol2011
-                     mettotal2009 mettotal2004 mettotal2011 mettotal2000
-                     alcohol1991 mettotal1997 mettotal1991 mettotal1993
-                     gender retireage birthcohort urban provinces communityid
-                     yrsinceretire1989 since1989sq prepost1991 prepost1993
-                     prepost1997 prepost2000 prepost2004 prepost2006
-                     prepost2009 xgender xurban
+                     lastsysdrug lastdiadrug lastbmi i.lastalcohol carbo2000
+                     fat2000 protein2000 energy2000 lastwaist i.bismoking2000
+                     i.bismoking2004 energy2004 carbo2004 fat2004 protein2004
+                     alcohol2000 energy2006 carbo2006 fat2006 protein2006
+                     alcohol2004 carbo1991 fat1991 protein1991 energy1991
+                     energy1993 carbo1993 fat1993 protein1993 i.bismoking1997
+                     carbo1997 protein1997 energy1997 fat1997 energy2009
+                     carbo2009 fat2009 protein2009 alcohol1997 alcohol2009
+                     mettotal2006 energy2011 carbo2011 fat2011 protein2011
+                     alcohol2011 mettotal2009 mettotal2004 mettotal2011
+                     mettotal2000 mettotal1997 gender retireageg birthcohort
+                     urban provinces communityid yrsinceretire1989
+                     since1989sq prepost1991 prepost1993 prepost1997
+                     prepost2000 prepost2004 prepost2006 prepost2009 xgender
+                     xurban
          carbo1991: pmm carbo1991 i.education i.workspouse i.skills i.manual
                      i.jointretire i.lastsmoke i.childcare lastsysdrug
-                     lastdiadrug lastbmi i.lastalcohol perhhincome2000
-                     carbo2000 fat2000 protein2000 energy2000 lastwaist
-                     i.bismoking2000 perhhincome1989 i.bismoking2004
-                     perhhincome1991 perhhincome2004 energy2004 carbo2004
-                     fat2004 protein2004 alcohol2000 perhhincome2006
-                     energy2006 carbo2006 fat2006 protein2006 alcohol2004
-                     perhhincome1993 alcohol2006 fat1991 protein1991
-                     energy1991 energy1993 carbo1993 fat1993 protein1993
-                     i.bismoking1997 perhhincome1997 perhhincome2009
+                     lastdiadrug lastbmi i.lastalcohol carbo2000 fat2000
+                     protein2000 energy2000 lastwaist i.bismoking2000
+                     i.bismoking2004 energy2004 carbo2004 fat2004 protein2004
+                     alcohol2000 energy2006 carbo2006 fat2006 protein2006
+                     alcohol2004 alcohol2006 fat1991 protein1991 energy1991
+                     energy1993 carbo1993 fat1993 protein1993 i.bismoking1997
                      carbo1997 protein1997 energy1997 fat1997 energy2009
                      carbo2009 fat2009 protein2009 alcohol1997 alcohol2009
-                     alcohol1993 perhhincome2011 mettotal2006 energy2011
-                     carbo2011 fat2011 protein2011 alcohol2011 mettotal2009
-                     mettotal2004 mettotal2011 mettotal2000 alcohol1991
-                     mettotal1997 mettotal1991 mettotal1993 gender retireage
-                     birthcohort urban provinces communityid
-                     yrsinceretire1989 since1989sq prepost1991 prepost1993
-                     prepost1997 prepost2000 prepost2004 prepost2006
-                     prepost2009 xgender xurban
+                     mettotal2006 energy2011 carbo2011 fat2011 protein2011
+                     alcohol2011 mettotal2009 mettotal2004 mettotal2011
+                     mettotal2000 mettotal1997 gender retireageg birthcohort
+                     urban provinces communityid yrsinceretire1989
+                     since1989sq prepost1991 prepost1993 prepost1997
+                     prepost2000 prepost2004 prepost2006 prepost2009 xgender
+                     xurban
            fat1991: pmm fat1991 i.education i.workspouse i.skills i.manual
                      i.jointretire i.lastsmoke i.childcare lastsysdrug
-                     lastdiadrug lastbmi i.lastalcohol perhhincome2000
-                     carbo2000 fat2000 protein2000 energy2000 lastwaist
-                     i.bismoking2000 perhhincome1989 i.bismoking2004
-                     perhhincome1991 perhhincome2004 energy2004 carbo2004
-                     fat2004 protein2004 alcohol2000 perhhincome2006
-                     energy2006 carbo2006 fat2006 protein2006 alcohol2004
-                     perhhincome1993 alcohol2006 carbo1991 protein1991
-                     energy1991 energy1993 carbo1993 fat1993 protein1993
-                     i.bismoking1997 perhhincome1997 perhhincome2009
+                     lastdiadrug lastbmi i.lastalcohol carbo2000 fat2000
+                     protein2000 energy2000 lastwaist i.bismoking2000
+                     i.bismoking2004 energy2004 carbo2004 fat2004 protein2004
+                     alcohol2000 energy2006 carbo2006 fat2006 protein2006
+                     alcohol2004 alcohol2006 carbo1991 protein1991 energy1991
+                     energy1993 carbo1993 fat1993 protein1993 i.bismoking1997
                      carbo1997 protein1997 energy1997 fat1997 energy2009
                      carbo2009 fat2009 protein2009 alcohol1997 alcohol2009
-                     alcohol1993 perhhincome2011 mettotal2006 energy2011
-                     carbo2011 fat2011 protein2011 alcohol2011 mettotal2009
-                     mettotal2004 mettotal2011 mettotal2000 alcohol1991
-                     mettotal1997 mettotal1991 mettotal1993 gender retireage
-                     birthcohort urban provinces communityid
-                     yrsinceretire1989 since1989sq prepost1991 prepost1993
-                     prepost1997 prepost2000 prepost2004 prepost2006
-                     prepost2009 xgender xurban
+                     mettotal2006 energy2011 carbo2011 fat2011 protein2011
+                     alcohol2011 mettotal2009 mettotal2004 mettotal2011
+                     mettotal2000 mettotal1997 gender retireageg birthcohort
+                     urban provinces communityid yrsinceretire1989
+                     since1989sq prepost1991 prepost1993 prepost1997
+                     prepost2000 prepost2004 prepost2006 prepost2009 xgender
+                     xurban
        protein1991: pmm protein1991 i.education i.workspouse i.skills
                      i.manual i.jointretire i.lastsmoke i.childcare
-                     lastsysdrug lastdiadrug lastbmi i.lastalcohol
-                     perhhincome2000 carbo2000 fat2000 protein2000 energy2000
-                     lastwaist i.bismoking2000 perhhincome1989
-                     i.bismoking2004 perhhincome1991 perhhincome2004
-                     energy2004 carbo2004 fat2004 protein2004 alcohol2000
-                     perhhincome2006 energy2006 carbo2006 fat2006 protein2006
-                     alcohol2004 perhhincome1993 alcohol2006 carbo1991
-                     fat1991 energy1991 energy1993 carbo1993 fat1993
-                     protein1993 i.bismoking1997 perhhincome1997
-                     perhhincome2009 carbo1997 protein1997 energy1997 fat1997
-                     energy2009 carbo2009 fat2009 protein2009 alcohol1997
-                     alcohol2009 alcohol1993 perhhincome2011 mettotal2006
-                     energy2011 carbo2011 fat2011 protein2011 alcohol2011
-                     mettotal2009 mettotal2004 mettotal2011 mettotal2000
-                     alcohol1991 mettotal1997 mettotal1991 mettotal1993
-                     gender retireage birthcohort urban provinces communityid
-                     yrsinceretire1989 since1989sq prepost1991 prepost1993
-                     prepost1997 prepost2000 prepost2004 prepost2006
-                     prepost2009 xgender xurban
+                     lastsysdrug lastdiadrug lastbmi i.lastalcohol carbo2000
+                     fat2000 protein2000 energy2000 lastwaist i.bismoking2000
+                     i.bismoking2004 energy2004 carbo2004 fat2004 protein2004
+                     alcohol2000 energy2006 carbo2006 fat2006 protein2006
+                     alcohol2004 alcohol2006 carbo1991 fat1991 energy1991
+                     energy1993 carbo1993 fat1993 protein1993 i.bismoking1997
+                     carbo1997 protein1997 energy1997 fat1997 energy2009
+                     carbo2009 fat2009 protein2009 alcohol1997 alcohol2009
+                     mettotal2006 energy2011 carbo2011 fat2011 protein2011
+                     alcohol2011 mettotal2009 mettotal2004 mettotal2011
+                     mettotal2000 mettotal1997 gender retireageg birthcohort
+                     urban provinces communityid yrsinceretire1989
+                     since1989sq prepost1991 prepost1993 prepost1997
+                     prepost2000 prepost2004 prepost2006 prepost2009 xgender
+                     xurban
         energy1991: pmm energy1991 i.education i.workspouse i.skills i.manual
                      i.jointretire i.lastsmoke i.childcare lastsysdrug
-                     lastdiadrug lastbmi i.lastalcohol perhhincome2000
-                     carbo2000 fat2000 protein2000 energy2000 lastwaist
-                     i.bismoking2000 perhhincome1989 i.bismoking2004
-                     perhhincome1991 perhhincome2004 energy2004 carbo2004
-                     fat2004 protein2004 alcohol2000 perhhincome2006
-                     energy2006 carbo2006 fat2006 protein2006 alcohol2004
-                     perhhincome1993 alcohol2006 carbo1991 fat1991
-                     protein1991 energy1993 carbo1993 fat1993 protein1993
-                     i.bismoking1997 perhhincome1997 perhhincome2009
+                     lastdiadrug lastbmi i.lastalcohol carbo2000 fat2000
+                     protein2000 energy2000 lastwaist i.bismoking2000
+                     i.bismoking2004 energy2004 carbo2004 fat2004 protein2004
+                     alcohol2000 energy2006 carbo2006 fat2006 protein2006
+                     alcohol2004 alcohol2006 carbo1991 fat1991 protein1991
+                     energy1993 carbo1993 fat1993 protein1993 i.bismoking1997
                      carbo1997 protein1997 energy1997 fat1997 energy2009
                      carbo2009 fat2009 protein2009 alcohol1997 alcohol2009
-                     alcohol1993 perhhincome2011 mettotal2006 energy2011
-                     carbo2011 fat2011 protein2011 alcohol2011 mettotal2009
-                     mettotal2004 mettotal2011 mettotal2000 alcohol1991
-                     mettotal1997 mettotal1991 mettotal1993 gender retireage
-                     birthcohort urban provinces communityid
-                     yrsinceretire1989 since1989sq prepost1991 prepost1993
-                     prepost1997 prepost2000 prepost2004 prepost2006
-                     prepost2009 xgender xurban
+                     mettotal2006 energy2011 carbo2011 fat2011 protein2011
+                     alcohol2011 mettotal2009 mettotal2004 mettotal2011
+                     mettotal2000 mettotal1997 gender retireageg birthcohort
+                     urban provinces communityid yrsinceretire1989
+                     since1989sq prepost1991 prepost1993 prepost1997
+                     prepost2000 prepost2004 prepost2006 prepost2009 xgender
+                     xurban
         energy1993: pmm energy1993 i.education i.workspouse i.skills i.manual
                      i.jointretire i.lastsmoke i.childcare lastsysdrug
-                     lastdiadrug lastbmi i.lastalcohol perhhincome2000
-                     carbo2000 fat2000 protein2000 energy2000 lastwaist
-                     i.bismoking2000 perhhincome1989 i.bismoking2004
-                     perhhincome1991 perhhincome2004 energy2004 carbo2004
-                     fat2004 protein2004 alcohol2000 perhhincome2006
-                     energy2006 carbo2006 fat2006 protein2006 alcohol2004
-                     perhhincome1993 alcohol2006 carbo1991 fat1991
-                     protein1991 energy1991 carbo1993 fat1993 protein1993
-                     i.bismoking1997 perhhincome1997 perhhincome2009
+                     lastdiadrug lastbmi i.lastalcohol carbo2000 fat2000
+                     protein2000 energy2000 lastwaist i.bismoking2000
+                     i.bismoking2004 energy2004 carbo2004 fat2004 protein2004
+                     alcohol2000 energy2006 carbo2006 fat2006 protein2006
+                     alcohol2004 alcohol2006 carbo1991 fat1991 protein1991
+                     energy1991 carbo1993 fat1993 protein1993 i.bismoking1997
                      carbo1997 protein1997 energy1997 fat1997 energy2009
                      carbo2009 fat2009 protein2009 alcohol1997 alcohol2009
-                     alcohol1993 perhhincome2011 mettotal2006 energy2011
-                     carbo2011 fat2011 protein2011 alcohol2011 mettotal2009
-                     mettotal2004 mettotal2011 mettotal2000 alcohol1991
-                     mettotal1997 mettotal1991 mettotal1993 gender retireage
-                     birthcohort urban provinces communityid
-                     yrsinceretire1989 since1989sq prepost1991 prepost1993
-                     prepost1997 prepost2000 prepost2004 prepost2006
-                     prepost2009 xgender xurban
+                     mettotal2006 energy2011 carbo2011 fat2011 protein2011
+                     alcohol2011 mettotal2009 mettotal2004 mettotal2011
+                     mettotal2000 mettotal1997 gender retireageg birthcohort
+                     urban provinces communityid yrsinceretire1989
+                     since1989sq prepost1991 prepost1993 prepost1997
+                     prepost2000 prepost2004 prepost2006 prepost2009 xgender
+                     xurban
          carbo1993: pmm carbo1993 i.education i.workspouse i.skills i.manual
                      i.jointretire i.lastsmoke i.childcare lastsysdrug
-                     lastdiadrug lastbmi i.lastalcohol perhhincome2000
-                     carbo2000 fat2000 protein2000 energy2000 lastwaist
-                     i.bismoking2000 perhhincome1989 i.bismoking2004
-                     perhhincome1991 perhhincome2004 energy2004 carbo2004
-                     fat2004 protein2004 alcohol2000 perhhincome2006
-                     energy2006 carbo2006 fat2006 protein2006 alcohol2004
-                     perhhincome1993 alcohol2006 carbo1991 fat1991
-                     protein1991 energy1991 energy1993 fat1993 protein1993
-                     i.bismoking1997 perhhincome1997 perhhincome2009
-                     carbo1997 protein1997 energy1997 fat1997 energy2009
-                     carbo2009 fat2009 protein2009 alcohol1997 alcohol2009
-                     alcohol1993 perhhincome2011 mettotal2006 energy2011
-                     carbo2011 fat2011 protein2011 alcohol2011 mettotal2009
-                     mettotal2004 mettotal2011 mettotal2000 alcohol1991
-                     mettotal1997 mettotal1991 mettotal1993 gender retireage
+                     lastdiadrug lastbmi i.lastalcohol carbo2000 fat2000
+                     protein2000 energy2000 lastwaist i.bismoking2000
+                     i.bismoking2004 energy2004 carbo2004 fat2004 protein2004
+                     alcohol2000 energy2006 carbo2006 fat2006 protein2006
+                     alcohol2004 alcohol2006 carbo1991 fat1991 protein1991
+                     energy1991 energy1993 fat1993 protein1993
+                     i.bismoking1997 carbo1997 protein1997 energy1997 fat1997
+                     energy2009 carbo2009 fat2009 protein2009 alcohol1997
+                     alcohol2009 mettotal2006 energy2011 carbo2011 fat2011
+                     protein2011 alcohol2011 mettotal2009 mettotal2004
+                     mettotal2011 mettotal2000 mettotal1997 gender retireageg
                      birthcohort urban provinces communityid
                      yrsinceretire1989 since1989sq prepost1991 prepost1993
                      prepost1997 prepost2000 prepost2004 prepost2006
                      prepost2009 xgender xurban
            fat1993: pmm fat1993 i.education i.workspouse i.skills i.manual
                      i.jointretire i.lastsmoke i.childcare lastsysdrug
-                     lastdiadrug lastbmi i.lastalcohol perhhincome2000
-                     carbo2000 fat2000 protein2000 energy2000 lastwaist
-                     i.bismoking2000 perhhincome1989 i.bismoking2004
-                     perhhincome1991 perhhincome2004 energy2004 carbo2004
-                     fat2004 protein2004 alcohol2000 perhhincome2006
-                     energy2006 carbo2006 fat2006 protein2006 alcohol2004
-                     perhhincome1993 alcohol2006 carbo1991 fat1991
-                     protein1991 energy1991 energy1993 carbo1993 protein1993
-                     i.bismoking1997 perhhincome1997 perhhincome2009
-                     carbo1997 protein1997 energy1997 fat1997 energy2009
-                     carbo2009 fat2009 protein2009 alcohol1997 alcohol2009
-                     alcohol1993 perhhincome2011 mettotal2006 energy2011
-                     carbo2011 fat2011 protein2011 alcohol2011 mettotal2009
-                     mettotal2004 mettotal2011 mettotal2000 alcohol1991
-                     mettotal1997 mettotal1991 mettotal1993 gender retireage
+                     lastdiadrug lastbmi i.lastalcohol carbo2000 fat2000
+                     protein2000 energy2000 lastwaist i.bismoking2000
+                     i.bismoking2004 energy2004 carbo2004 fat2004 protein2004
+                     alcohol2000 energy2006 carbo2006 fat2006 protein2006
+                     alcohol2004 alcohol2006 carbo1991 fat1991 protein1991
+                     energy1991 energy1993 carbo1993 protein1993
+                     i.bismoking1997 carbo1997 protein1997 energy1997 fat1997
+                     energy2009 carbo2009 fat2009 protein2009 alcohol1997
+                     alcohol2009 mettotal2006 energy2011 carbo2011 fat2011
+                     protein2011 alcohol2011 mettotal2009 mettotal2004
+                     mettotal2011 mettotal2000 mettotal1997 gender retireageg
                      birthcohort urban provinces communityid
                      yrsinceretire1989 since1989sq prepost1991 prepost1993
                      prepost1997 prepost2000 prepost2004 prepost2006
                      prepost2009 xgender xurban
        protein1993: pmm protein1993 i.education i.workspouse i.skills
                      i.manual i.jointretire i.lastsmoke i.childcare
-                     lastsysdrug lastdiadrug lastbmi i.lastalcohol
-                     perhhincome2000 carbo2000 fat2000 protein2000 energy2000
-                     lastwaist i.bismoking2000 perhhincome1989
-                     i.bismoking2004 perhhincome1991 perhhincome2004
-                     energy2004 carbo2004 fat2004 protein2004 alcohol2000
-                     perhhincome2006 energy2006 carbo2006 fat2006 protein2006
-                     alcohol2004 perhhincome1993 alcohol2006 carbo1991
-                     fat1991 protein1991 energy1991 energy1993 carbo1993
-                     fat1993 i.bismoking1997 perhhincome1997 perhhincome2009
+                     lastsysdrug lastdiadrug lastbmi i.lastalcohol carbo2000
+                     fat2000 protein2000 energy2000 lastwaist i.bismoking2000
+                     i.bismoking2004 energy2004 carbo2004 fat2004 protein2004
+                     alcohol2000 energy2006 carbo2006 fat2006 protein2006
+                     alcohol2004 alcohol2006 carbo1991 fat1991 protein1991
+                     energy1991 energy1993 carbo1993 fat1993 i.bismoking1997
                      carbo1997 protein1997 energy1997 fat1997 energy2009
                      carbo2009 fat2009 protein2009 alcohol1997 alcohol2009
-                     alcohol1993 perhhincome2011 mettotal2006 energy2011
-                     carbo2011 fat2011 protein2011 alcohol2011 mettotal2009
-                     mettotal2004 mettotal2011 mettotal2000 alcohol1991
-                     mettotal1997 mettotal1991 mettotal1993 gender retireage
-                     birthcohort urban provinces communityid
-                     yrsinceretire1989 since1989sq prepost1991 prepost1993
-                     prepost1997 prepost2000 prepost2004 prepost2006
-                     prepost2009 xgender xurban
+                     mettotal2006 energy2011 carbo2011 fat2011 protein2011
+                     alcohol2011 mettotal2009 mettotal2004 mettotal2011
+                     mettotal2000 mettotal1997 gender retireageg birthcohort
+                     urban provinces communityid yrsinceretire1989
+                     since1989sq prepost1991 prepost1993 prepost1997
+                     prepost2000 prepost2004 prepost2006 prepost2009 xgender
+                     xurban
      bismoking1997: logit bismoking1997 i.education i.workspouse i.skills
                      i.manual i.jointretire i.lastsmoke i.childcare
-                     lastsysdrug lastdiadrug lastbmi i.lastalcohol
-                     perhhincome2000 carbo2000 fat2000 protein2000 energy2000
-                     lastwaist i.bismoking2000 perhhincome1989
-                     i.bismoking2004 perhhincome1991 perhhincome2004
-                     energy2004 carbo2004 fat2004 protein2004 alcohol2000
-                     perhhincome2006 energy2006 carbo2006 fat2006 protein2006
-                     alcohol2004 perhhincome1993 alcohol2006 carbo1991
-                     fat1991 protein1991 energy1991 energy1993 carbo1993
-                     fat1993 protein1993 perhhincome1997 perhhincome2009
+                     lastsysdrug lastdiadrug lastbmi i.lastalcohol carbo2000
+                     fat2000 protein2000 energy2000 lastwaist i.bismoking2000
+                     i.bismoking2004 energy2004 carbo2004 fat2004 protein2004
+                     alcohol2000 energy2006 carbo2006 fat2006 protein2006
+                     alcohol2004 alcohol2006 carbo1991 fat1991 protein1991
+                     energy1991 energy1993 carbo1993 fat1993 protein1993
                      carbo1997 protein1997 energy1997 fat1997 energy2009
                      carbo2009 fat2009 protein2009 alcohol1997 alcohol2009
-                     alcohol1993 perhhincome2011 mettotal2006 energy2011
-                     carbo2011 fat2011 protein2011 alcohol2011 mettotal2009
-                     mettotal2004 mettotal2011 mettotal2000 alcohol1991
-                     mettotal1997 mettotal1991 mettotal1993 gender retireage
-                     birthcohort urban provinces communityid
-                     yrsinceretire1989 since1989sq prepost1991 prepost1993
-                     prepost1997 prepost2000 prepost2004 prepost2006
-                     prepost2009 xgender xurban , augment iter(20)
-    perhhinco~1997: pmm perhhincome1997 i.education i.workspouse i.skills
-                     i.manual i.jointretire i.lastsmoke i.childcare
-                     lastsysdrug lastdiadrug lastbmi i.lastalcohol
-                     perhhincome2000 carbo2000 fat2000 protein2000 energy2000
-                     lastwaist i.bismoking2000 perhhincome1989
-                     i.bismoking2004 perhhincome1991 perhhincome2004
-                     energy2004 carbo2004 fat2004 protein2004 alcohol2000
-                     perhhincome2006 energy2006 carbo2006 fat2006 protein2006
-                     alcohol2004 perhhincome1993 alcohol2006 carbo1991
-                     fat1991 protein1991 energy1991 energy1993 carbo1993
-                     fat1993 protein1993 i.bismoking1997 perhhincome2009
-                     carbo1997 protein1997 energy1997 fat1997 energy2009
-                     carbo2009 fat2009 protein2009 alcohol1997 alcohol2009
-                     alcohol1993 perhhincome2011 mettotal2006 energy2011
-                     carbo2011 fat2011 protein2011 alcohol2011 mettotal2009
-                     mettotal2004 mettotal2011 mettotal2000 alcohol1991
-                     mettotal1997 mettotal1991 mettotal1993 gender retireage
-                     birthcohort urban provinces communityid
-                     yrsinceretire1989 since1989sq prepost1991 prepost1993
-                     prepost1997 prepost2000 prepost2004 prepost2006
-                     prepost2009 xgender xurban
-    perhhinco~2009: pmm perhhincome2009 i.education i.workspouse i.skills
-                     i.manual i.jointretire i.lastsmoke i.childcare
-                     lastsysdrug lastdiadrug lastbmi i.lastalcohol
-                     perhhincome2000 carbo2000 fat2000 protein2000 energy2000
-                     lastwaist i.bismoking2000 perhhincome1989
-                     i.bismoking2004 perhhincome1991 perhhincome2004
-                     energy2004 carbo2004 fat2004 protein2004 alcohol2000
-                     perhhincome2006 energy2006 carbo2006 fat2006 protein2006
-                     alcohol2004 perhhincome1993 alcohol2006 carbo1991
-                     fat1991 protein1991 energy1991 energy1993 carbo1993
-                     fat1993 protein1993 i.bismoking1997 perhhincome1997
-                     carbo1997 protein1997 energy1997 fat1997 energy2009
-                     carbo2009 fat2009 protein2009 alcohol1997 alcohol2009
-                     alcohol1993 perhhincome2011 mettotal2006 energy2011
-                     carbo2011 fat2011 protein2011 alcohol2011 mettotal2009
-                     mettotal2004 mettotal2011 mettotal2000 alcohol1991
-                     mettotal1997 mettotal1991 mettotal1993 gender retireage
-                     birthcohort urban provinces communityid
-                     yrsinceretire1989 since1989sq prepost1991 prepost1993
-                     prepost1997 prepost2000 prepost2004 prepost2006
-                     prepost2009 xgender xurban
+                     mettotal2006 energy2011 carbo2011 fat2011 protein2011
+                     alcohol2011 mettotal2009 mettotal2004 mettotal2011
+                     mettotal2000 mettotal1997 gender retireageg birthcohort
+                     urban provinces communityid yrsinceretire1989
+                     since1989sq prepost1991 prepost1993 prepost1997
+                     prepost2000 prepost2004 prepost2006 prepost2009 xgender
+                     xurban , augment iter(20)
          carbo1997: pmm carbo1997 i.education i.workspouse i.skills i.manual
                      i.jointretire i.lastsmoke i.childcare lastsysdrug
-                     lastdiadrug lastbmi i.lastalcohol perhhincome2000
-                     carbo2000 fat2000 protein2000 energy2000 lastwaist
-                     i.bismoking2000 perhhincome1989 i.bismoking2004
-                     perhhincome1991 perhhincome2004 energy2004 carbo2004
-                     fat2004 protein2004 alcohol2000 perhhincome2006
-                     energy2006 carbo2006 fat2006 protein2006 alcohol2004
-                     perhhincome1993 alcohol2006 carbo1991 fat1991
-                     protein1991 energy1991 energy1993 carbo1993 fat1993
-                     protein1993 i.bismoking1997 perhhincome1997
-                     perhhincome2009 protein1997 energy1997 fat1997
+                     lastdiadrug lastbmi i.lastalcohol carbo2000 fat2000
+                     protein2000 energy2000 lastwaist i.bismoking2000
+                     i.bismoking2004 energy2004 carbo2004 fat2004 protein2004
+                     alcohol2000 energy2006 carbo2006 fat2006 protein2006
+                     alcohol2004 alcohol2006 carbo1991 fat1991 protein1991
+                     energy1991 energy1993 carbo1993 fat1993 protein1993
+                     i.bismoking1997 protein1997 energy1997 fat1997
                      energy2009 carbo2009 fat2009 protein2009 alcohol1997
-                     alcohol2009 alcohol1993 perhhincome2011 mettotal2006
-                     energy2011 carbo2011 fat2011 protein2011 alcohol2011
-                     mettotal2009 mettotal2004 mettotal2011 mettotal2000
-                     alcohol1991 mettotal1997 mettotal1991 mettotal1993
-                     gender retireage birthcohort urban provinces communityid
+                     alcohol2009 mettotal2006 energy2011 carbo2011 fat2011
+                     protein2011 alcohol2011 mettotal2009 mettotal2004
+                     mettotal2011 mettotal2000 mettotal1997 gender retireageg
+                     birthcohort urban provinces communityid
                      yrsinceretire1989 since1989sq prepost1991 prepost1993
                      prepost1997 prepost2000 prepost2004 prepost2006
                      prepost2009 xgender xurban
        protein1997: pmm protein1997 i.education i.workspouse i.skills
                      i.manual i.jointretire i.lastsmoke i.childcare
-                     lastsysdrug lastdiadrug lastbmi i.lastalcohol
-                     perhhincome2000 carbo2000 fat2000 protein2000 energy2000
-                     lastwaist i.bismoking2000 perhhincome1989
-                     i.bismoking2004 perhhincome1991 perhhincome2004
-                     energy2004 carbo2004 fat2004 protein2004 alcohol2000
-                     perhhincome2006 energy2006 carbo2006 fat2006 protein2006
-                     alcohol2004 perhhincome1993 alcohol2006 carbo1991
-                     fat1991 protein1991 energy1991 energy1993 carbo1993
-                     fat1993 protein1993 i.bismoking1997 perhhincome1997
-                     perhhincome2009 carbo1997 energy1997 fat1997 energy2009
+                     lastsysdrug lastdiadrug lastbmi i.lastalcohol carbo2000
+                     fat2000 protein2000 energy2000 lastwaist i.bismoking2000
+                     i.bismoking2004 energy2004 carbo2004 fat2004 protein2004
+                     alcohol2000 energy2006 carbo2006 fat2006 protein2006
+                     alcohol2004 alcohol2006 carbo1991 fat1991 protein1991
+                     energy1991 energy1993 carbo1993 fat1993 protein1993
+                     i.bismoking1997 carbo1997 energy1997 fat1997 energy2009
                      carbo2009 fat2009 protein2009 alcohol1997 alcohol2009
-                     alcohol1993 perhhincome2011 mettotal2006 energy2011
-                     carbo2011 fat2011 protein2011 alcohol2011 mettotal2009
-                     mettotal2004 mettotal2011 mettotal2000 alcohol1991
-                     mettotal1997 mettotal1991 mettotal1993 gender retireage
-                     birthcohort urban provinces communityid
-                     yrsinceretire1989 since1989sq prepost1991 prepost1993
-                     prepost1997 prepost2000 prepost2004 prepost2006
-                     prepost2009 xgender xurban
+                     mettotal2006 energy2011 carbo2011 fat2011 protein2011
+                     alcohol2011 mettotal2009 mettotal2004 mettotal2011
+                     mettotal2000 mettotal1997 gender retireageg birthcohort
+                     urban provinces communityid yrsinceretire1989
+                     since1989sq prepost1991 prepost1993 prepost1997
+                     prepost2000 prepost2004 prepost2006 prepost2009 xgender
+                     xurban
         energy1997: pmm energy1997 i.education i.workspouse i.skills i.manual
                      i.jointretire i.lastsmoke i.childcare lastsysdrug
-                     lastdiadrug lastbmi i.lastalcohol perhhincome2000
-                     carbo2000 fat2000 protein2000 energy2000 lastwaist
-                     i.bismoking2000 perhhincome1989 i.bismoking2004
-                     perhhincome1991 perhhincome2004 energy2004 carbo2004
-                     fat2004 protein2004 alcohol2000 perhhincome2006
-                     energy2006 carbo2006 fat2006 protein2006 alcohol2004
-                     perhhincome1993 alcohol2006 carbo1991 fat1991
-                     protein1991 energy1991 energy1993 carbo1993 fat1993
-                     protein1993 i.bismoking1997 perhhincome1997
-                     perhhincome2009 carbo1997 protein1997 fat1997 energy2009
+                     lastdiadrug lastbmi i.lastalcohol carbo2000 fat2000
+                     protein2000 energy2000 lastwaist i.bismoking2000
+                     i.bismoking2004 energy2004 carbo2004 fat2004 protein2004
+                     alcohol2000 energy2006 carbo2006 fat2006 protein2006
+                     alcohol2004 alcohol2006 carbo1991 fat1991 protein1991
+                     energy1991 energy1993 carbo1993 fat1993 protein1993
+                     i.bismoking1997 carbo1997 protein1997 fat1997 energy2009
                      carbo2009 fat2009 protein2009 alcohol1997 alcohol2009
-                     alcohol1993 perhhincome2011 mettotal2006 energy2011
-                     carbo2011 fat2011 protein2011 alcohol2011 mettotal2009
-                     mettotal2004 mettotal2011 mettotal2000 alcohol1991
-                     mettotal1997 mettotal1991 mettotal1993 gender retireage
-                     birthcohort urban provinces communityid
-                     yrsinceretire1989 since1989sq prepost1991 prepost1993
-                     prepost1997 prepost2000 prepost2004 prepost2006
-                     prepost2009 xgender xurban
+                     mettotal2006 energy2011 carbo2011 fat2011 protein2011
+                     alcohol2011 mettotal2009 mettotal2004 mettotal2011
+                     mettotal2000 mettotal1997 gender retireageg birthcohort
+                     urban provinces communityid yrsinceretire1989
+                     since1989sq prepost1991 prepost1993 prepost1997
+                     prepost2000 prepost2004 prepost2006 prepost2009 xgender
+                     xurban
            fat1997: pmm fat1997 i.education i.workspouse i.skills i.manual
                      i.jointretire i.lastsmoke i.childcare lastsysdrug
-                     lastdiadrug lastbmi i.lastalcohol perhhincome2000
-                     carbo2000 fat2000 protein2000 energy2000 lastwaist
-                     i.bismoking2000 perhhincome1989 i.bismoking2004
-                     perhhincome1991 perhhincome2004 energy2004 carbo2004
-                     fat2004 protein2004 alcohol2000 perhhincome2006
-                     energy2006 carbo2006 fat2006 protein2006 alcohol2004
-                     perhhincome1993 alcohol2006 carbo1991 fat1991
-                     protein1991 energy1991 energy1993 carbo1993 fat1993
-                     protein1993 i.bismoking1997 perhhincome1997
-                     perhhincome2009 carbo1997 protein1997 energy1997
+                     lastdiadrug lastbmi i.lastalcohol carbo2000 fat2000
+                     protein2000 energy2000 lastwaist i.bismoking2000
+                     i.bismoking2004 energy2004 carbo2004 fat2004 protein2004
+                     alcohol2000 energy2006 carbo2006 fat2006 protein2006
+                     alcohol2004 alcohol2006 carbo1991 fat1991 protein1991
+                     energy1991 energy1993 carbo1993 fat1993 protein1993
+                     i.bismoking1997 carbo1997 protein1997 energy1997
                      energy2009 carbo2009 fat2009 protein2009 alcohol1997
-                     alcohol2009 alcohol1993 perhhincome2011 mettotal2006
-                     energy2011 carbo2011 fat2011 protein2011 alcohol2011
-                     mettotal2009 mettotal2004 mettotal2011 mettotal2000
-                     alcohol1991 mettotal1997 mettotal1991 mettotal1993
-                     gender retireage birthcohort urban provinces communityid
+                     alcohol2009 mettotal2006 energy2011 carbo2011 fat2011
+                     protein2011 alcohol2011 mettotal2009 mettotal2004
+                     mettotal2011 mettotal2000 mettotal1997 gender retireageg
+                     birthcohort urban provinces communityid
                      yrsinceretire1989 since1989sq prepost1991 prepost1993
                      prepost1997 prepost2000 prepost2004 prepost2006
                      prepost2009 xgender xurban
         energy2009: pmm energy2009 i.education i.workspouse i.skills i.manual
                      i.jointretire i.lastsmoke i.childcare lastsysdrug
-                     lastdiadrug lastbmi i.lastalcohol perhhincome2000
-                     carbo2000 fat2000 protein2000 energy2000 lastwaist
-                     i.bismoking2000 perhhincome1989 i.bismoking2004
-                     perhhincome1991 perhhincome2004 energy2004 carbo2004
-                     fat2004 protein2004 alcohol2000 perhhincome2006
-                     energy2006 carbo2006 fat2006 protein2006 alcohol2004
-                     perhhincome1993 alcohol2006 carbo1991 fat1991
-                     protein1991 energy1991 energy1993 carbo1993 fat1993
-                     protein1993 i.bismoking1997 perhhincome1997
-                     perhhincome2009 carbo1997 protein1997 energy1997 fat1997
+                     lastdiadrug lastbmi i.lastalcohol carbo2000 fat2000
+                     protein2000 energy2000 lastwaist i.bismoking2000
+                     i.bismoking2004 energy2004 carbo2004 fat2004 protein2004
+                     alcohol2000 energy2006 carbo2006 fat2006 protein2006
+                     alcohol2004 alcohol2006 carbo1991 fat1991 protein1991
+                     energy1991 energy1993 carbo1993 fat1993 protein1993
+                     i.bismoking1997 carbo1997 protein1997 energy1997 fat1997
                      carbo2009 fat2009 protein2009 alcohol1997 alcohol2009
-                     alcohol1993 perhhincome2011 mettotal2006 energy2011
-                     carbo2011 fat2011 protein2011 alcohol2011 mettotal2009
-                     mettotal2004 mettotal2011 mettotal2000 alcohol1991
-                     mettotal1997 mettotal1991 mettotal1993 gender retireage
-                     birthcohort urban provinces communityid
-                     yrsinceretire1989 since1989sq prepost1991 prepost1993
-                     prepost1997 prepost2000 prepost2004 prepost2006
-                     prepost2009 xgender xurban
+                     mettotal2006 energy2011 carbo2011 fat2011 protein2011
+                     alcohol2011 mettotal2009 mettotal2004 mettotal2011
+                     mettotal2000 mettotal1997 gender retireageg birthcohort
+                     urban provinces communityid yrsinceretire1989
+                     since1989sq prepost1991 prepost1993 prepost1997
+                     prepost2000 prepost2004 prepost2006 prepost2009 xgender
+                     xurban
          carbo2009: pmm carbo2009 i.education i.workspouse i.skills i.manual
                      i.jointretire i.lastsmoke i.childcare lastsysdrug
-                     lastdiadrug lastbmi i.lastalcohol perhhincome2000
-                     carbo2000 fat2000 protein2000 energy2000 lastwaist
-                     i.bismoking2000 perhhincome1989 i.bismoking2004
-                     perhhincome1991 perhhincome2004 energy2004 carbo2004
-                     fat2004 protein2004 alcohol2000 perhhincome2006
-                     energy2006 carbo2006 fat2006 protein2006 alcohol2004
-                     perhhincome1993 alcohol2006 carbo1991 fat1991
-                     protein1991 energy1991 energy1993 carbo1993 fat1993
-                     protein1993 i.bismoking1997 perhhincome1997
-                     perhhincome2009 carbo1997 protein1997 energy1997 fat1997
+                     lastdiadrug lastbmi i.lastalcohol carbo2000 fat2000
+                     protein2000 energy2000 lastwaist i.bismoking2000
+                     i.bismoking2004 energy2004 carbo2004 fat2004 protein2004
+                     alcohol2000 energy2006 carbo2006 fat2006 protein2006
+                     alcohol2004 alcohol2006 carbo1991 fat1991 protein1991
+                     energy1991 energy1993 carbo1993 fat1993 protein1993
+                     i.bismoking1997 carbo1997 protein1997 energy1997 fat1997
                      energy2009 fat2009 protein2009 alcohol1997 alcohol2009
-                     alcohol1993 perhhincome2011 mettotal2006 energy2011
-                     carbo2011 fat2011 protein2011 alcohol2011 mettotal2009
-                     mettotal2004 mettotal2011 mettotal2000 alcohol1991
-                     mettotal1997 mettotal1991 mettotal1993 gender retireage
-                     birthcohort urban provinces communityid
-                     yrsinceretire1989 since1989sq prepost1991 prepost1993
-                     prepost1997 prepost2000 prepost2004 prepost2006
-                     prepost2009 xgender xurban
+                     mettotal2006 energy2011 carbo2011 fat2011 protein2011
+                     alcohol2011 mettotal2009 mettotal2004 mettotal2011
+                     mettotal2000 mettotal1997 gender retireageg birthcohort
+                     urban provinces communityid yrsinceretire1989
+                     since1989sq prepost1991 prepost1993 prepost1997
+                     prepost2000 prepost2004 prepost2006 prepost2009 xgender
+                     xurban
            fat2009: pmm fat2009 i.education i.workspouse i.skills i.manual
                      i.jointretire i.lastsmoke i.childcare lastsysdrug
-                     lastdiadrug lastbmi i.lastalcohol perhhincome2000
-                     carbo2000 fat2000 protein2000 energy2000 lastwaist
-                     i.bismoking2000 perhhincome1989 i.bismoking2004
-                     perhhincome1991 perhhincome2004 energy2004 carbo2004
-                     fat2004 protein2004 alcohol2000 perhhincome2006
-                     energy2006 carbo2006 fat2006 protein2006 alcohol2004
-                     perhhincome1993 alcohol2006 carbo1991 fat1991
-                     protein1991 energy1991 energy1993 carbo1993 fat1993
-                     protein1993 i.bismoking1997 perhhincome1997
-                     perhhincome2009 carbo1997 protein1997 energy1997 fat1997
+                     lastdiadrug lastbmi i.lastalcohol carbo2000 fat2000
+                     protein2000 energy2000 lastwaist i.bismoking2000
+                     i.bismoking2004 energy2004 carbo2004 fat2004 protein2004
+                     alcohol2000 energy2006 carbo2006 fat2006 protein2006
+                     alcohol2004 alcohol2006 carbo1991 fat1991 protein1991
+                     energy1991 energy1993 carbo1993 fat1993 protein1993
+                     i.bismoking1997 carbo1997 protein1997 energy1997 fat1997
                      energy2009 carbo2009 protein2009 alcohol1997 alcohol2009
-                     alcohol1993 perhhincome2011 mettotal2006 energy2011
-                     carbo2011 fat2011 protein2011 alcohol2011 mettotal2009
-                     mettotal2004 mettotal2011 mettotal2000 alcohol1991
-                     mettotal1997 mettotal1991 mettotal1993 gender retireage
-                     birthcohort urban provinces communityid
-                     yrsinceretire1989 since1989sq prepost1991 prepost1993
-                     prepost1997 prepost2000 prepost2004 prepost2006
-                     prepost2009 xgender xurban
+                     mettotal2006 energy2011 carbo2011 fat2011 protein2011
+                     alcohol2011 mettotal2009 mettotal2004 mettotal2011
+                     mettotal2000 mettotal1997 gender retireageg birthcohort
+                     urban provinces communityid yrsinceretire1989
+                     since1989sq prepost1991 prepost1993 prepost1997
+                     prepost2000 prepost2004 prepost2006 prepost2009 xgender
+                     xurban
        protein2009: pmm protein2009 i.education i.workspouse i.skills
                      i.manual i.jointretire i.lastsmoke i.childcare
-                     lastsysdrug lastdiadrug lastbmi i.lastalcohol
-                     perhhincome2000 carbo2000 fat2000 protein2000 energy2000
-                     lastwaist i.bismoking2000 perhhincome1989
-                     i.bismoking2004 perhhincome1991 perhhincome2004
-                     energy2004 carbo2004 fat2004 protein2004 alcohol2000
-                     perhhincome2006 energy2006 carbo2006 fat2006 protein2006
-                     alcohol2004 perhhincome1993 alcohol2006 carbo1991
-                     fat1991 protein1991 energy1991 energy1993 carbo1993
-                     fat1993 protein1993 i.bismoking1997 perhhincome1997
-                     perhhincome2009 carbo1997 protein1997 energy1997 fat1997
+                     lastsysdrug lastdiadrug lastbmi i.lastalcohol carbo2000
+                     fat2000 protein2000 energy2000 lastwaist i.bismoking2000
+                     i.bismoking2004 energy2004 carbo2004 fat2004 protein2004
+                     alcohol2000 energy2006 carbo2006 fat2006 protein2006
+                     alcohol2004 alcohol2006 carbo1991 fat1991 protein1991
+                     energy1991 energy1993 carbo1993 fat1993 protein1993
+                     i.bismoking1997 carbo1997 protein1997 energy1997 fat1997
                      energy2009 carbo2009 fat2009 alcohol1997 alcohol2009
-                     alcohol1993 perhhincome2011 mettotal2006 energy2011
-                     carbo2011 fat2011 protein2011 alcohol2011 mettotal2009
-                     mettotal2004 mettotal2011 mettotal2000 alcohol1991
-                     mettotal1997 mettotal1991 mettotal1993 gender retireage
-                     birthcohort urban provinces communityid
-                     yrsinceretire1989 since1989sq prepost1991 prepost1993
-                     prepost1997 prepost2000 prepost2004 prepost2006
-                     prepost2009 xgender xurban
+                     mettotal2006 energy2011 carbo2011 fat2011 protein2011
+                     alcohol2011 mettotal2009 mettotal2004 mettotal2011
+                     mettotal2000 mettotal1997 gender retireageg birthcohort
+                     urban provinces communityid yrsinceretire1989
+                     since1989sq prepost1991 prepost1993 prepost1997
+                     prepost2000 prepost2004 prepost2006 prepost2009 xgender
+                     xurban
        alcohol1997: pmm alcohol1997 i.education i.workspouse i.skills
                      i.manual i.jointretire i.lastsmoke i.childcare
-                     lastsysdrug lastdiadrug lastbmi i.lastalcohol
-                     perhhincome2000 carbo2000 fat2000 protein2000 energy2000
-                     lastwaist i.bismoking2000 perhhincome1989
-                     i.bismoking2004 perhhincome1991 perhhincome2004
-                     energy2004 carbo2004 fat2004 protein2004 alcohol2000
-                     perhhincome2006 energy2006 carbo2006 fat2006 protein2006
-                     alcohol2004 perhhincome1993 alcohol2006 carbo1991
-                     fat1991 protein1991 energy1991 energy1993 carbo1993
-                     fat1993 protein1993 i.bismoking1997 perhhincome1997
-                     perhhincome2009 carbo1997 protein1997 energy1997 fat1997
+                     lastsysdrug lastdiadrug lastbmi i.lastalcohol carbo2000
+                     fat2000 protein2000 energy2000 lastwaist i.bismoking2000
+                     i.bismoking2004 energy2004 carbo2004 fat2004 protein2004
+                     alcohol2000 energy2006 carbo2006 fat2006 protein2006
+                     alcohol2004 alcohol2006 carbo1991 fat1991 protein1991
+                     energy1991 energy1993 carbo1993 fat1993 protein1993
+                     i.bismoking1997 carbo1997 protein1997 energy1997 fat1997
                      energy2009 carbo2009 fat2009 protein2009 alcohol2009
-                     alcohol1993 perhhincome2011 mettotal2006 energy2011
-                     carbo2011 fat2011 protein2011 alcohol2011 mettotal2009
-                     mettotal2004 mettotal2011 mettotal2000 alcohol1991
-                     mettotal1997 mettotal1991 mettotal1993 gender retireage
-                     birthcohort urban provinces communityid
-                     yrsinceretire1989 since1989sq prepost1991 prepost1993
-                     prepost1997 prepost2000 prepost2004 prepost2006
-                     prepost2009 xgender xurban
+                     mettotal2006 energy2011 carbo2011 fat2011 protein2011
+                     alcohol2011 mettotal2009 mettotal2004 mettotal2011
+                     mettotal2000 mettotal1997 gender retireageg birthcohort
+                     urban provinces communityid yrsinceretire1989
+                     since1989sq prepost1991 prepost1993 prepost1997
+                     prepost2000 prepost2004 prepost2006 prepost2009 xgender
+                     xurban
        alcohol2009: pmm alcohol2009 i.education i.workspouse i.skills
                      i.manual i.jointretire i.lastsmoke i.childcare
-                     lastsysdrug lastdiadrug lastbmi i.lastalcohol
-                     perhhincome2000 carbo2000 fat2000 protein2000 energy2000
-                     lastwaist i.bismoking2000 perhhincome1989
-                     i.bismoking2004 perhhincome1991 perhhincome2004
-                     energy2004 carbo2004 fat2004 protein2004 alcohol2000
-                     perhhincome2006 energy2006 carbo2006 fat2006 protein2006
-                     alcohol2004 perhhincome1993 alcohol2006 carbo1991
-                     fat1991 protein1991 energy1991 energy1993 carbo1993
-                     fat1993 protein1993 i.bismoking1997 perhhincome1997
-                     perhhincome2009 carbo1997 protein1997 energy1997 fat1997
+                     lastsysdrug lastdiadrug lastbmi i.lastalcohol carbo2000
+                     fat2000 protein2000 energy2000 lastwaist i.bismoking2000
+                     i.bismoking2004 energy2004 carbo2004 fat2004 protein2004
+                     alcohol2000 energy2006 carbo2006 fat2006 protein2006
+                     alcohol2004 alcohol2006 carbo1991 fat1991 protein1991
+                     energy1991 energy1993 carbo1993 fat1993 protein1993
+                     i.bismoking1997 carbo1997 protein1997 energy1997 fat1997
                      energy2009 carbo2009 fat2009 protein2009 alcohol1997
-                     alcohol1993 perhhincome2011 mettotal2006 energy2011
-                     carbo2011 fat2011 protein2011 alcohol2011 mettotal2009
-                     mettotal2004 mettotal2011 mettotal2000 alcohol1991
-                     mettotal1997 mettotal1991 mettotal1993 gender retireage
-                     birthcohort urban provinces communityid
-                     yrsinceretire1989 since1989sq prepost1991 prepost1993
-                     prepost1997 prepost2000 prepost2004 prepost2006
-                     prepost2009 xgender xurban
-       alcohol1993: pmm alcohol1993 i.education i.workspouse i.skills
-                     i.manual i.jointretire i.lastsmoke i.childcare
-                     lastsysdrug lastdiadrug lastbmi i.lastalcohol
-                     perhhincome2000 carbo2000 fat2000 protein2000 energy2000
-                     lastwaist i.bismoking2000 perhhincome1989
-                     i.bismoking2004 perhhincome1991 perhhincome2004
-                     energy2004 carbo2004 fat2004 protein2004 alcohol2000
-                     perhhincome2006 energy2006 carbo2006 fat2006 protein2006
-                     alcohol2004 perhhincome1993 alcohol2006 carbo1991
-                     fat1991 protein1991 energy1991 energy1993 carbo1993
-                     fat1993 protein1993 i.bismoking1997 perhhincome1997
-                     perhhincome2009 carbo1997 protein1997 energy1997 fat1997
-                     energy2009 carbo2009 fat2009 protein2009 alcohol1997
-                     alcohol2009 perhhincome2011 mettotal2006 energy2011
-                     carbo2011 fat2011 protein2011 alcohol2011 mettotal2009
-                     mettotal2004 mettotal2011 mettotal2000 alcohol1991
-                     mettotal1997 mettotal1991 mettotal1993 gender retireage
-                     birthcohort urban provinces communityid
-                     yrsinceretire1989 since1989sq prepost1991 prepost1993
-                     prepost1997 prepost2000 prepost2004 prepost2006
-                     prepost2009 xgender xurban
-    perhhinco~2011: pmm perhhincome2011 i.education i.workspouse i.skills
-                     i.manual i.jointretire i.lastsmoke i.childcare
-                     lastsysdrug lastdiadrug lastbmi i.lastalcohol
-                     perhhincome2000 carbo2000 fat2000 protein2000 energy2000
-                     lastwaist i.bismoking2000 perhhincome1989
-                     i.bismoking2004 perhhincome1991 perhhincome2004
-                     energy2004 carbo2004 fat2004 protein2004 alcohol2000
-                     perhhincome2006 energy2006 carbo2006 fat2006 protein2006
-                     alcohol2004 perhhincome1993 alcohol2006 carbo1991
-                     fat1991 protein1991 energy1991 energy1993 carbo1993
-                     fat1993 protein1993 i.bismoking1997 perhhincome1997
-                     perhhincome2009 carbo1997 protein1997 energy1997 fat1997
-                     energy2009 carbo2009 fat2009 protein2009 alcohol1997
-                     alcohol2009 alcohol1993 mettotal2006 energy2011
-                     carbo2011 fat2011 protein2011 alcohol2011 mettotal2009
-                     mettotal2004 mettotal2011 mettotal2000 alcohol1991
-                     mettotal1997 mettotal1991 mettotal1993 gender retireage
-                     birthcohort urban provinces communityid
-                     yrsinceretire1989 since1989sq prepost1991 prepost1993
-                     prepost1997 prepost2000 prepost2004 prepost2006
-                     prepost2009 xgender xurban
+                     mettotal2006 energy2011 carbo2011 fat2011 protein2011
+                     alcohol2011 mettotal2009 mettotal2004 mettotal2011
+                     mettotal2000 mettotal1997 gender retireageg birthcohort
+                     urban provinces communityid yrsinceretire1989
+                     since1989sq prepost1991 prepost1993 prepost1997
+                     prepost2000 prepost2004 prepost2006 prepost2009 xgender
+                     xurban
       mettotal2006: pmm mettotal2006 i.education i.workspouse i.skills
                      i.manual i.jointretire i.lastsmoke i.childcare
-                     lastsysdrug lastdiadrug lastbmi i.lastalcohol
-                     perhhincome2000 carbo2000 fat2000 protein2000 energy2000
-                     lastwaist i.bismoking2000 perhhincome1989
-                     i.bismoking2004 perhhincome1991 perhhincome2004
-                     energy2004 carbo2004 fat2004 protein2004 alcohol2000
-                     perhhincome2006 energy2006 carbo2006 fat2006 protein2006
-                     alcohol2004 perhhincome1993 alcohol2006 carbo1991
-                     fat1991 protein1991 energy1991 energy1993 carbo1993
-                     fat1993 protein1993 i.bismoking1997 perhhincome1997
-                     perhhincome2009 carbo1997 protein1997 energy1997 fat1997
+                     lastsysdrug lastdiadrug lastbmi i.lastalcohol carbo2000
+                     fat2000 protein2000 energy2000 lastwaist i.bismoking2000
+                     i.bismoking2004 energy2004 carbo2004 fat2004 protein2004
+                     alcohol2000 energy2006 carbo2006 fat2006 protein2006
+                     alcohol2004 alcohol2006 carbo1991 fat1991 protein1991
+                     energy1991 energy1993 carbo1993 fat1993 protein1993
+                     i.bismoking1997 carbo1997 protein1997 energy1997 fat1997
                      energy2009 carbo2009 fat2009 protein2009 alcohol1997
-                     alcohol2009 alcohol1993 perhhincome2011 energy2011
-                     carbo2011 fat2011 protein2011 alcohol2011 mettotal2009
-                     mettotal2004 mettotal2011 mettotal2000 alcohol1991
-                     mettotal1997 mettotal1991 mettotal1993 gender retireage
-                     birthcohort urban provinces communityid
-                     yrsinceretire1989 since1989sq prepost1991 prepost1993
-                     prepost1997 prepost2000 prepost2004 prepost2006
-                     prepost2009 xgender xurban
+                     alcohol2009 energy2011 carbo2011 fat2011 protein2011
+                     alcohol2011 mettotal2009 mettotal2004 mettotal2011
+                     mettotal2000 mettotal1997 gender retireageg birthcohort
+                     urban provinces communityid yrsinceretire1989
+                     since1989sq prepost1991 prepost1993 prepost1997
+                     prepost2000 prepost2004 prepost2006 prepost2009 xgender
+                     xurban
         energy2011: pmm energy2011 i.education i.workspouse i.skills i.manual
                      i.jointretire i.lastsmoke i.childcare lastsysdrug
-                     lastdiadrug lastbmi i.lastalcohol perhhincome2000
-                     carbo2000 fat2000 protein2000 energy2000 lastwaist
-                     i.bismoking2000 perhhincome1989 i.bismoking2004
-                     perhhincome1991 perhhincome2004 energy2004 carbo2004
-                     fat2004 protein2004 alcohol2000 perhhincome2006
-                     energy2006 carbo2006 fat2006 protein2006 alcohol2004
-                     perhhincome1993 alcohol2006 carbo1991 fat1991
-                     protein1991 energy1991 energy1993 carbo1993 fat1993
-                     protein1993 i.bismoking1997 perhhincome1997
-                     perhhincome2009 carbo1997 protein1997 energy1997 fat1997
+                     lastdiadrug lastbmi i.lastalcohol carbo2000 fat2000
+                     protein2000 energy2000 lastwaist i.bismoking2000
+                     i.bismoking2004 energy2004 carbo2004 fat2004 protein2004
+                     alcohol2000 energy2006 carbo2006 fat2006 protein2006
+                     alcohol2004 alcohol2006 carbo1991 fat1991 protein1991
+                     energy1991 energy1993 carbo1993 fat1993 protein1993
+                     i.bismoking1997 carbo1997 protein1997 energy1997 fat1997
                      energy2009 carbo2009 fat2009 protein2009 alcohol1997
-                     alcohol2009 alcohol1993 perhhincome2011 mettotal2006
-                     carbo2011 fat2011 protein2011 alcohol2011 mettotal2009
-                     mettotal2004 mettotal2011 mettotal2000 alcohol1991
-                     mettotal1997 mettotal1991 mettotal1993 gender retireage
-                     birthcohort urban provinces communityid
-                     yrsinceretire1989 since1989sq prepost1991 prepost1993
-                     prepost1997 prepost2000 prepost2004 prepost2006
-                     prepost2009 xgender xurban
+                     alcohol2009 mettotal2006 carbo2011 fat2011 protein2011
+                     alcohol2011 mettotal2009 mettotal2004 mettotal2011
+                     mettotal2000 mettotal1997 gender retireageg birthcohort
+                     urban provinces communityid yrsinceretire1989
+                     since1989sq prepost1991 prepost1993 prepost1997
+                     prepost2000 prepost2004 prepost2006 prepost2009 xgender
+                     xurban
          carbo2011: pmm carbo2011 i.education i.workspouse i.skills i.manual
                      i.jointretire i.lastsmoke i.childcare lastsysdrug
-                     lastdiadrug lastbmi i.lastalcohol perhhincome2000
-                     carbo2000 fat2000 protein2000 energy2000 lastwaist
-                     i.bismoking2000 perhhincome1989 i.bismoking2004
-                     perhhincome1991 perhhincome2004 energy2004 carbo2004
-                     fat2004 protein2004 alcohol2000 perhhincome2006
-                     energy2006 carbo2006 fat2006 protein2006 alcohol2004
-                     perhhincome1993 alcohol2006 carbo1991 fat1991
-                     protein1991 energy1991 energy1993 carbo1993 fat1993
-                     protein1993 i.bismoking1997 perhhincome1997
-                     perhhincome2009 carbo1997 protein1997 energy1997 fat1997
+                     lastdiadrug lastbmi i.lastalcohol carbo2000 fat2000
+                     protein2000 energy2000 lastwaist i.bismoking2000
+                     i.bismoking2004 energy2004 carbo2004 fat2004 protein2004
+                     alcohol2000 energy2006 carbo2006 fat2006 protein2006
+                     alcohol2004 alcohol2006 carbo1991 fat1991 protein1991
+                     energy1991 energy1993 carbo1993 fat1993 protein1993
+                     i.bismoking1997 carbo1997 protein1997 energy1997 fat1997
                      energy2009 carbo2009 fat2009 protein2009 alcohol1997
-                     alcohol2009 alcohol1993 perhhincome2011 mettotal2006
-                     energy2011 fat2011 protein2011 alcohol2011 mettotal2009
-                     mettotal2004 mettotal2011 mettotal2000 alcohol1991
-                     mettotal1997 mettotal1991 mettotal1993 gender retireage
-                     birthcohort urban provinces communityid
-                     yrsinceretire1989 since1989sq prepost1991 prepost1993
-                     prepost1997 prepost2000 prepost2004 prepost2006
-                     prepost2009 xgender xurban
+                     alcohol2009 mettotal2006 energy2011 fat2011 protein2011
+                     alcohol2011 mettotal2009 mettotal2004 mettotal2011
+                     mettotal2000 mettotal1997 gender retireageg birthcohort
+                     urban provinces communityid yrsinceretire1989
+                     since1989sq prepost1991 prepost1993 prepost1997
+                     prepost2000 prepost2004 prepost2006 prepost2009 xgender
+                     xurban
            fat2011: pmm fat2011 i.education i.workspouse i.skills i.manual
                      i.jointretire i.lastsmoke i.childcare lastsysdrug
-                     lastdiadrug lastbmi i.lastalcohol perhhincome2000
-                     carbo2000 fat2000 protein2000 energy2000 lastwaist
-                     i.bismoking2000 perhhincome1989 i.bismoking2004
-                     perhhincome1991 perhhincome2004 energy2004 carbo2004
-                     fat2004 protein2004 alcohol2000 perhhincome2006
-                     energy2006 carbo2006 fat2006 protein2006 alcohol2004
-                     perhhincome1993 alcohol2006 carbo1991 fat1991
-                     protein1991 energy1991 energy1993 carbo1993 fat1993
-                     protein1993 i.bismoking1997 perhhincome1997
-                     perhhincome2009 carbo1997 protein1997 energy1997 fat1997
+                     lastdiadrug lastbmi i.lastalcohol carbo2000 fat2000
+                     protein2000 energy2000 lastwaist i.bismoking2000
+                     i.bismoking2004 energy2004 carbo2004 fat2004 protein2004
+                     alcohol2000 energy2006 carbo2006 fat2006 protein2006
+                     alcohol2004 alcohol2006 carbo1991 fat1991 protein1991
+                     energy1991 energy1993 carbo1993 fat1993 protein1993
+                     i.bismoking1997 carbo1997 protein1997 energy1997 fat1997
                      energy2009 carbo2009 fat2009 protein2009 alcohol1997
-                     alcohol2009 alcohol1993 perhhincome2011 mettotal2006
-                     energy2011 carbo2011 protein2011 alcohol2011
-                     mettotal2009 mettotal2004 mettotal2011 mettotal2000
-                     alcohol1991 mettotal1997 mettotal1991 mettotal1993
-                     gender retireage birthcohort urban provinces communityid
+                     alcohol2009 mettotal2006 energy2011 carbo2011
+                     protein2011 alcohol2011 mettotal2009 mettotal2004
+                     mettotal2011 mettotal2000 mettotal1997 gender retireageg
+                     birthcohort urban provinces communityid
                      yrsinceretire1989 since1989sq prepost1991 prepost1993
                      prepost1997 prepost2000 prepost2004 prepost2006
                      prepost2009 xgender xurban
        protein2011: pmm protein2011 i.education i.workspouse i.skills
                      i.manual i.jointretire i.lastsmoke i.childcare
-                     lastsysdrug lastdiadrug lastbmi i.lastalcohol
-                     perhhincome2000 carbo2000 fat2000 protein2000 energy2000
-                     lastwaist i.bismoking2000 perhhincome1989
-                     i.bismoking2004 perhhincome1991 perhhincome2004
-                     energy2004 carbo2004 fat2004 protein2004 alcohol2000
-                     perhhincome2006 energy2006 carbo2006 fat2006 protein2006
-                     alcohol2004 perhhincome1993 alcohol2006 carbo1991
-                     fat1991 protein1991 energy1991 energy1993 carbo1993
-                     fat1993 protein1993 i.bismoking1997 perhhincome1997
-                     perhhincome2009 carbo1997 protein1997 energy1997 fat1997
+                     lastsysdrug lastdiadrug lastbmi i.lastalcohol carbo2000
+                     fat2000 protein2000 energy2000 lastwaist i.bismoking2000
+                     i.bismoking2004 energy2004 carbo2004 fat2004 protein2004
+                     alcohol2000 energy2006 carbo2006 fat2006 protein2006
+                     alcohol2004 alcohol2006 carbo1991 fat1991 protein1991
+                     energy1991 energy1993 carbo1993 fat1993 protein1993
+                     i.bismoking1997 carbo1997 protein1997 energy1997 fat1997
                      energy2009 carbo2009 fat2009 protein2009 alcohol1997
-                     alcohol2009 alcohol1993 perhhincome2011 mettotal2006
-                     energy2011 carbo2011 fat2011 alcohol2011 mettotal2009
-                     mettotal2004 mettotal2011 mettotal2000 alcohol1991
-                     mettotal1997 mettotal1991 mettotal1993 gender retireage
-                     birthcohort urban provinces communityid
-                     yrsinceretire1989 since1989sq prepost1991 prepost1993
-                     prepost1997 prepost2000 prepost2004 prepost2006
-                     prepost2009 xgender xurban
+                     alcohol2009 mettotal2006 energy2011 carbo2011 fat2011
+                     alcohol2011 mettotal2009 mettotal2004 mettotal2011
+                     mettotal2000 mettotal1997 gender retireageg birthcohort
+                     urban provinces communityid yrsinceretire1989
+                     since1989sq prepost1991 prepost1993 prepost1997
+                     prepost2000 prepost2004 prepost2006 prepost2009 xgender
+                     xurban
        alcohol2011: pmm alcohol2011 i.education i.workspouse i.skills
                      i.manual i.jointretire i.lastsmoke i.childcare
-                     lastsysdrug lastdiadrug lastbmi i.lastalcohol
-                     perhhincome2000 carbo2000 fat2000 protein2000 energy2000
-                     lastwaist i.bismoking2000 perhhincome1989
-                     i.bismoking2004 perhhincome1991 perhhincome2004
-                     energy2004 carbo2004 fat2004 protein2004 alcohol2000
-                     perhhincome2006 energy2006 carbo2006 fat2006 protein2006
-                     alcohol2004 perhhincome1993 alcohol2006 carbo1991
-                     fat1991 protein1991 energy1991 energy1993 carbo1993
-                     fat1993 protein1993 i.bismoking1997 perhhincome1997
-                     perhhincome2009 carbo1997 protein1997 energy1997 fat1997
+                     lastsysdrug lastdiadrug lastbmi i.lastalcohol carbo2000
+                     fat2000 protein2000 energy2000 lastwaist i.bismoking2000
+                     i.bismoking2004 energy2004 carbo2004 fat2004 protein2004
+                     alcohol2000 energy2006 carbo2006 fat2006 protein2006
+                     alcohol2004 alcohol2006 carbo1991 fat1991 protein1991
+                     energy1991 energy1993 carbo1993 fat1993 protein1993
+                     i.bismoking1997 carbo1997 protein1997 energy1997 fat1997
                      energy2009 carbo2009 fat2009 protein2009 alcohol1997
-                     alcohol2009 alcohol1993 perhhincome2011 mettotal2006
-                     energy2011 carbo2011 fat2011 protein2011 mettotal2009
-                     mettotal2004 mettotal2011 mettotal2000 alcohol1991
-                     mettotal1997 mettotal1991 mettotal1993 gender retireage
-                     birthcohort urban provinces communityid
-                     yrsinceretire1989 since1989sq prepost1991 prepost1993
-                     prepost1997 prepost2000 prepost2004 prepost2006
-                     prepost2009 xgender xurban
+                     alcohol2009 mettotal2006 energy2011 carbo2011 fat2011
+                     protein2011 mettotal2009 mettotal2004 mettotal2011
+                     mettotal2000 mettotal1997 gender retireageg birthcohort
+                     urban provinces communityid yrsinceretire1989
+                     since1989sq prepost1991 prepost1993 prepost1997
+                     prepost2000 prepost2004 prepost2006 prepost2009 xgender
+                     xurban
       mettotal2009: pmm mettotal2009 i.education i.workspouse i.skills
                      i.manual i.jointretire i.lastsmoke i.childcare
-                     lastsysdrug lastdiadrug lastbmi i.lastalcohol
-                     perhhincome2000 carbo2000 fat2000 protein2000 energy2000
-                     lastwaist i.bismoking2000 perhhincome1989
-                     i.bismoking2004 perhhincome1991 perhhincome2004
-                     energy2004 carbo2004 fat2004 protein2004 alcohol2000
-                     perhhincome2006 energy2006 carbo2006 fat2006 protein2006
-                     alcohol2004 perhhincome1993 alcohol2006 carbo1991
-                     fat1991 protein1991 energy1991 energy1993 carbo1993
-                     fat1993 protein1993 i.bismoking1997 perhhincome1997
-                     perhhincome2009 carbo1997 protein1997 energy1997 fat1997
+                     lastsysdrug lastdiadrug lastbmi i.lastalcohol carbo2000
+                     fat2000 protein2000 energy2000 lastwaist i.bismoking2000
+                     i.bismoking2004 energy2004 carbo2004 fat2004 protein2004
+                     alcohol2000 energy2006 carbo2006 fat2006 protein2006
+                     alcohol2004 alcohol2006 carbo1991 fat1991 protein1991
+                     energy1991 energy1993 carbo1993 fat1993 protein1993
+                     i.bismoking1997 carbo1997 protein1997 energy1997 fat1997
                      energy2009 carbo2009 fat2009 protein2009 alcohol1997
-                     alcohol2009 alcohol1993 perhhincome2011 mettotal2006
-                     energy2011 carbo2011 fat2011 protein2011 alcohol2011
-                     mettotal2004 mettotal2011 mettotal2000 alcohol1991
-                     mettotal1997 mettotal1991 mettotal1993 gender retireage
-                     birthcohort urban provinces communityid
-                     yrsinceretire1989 since1989sq prepost1991 prepost1993
-                     prepost1997 prepost2000 prepost2004 prepost2006
-                     prepost2009 xgender xurban
+                     alcohol2009 mettotal2006 energy2011 carbo2011 fat2011
+                     protein2011 alcohol2011 mettotal2004 mettotal2011
+                     mettotal2000 mettotal1997 gender retireageg birthcohort
+                     urban provinces communityid yrsinceretire1989
+                     since1989sq prepost1991 prepost1993 prepost1997
+                     prepost2000 prepost2004 prepost2006 prepost2009 xgender
+                     xurban
       mettotal2004: pmm mettotal2004 i.education i.workspouse i.skills
                      i.manual i.jointretire i.lastsmoke i.childcare
-                     lastsysdrug lastdiadrug lastbmi i.lastalcohol
-                     perhhincome2000 carbo2000 fat2000 protein2000 energy2000
-                     lastwaist i.bismoking2000 perhhincome1989
-                     i.bismoking2004 perhhincome1991 perhhincome2004
-                     energy2004 carbo2004 fat2004 protein2004 alcohol2000
-                     perhhincome2006 energy2006 carbo2006 fat2006 protein2006
-                     alcohol2004 perhhincome1993 alcohol2006 carbo1991
-                     fat1991 protein1991 energy1991 energy1993 carbo1993
-                     fat1993 protein1993 i.bismoking1997 perhhincome1997
-                     perhhincome2009 carbo1997 protein1997 energy1997 fat1997
+                     lastsysdrug lastdiadrug lastbmi i.lastalcohol carbo2000
+                     fat2000 protein2000 energy2000 lastwaist i.bismoking2000
+                     i.bismoking2004 energy2004 carbo2004 fat2004 protein2004
+                     alcohol2000 energy2006 carbo2006 fat2006 protein2006
+                     alcohol2004 alcohol2006 carbo1991 fat1991 protein1991
+                     energy1991 energy1993 carbo1993 fat1993 protein1993
+                     i.bismoking1997 carbo1997 protein1997 energy1997 fat1997
                      energy2009 carbo2009 fat2009 protein2009 alcohol1997
-                     alcohol2009 alcohol1993 perhhincome2011 mettotal2006
-                     energy2011 carbo2011 fat2011 protein2011 alcohol2011
-                     mettotal2009 mettotal2011 mettotal2000 alcohol1991
-                     mettotal1997 mettotal1991 mettotal1993 gender retireage
-                     birthcohort urban provinces communityid
-                     yrsinceretire1989 since1989sq prepost1991 prepost1993
-                     prepost1997 prepost2000 prepost2004 prepost2006
-                     prepost2009 xgender xurban
+                     alcohol2009 mettotal2006 energy2011 carbo2011 fat2011
+                     protein2011 alcohol2011 mettotal2009 mettotal2011
+                     mettotal2000 mettotal1997 gender retireageg birthcohort
+                     urban provinces communityid yrsinceretire1989
+                     since1989sq prepost1991 prepost1993 prepost1997
+                     prepost2000 prepost2004 prepost2006 prepost2009 xgender
+                     xurban
       mettotal2011: pmm mettotal2011 i.education i.workspouse i.skills
                      i.manual i.jointretire i.lastsmoke i.childcare
-                     lastsysdrug lastdiadrug lastbmi i.lastalcohol
-                     perhhincome2000 carbo2000 fat2000 protein2000 energy2000
-                     lastwaist i.bismoking2000 perhhincome1989
-                     i.bismoking2004 perhhincome1991 perhhincome2004
-                     energy2004 carbo2004 fat2004 protein2004 alcohol2000
-                     perhhincome2006 energy2006 carbo2006 fat2006 protein2006
-                     alcohol2004 perhhincome1993 alcohol2006 carbo1991
-                     fat1991 protein1991 energy1991 energy1993 carbo1993
-                     fat1993 protein1993 i.bismoking1997 perhhincome1997
-                     perhhincome2009 carbo1997 protein1997 energy1997 fat1997
+                     lastsysdrug lastdiadrug lastbmi i.lastalcohol carbo2000
+                     fat2000 protein2000 energy2000 lastwaist i.bismoking2000
+                     i.bismoking2004 energy2004 carbo2004 fat2004 protein2004
+                     alcohol2000 energy2006 carbo2006 fat2006 protein2006
+                     alcohol2004 alcohol2006 carbo1991 fat1991 protein1991
+                     energy1991 energy1993 carbo1993 fat1993 protein1993
+                     i.bismoking1997 carbo1997 protein1997 energy1997 fat1997
                      energy2009 carbo2009 fat2009 protein2009 alcohol1997
-                     alcohol2009 alcohol1993 perhhincome2011 mettotal2006
-                     energy2011 carbo2011 fat2011 protein2011 alcohol2011
-                     mettotal2009 mettotal2004 mettotal2000 alcohol1991
-                     mettotal1997 mettotal1991 mettotal1993 gender retireage
-                     birthcohort urban provinces communityid
-                     yrsinceretire1989 since1989sq prepost1991 prepost1993
-                     prepost1997 prepost2000 prepost2004 prepost2006
-                     prepost2009 xgender xurban
+                     alcohol2009 mettotal2006 energy2011 carbo2011 fat2011
+                     protein2011 alcohol2011 mettotal2009 mettotal2004
+                     mettotal2000 mettotal1997 gender retireageg birthcohort
+                     urban provinces communityid yrsinceretire1989
+                     since1989sq prepost1991 prepost1993 prepost1997
+                     prepost2000 prepost2004 prepost2006 prepost2009 xgender
+                     xurban
       mettotal2000: pmm mettotal2000 i.education i.workspouse i.skills
                      i.manual i.jointretire i.lastsmoke i.childcare
-                     lastsysdrug lastdiadrug lastbmi i.lastalcohol
-                     perhhincome2000 carbo2000 fat2000 protein2000 energy2000
-                     lastwaist i.bismoking2000 perhhincome1989
-                     i.bismoking2004 perhhincome1991 perhhincome2004
-                     energy2004 carbo2004 fat2004 protein2004 alcohol2000
-                     perhhincome2006 energy2006 carbo2006 fat2006 protein2006
-                     alcohol2004 perhhincome1993 alcohol2006 carbo1991
-                     fat1991 protein1991 energy1991 energy1993 carbo1993
-                     fat1993 protein1993 i.bismoking1997 perhhincome1997
-                     perhhincome2009 carbo1997 protein1997 energy1997 fat1997
+                     lastsysdrug lastdiadrug lastbmi i.lastalcohol carbo2000
+                     fat2000 protein2000 energy2000 lastwaist i.bismoking2000
+                     i.bismoking2004 energy2004 carbo2004 fat2004 protein2004
+                     alcohol2000 energy2006 carbo2006 fat2006 protein2006
+                     alcohol2004 alcohol2006 carbo1991 fat1991 protein1991
+                     energy1991 energy1993 carbo1993 fat1993 protein1993
+                     i.bismoking1997 carbo1997 protein1997 energy1997 fat1997
                      energy2009 carbo2009 fat2009 protein2009 alcohol1997
-                     alcohol2009 alcohol1993 perhhincome2011 mettotal2006
-                     energy2011 carbo2011 fat2011 protein2011 alcohol2011
-                     mettotal2009 mettotal2004 mettotal2011 alcohol1991
-                     mettotal1997 mettotal1991 mettotal1993 gender retireage
-                     birthcohort urban provinces communityid
-                     yrsinceretire1989 since1989sq prepost1991 prepost1993
-                     prepost1997 prepost2000 prepost2004 prepost2006
-                     prepost2009 xgender xurban
-       alcohol1991: pmm alcohol1991 i.education i.workspouse i.skills
-                     i.manual i.jointretire i.lastsmoke i.childcare
-                     lastsysdrug lastdiadrug lastbmi i.lastalcohol
-                     perhhincome2000 carbo2000 fat2000 protein2000 energy2000
-                     lastwaist i.bismoking2000 perhhincome1989
-                     i.bismoking2004 perhhincome1991 perhhincome2004
-                     energy2004 carbo2004 fat2004 protein2004 alcohol2000
-                     perhhincome2006 energy2006 carbo2006 fat2006 protein2006
-                     alcohol2004 perhhincome1993 alcohol2006 carbo1991
-                     fat1991 protein1991 energy1991 energy1993 carbo1993
-                     fat1993 protein1993 i.bismoking1997 perhhincome1997
-                     perhhincome2009 carbo1997 protein1997 energy1997 fat1997
-                     energy2009 carbo2009 fat2009 protein2009 alcohol1997
-                     alcohol2009 alcohol1993 perhhincome2011 mettotal2006
-                     energy2011 carbo2011 fat2011 protein2011 alcohol2011
-                     mettotal2009 mettotal2004 mettotal2011 mettotal2000
-                     mettotal1997 mettotal1991 mettotal1993 gender retireage
-                     birthcohort urban provinces communityid
-                     yrsinceretire1989 since1989sq prepost1991 prepost1993
-                     prepost1997 prepost2000 prepost2004 prepost2006
-                     prepost2009 xgender xurban
+                     alcohol2009 mettotal2006 energy2011 carbo2011 fat2011
+                     protein2011 alcohol2011 mettotal2009 mettotal2004
+                     mettotal2011 mettotal1997 gender retireageg birthcohort
+                     urban provinces communityid yrsinceretire1989
+                     since1989sq prepost1991 prepost1993 prepost1997
+                     prepost2000 prepost2004 prepost2006 prepost2009 xgender
+                     xurban
       mettotal1997: pmm mettotal1997 i.education i.workspouse i.skills
                      i.manual i.jointretire i.lastsmoke i.childcare
-                     lastsysdrug lastdiadrug lastbmi i.lastalcohol
-                     perhhincome2000 carbo2000 fat2000 protein2000 energy2000
-                     lastwaist i.bismoking2000 perhhincome1989
-                     i.bismoking2004 perhhincome1991 perhhincome2004
-                     energy2004 carbo2004 fat2004 protein2004 alcohol2000
-                     perhhincome2006 energy2006 carbo2006 fat2006 protein2006
-                     alcohol2004 perhhincome1993 alcohol2006 carbo1991
-                     fat1991 protein1991 energy1991 energy1993 carbo1993
-                     fat1993 protein1993 i.bismoking1997 perhhincome1997
-                     perhhincome2009 carbo1997 protein1997 energy1997 fat1997
+                     lastsysdrug lastdiadrug lastbmi i.lastalcohol carbo2000
+                     fat2000 protein2000 energy2000 lastwaist i.bismoking2000
+                     i.bismoking2004 energy2004 carbo2004 fat2004 protein2004
+                     alcohol2000 energy2006 carbo2006 fat2006 protein2006
+                     alcohol2004 alcohol2006 carbo1991 fat1991 protein1991
+                     energy1991 energy1993 carbo1993 fat1993 protein1993
+                     i.bismoking1997 carbo1997 protein1997 energy1997 fat1997
                      energy2009 carbo2009 fat2009 protein2009 alcohol1997
-                     alcohol2009 alcohol1993 perhhincome2011 mettotal2006
-                     energy2011 carbo2011 fat2011 protein2011 alcohol2011
-                     mettotal2009 mettotal2004 mettotal2011 mettotal2000
-                     alcohol1991 mettotal1991 mettotal1993 gender retireage
-                     birthcohort urban provinces communityid
-                     yrsinceretire1989 since1989sq prepost1991 prepost1993
-                     prepost1997 prepost2000 prepost2004 prepost2006
-                     prepost2009 xgender xurban
-      mettotal1991: pmm mettotal1991 i.education i.workspouse i.skills
-                     i.manual i.jointretire i.lastsmoke i.childcare
-                     lastsysdrug lastdiadrug lastbmi i.lastalcohol
-                     perhhincome2000 carbo2000 fat2000 protein2000 energy2000
-                     lastwaist i.bismoking2000 perhhincome1989
-                     i.bismoking2004 perhhincome1991 perhhincome2004
-                     energy2004 carbo2004 fat2004 protein2004 alcohol2000
-                     perhhincome2006 energy2006 carbo2006 fat2006 protein2006
-                     alcohol2004 perhhincome1993 alcohol2006 carbo1991
-                     fat1991 protein1991 energy1991 energy1993 carbo1993
-                     fat1993 protein1993 i.bismoking1997 perhhincome1997
-                     perhhincome2009 carbo1997 protein1997 energy1997 fat1997
-                     energy2009 carbo2009 fat2009 protein2009 alcohol1997
-                     alcohol2009 alcohol1993 perhhincome2011 mettotal2006
-                     energy2011 carbo2011 fat2011 protein2011 alcohol2011
-                     mettotal2009 mettotal2004 mettotal2011 mettotal2000
-                     alcohol1991 mettotal1997 mettotal1993 gender retireage
-                     birthcohort urban provinces communityid
-                     yrsinceretire1989 since1989sq prepost1991 prepost1993
-                     prepost1997 prepost2000 prepost2004 prepost2006
-                     prepost2009 xgender xurban
-      mettotal1993: pmm mettotal1993 i.education i.workspouse i.skills
-                     i.manual i.jointretire i.lastsmoke i.childcare
-                     lastsysdrug lastdiadrug lastbmi i.lastalcohol
-                     perhhincome2000 carbo2000 fat2000 protein2000 energy2000
-                     lastwaist i.bismoking2000 perhhincome1989
-                     i.bismoking2004 perhhincome1991 perhhincome2004
-                     energy2004 carbo2004 fat2004 protein2004 alcohol2000
-                     perhhincome2006 energy2006 carbo2006 fat2006 protein2006
-                     alcohol2004 perhhincome1993 alcohol2006 carbo1991
-                     fat1991 protein1991 energy1991 energy1993 carbo1993
-                     fat1993 protein1993 i.bismoking1997 perhhincome1997
-                     perhhincome2009 carbo1997 protein1997 energy1997 fat1997
-                     energy2009 carbo2009 fat2009 protein2009 alcohol1997
-                     alcohol2009 alcohol1993 perhhincome2011 mettotal2006
-                     energy2011 carbo2011 fat2011 protein2011 alcohol2011
-                     mettotal2009 mettotal2004 mettotal2011 mettotal2000
-                     alcohol1991 mettotal1997 mettotal1991 gender retireage
-                     birthcohort urban provinces communityid
-                     yrsinceretire1989 since1989sq prepost1991 prepost1993
-                     prepost1997 prepost2000 prepost2004 prepost2006
-                     prepost2009 xgender xurban
+                     alcohol2009 mettotal2006 energy2011 carbo2011 fat2011
+                     protein2011 alcohol2011 mettotal2009 mettotal2004
+                     mettotal2011 mettotal2000 gender retireageg birthcohort
+                     urban provinces communityid yrsinceretire1989
+                     since1989sq prepost1991 prepost1993 prepost1997
+                     prepost2000 prepost2004 prepost2006 prepost2009 xgender
+                     xurban
 
 Performing chained iterations ...
-logit failed to converge on observed data
-error occurred during imputation of education skills manual lastalcohol
-workspouse childcare jointretire lastsmoke bismoking2004 bismoking2000
-bismoking1997 lastsysdrug lastdiadrug lastwaist lastbmi perhhincome1989
-perhhincome1991 perhhincome1993 perhhincome1997 perhhincome2000
-perhhincome2004 perhhincome2006 perhhincome2009 perhhincome2011 energy1991
-carbo1991 fat1991 protein1991 energy1993 carbo1993 fat1993 protein1993
-energy1997 carbo1997 fat1997 protein1997 energy2000 carbo2000 fat2000
-protein2000 energy2004 carbo2004 fat2004 protein2004 energy2006 carbo2006
-fat2006 protein2006 energy2009 carbo2009 fat2009 protein2009 energy2011
-carbo2011 fat2011 protein2011 mettotal1991 mettotal1993 mettotal1997
-mettotal2000 mettotal2004 mettotal2006 mettotal2009 mettotal2011 alcohol1991
-alcohol1993 alcohol1997 alcohol2000 alcohol2004 alcohol2006 alcohol2009
-alcohol2011 on m = 1
-r(430);
 
+Multivariate imputation                     Imputations =       20
+Chained equations                                 added =       20
+Imputed: m=1 through m=20                       updated =        0
+
+Initialization: monotone                     Iterations =     2000
+                                                burn-in =      100
+
+         education: ordered logistic regression
+            skills: ordered logistic regression
+       lastalcohol: augmented ordered logistic regression
+            manual: augmented ordered logistic regression
+        workspouse: logistic regression
+         childcare: logistic regression
+       jointretire: augmented logistic regression
+         lastsmoke: augmented logistic regression
+     bismoking2004: logistic regression
+     bismoking2000: logistic regression
+     bismoking1997: logistic regression
+       lastsysdrug: linear regression
+       lastdiadrug: linear regression
+         lastwaist: linear regression
+           lastbmi: linear regression
+        energy1991: predictive mean matching
+         carbo1991: predictive mean matching
+           fat1991: predictive mean matching
+       protein1991: predictive mean matching
+        energy1993: predictive mean matching
+         carbo1993: predictive mean matching
+           fat1993: predictive mean matching
+       protein1993: predictive mean matching
+        energy1997: predictive mean matching
+         carbo1997: predictive mean matching
+           fat1997: predictive mean matching
+       protein1997: predictive mean matching
+        energy2000: predictive mean matching
+         carbo2000: predictive mean matching
+           fat2000: predictive mean matching
+       protein2000: predictive mean matching
+        energy2004: predictive mean matching
+         carbo2004: predictive mean matching
+           fat2004: predictive mean matching
+       protein2004: predictive mean matching
+        energy2006: predictive mean matching
+         carbo2006: predictive mean matching
+           fat2006: predictive mean matching
+       protein2006: predictive mean matching
+        energy2009: predictive mean matching
+         carbo2009: predictive mean matching
+           fat2009: predictive mean matching
+       protein2009: predictive mean matching
+        energy2011: predictive mean matching
+         carbo2011: predictive mean matching
+           fat2011: predictive mean matching
+       protein2011: predictive mean matching
+      mettotal1997: predictive mean matching
+      mettotal2000: predictive mean matching
+      mettotal2004: predictive mean matching
+      mettotal2006: predictive mean matching
+      mettotal2009: predictive mean matching
+      mettotal2011: predictive mean matching
+       alcohol1997: predictive mean matching
+       alcohol2000: predictive mean matching
+       alcohol2004: predictive mean matching
+       alcohol2006: predictive mean matching
+       alcohol2009: predictive mean matching
+       alcohol2011: predictive mean matching
+
+------------------------------------------------------------------
+                   |               Observations per m             
+                   |----------------------------------------------
+          Variable |   Complete   Incomplete   Imputed |     Total
+-------------------+-----------------------------------+----------
+         education |       1251            3         3 |      1254
+            skills |       1229           25        25 |      1254
+       lastalcohol |        965          289       289 |      1254
+            manual |       1229           25        25 |      1254
+        workspouse |       1139           18        18 |      1157
+         childcare |       1111          143       143 |      1254
+       jointretire |       1215           39        39 |      1254
+         lastsmoke |       1141          113       113 |      1254
+     bismoking2004 |        849          405       405 |      1254
+     bismoking2000 |        881          373       373 |      1254
+     bismoking1997 |        781          473       473 |      1254
+       lastsysdrug |       1028          226       226 |      1254
+       lastdiadrug |       1028          226       226 |      1254
+         lastwaist |        893          361       361 |      1254
+           lastbmi |       1024          230       230 |      1254
+        energy1991 |        803          451       451 |      1254
+         carbo1991 |        804          450       450 |      1254
+           fat1991 |        804          450       450 |      1254
+       protein1991 |        804          450       450 |      1254
+        energy1993 |        785          469       469 |      1254
+         carbo1993 |        785          469       469 |      1254
+           fat1993 |        785          469       469 |      1254
+       protein1993 |        785          469       469 |      1254
+        energy1997 |        751          503       503 |      1254
+         carbo1997 |        752          502       502 |      1254
+           fat1997 |        751          503       503 |      1254
+       protein1997 |        752          502       502 |      1254
+        energy2000 |        922          332       332 |      1254
+         carbo2000 |        923          331       331 |      1254
+           fat2000 |        923          331       331 |      1254
+       protein2000 |        923          331       331 |      1254
+        energy2004 |        846          408       408 |      1254
+         carbo2004 |        846          408       408 |      1254
+           fat2004 |        846          408       408 |      1254
+       protein2004 |        846          408       408 |      1254
+        energy2006 |        826          428       428 |      1254
+         carbo2006 |        826          428       428 |      1254
+           fat2006 |        826          428       428 |      1254
+       protein2006 |        826          428       428 |      1254
+        energy2009 |        748          506       506 |      1254
+         carbo2009 |        748          506       506 |      1254
+           fat2009 |        748          506       506 |      1254
+       protein2009 |        748          506       506 |      1254
+        energy2011 |        637          617       617 |      1254
+         carbo2011 |        637          617       617 |      1254
+           fat2011 |        637          617       617 |      1254
+       protein2011 |        637          617       617 |      1254
+      mettotal1997 |        413          841       841 |      1254
+      mettotal2000 |        466          788       788 |      1254
+      mettotal2004 |        617          637       637 |      1254
+      mettotal2006 |        638          616       616 |      1254
+      mettotal2009 |        629          625       625 |      1254
+      mettotal2011 |        538          716       716 |      1254
+       alcohol1997 |        741          513       513 |      1254
+       alcohol2000 |        839          415       415 |      1254
+       alcohol2004 |        821          433       433 |      1254
+       alcohol2006 |        807          447       447 |      1254
+       alcohol2009 |        741          513       513 |      1254
+       alcohol2011 |        634          620       620 |      1254
+------------------------------------------------------------------
+(complete + incomplete = total; imputed is the minimum across m
+ of the number of filled-in observations.)
+
+Warning: the sets of predictors of the imputation model vary across
+         imputations or iterations
+
+. saveold newmied.dta, replace
+file newmied.dta saved
+
+. 
 end of do-file
-r(430);

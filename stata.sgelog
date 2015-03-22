@@ -64,3 +64,7 @@ Currently Loaded Modulefiles:
   1) stata/1-wrapper
 mkdir: cannot create directory `/local/tmp_uctprgu': File exists
 /cm/shared/apps/Stata/current/stata-mp -b -b do highspeedmi.do
+loaded modules
+Currently Loaded Modulefiles:
+  1) stata/1-wrapper
+/cm/shared/apps/Stata/current/stata-mp -b -b do highspeedmi.do
