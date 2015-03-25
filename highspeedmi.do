@@ -1,4 +1,4 @@
-*use "C:\Users\1a13\Dropbox\baowen\highspeed\missingwide.dta",clear
+*use "C:\Dropbox\baowen\highspeed\missingwide.dta",clear
 cd ~/git/baowen/
 use missingwide, clear
 
@@ -13,7 +13,7 @@ gen xchildcare=childcare*yrsinceretire1989
 gen since1989sq=yrsinceretire1989^2
 
 
-mi register imputed education skills manual lastsmoke lastalcohol workspouse jointretire childcare xjoint xchildcare ///
+mi register imputed education skills lastactivity lastsmoke lastalcohol workspouse jointretire childcare xjoint xchildcare ///
 perhhincome1989 perhhincome1991 perhhincome1993 perhhincome1997 ///
 perhhincome2000 perhhincome2004 perhhincome2006 perhhincome2009 perhhincome2011 ///
 bismoking1989 bismoking1991 bismoking1993 bismoking1997 ///
@@ -31,7 +31,7 @@ flag1989 flag1991 flag1993 flag1997 flag2000 flag2004 flag2006 flag2009 flag2011
 
 ***************
 mi impute chained ///
-(ologit,iter(20))education skills lastalcohol manual ///
+(ologit,iter(20))education skills lastalcohol lastactivity ///
 (logit if lastmarriage==0)workspouse ///
 (logit,iter(20))childcare jointretire ///
 (logit,iter(20))lastsmoke bismoking2004 bismoking2000 bismoking1997 ///
