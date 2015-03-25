@@ -47,5 +47,5 @@ alcohol1997 alcohol2000 alcohol2004 alcohol2006 alcohol2009 alcohol2011 ///
 prepost1991 prepost1993 prepost1997 ///
 prepost2000 prepost2004 prepost2006 prepost2009 ///
 xgender xurban  ///
-,add(20) burnin(100) rseed(1389)augment
+,add(20) burnin(100) rseed(1389)augment 
 saveold newmied.dta, replace
