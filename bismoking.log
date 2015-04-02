@@ -142,6 +142,10 @@ Within VCE type: Delta-method                             max     =  116243.54
 ------------------------------------------------------------------------------
 
 . 
+. estimates save smokcenter1, replace
+file smokcenter1.ster saved
+
+. 
 . mat smo2knot=e(b_mi)'
 
 . svmat smo2knot
@@ -327,13 +331,14 @@ centerretire |
          39  |  -4.915913   .8606419    -5.71   0.000    -6.602783   -3.229042
 ------------------------------------------------------------------------------
 
+. estimates save smokcenter2, replace
+(note: file smokcenter2.ster not found)
+file smokcenter2.ster saved
+
+. 
 . mat b= e(b_mi)                
 
 . mat V = e(V_mi)
-
-. 
-. estimates save smokcenter
-file smokcenter.ster saved
 
 . 
 . quietly xtlogit bismoking i.centerretire gender i.retireageg i.provinces  i.w
@@ -344,10 +349,23 @@ file smokcenter.ster saved
 . 
 . quietly margins centerretire, atmeans asbalanced
 
+. estimates save smokcenter3, replace
+(note: file smokcenter3.ster not found)
+file smokcenter3.ster saved
+
 . 
 . myret
-unrecognized command:  myret
-r(199);
+
+. mata: st_global("e(cmd)", "margins") 
+
+. 
+. marginsplot,noci  xline(22,lpattern(dash)) xlab(none) xtitle(year centered on
+>  retirement) title(" Smoking status") ///  
+> addplot(line smo2knot year2knot1,  xlab(none) xtitle(year centered on retirem
+> ent) legend(order(1 "adjusted probability" 2 " predited trajectory of probabi
+> lity"))
+) required
+r(100);
 
 end of do-file
-r(199);
+r(100);
