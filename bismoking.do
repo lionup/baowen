@@ -4,8 +4,8 @@ set more off
 cd ~/git/baowen/
 use miedlong, clear
 
-mi estimate: xtmelogit bismoking re4m re5m gender i.retireageg i.provinces i.workspouse i.lastalcohol i.education i.skills lastincome i.stratum ///
-birthcohort i.lastactivity if  basmoke==1& flag==1&yrsinceretire>=-17&yrsinceretire<=17&wave>=1991 || communityid:|| idind:, mle var
+mi estimate: xtlogit bismoking re4m re5m gender i.retireageg i.provinces i.workspouse i.lastalcohol i.education i.skills lastincome i.stratum ///
+birthcohort i.lastactivity if  basmoke==1& flag==1&yrsinceretire>=-17&yrsinceretire<=17&wave>=1991, pa vce(robust)
 mi estimate, cmdok: linesmo 1
 
 mat smo2knot=e(b_mi)'
