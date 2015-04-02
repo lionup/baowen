@@ -1,0 +1,47 @@
+
+  ___  ____  ____  ____  ____ (R)
+ /__    /   ____/   /   ____/
+___/   /   /___/   /   /___/   13.1   Copyright 1985-2013 StataCorp LP
+  Statistics/Data Analysis            StataCorp
+                                      4905 Lakeway Drive
+     MP - Parallel Edition            College Station, Texas 77845 USA
+                                      800-STATA-PC        http://www.stata.com
+                                      979-696-4600        stata@stata.com
+                                      979-696-4601 (fax)
+
+5-user 4-core Stata network perpetual license:
+       Serial number:  501306214279
+         Licensed to:  Department of Economics
+                       University College London
+
+Notes:
+      1.  (-v# option or -set maxvar-) 5000 maximum variables
+      2.  Command line editing disabled
+      3.  Stata running in batch mode
+
+Note:  Your site can add messages to the introduction by editing the file
+       stata.msg in the directory where Stata is installed.
+
+. do bismoking.do 
+
+. 
+. set more off
+
+. 
+. cd ~/git/baowen/
+/data/uctprgu/git/baowen
+
+. use miedlong, clear
+(SAVASTATA created this dataset on 01JAN2014)
+
+. 
+. mi estimate: xtmelogit bismoking re4m re5m gender i.retireageg i.provinces i.
+> workspouse i.lastalcohol i.education i.skills lastincome i.stratum ///
+> birthcohort i.lastactivity if  basmoke==1& flag==1&yrsinceretire>=-17&yrsince
+> retire<=17&wave>=1991 || communityid:|| idind:, mle var
+initial values not feasible
+model did not converge on m=1
+r(1400);
+
+end of do-file
+r(1400);
