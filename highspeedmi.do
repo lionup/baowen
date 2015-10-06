@@ -6,7 +6,7 @@ mi set flong
 mi xtset,clear
 set matsize 10000
 
-mi register imputed education skills lastactivity lastsmoke lastalcohol workspouse  ///
+mi register imputed education skills lastactivity lastsmoke lastalcohol workspouse restopage ///
 perhhincome1991 perhhincome1993 perhhincome1997 ///
 perhhincome2000 perhhincome2004 perhhincome2006 perhhincome2009 perhhincome2011 ///
 bismoking1991 bismoking1993 bismoking1997 ///
