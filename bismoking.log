@@ -332,7 +332,6 @@ centerretire |
 ------------------------------------------------------------------------------
 
 . estimates save smokcenter2, replace
-(note: file smokcenter2.ster not found)
 file smokcenter2.ster saved
 
 . 
@@ -350,7 +349,6 @@ file smokcenter2.ster saved
 . quietly margins centerretire, atmeans asbalanced
 
 . estimates save smokcenter3, replace
-(note: file smokcenter3.ster not found)
 file smokcenter3.ster saved
 
 . 
