@@ -1,0 +1,27 @@
+loaded modules
+Currently Loaded Modulefiles:
+  1) shared        2) sge/2011.11   3) r/3.1.3       4) gcc/4.9.2
+Loading required package: Rcpp
+Loading required package: lattice
+mice 2.22 2014-06-10
+Warning: namespace ‘mi’ is not available and has been replaced
+by .GlobalEnv when processing object ‘mdf’
+Loading required package: mi
+Error in .requirePackage(package) : unable to find required package ‘mi’
+Calls: mice ... .extendsForS3 -> extends -> getClassDef -> .requirePackage
+In addition: Warning message:
+In library(package, lib.loc = lib.loc, character.only = TRUE, logical.return = TRUE,  :
+  there is no package called ‘mi’
+Execution halted
+loaded modules
+Currently Loaded Modulefiles:
+  1) shared        2) sge/2011.11   3) r/3.1.3       4) gcc/4.9.2
+Loading required package: Rcpp
+Loading required package: lattice
+mice 2.22 2014-06-10
+loaded modules
+Currently Loaded Modulefiles:
+  1) shared        2) sge/2011.11   3) r/3.1.3       4) gcc/4.9.2
+Loading required package: Rcpp
+Loading required package: lattice
+mice 2.22 2014-06-10
