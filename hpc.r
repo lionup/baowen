@@ -1,7 +1,23 @@
 rm(list=ls())
 setwd('~/git/baowen/')
-library(mice)
 
-load('pre.dat')
-imputations <- mice(mdf,pred = pred,maxit = 20, m = 35,seed = 71152)
-save(imputations,file='imputations.dat')
+library(mice)
+library(multilevel)
+library(glmmADMB)
+library(ggplot2)
+library(lme4)
+
+load("com.RData")
+
+com$newid<-factor(com$newid)
+com$newhhid<-factor(com$newhhid)
+com$communityid<-factor(com$communityid)
+
+
+pssbp <- glmmadmb(lastactivity~part1+part2+retireage+birthcohort+agewave+
+                              lastbmi+lastalcohol+lastsmoking+
+                              lastincome+
+                              urban+provinces+education+skills+spstatus
+                              +(1|communityid/newhhid/newid),data=com,
+                              zeroInflation=TRUE,family="poisson")
+   
