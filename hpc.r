@@ -9,4 +9,4 @@ library(lme4)
 
 load('pre.dat')
 imputations <- mice(missingwide,meth=meth,pred = pred, m = 25,seed = 71152)
-save(imputations,file='imputations_short.dat')
+save(imputations,file='imputations.dat')
