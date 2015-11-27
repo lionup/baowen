@@ -1,130 +1,30 @@
 loaded modules
 Currently Loaded Modulefiles:
   1) stata/1-wrapper
-ERROR:
-------
-You have specified either an incorrect number of slots or an incorrect queue based on the number of slots requested.
-
-Please retry running your application using the following guidelines:
-
-	Number of slots		Queue
-	-------------------------------------
-		1		interactive.q
-		4/12		batch.q
+mkdir: cannot create directory `/local/tmp_uctprgu': File exists
+/cm/shared/apps/Stata/current/stata-mp -b -b do hpc.do
 loaded modules
 Currently Loaded Modulefiles:
   1) stata/1-wrapper
 mkdir: cannot create directory `/local/tmp_uctprgu': File exists
-/cm/shared/apps/Stata/current/stata-mp -b -b do highspeedmi.do
+/cm/shared/apps/Stata/current/stata-mp -b -b do hpc.do
 loaded modules
 Currently Loaded Modulefiles:
   1) stata/1-wrapper
 mkdir: cannot create directory `/local/tmp_uctprgu': File exists
-/cm/shared/apps/Stata/current/stata-mp -b -b do highspeedmi.do
+/cm/shared/apps/Stata/current/stata-mp -b -b do hpc.do
 loaded modules
 Currently Loaded Modulefiles:
   1) stata/1-wrapper
 mkdir: cannot create directory `/local/tmp_uctprgu': File exists
-/cm/shared/apps/Stata/current/stata-mp -b -b do highspeedmi.do
+/cm/shared/apps/Stata/current/stata-mp -b -b do hpc.do
 loaded modules
 Currently Loaded Modulefiles:
   1) stata/1-wrapper
 mkdir: cannot create directory `/local/tmp_uctprgu': File exists
-/cm/shared/apps/Stata/current/stata-mp -b -b do highspeedmi.do
-loaded modules
-Currently Loaded Modulefiles:
-  1) stata/1-wrapper
-/cm/shared/apps/Stata/current/stata-mp -b -b do highspeedmi.do
+/cm/shared/apps/Stata/current/stata-mp -b -b do hpc.do
 loaded modules
 Currently Loaded Modulefiles:
   1) stata/1-wrapper
 mkdir: cannot create directory `/local/tmp_uctprgu': File exists
-/cm/shared/apps/Stata/current/stata-mp -b -b do highspeedmi.do
-loaded modules
-Currently Loaded Modulefiles:
-  1) stata/1-wrapper
-mkdir: cannot create directory `/local/tmp_uctprgu': File exists
-/cm/shared/apps/Stata/current/stata-mp -b -b do highspeedmi.do
-loaded modules
-Currently Loaded Modulefiles:
-  1) stata/1-wrapper
-mkdir: cannot create directory `/local/tmp_uctprgu': File exists
-/cm/shared/apps/Stata/current/stata-mp -b -b do highspeedmi.do
-loaded modules
-Currently Loaded Modulefiles:
-  1) stata/1-wrapper
-/cm/shared/apps/Stata/current/stata-mp -b -b do highspeedmi.do
-loaded modules
-Currently Loaded Modulefiles:
-  1) stata/1-wrapper
-mkdir: cannot create directory `/local/tmp_uctprgu': File exists
-/cm/shared/apps/Stata/current/stata-mp -b -b do highspeedmi.do
-loaded modules
-Currently Loaded Modulefiles:
-  1) stata/1-wrapper
-mkdir: cannot create directory `/local/tmp_uctprgu': File exists
-/cm/shared/apps/Stata/current/stata-mp -b -b do highspeedmi.do
-loaded modules
-Currently Loaded Modulefiles:
-  1) stata/1-wrapper
-/cm/shared/apps/Stata/current/stata-mp -b -b do highspeedmi.do
-loaded modules
-Currently Loaded Modulefiles:
-  1) stata/1-wrapper
-mkdir: cannot create directory `/local/tmp_uctprgu': File exists
-/cm/shared/apps/Stata/current/stata-mp -b -b do highspeedmi.do
-loaded modules
-Currently Loaded Modulefiles:
-  1) stata/1-wrapper
-mkdir: cannot create directory `/local/tmp_uctprgu': File exists
-/cm/shared/apps/Stata/current/stata-mp -b -b do highspeedmi.do
-loaded modules
-Currently Loaded Modulefiles:
-  1) stata/1-wrapper
-mkdir: cannot create directory `/local/tmp_uctprgu': File exists
-/cm/shared/apps/Stata/current/stata-mp -b -b do bismoking.do
-loaded modules
-Currently Loaded Modulefiles:
-  1) stata/1-wrapper
-mkdir: cannot create directory `/local/tmp_uctprgu': File exists
-/cm/shared/apps/Stata/current/stata-mp -b -b do bismoking.do
-loaded modules
-Currently Loaded Modulefiles:
-  1) stata/1-wrapper
-mkdir: cannot create directory `/local/tmp_uctprgu': File exists
-/cm/shared/apps/Stata/current/stata-mp -b -b do bismoking.do
-loaded modules
-Currently Loaded Modulefiles:
-  1) stata/1-wrapper
-mkdir: cannot create directory `/local/tmp_uctprgu': File exists
-/cm/shared/apps/Stata/current/stata-mp -b -b do bismoking.do
-loaded modules
-Currently Loaded Modulefiles:
-  1) stata/1-wrapper
-mkdir: cannot create directory `/local/tmp_uctprgu': File exists
-/cm/shared/apps/Stata/current/stata-mp -b -b do bismoking.do
-loaded modules
-Currently Loaded Modulefiles:
-  1) stata/1-wrapper
-mkdir: cannot create directory `/local/tmp_uctprgu': File exists
-/cm/shared/apps/Stata/current/stata-mp -b -b do bismoking.do
-loaded modules
-Currently Loaded Modulefiles:
-  1) stata/1-wrapper
-mkdir: cannot create directory `/local/tmp_uctprgu': File exists
-/cm/shared/apps/Stata/current/stata-mp -b -b do bismoking.do
-loaded modules
-Currently Loaded Modulefiles:
-  1) stata/1-wrapper
-mkdir: cannot create directory `/local/tmp_uctprgu': File exists
-/cm/shared/apps/Stata/current/stata-mp -b -b do highspeedmi.do
-loaded modules
-Currently Loaded Modulefiles:
-  1) stata/1-wrapper
-mkdir: cannot create directory `/local/tmp_uctprgu': File exists
-/cm/shared/apps/Stata/current/stata-mp -b -b do highspeedmi.do
-loaded modules
-Currently Loaded Modulefiles:
-  1) stata/1-wrapper
-mkdir: cannot create directory `/local/tmp_uctprgu': File exists
-/cm/shared/apps/Stata/current/stata-mp -b -b do highspeedmi.do
+/cm/shared/apps/Stata/current/stata-mp -b -b do hpc.do
