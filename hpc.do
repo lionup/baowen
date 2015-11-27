@@ -1,4 +1,5 @@
 cd ~/git/baowen/
+set more 1
 use statacompleteh, clear
 
 xi:mim,cat(fit):gllamm alcogrp part1 part2 gender lastbmi retireage i.provinces i.spstatus i.lastsmoking i.education i.skills lastincome index ///
