@@ -17,7 +17,7 @@ mat b= e(b_mi)
 mat V = e(V_mi) 
 matrix wc2knot=e(b_mi)'
 svmat wc2knot
-drop year2knot
+capture drop year2knot
 matrix year2knot=(2\3\18\19\20\21\36)
 svmat year2knot
 
