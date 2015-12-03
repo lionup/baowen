@@ -1,0 +1,40 @@
+-----------------------------------------------------
+      name:  <unnamed>
+       log:  /data/uctprgu/git/baowen/log_hpc2.log
+  log type:  text
+ opened on:  28 Nov 2015, 00:46:27
+
+. 
+. use statacompleteh, clear
+(Written by R.              )
+
+. 
+. xi:mim,cat(fit):gllamm smokingatwave part1 part2 ge
+> nder lastbmi retireage i.provinces i.spstatus i.las
+> talcogrp i.education i.skills lastincome index ///
+> age1991 i.lastactivity if yearcenter<=17& yearcente
+> r>=-17, i(idind newhhid) link(mlogit) family(binom)
+>  
+i.provinces       _Iprovinces_0-8     (naturally code
+> d; _Iprovinces_0 omitted)
+i.spstatus        _Ispstatus_0-2      (naturally code
+> d; _Ispstatus_0 omitted)
+i.lastalcogrp     _Ilastalcog_0-2     (naturally code
+> d; _Ilastalcog_0 omitted)
+i.education       _Ieducation_0-5     (naturally code
+> d; _Ieducation_0 omitted)
+i.skills          _Iskills_0-3        (naturally code
+> d; _Iskills_0 omitted)
+i.lastactivity    _Ilastactiv_0-3     (naturally code
+> d; _Ilastactiv_0 omitted)
+[note: using mi-style format variables _mi_id and _mi
+> _m]
+covariates in analysis of imputed dataset 7 do not ma
+> tch those of imputed dataset 1
+r(498);
+
+end of do-file
+
+r(498);
+
+. exit
