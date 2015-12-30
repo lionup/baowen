@@ -1,0 +1,25 @@
+-----------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  /data/uctprgu/git/baowen/hpc4/log_hpc4.log
+  log type:  text
+ opened on:  21 Dec 2015, 03:35:06
+
+. 
+. use ../statacomplete, clear
+(Written by R.              )
+
+. 
+. mi estimate: xtmixed sysdrug part1 part2 i.alcogrpmed gender lastbmi retireage i.
+> provinces i.spstatus  i.lastsmoking i.education i.skills lastincome index i.anti 
+> ///
+> age1991 i.lastactivity if yearcenter<=17& yearcenter>=-17& wave>1991 || newhhid:|
+> | idind: posiyearcenter,covariance(unstructured) mle var 
+--Break--
+r(1);
+
+end of do-file
+
+--Break--
+r(1);
+
+. exit, clear
