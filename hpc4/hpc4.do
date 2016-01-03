@@ -5,10 +5,8 @@ log using log_hpc4, text replace
 
 use ../statacomplete, clear
 
-mi estimate: xtmixed sysdrug part1 part2 i.alcogrpmed gender lastbmi retireage i.provinces i.spstatus  i.lastsmoking i.education i.skills lastincome index i.anti ///
-age1991 i.lastactivity if yearcenter<=17& yearcenter>=-17& wave>1991 || newhhid:|| idind: posiyearcenter,covariance(unstructured) mle var 
+xi:mim,cat(fit):gllamm alcogrp part1 part2 fat energy gender lastbmi retireage i.provinces i.spstatus i.lastsmoking i.education i.skills lastincome index ///
+age1991 i.lastactivity if yearcenter<=17& yearcenter>=-17&w2>1993, i(idind newhhid) link(mlogit) family(binom) 
 
-
-
-*saveold newresult, replace
+saveold newresult, replace
 log close
