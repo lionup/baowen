@@ -13,4 +13,4 @@ module list
 
 #stata -q batch.q --slots 4 --largemem --qsub -b do  highspeedmi.do
 #stata -q batch.q --slots 4 --largemem --qsub -b do  bismoking.do
-stata -q batch.q --largemem --qsub -b do  hpc2.do
+stata -q batch.q --slots 4 --largemem --qsub -b do  hpc2.do
