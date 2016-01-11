@@ -1,3 +1,35 @@
+
+  ___  ____  ____  ____  ____ (R)
+ /__    /   ____/   /   ____/
+___/   /   /___/   /   /___/   14.1   Copyright 1985-2015 StataCorp LP
+  Statistics/Data Analysis            StataCorp
+                                      4905 Lakeway Drive
+     MP - Parallel Edition            College Station, Texas 77845 USA
+                                      800-STATA-PC        http://www.stata.com
+                                      979-696-4600        stata@stata.com
+                                      979-696-4601 (fax)
+
+5-user 4-core Stata network perpetual license:
+       Serial number:  501406219442
+         Licensed to:  Department of Economics
+                       University College London
+
+Notes:
+      1.  Stata is running in batch mode.
+      2.  Unicode is supported; see help unicode_advice.
+      3.  More than 2 billion observations are allowed; see help obs_advice.
+      4.  Maximum number of variables is set to 5000; see help set_maxvar.
+
+. do hpc4.do 
+
+. cd ~/git/baowen/hpc4
+/data/uctprgu/git/baowen/hpc4
+
+. set more 1
+
+. cap log close
+
+. log using log_hpc4, text replace
 -------------------------------------------------------------------------------
       name:  <unnamed>
        log:  /data/uctprgu/git/baowen/hpc4/log_hpc4.log
@@ -123,3 +155,6 @@ file newresult.dta saved
   log type:  text
  closed on:   9 Jan 2016, 06:52:30
 -------------------------------------------------------------------------------
+
+. 
+end of do-file
