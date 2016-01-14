@@ -1,17 +1,17 @@
 -------------------------------------------------------------------------------
       name:  <unnamed>
-       log:  /data/uctprgu/git/baowen/hpc4/log_hpc4.log
+       log:  /data/uctprgu/git/baowen/hpc5/log_hpc5.log
   log type:  text
- opened on:  14 Jan 2016, 04:21:16
+ opened on:  14 Jan 2016, 04:21:31
 
 . 
 . use ../completelong, clear
 (Written by R.              )
 
 . 
-. mi estimate: xtmixed waist part1 part2 gender lastbmi restopage i.provinces i
-> .lastmarriage i.lastalcogrp i.lastsmoking i.education i.skills lastincome i.v
-> illage  ///
+. mi estimate: xtmixed bmi part1 part2 part1sq gender restopage i.provinces i.l
+> astmarriage i.lastalcogrp i.lastsmoking i.education i.skills lastincome i.vil
+> lage  ///
 > age1991 i.lastactivity if yearsincerehou<=17&yearsincerehou>=-17&w2!=1991|| n
 > ewhhid:|| idind: posiyearcenter,covariance(unstructured) mle var 
 w2 not found

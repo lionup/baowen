@@ -20,30 +20,31 @@ Notes:
       3.  More than 2 billion observations are allowed; see help obs_advice.
       4.  Maximum number of variables is set to 5000; see help set_maxvar.
 
-. do hpc4.do 
+. do hpc5.do 
 
-. cd ~/git/baowen/hpc4
-/data/uctprgu/git/baowen/hpc4
+. cd ~/git/baowen/hpc5
+/data/uctprgu/git/baowen/hpc5
 
 . set more 1
 
 . cap log close
 
-. log using log_hpc4, text replace
+. log using log_hpc5, text replace
+(note: file /data/uctprgu/git/baowen/hpc5/log_hpc5.log not found)
 -------------------------------------------------------------------------------
       name:  <unnamed>
-       log:  /data/uctprgu/git/baowen/hpc4/log_hpc4.log
+       log:  /data/uctprgu/git/baowen/hpc5/log_hpc5.log
   log type:  text
- opened on:  14 Jan 2016, 04:21:16
+ opened on:  14 Jan 2016, 04:21:31
 
 . 
 . use ../completelong, clear
 (Written by R.              )
 
 . 
-. mi estimate: xtmixed waist part1 part2 gender lastbmi restopage i.provinces i
-> .lastmarriage i.lastalcogrp i.lastsmoking i.education i.skills lastincome i.v
-> illage  ///
+. mi estimate: xtmixed bmi part1 part2 part1sq gender restopage i.provinces i.l
+> astmarriage i.lastalcogrp i.lastsmoking i.education i.skills lastincome i.vil
+> lage  ///
 > age1991 i.lastactivity if yearsincerehou<=17&yearsincerehou>=-17&w2!=1991|| n
 > ewhhid:|| idind: posiyearcenter,covariance(unstructured) mle var 
 w2 not found
