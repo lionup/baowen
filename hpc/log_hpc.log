@@ -14,3 +14,9 @@
 > llage i.anti ///
 > age1991 i.lastactivity if yearsincerehou<=17&yearsincerehou>=-17|| newhhid:||
 >  idind:posiyearcenter,covariance(unstructured) mle var 
+convergence not achieved
+model did not converge on m=10
+r(498);
+
+end of do-file
+r(498);
