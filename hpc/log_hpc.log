@@ -1,23 +1,162 @@
--------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------
       name:  <unnamed>
        log:  /data/uctprgu/git/baowen/hpc/log_hpc.log
   log type:  text
- opened on:  29 Jan 2016, 22:15:29
+ opened on:  19 May 2016, 23:00:15
 
 . 
-. use ../completelong, clear
-(Written by R.              )
+. use ../using5_19, clear
 
 . 
-. xi:mim,cat(fit):gllamm alcogrp part1 part2 gender lastbmi restopage i.provinc
-> es i.lastmarriage i.lastsmoking i.education i.skills lastincome i.village ///
-> age1991 i.lastactivity if yearsincerehou<=17&yearsincerehou>=-17&w2!=1991, i(
-> idind newhhid) link(mlogit) family(binom) 
-i.provinces       _Iprovinces_0-8     (naturally coded; _Iprovinces_0 omitted)
-i.lastmarriage    _Ilastmarri_0-1     (naturally coded; _Ilastmarri_0 omitted)
-i.lastsmoking     _Ilastsmoki_0-2     (naturally coded; _Ilastsmoki_0 omitted)
-i.education       _Ieducation_0-5     (naturally coded; _Ieducation_0 omitted)
-i.skills          _Iskills_0-3        (naturally coded; _Iskills_0 omitted)
-i.village         _Ivillage_0-1       (naturally coded; _Ivillage_0 omitted)
-i.lastactivity    _Ilastactiv_0-3     (naturally coded; _Ilastactiv_0 omitted)
-[note: using mi-style format variables _mi_id and _mi_m]
+. mi set wide
+
+. mi xtset,clear
+
+. set matsize 10000
+
+. 
+. mi register imputed r1agey gender marriage education iscofamer4way hukou r1rural logperwealth logperincome
+>  r1cesd10 ///
+> r1diabe r1stroke r1hearte sbp dbp bmi wc logcrp newcho loghba1c smoking4way drinking r1wtrespb giveblood 
+
+. 
+. 
+. mi impute chained ///
+> (ologit) iscofamer4way smoking4way drinking ///
+> (logit) marriage hukou r1diabe r1stroke r1hearte ///
+> (regress) logperwealth logperincome sbp dbp wc  r1cesd10 bmi ///
+> (regress) logcrp newcho loghba1c /// 
+> = r1agey gender education r1rural xgender xrural [pweight=r1wtresp],add(45) burnin(20) rseed(1389)augment 
+
+Conditional models:
+          marriage: logit marriage i.hukou i.r1stroke i.r1hearte i.r1diabe i.iscofamer4way i.drinking
+                     r1cesd10 i.smoking4way sbp dbp logperincome bmi wc loghba1c logcrp newcho
+                     logperwealth r1agey gender education r1rural xgender xrural [pweight = r1wtresp],
+                     augment
+             hukou: logit hukou i.marriage i.r1stroke i.r1hearte i.r1diabe i.iscofamer4way i.drinking
+                     r1cesd10 i.smoking4way sbp dbp logperincome bmi wc loghba1c logcrp newcho
+                     logperwealth r1agey gender education r1rural xgender xrural [pweight = r1wtresp],
+                     augment
+          r1stroke: logit r1stroke i.marriage i.hukou i.r1hearte i.r1diabe i.iscofamer4way i.drinking
+                     r1cesd10 i.smoking4way sbp dbp logperincome bmi wc loghba1c logcrp newcho
+                     logperwealth r1agey gender education r1rural xgender xrural [pweight = r1wtresp],
+                     augment
+          r1hearte: logit r1hearte i.marriage i.hukou i.r1stroke i.r1diabe i.iscofamer4way i.drinking
+                     r1cesd10 i.smoking4way sbp dbp logperincome bmi wc loghba1c logcrp newcho
+                     logperwealth r1agey gender education r1rural xgender xrural [pweight = r1wtresp],
+                     augment
+           r1diabe: logit r1diabe i.marriage i.hukou i.r1stroke i.r1hearte i.iscofamer4way i.drinking
+                     r1cesd10 i.smoking4way sbp dbp logperincome bmi wc loghba1c logcrp newcho
+                     logperwealth r1agey gender education r1rural xgender xrural [pweight = r1wtresp],
+                     augment
+     iscofamer4way: ologit iscofamer4way i.marriage i.hukou i.r1stroke i.r1hearte i.r1diabe i.drinking
+                     r1cesd10 i.smoking4way sbp dbp logperincome bmi wc loghba1c logcrp newcho
+                     logperwealth r1agey gender education r1rural xgender xrural [pweight = r1wtresp],
+                     augment
+          drinking: ologit drinking i.marriage i.hukou i.r1stroke i.r1hearte i.r1diabe i.iscofamer4way
+                     r1cesd10 i.smoking4way sbp dbp logperincome bmi wc loghba1c logcrp newcho
+                     logperwealth r1agey gender education r1rural xgender xrural [pweight = r1wtresp],
+                     augment
+          r1cesd10: regress r1cesd10 i.marriage i.hukou i.r1stroke i.r1hearte i.r1diabe i.iscofamer4way
+                     i.drinking i.smoking4way sbp dbp logperincome bmi wc loghba1c logcrp newcho
+                     logperwealth r1agey gender education r1rural xgender xrural [pweight = r1wtresp]
+       smoking4way: ologit smoking4way i.marriage i.hukou i.r1stroke i.r1hearte i.r1diabe i.iscofamer4way
+                     i.drinking r1cesd10 sbp dbp logperincome bmi wc loghba1c logcrp newcho logperwealth
+                     r1agey gender education r1rural xgender xrural [pweight = r1wtresp], augment
+               sbp: regress sbp i.marriage i.hukou i.r1stroke i.r1hearte i.r1diabe i.iscofamer4way
+                     i.drinking r1cesd10 i.smoking4way dbp logperincome bmi wc loghba1c logcrp newcho
+                     logperwealth r1agey gender education r1rural xgender xrural [pweight = r1wtresp]
+               dbp: regress dbp i.marriage i.hukou i.r1stroke i.r1hearte i.r1diabe i.iscofamer4way
+                     i.drinking r1cesd10 i.smoking4way sbp logperincome bmi wc loghba1c logcrp newcho
+                     logperwealth r1agey gender education r1rural xgender xrural [pweight = r1wtresp]
+      logperincome: regress logperincome i.marriage i.hukou i.r1stroke i.r1hearte i.r1diabe
+                     i.iscofamer4way i.drinking r1cesd10 i.smoking4way sbp dbp bmi wc loghba1c logcrp
+                     newcho logperwealth r1agey gender education r1rural xgender xrural [pweight =
+                     r1wtresp]
+               bmi: regress bmi i.marriage i.hukou i.r1stroke i.r1hearte i.r1diabe i.iscofamer4way
+                     i.drinking r1cesd10 i.smoking4way sbp dbp logperincome wc loghba1c logcrp newcho
+                     logperwealth r1agey gender education r1rural xgender xrural [pweight = r1wtresp]
+                wc: regress wc i.marriage i.hukou i.r1stroke i.r1hearte i.r1diabe i.iscofamer4way
+                     i.drinking r1cesd10 i.smoking4way sbp dbp logperincome bmi loghba1c logcrp newcho
+                     logperwealth r1agey gender education r1rural xgender xrural [pweight = r1wtresp]
+          loghba1c: regress loghba1c i.marriage i.hukou i.r1stroke i.r1hearte i.r1diabe i.iscofamer4way
+                     i.drinking r1cesd10 i.smoking4way sbp dbp logperincome bmi wc logcrp newcho
+                     logperwealth r1agey gender education r1rural xgender xrural [pweight = r1wtresp]
+            logcrp: regress logcrp i.marriage i.hukou i.r1stroke i.r1hearte i.r1diabe i.iscofamer4way
+                     i.drinking r1cesd10 i.smoking4way sbp dbp logperincome bmi wc loghba1c newcho
+                     logperwealth r1agey gender education r1rural xgender xrural [pweight = r1wtresp]
+            newcho: regress newcho i.marriage i.hukou i.r1stroke i.r1hearte i.r1diabe i.iscofamer4way
+                     i.drinking r1cesd10 i.smoking4way sbp dbp logperincome bmi wc loghba1c logcrp
+                     logperwealth r1agey gender education r1rural xgender xrural [pweight = r1wtresp]
+      logperwealth: regress logperwealth i.marriage i.hukou i.r1stroke i.r1hearte i.r1diabe
+                     i.iscofamer4way i.drinking r1cesd10 i.smoking4way sbp dbp logperincome bmi wc
+                     loghba1c logcrp newcho r1agey gender education r1rural xgender xrural [pweight =
+                     r1wtresp]
+
+Performing chained iterations ...
+
+Multivariate imputation                     Imputations =       45
+Chained equations                                 added =       45
+Imputed: m=1 through m=45                       updated =        0
+
+Initialization: monotone                     Iterations =      900
+                                                burn-in =       20
+
+     iscofamer4way: ordered logistic regression
+       smoking4way: ordered logistic regression
+          drinking: ordered logistic regression
+          marriage: logistic regression
+             hukou: logistic regression
+           r1diabe: logistic regression
+          r1stroke: logistic regression
+          r1hearte: logistic regression
+      logperwealth: linear regression
+      logperincome: linear regression
+               sbp: linear regression
+               dbp: linear regression
+                wc: linear regression
+          r1cesd10: linear regression
+               bmi: linear regression
+            logcrp: linear regression
+            newcho: linear regression
+          loghba1c: linear regression
+
+------------------------------------------------------------------
+                   |               Observations per m             
+                   |----------------------------------------------
+          Variable |   Complete   Incomplete   Imputed |     Total
+-------------------+-----------------------------------+----------
+     iscofamer4way |      12399          307       307 |     12706
+       smoking4way |      11148         1558      1558 |     12706
+          drinking |      11797          909       909 |     12706
+          marriage |      12705            1         1 |     12706
+             hukou |      12702            4         4 |     12706
+           r1diabe |      12577          129       129 |     12706
+          r1stroke |      12662           44        44 |     12706
+          r1hearte |      12623           83        83 |     12706
+      logperwealth |       8474         4232      4232 |     12706
+      logperincome |      10098         2608      2608 |     12706
+               sbp |      10130         2576      2576 |     12706
+               dbp |      10130         2576      2576 |     12706
+                wc |       9996         2710      2710 |     12706
+          r1cesd10 |      11640         1066      1066 |     12706
+               bmi |      10029         2677      2677 |     12706
+            logcrp |       8584         4122      4122 |     12706
+            newcho |       8576         4130      4130 |     12706
+          loghba1c |       8617         4089      4089 |     12706
+------------------------------------------------------------------
+(complete + incomplete = total; imputed is the minimum across m
+ of the number of filled-in observations.)
+
+. 
+. saveold newresult, replace
+(saving in Stata 13 format)
+(FYI, saveold has options version(12) and version(11) that write files in older Stata formats)
+file newresult.dta saved
+
+. log close
+      name:  <unnamed>
+       log:  /data/uctprgu/git/baowen/hpc/log_hpc.log
+  log type:  text
+ closed on:  20 May 2016, 00:43:48
+------------------------------------------------------------------------------------------------------------
