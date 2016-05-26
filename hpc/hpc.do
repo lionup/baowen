@@ -16,11 +16,11 @@ medblood meddia medcho
 
 mi impute chained ///
 (ologit)iscoskill smoking4way drinking education ///
-(logit) dyslipe medcho medblood meddia village ///
+(logit) medcho medblood meddia village ///
 (ologit)spwork ///
 (regress) logwealth logincome sbp dbp wc r6cesd r6bmi ///
 (regress) logcrp chol loghba1c logtg /// 
-= r6agey gender r6stroke r6hearte r6diabe  [pweight=r6cwtresp],add(50) burnin(20) rseed(1389)augment 
+= r6agey gender r6stroke r6hearte r6diabe dyslipe [pweight=r6cwtresp],add(50) burnin(20) rseed(1389)augment 
 
 
 saveold newresult, replace
