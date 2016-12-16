@@ -30,37 +30,46 @@ Notes:
 . cap log close
 
 . log using log_hpc, text replace
+(note: file /data/uctprgu/git/baowen/hpc/log_hpc.log not found)
 -------------------------------------------------------------------------------
       name:  <unnamed>
        log:  /data/uctprgu/git/baowen/hpc/log_hpc.log
   log type:  text
- opened on:  19 May 2016, 22:56:44
+ opened on:  16 Dec 2016, 18:07:01
 
 . 
-. use ../using5_19, clear
+. 
+. use ../usinglong_MI.dta, clear
 
 . 
-. mi set wide
+. keep if oddwave==1& anasample==1&part==1
+(46,979 observations deleted)
+
+. mi set  mlong
 
 . mi xtset,clear
 
 . set matsize 10000
 
 . 
-. mi register imputed r1agey gender marriage education iscofamer4way hukou r1ru
-> ral logperwealth logperincome r1cesd10 ///
-> r1diabe r1stroke r1hearte sbp dbp bmi wc logcrp newcho loghba1c smoking4way d
-> rinking r1wtrespb giveblood 
+. 
+. mi register imputed sex birth stopage edlev lastgrade lastspwor esmoke alcoho
+> l sbp dbp bmi blchol everchd everstroke evermi evercancer everdiabe ///
+> pcs ghqgp age reasonstop labstatnew dead wave yeartostop ah4 mem mh swords an
+> imals part1 part2 ah4mi memmi mhmi swordsmi animalsmi inter1 inter2
+(3841 m=0 obs. now marked as incomplete)
 
 . 
 . 
 . mi impute chained ///
-> (ologit) iscofamer4way smoking4way drinking ///
-> (logit) marriage hukou r1diabe r1stroke r1hearte ///
-> (regress) logperwealth logperincome sbp dbp wc  r1cesd10 bmi ///
-> (regress) logcrp newcho loghba1c /// 
-> = r1agey gender education r1rural xgender xrural [pweight=r1wtresp],add(45) b
-> urnin(20) rseed(1389)augment 
+> (regress) sbp dbp bmi pcs ///
+> (mlogit) lastspwor ///
+> (ologit) edlev alcohol esmoke ///
+> (logit) ghqgp ///
+> (pmm, knn(5))blchol ah4mi memmi mhmi swordsmi animalsmi=sex birth stopage las
+> tgrade everchd everstroke evermi evercancer everdiabe ///
+> age reasonstop dead wave yeartostop part1 part2 inter1 inter2,add(30)burnin(2
+> 0) rseed(1389)augment
 I/O error writing .dta file
     Usually such I/O errors are caused by the disk or file system being full.
 r(693);
