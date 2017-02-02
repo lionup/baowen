@@ -3,26 +3,55 @@ set more 1
 cap log close
 log using log_hpc, text replace
 
+use ../imputed.dta, clear
 
-use ../usinglong_MI.dta, clear
+***************retired
+mi stset age_exitnew, failure(exit_type==3) enter(xage_q)exit (age_exitnew=75)
+*model 1:
+xi: mi estimate: stcrreg ftow i.xage_qgp i.gender, compete(exit_type ==2 4 5 6)
+xi: mi estimate: stcrreg wtof i.xage_qgp i.gender, compete(exit_type ==2 4 5 6)
+*mode1 2:
+xi: mi estimate: stcrreg ftow i.xage_qgp i.gender i.tedlev i.xrgrlump i.depress i.chronic i.spouse , compete(exit_type ==2 4 5 6)
+xi: mi estimate: stcrreg wtof i.xage_qgp i.gender i.tedlev i.xrgrlump i.depress i.chronic i.spouse, compete(exit_type ==2 4 5 6)
+*model 3:
+xi: mi estimate: stcrreg ftow i.xage_qgp i.gender i.tedlev i.xrgrlump i.depress i.chronic i.spouse i.xdeclatt i.xjobdemt i.support, compete(exit_type ==2 4 5 6)
+xi: mi estimate: stcrreg wtof i.xage_qgp i.gender i.tedlev i.xrgrlump i.depress i.chronic i.spouse i.xdeclatt i.xjobdemt i.support, compete(exit_type ==2 4 5 6)
 
-keep if oddwave==1& anasample==1&part==1
-mi set  mlong
-mi xtset,clear
-set matsize 10000
+***************unemployed
+mi stset age_exitnew, failure(exit_type==4) enter(xage_q)exit (age_exitnew=75)
+*model 1:
+xi: mi estimate: stcrreg ftow i.xage_qgp i.gender, compete(exit_type ==2 3 5 6)
+xi: mi estimate: stcrreg wtof i.xage_qgp i.gender, compete(exit_type ==2 3 5 6)
+*mode1 2:
+xi: mi estimate: stcrreg ftow i.xage_qgp i.gender i.tedlev i.xrgrlump i.depress i.chronic i.spouse , compete(exit_type ==2 3 5 6)
+xi: mi estimate: stcrreg wtof i.xage_qgp i.gender i.tedlev i.xrgrlump i.depress i.chronic i.spouse, compete(exit_type ==2 3 5 6)
+*model 3:
+xi: mi estimate: stcrreg ftow i.xage_qgp i.gender i.tedlev i.xrgrlump i.depress i.chronic i.spouse i.xdeclatt i.xjobdemt i.support, compete(exit_type ==2 3 5 6)
+xi: mi estimate: stcrreg wtof i.xage_qgp i.gender i.tedlev i.xrgrlump i.depress i.chronic i.spouse i.xdeclatt i.xjobdemt i.support, compete(exit_type ==2 3 5 6)
 
+***************health reason
+mi stset age_exitnew, failure(exit_type==5) enter(xage_q)exit (age_exitnew=75)
+*model 1:
+xi: mi estimate: stcrreg ftow i.xage_qgp i.gender, compete(exit_type ==2 3 4 6)
+xi: mi estimate: stcrreg wtof i.xage_qgp i.gender, compete(exit_type ==2 3 4 6)
+*mode1 2:
+xi: mi estimate: stcrreg ftow i.xage_qgp i.gender i.tedlev i.xrgrlump i.depress i.chronic i.spouse , compete(exit_type ==2 3 4 6)
+xi: mi estimate: stcrreg wtof i.xage_qgp i.gender i.tedlev i.xrgrlump i.depress i.chronic i.spouse, compete(exit_type ==2 3 4 6)
+*model 3:
+xi: mi estimate: stcrreg ftow i.xage_qgp i.gender i.tedlev i.xrgrlump i.depress i.chronic i.spouse i.xdeclatt i.xjobdemt i.support, compete(exit_type ==2 3 4 6)
+xi: mi estimate: stcrreg wtof i.xage_qgp i.gender i.tedlev i.xrgrlump i.depress i.chronic i.spouse i.xdeclatt i.xjobdemt i.support, compete(exit_type ==2 3 4 6)
 
-mi register imputed sex birth stopage edlev lastgrade lastspwor esmoke alcohol sbp dbp bmi blchol everchd everstroke evermi evercancer everdiabe ///
-pcs ghqgp age reasonstop labstatnew dead wave yeartostop ah4 mem mh swords animals part1 part2 ah4mi memmi mhmi swordsmi animalsmi inter1 inter2
-
-
-mi impute chained ///
-(regress) sbp dbp bmi pcs ///
-(mlogit) lastspwor ///
-(ologit) edlev alcohol esmoke ///
-(logit) ghqgp ///
-(pmm, knn(5))blchol ah4mi memmi mhmi swordsmi animalsmi=sex birth stopage lastgrade everchd everstroke evermi evercancer everdiabe ///
-age reasonstop dead wave yeartostop part1 part2 inter1 inter2,add(30)burnin(20) rseed(1389)augment
+***************other
+mi stset age_exitnew, failure(exit_type==6) enter(xage_q)exit (age_exitnew=75)
+*model 1:
+xi: mi estimate: stcrreg ftow i.xage_qgp i.gender, compete(exit_type ==2 3 4 5)
+xi: mi estimate: stcrreg wtof i.xage_qgp i.gender, compete(exit_type ==2 3 4 5)
+*mode1 2:
+xi: mi estimate: stcrreg ftow i.xage_qgp i.gender i.tedlev i.xrgrlump i.depress i.chronic i.spouse , compete(exit_type ==2 3 4 5)
+xi: mi estimate: stcrreg wtof i.xage_qgp i.gender i.tedlev i.xrgrlump i.depress i.chronic i.spouse, compete(exit_type ==2 3 4 5)
+*model 3:
+xi: mi estimate: stcrreg ftow i.xage_qgp i.gender i.tedlev i.xrgrlump i.depress i.chronic i.spouse i.xdeclatt i.xjobdemt i.support, compete(exit_type ==2 3 4 5)
+xi: mi estimate: stcrreg wtof i.xage_qgp i.gender i.tedlev i.xrgrlump i.depress i.chronic i.spouse i.xdeclatt i.xjobdemt i.support, compete(exit_type ==2 3 4 5)
 
 
 saveold newresult, replace
