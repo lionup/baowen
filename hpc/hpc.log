@@ -1,7 +1,7 @@
 
   ___  ____  ____  ____  ____ (R)
  /__    /   ____/   /   ____/
-___/   /   /___/   /   /___/   14.1   Copyright 1985-2015 StataCorp LP
+___/   /   /___/   /   /___/   13.1   Copyright 1985-2013 StataCorp LP
   Statistics/Data Analysis            StataCorp
                                       4905 Lakeway Drive
      MP - Parallel Edition            College Station, Texas 77845 USA
@@ -9,21 +9,23 @@ ___/   /   /___/   /   /___/   14.1   Copyright 1985-2015 StataCorp LP
                                       979-696-4600        stata@stata.com
                                       979-696-4601 (fax)
 
-5-user 4-core Stata network perpetual license:
-       Serial number:  501406219442
-         Licensed to:  Department of Economics
-                       University College London
+7-user 8-core Stata network perpetual license:
+       Serial number:  501306262937
+         Licensed to:  Yale University
+                       New Haven, CT
 
 Notes:
-      1.  Stata is running in batch mode.
-      2.  Unicode is supported; see help unicode_advice.
-      3.  More than 2 billion observations are allowed; see help obs_advice.
-      4.  Maximum number of variables is set to 5000; see help set_maxvar.
+      1.  (-v# option or -set maxvar-) 5000 maximum variables
+      2.  Command line editing disabled
+      3.  Stata running in batch mode
+
+Note:  Your site can add messages to the introduction by editing the file
+       stata.msg in the directory where Stata is installed.
 
 . do hpc.do 
 
 . cd ~/git/baowen/hpc
-/data/uctprgu/git/baowen/hpc
+/gpfs/home/fas/meghir/rg684/git/baowen/hpc
 
 . set more 1
 
@@ -32,46 +34,36 @@ Notes:
 . log using log_hpc, text replace
 -------------------------------------------------------------------------------
       name:  <unnamed>
-       log:  /data/uctprgu/git/baowen/hpc/log_hpc.log
+       log:  /gpfs/home/fas/meghir/rg684/git/baowen/hpc/log_hpc.log
   log type:  text
- opened on:  16 Dec 2016, 18:20:16
+ opened on:   2 Feb 2017, 18:09:34
 
 . 
-. 
-. use ../usinglong_MI.dta, clear
+. use ../imputed.dta, clear
 
 . 
-. keep if oddwave==1& anasample==1&part==1
-(46,979 observations deleted)
+. ***************retired
+. mi stset age_exitnew, failure(exit_type==3) enter(xage_q)exit (age_exitnew=75
+> )
 
-. mi set  mlong
+     failure event:  exit_type == 3
+obs. time interval:  (0, age_exitnew]
+ enter on or after:  time xage_q
+ exit on or before:  age_exitnew==75
 
-. mi xtset,clear
+------------------------------------------------------------------------------
+     7913  total observations
+        0  exclusions
+------------------------------------------------------------------------------
+     7913  observations remaining, representing
+     4678  failures in single-record/single-failure data
+ 76667.65  total analysis time at risk and under observation
+                                              at risk from t =         0
+                                   earliest observed entry t =     39.58
+                                        last observed exit t =     81.02
 
-. set matsize 10000
-
-. 
-. 
-. mi register imputed sex birth stopage edlev lastgrade lastspwor esmoke alcoho
-> l sbp dbp bmi blchol everchd everstroke evermi evercancer everdiabe ///
-> pcs ghqgp age reasonstop labstatnew dead wave yeartostop ah4 mem mh swords an
-> imals part1 part2 ah4mi memmi mhmi swordsmi animalsmi inter1 inter2
-(3841 m=0 obs. now marked as incomplete)
-
-. 
-. 
-. mi impute chained ///
-> (regress) sbp dbp bmi pcs ///
-> (mlogit) lastspwor ///
-> (ologit) edlev alcohol esmoke ///
-> (logit) ghqgp ///
-> (pmm, knn(5))blchol ah4mi memmi mhmi swordsmi animalsmi=sex birth stopage las
-> tgrade everchd everstroke evermi evercancer everdiabe ///
-> age reasonstop dead wave yeartostop part1 part2 inter1 inter2,add(30)burnin(2
-> 0) rseed(1389)augment
-I/O error writing .dta file
-    Usually such I/O errors are caused by the disk or file system being full.
-r(693);
-
-end of do-file
-r(693);
+. *model 1:
+. xi: mi estimate: stcrreg ftow i.xage_qgp i.gender, compete(exit_type ==2 4 5 
+> 6)
+i.xage_qgp        _Ixage_qgp_1-5      (naturally coded; _Ixage_qgp_1 omitted)
+i.gender          _Igender_0-1        (naturally coded; _Igender_0 omitted)
