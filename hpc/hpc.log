@@ -67,3 +67,61 @@ obs. time interval:  (0, age_exitnew]
 > 6)
 i.xage_qgp        _Ixage_qgp_1-5      (naturally coded; _Ixage_qgp_1 omitted)
 i.gender          _Igender_0-1        (naturally coded; _Igender_0 omitted)
+
+Multiple-imputation estimates                     Imputations     =         25
+Competing-risks regression                        Number of obs   =       7913
+                                                  Average RVI     =     0.0138
+                                                  Largest FMI     =     0.0728
+DF adjustment:   Large sample                     DF:     min     =    4577.15
+                                                          avg     =   6.52e+07
+                                                          max     =   2.69e+08
+Model F test:       Equal FMI                     F(   6,735409.8)=      75.51
+Within VCE type:       Robust                     Prob > F        =     0.0000
+
+------------------------------------------------------------------------------
+          _t |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+        ftow |  -.0499349   .0096819    -5.16   0.000    -.0689161   -.0309536
+_Ixage_qgp_2 |   .1144011   .0425663     2.69   0.007     .0309727    .1978296
+_Ixage_qgp_3 |   .2237586   .0460808     4.86   0.000     .1334418    .3140753
+_Ixage_qgp_4 |   .6814505   .0451504    15.09   0.000     .5929573    .7699438
+_Ixage_qgp_5 |   1.031153   .0790551    13.04   0.000      .876208    1.186098
+  _Igender_1 |   .0168792    .031289     0.54   0.590    -.0444461    .0782046
+------------------------------------------------------------------------------
+
+. xi: mi estimate: stcrreg wtof i.xage_qgp i.gender, compete(exit_type ==2 4 5 
+> 6)
+i.xage_qgp        _Ixage_qgp_1-5      (naturally coded; _Ixage_qgp_1 omitted)
+i.gender          _Igender_0-1        (naturally coded; _Igender_0 omitted)
+
+Multiple-imputation estimates                     Imputations     =         25
+Competing-risks regression                        Number of obs   =       7913
+                                                  Average RVI     =     0.0209
+                                                  Largest FMI     =     0.1119
+DF adjustment:   Large sample                     DF:     min     =    1948.41
+                                                          avg     =   1.36e+08
+                                                          max     =   6.86e+08
+Model F test:       Equal FMI                     F(   6,323903.9)=      70.70
+Within VCE type:       Robust                     Prob > F        =     0.0000
+
+------------------------------------------------------------------------------
+          _t |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+        wtof |  -.0115568   .0087263    -1.32   0.186    -.0286707     .005557
+_Ixage_qgp_2 |    .119022   .0425011     2.80   0.005     .0357213    .2023227
+_Ixage_qgp_3 |   .2370172   .0460328     5.15   0.000     .1467945    .3272399
+_Ixage_qgp_4 |   .7025522   .0450323    15.60   0.000     .6142905    .7908138
+_Ixage_qgp_5 |   1.054989   .0789305    13.37   0.000     .9002884     1.20969
+  _Igender_1 |   .0064758   .0322586     0.20   0.841    -.0567499    .0697016
+------------------------------------------------------------------------------
+
+. *mode1 2:
+. xi: mi estimate: stcrreg ftow i.xage_qgp i.gender i.tedlev i.xrgrlump i.depre
+> ss i.chronic i.spouse , compete(exit_type ==2 4 5 6)
+i.xage_qgp        _Ixage_qgp_1-5      (naturally coded; _Ixage_qgp_1 omitted)
+i.gender          _Igender_0-1        (naturally coded; _Igender_0 omitted)
+i.tedlev          _Itedlev_0-2        (naturally coded; _Itedlev_0 omitted)
+i.xrgrlump        _Ixrgrlump_0-2      (naturally coded; _Ixrgrlump_0 omitted)
+i.depress         _Idepress_0-1       (naturally coded; _Idepress_0 omitted)
+i.chronic         _Ichronic_0-2       (naturally coded; _Ichronic_0 omitted)
+i.spouse          _Ispouse_0-2        (naturally coded; _Ispouse_0 omitted)
