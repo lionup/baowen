@@ -1,0 +1,47 @@
+-------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  /gpfs/home/fas/meghir/rg684/git/baowen/hpc/log_hpc.log
+  log type:  text
+ opened on:   5 Feb 2017, 19:26:31
+
+. 
+. use ../imputed.dta, clear
+
+. 
+. ***************retired
+. mi stset age_exitnew, failure(exit_type==3) enter(xage_q)exit (age_exitnew=75
+> )
+
+     failure event:  exit_type == 3
+obs. time interval:  (0, age_exitnew]
+ enter on or after:  time xage_q
+ exit on or before:  age_exitnew==75
+
+------------------------------------------------------------------------------
+     7913  total observations
+        0  exclusions
+------------------------------------------------------------------------------
+     7913  observations remaining, representing
+     4678  failures in single-record/single-failure data
+ 76667.65  total analysis time at risk and under observation
+                                              at risk from t =         0
+                                   earliest observed entry t =     39.58
+                                        last observed exit t =     81.02
+
+. *model 1:
+. *xi: mi estimate: stcrreg ftow i.xage_qgp i.gender, compete(exit_type ==2 4 5
+>  6)
+. *xi: mi estimate: stcrreg wtof i.xage_qgp i.gender, compete(exit_type ==2 4 5
+>  6)
+. *mode1 2:
+. *xi: mi estimate: stcrreg ftow i.xage_qgp i.gender i.tedlev i.xrgrlump i.depr
+> ess i.chronic i.spouse , compete(exit_type ==2 4 5 6)
+. xi: mi estimate: stcrreg wtof i.xage_qgp i.gender i.tedlev i.xrgrlump i.depre
+> ss i.chronic i.spouse, compete(exit_type ==2 4 5 6)
+i.xage_qgp        _Ixage_qgp_1-5      (naturally coded; _Ixage_qgp_1 omitted)
+i.gender          _Igender_0-1        (naturally coded; _Igender_0 omitted)
+i.tedlev          _Itedlev_0-2        (naturally coded; _Itedlev_0 omitted)
+i.xrgrlump        _Ixrgrlump_0-2      (naturally coded; _Ixrgrlump_0 omitted)
+i.depress         _Idepress_0-1       (naturally coded; _Idepress_0 omitted)
+i.chronic         _Ichronic_0-2       (naturally coded; _Ichronic_0 omitted)
+i.spouse          _Ispouse_0-2        (naturally coded; _Ispouse_0 omitted)
