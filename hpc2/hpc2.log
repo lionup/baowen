@@ -1,7 +1,7 @@
 
   ___  ____  ____  ____  ____ (R)
  /__    /   ____/   /   ____/
-___/   /   /___/   /   /___/   14.1   Copyright 1985-2015 StataCorp LP
+___/   /   /___/   /   /___/   13.1   Copyright 1985-2013 StataCorp LP
   Statistics/Data Analysis            StataCorp
                                       4905 Lakeway Drive
      MP - Parallel Edition            College Station, Texas 77845 USA
@@ -9,21 +9,23 @@ ___/   /   /___/   /   /___/   14.1   Copyright 1985-2015 StataCorp LP
                                       979-696-4600        stata@stata.com
                                       979-696-4601 (fax)
 
-5-user 4-core Stata network perpetual license:
-       Serial number:  501406219442
-         Licensed to:  Department of Economics
-                       University College London
+7-user 8-core Stata network perpetual license:
+       Serial number:  501306262937
+         Licensed to:  Yale University
+                       New Haven, CT
 
 Notes:
-      1.  Stata is running in batch mode.
-      2.  Unicode is supported; see help unicode_advice.
-      3.  More than 2 billion observations are allowed; see help obs_advice.
-      4.  Maximum number of variables is set to 5000; see help set_maxvar.
+      1.  (-v# option or -set maxvar-) 5000 maximum variables
+      2.  Command line editing disabled
+      3.  Stata running in batch mode
+
+Note:  Your site can add messages to the introduction by editing the file
+       stata.msg in the directory where Stata is installed.
 
 . do hpc2.do 
 
 . cd ~/git/baowen/hpc2
-/data/uctprgu/git/baowen/hpc2
+/gpfs/home/fas/meghir/rg684/git/baowen/hpc2
 
 . set more 1
 
@@ -32,23 +34,59 @@ Notes:
 . log using log_hpc2, text replace
 -------------------------------------------------------------------------------
       name:  <unnamed>
-       log:  /data/uctprgu/git/baowen/hpc2/log_hpc2.log
+       log:  /gpfs/home/fas/meghir/rg684/git/baowen/hpc2/log_hpc2.log
   log type:  text
- opened on:  21 Jan 2016, 16:12:33
+ opened on:   6 Feb 2017, 18:37:18
 
 . 
-. use ../statacomplete, clear
-(Written by R.              )
+. use ../imputed.dta, clear
 
 . 
-. xi:mim,cat(fit):gllamm alcogrp part1 part2 perhhincome gender lastbmi retirea
-> ge i.provinces i.spstatus i.lastsmoking i.education i.skills index ///
-> age1991 i.lastactivity if yearcenter<=17& yearcenter>=-17&w2>1993, i(idind ne
-> whhid) link(mlogit) family(binom) 
-i.provinces       _Iprovinces_0-8     (naturally coded; _Iprovinces_0 omitted)
-i.spstatus        _Ispstatus_0-2      (naturally coded; _Ispstatus_0 omitted)
-i.lastsmoking     _Ilastsmoki_1-3     (naturally coded; _Ilastsmoki_1 omitted)
-i.education       _Ieducation_0-5     (naturally coded; _Ieducation_0 omitted)
-i.skills          _Iskills_0-3        (naturally coded; _Iskills_0 omitted)
-i.lastactivity    _Ilastactiv_0-3     (naturally coded; _Ilastactiv_0 omitted)
-[note: using mi-style format variables _mi_id and _mi_m]
+. ***************retired
+. mi stset age_exitnew, failure(exit_type==3) enter(xage_q)exit (age_exitnew=75
+> )
+
+     failure event:  exit_type == 3
+obs. time interval:  (0, age_exitnew]
+ enter on or after:  time xage_q
+ exit on or before:  age_exitnew==75
+
+------------------------------------------------------------------------------
+     7913  total observations
+        0  exclusions
+------------------------------------------------------------------------------
+     7913  observations remaining, representing
+     4678  failures in single-record/single-failure data
+ 76667.65  total analysis time at risk and under observation
+                                              at risk from t =         0
+                                   earliest observed entry t =     39.58
+                                        last observed exit t =     81.02
+
+. *model 1:
+. *xi: mi estimate: stcrreg ftow i.xage_qgp i.gender, compete(exit_type ==2 4 5
+>  6)
+. *xi: mi estimate: stcrreg wtof i.xage_qgp i.gender, compete(exit_type ==2 4 5
+>  6)
+. *mode1 2:
+. *xi: mi estimate: stcrreg ftow i.xage_qgp i.gender i.tedlev i.xrgrlump i.depr
+> ess i.chronic i.spouse , compete(exit_type ==2 4 5 6)
+. *xi: mi estimate: stcrreg wtof i.xage_qgp i.gender i.tedlev i.xrgrlump i.depr
+> ess i.chronic i.spouse, compete(exit_type ==2 4 5 6)
+. *model 3:
+. *xi: mi estimate: stcrreg ftow i.xage_qgp i.gender i.tedlev i.xrgrlump i.depr
+> ess i.chronic i.spouse i.xdeclatt i.xjobdemt i.support, compete(exit_type ==2
+>  4 5 6)
+. 
+. xi: mi estimate: stcrreg wtof i.xage_qgp i.gender i.tedlev i.xrgrlump i.depre
+> ss i.chronic i.spouse i.xdeclatt i.xjobdemt i.support, compete(exit_type ==2 
+> 4 5 6)
+i.xage_qgp        _Ixage_qgp_1-5      (naturally coded; _Ixage_qgp_1 omitted)
+i.gender          _Igender_0-1        (naturally coded; _Igender_0 omitted)
+i.tedlev          _Itedlev_0-2        (naturally coded; _Itedlev_0 omitted)
+i.xrgrlump        _Ixrgrlump_0-2      (naturally coded; _Ixrgrlump_0 omitted)
+i.depress         _Idepress_0-1       (naturally coded; _Idepress_0 omitted)
+i.chronic         _Ichronic_0-2       (naturally coded; _Ichronic_0 omitted)
+i.spouse          _Ispouse_0-2        (naturally coded; _Ispouse_0 omitted)
+i.xdeclatt        _Ixdeclatt_0-2      (naturally coded; _Ixdeclatt_0 omitted)
+i.xjobdemt        _Ixjobdemt_0-2      (naturally coded; _Ixjobdemt_0 omitted)
+i.support         _Isupport_0-2       (naturally coded; _Isupport_0 omitted)
