@@ -8,7 +8,7 @@
 #BSUB -R "span[hosts=1]"
 
 #BSUB -o grace.output.%J   # output file name in which %J is replaced by the job ID
-##BSUB -N                   # sent email
+#BSUB -N                   # sent email
 
 # 9. load modules
 module load Apps/Stata/13.1
