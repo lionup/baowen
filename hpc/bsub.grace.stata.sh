@@ -2,7 +2,7 @@
 
 #BSUB -q cowles
 #BSUB -W 24:00
-#BSUB -J bgllm_short
+#BSUB -J hpc
 
 #BSUB -n 20
 #BSUB -R "span[hosts=1]"
