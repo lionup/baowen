@@ -4,7 +4,7 @@
 #BSUB -W 24:00
 #BSUB -J hpc6
 
-#BSUB -n 16
+#BSUB -n 4
 ##BSUB -R "span[hosts=1]"
 
 #BSUB -o grace.output.%J   # output file name in which %J is replaced by the job ID
