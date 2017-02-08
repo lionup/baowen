@@ -121,3 +121,79 @@ i.xrgrlump        _Ixrgrlump_0-2      (naturally coded; _Ixrgrlump_0 omitted)
 i.depress         _Idepress_0-1       (naturally coded; _Idepress_0 omitted)
 i.chronic         _Ichronic_0-2       (naturally coded; _Ichronic_0 omitted)
 i.spouse          _Ispouse_0-2        (naturally coded; _Ispouse_0 omitted)
+
+Multiple-imputation estimates                     Imputations     =         25
+Competing-risks regression                        Number of obs   =       7913
+                                                  Average RVI     =     0.0502
+                                                  Largest FMI     =     0.1700
+DF adjustment:   Large sample                     DF:     min     =     849.57
+                                                          avg     = 1561704.15
+                                                          max     =   1.81e+07
+Model F test:       Equal FMI                     F(  15,154002.0)=      25.27
+Within VCE type:       Robust                     Prob > F        =     0.0000
+
+------------------------------------------------------------------------------
+          _t |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+        ftow |   .0618858   .0275143     2.25   0.025     .0079268    .1158448
+_Ixage_qgp_2 |   .6579614   .1276385     5.15   0.000     .4077945    .9081283
+_Ixage_qgp_3 |   1.125618   .1387684     8.11   0.000     .8536371      1.3976
+_Ixage_qgp_4 |   1.259294   .1581013     7.97   0.000       .94942    1.569167
+_Ixage_qgp_5 |   1.793154   .2933281     6.11   0.000     1.218241    2.368068
+  _Igender_1 |  -.0728327   .1042872    -0.70   0.485    -.2772319    .1315666
+  _Itedlev_1 |  -.1549611   .1215538    -1.27   0.202    -.3932576    .0833354
+  _Itedlev_2 |  -.0087017   .1222042    -0.07   0.943    -.2482669    .2308636
+_Ixrgrlump_1 |   .6661102   .1222331     5.45   0.000     .4265373    .9056831
+_Ixrgrlump_2 |   1.289558   .1536147     8.39   0.000     .9884768    1.590639
+ _Idepress_1 |   .6288451   .0966199     6.51   0.000     .4394527    .8182374
+ _Ichronic_1 |   .4421486    .101837     4.34   0.000     .2424453    .6418518
+ _Ichronic_2 |   .8393811   .1660215     5.06   0.000     .5135208    1.165241
+  _Ispouse_1 |   .0272524   .1213491     0.22   0.822    -.2105946    .2650993
+  _Ispouse_2 |   .2732353   .0989893     2.76   0.006      .079207    .4672636
+------------------------------------------------------------------------------
+
+. *xi: mi estimate: stcrreg wtof i.xage_qgp i.gender i.tedlev i.xrgrlump i.depr
+> ess i.chronic i.spouse, compete(exit_type ==2 3 4 6)
+. *model 3:
+. *xi: mi estimate: stcrreg ftow i.xage_qgp i.gender i.tedlev i.xrgrlump i.depr
+> ess i.chronic i.spouse i.xdeclatt i.xjobdemt i.support, compete(exit_type ==2
+>  3 4 6)
+. *xi: mi estimate: stcrreg wtof i.xage_qgp i.gender i.tedlev i.xrgrlump i.depr
+> ess i.chronic i.spouse i.xdeclatt i.xjobdemt i.support, compete(exit_type ==2
+>  3 4 6)
+. 
+. 
+. ***************other
+. *mi stset age_exitnew, failure(exit_type==6) enter(xage_q)exit (age_exitnew=7
+> 5)
+. *model 1:
+. *xi: mi estimate: stcrreg ftow i.xage_qgp i.gender, compete(exit_type ==2 3 4
+>  5)
+. *xi: mi estimate: stcrreg wtof i.xage_qgp i.gender, compete(exit_type ==2 3 4
+>  5)
+. *mode1 2:
+. *xi: mi estimate: stcrreg ftow i.xage_qgp i.gender i.tedlev i.xrgrlump i.depr
+> ess i.chronic i.spouse , compete(exit_type ==2 3 4 5)
+. *xi: mi estimate: stcrreg wtof i.xage_qgp i.gender i.tedlev i.xrgrlump i.depr
+> ess i.chronic i.spouse, compete(exit_type ==2 3 4 5)
+. *model 3:
+. *xi: mi estimate: stcrreg ftow i.xage_qgp i.gender i.tedlev i.xrgrlump i.depr
+> ess i.chronic i.spouse i.xdeclatt i.xjobdemt i.support, compete(exit_type ==2
+>  3 4 5)
+. *xi: mi estimate: stcrreg wtof i.xage_qgp i.gender i.tedlev i.xrgrlump i.depr
+> ess i.chronic i.spouse i.xdeclatt i.xjobdemt i.support, compete(exit_type ==2
+>  3 4 5)
+. 
+. 
+. saveold newresult, replace
+file newresult.dta saved
+
+. log close
+      name:  <unnamed>
+       log:  /gpfs/home/fas/meghir/rg684/git/baowen/hpc5/log_hpc5.log
+  log type:  text
+ closed on:   8 Feb 2017, 10:58:22
+-------------------------------------------------------------------------------
+
+. 
+end of do-file
