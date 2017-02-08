@@ -49,3 +49,184 @@ i.xrgrlump        _Ixrgrlump_0-2      (naturally coded; _Ixrgrlump_0 omitted)
 i.depress         _Idepress_0-1       (naturally coded; _Idepress_0 omitted)
 i.chronic         _Ichronic_0-2       (naturally coded; _Ichronic_0 omitted)
 i.spouse          _Ispouse_0-2        (naturally coded; _Ispouse_0 omitted)
+
+Multiple-imputation estimates                     Imputations     =         25
+Competing-risks regression                        Number of obs   =       7913
+                                                  Average RVI     =     0.0465
+                                                  Largest FMI     =     0.1948
+DF adjustment:   Large sample                     DF:     min     =     648.61
+                                                          avg     = 1130366.63
+                                                          max     =   1.26e+07
+Model F test:       Equal FMI                     F(  15,178768.6)=      25.53
+Within VCE type:       Robust                     Prob > F        =     0.0000
+
+------------------------------------------------------------------------------
+          _t |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+        ftow |   -.023614   .0091319    -2.59   0.010     -.041522   -.0057059
+_Ixage_qgp_2 |   .0519867   .0370548     1.40   0.161    -.0206393    .1246128
+_Ixage_qgp_3 |   .1757959   .0420863     4.18   0.000     .0933082    .2582836
+_Ixage_qgp_4 |   .3723279   .0432674     8.61   0.000     .2875252    .4571306
+_Ixage_qgp_5 |   .4446374   .0789771     5.63   0.000     .2898443    .5994305
+  _Igender_1 |    .179162   .0326199     5.49   0.000     .1152281     .243096
+  _Itedlev_1 |   -.028188   .0362208    -0.78   0.436    -.0991966    .0428205
+  _Itedlev_2 |  -.2227586   .0356507    -6.25   0.000    -.2926454   -.1528719
+_Ixrgrlump_1 |   .0625974   .0327405     1.91   0.056    -.0015731     .126768
+_Ixrgrlump_2 |  -.2237603   .0459563    -4.87   0.000    -.3138336    -.133687
+ _Idepress_1 |   .1147896   .0348188     3.30   0.001     .0465442    .1830351
+ _Ichronic_1 |   .0651121   .0321529     2.03   0.043     .0020781    .1281461
+ _Ichronic_2 |   .2431789   .0673404     3.61   0.000     .1109473    .3754104
+  _Ispouse_1 |  -.0753426   .0338912    -2.22   0.026    -.1417788   -.0089064
+  _Ispouse_2 |   .1821693   .0325236     5.60   0.000     .1184087    .2459299
+------------------------------------------------------------------------------
+
+. xi: mi estimate: stcrreg wtof i.xage_qgp i.gender i.tedlev i.xrgrlump i.depre
+> ss i.chronic i.spouse, compete(exit_type ==2)
+i.xage_qgp        _Ixage_qgp_1-5      (naturally coded; _Ixage_qgp_1 omitted)
+i.gender          _Igender_0-1        (naturally coded; _Igender_0 omitted)
+i.tedlev          _Itedlev_0-2        (naturally coded; _Itedlev_0 omitted)
+i.xrgrlump        _Ixrgrlump_0-2      (naturally coded; _Ixrgrlump_0 omitted)
+i.depress         _Idepress_0-1       (naturally coded; _Idepress_0 omitted)
+i.chronic         _Ichronic_0-2       (naturally coded; _Ichronic_0 omitted)
+i.spouse          _Ispouse_0-2        (naturally coded; _Ispouse_0 omitted)
+
+Multiple-imputation estimates                     Imputations     =         25
+Competing-risks regression                        Number of obs   =       7913
+                                                  Average RVI     =     0.0457
+                                                  Largest FMI     =     0.1904
+DF adjustment:   Large sample                     DF:     min     =     678.72
+                                                          avg     =  907790.40
+                                                          max     =   1.04e+07
+Model F test:       Equal FMI                     F(  15,184240.4)=      25.39
+Within VCE type:       Robust                     Prob > F        =     0.0000
+
+------------------------------------------------------------------------------
+          _t |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+        wtof |  -.0183316   .0088221    -2.08   0.038    -.0356313   -.0010319
+_Ixage_qgp_2 |   .0510648   .0370447     1.38   0.168    -.0215415    .1236711
+_Ixage_qgp_3 |   .1784511   .0419519     4.25   0.000     .0962268    .2606754
+_Ixage_qgp_4 |   .3761116   .0432571     8.69   0.000      .291329    .4608941
+_Ixage_qgp_5 |   .4462522    .078923     5.65   0.000     .2915649    .6009394
+  _Igender_1 |   .1727418   .0325209     5.31   0.000     .1090019    .2364817
+  _Itedlev_1 |  -.0267845   .0361925    -0.74   0.459    -.0977363    .0441673
+  _Itedlev_2 |  -.2237497   .0356426    -6.28   0.000    -.2936202   -.1538792
+_Ixrgrlump_1 |   .0442168   .0342186     1.29   0.196    -.0228514     .111285
+_Ixrgrlump_2 |  -.2517903   .0490029    -5.14   0.000    -.3478369   -.1557438
+ _Idepress_1 |   .1081236   .0343661     3.15   0.002     .0407659    .1754813
+ _Ichronic_1 |   .0656153   .0322103     2.04   0.042     .0024668    .1287637
+ _Ichronic_2 |   .2399741   .0674596     3.56   0.000     .1075195    .3724288
+  _Ispouse_1 |   -.076264   .0338279    -2.25   0.024     -.142575    -.009953
+  _Ispouse_2 |   .1848678    .032302     5.72   0.000     .1215451    .2481905
+------------------------------------------------------------------------------
+
+. *model 3:
+. xi: mi estimate: stcrreg ftow i.xage_qgp i.gender i.tedlev i.xrgrlump i.depre
+> ss i.chronic i.spouse i.xdeclatt i.xjobdemt i.support, compete(exit_type ==2)
+i.xage_qgp        _Ixage_qgp_1-5      (naturally coded; _Ixage_qgp_1 omitted)
+i.gender          _Igender_0-1        (naturally coded; _Igender_0 omitted)
+i.tedlev          _Itedlev_0-2        (naturally coded; _Itedlev_0 omitted)
+i.xrgrlump        _Ixrgrlump_0-2      (naturally coded; _Ixrgrlump_0 omitted)
+i.depress         _Idepress_0-1       (naturally coded; _Idepress_0 omitted)
+i.chronic         _Ichronic_0-2       (naturally coded; _Ichronic_0 omitted)
+i.spouse          _Ispouse_0-2        (naturally coded; _Ispouse_0 omitted)
+i.xdeclatt        _Ixdeclatt_0-2      (naturally coded; _Ixdeclatt_0 omitted)
+i.xjobdemt        _Ixjobdemt_0-2      (naturally coded; _Ixjobdemt_0 omitted)
+i.support         _Isupport_0-2       (naturally coded; _Isupport_0 omitted)
+
+Multiple-imputation estimates                     Imputations     =         25
+Competing-risks regression                        Number of obs   =       7913
+                                                  Average RVI     =     0.0512
+                                                  Largest FMI     =     0.2082
+DF adjustment:   Large sample                     DF:     min     =     568.57
+                                                          avg     =  826125.95
+                                                          max     =   1.47e+07
+Model F test:       Equal FMI                     F(  21,209047.9)=      21.42
+Within VCE type:       Robust                     Prob > F        =     0.0000
+
+------------------------------------------------------------------------------
+          _t |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+        ftow |  -.0254016   .0092683    -2.74   0.006    -.0435801    -.007223
+_Ixage_qgp_2 |   .0552346   .0371477     1.49   0.137    -.0175736    .1280429
+_Ixage_qgp_3 |   .1726521   .0422264     4.09   0.000     .0898897    .2554144
+_Ixage_qgp_4 |   .3684399    .043512     8.47   0.000     .2831579    .4537219
+_Ixage_qgp_5 |    .436873   .0783535     5.58   0.000     .2833014    .5904446
+  _Igender_1 |   .1742344   .0327425     5.32   0.000     .1100603    .2384085
+  _Itedlev_1 |  -.0118196   .0363755    -0.32   0.745    -.0831281    .0594888
+  _Itedlev_2 |  -.2029593   .0355372    -5.71   0.000    -.2726209   -.1332978
+_Ixrgrlump_1 |  -.0269327   .0352009    -0.77   0.444    -.0959267    .0420612
+_Ixrgrlump_2 |   -.378973   .0530827    -7.14   0.000    -.4830154   -.2749307
+ _Idepress_1 |   .0785481   .0353526     2.22   0.026     .0092564    .1478398
+ _Ichronic_1 |   .0684378   .0323401     2.12   0.034     .0050332    .1318423
+ _Ichronic_2 |   .2541028    .067147     3.78   0.000     .1222163    .3859893
+  _Ispouse_1 |  -.0764924   .0340285    -2.25   0.025    -.1431982   -.0097866
+  _Ispouse_2 |   .1643778   .0326158     5.04   0.000     .1004348    .2283208
+_Ixdeclatt_1 |  -.0073554   .0377234    -0.19   0.845    -.0813076    .0665968
+_Ixdeclatt_2 |  -.2580188   .0406388    -6.35   0.000    -.3376752   -.1783624
+_Ixjobdemt_1 |   .0243722   .0363161     0.67   0.502    -.0468277    .0955721
+_Ixjobdemt_2 |  -.0107613   .0413836    -0.26   0.795    -.0918971    .0703745
+ _Isupport_1 |  -.0005981   .0366045    -0.02   0.987    -.0723483    .0711521
+ _Isupport_2 |  -.0125885   .0362317    -0.35   0.728    -.0836218    .0584448
+------------------------------------------------------------------------------
+
+. xi: mi estimate: stcrreg wtof i.xage_qgp i.gender i.tedlev i.xrgrlump i.depre
+> ss i.chronic i.spouse i.xdeclatt i.xjobdemt i.support, compete(exit_type ==2)
+i.xage_qgp        _Ixage_qgp_1-5      (naturally coded; _Ixage_qgp_1 omitted)
+i.gender          _Igender_0-1        (naturally coded; _Igender_0 omitted)
+i.tedlev          _Itedlev_0-2        (naturally coded; _Itedlev_0 omitted)
+i.xrgrlump        _Ixrgrlump_0-2      (naturally coded; _Ixrgrlump_0 omitted)
+i.depress         _Idepress_0-1       (naturally coded; _Idepress_0 omitted)
+i.chronic         _Ichronic_0-2       (naturally coded; _Ichronic_0 omitted)
+i.spouse          _Ispouse_0-2        (naturally coded; _Ispouse_0 omitted)
+i.xdeclatt        _Ixdeclatt_0-2      (naturally coded; _Ixdeclatt_0 omitted)
+i.xjobdemt        _Ixjobdemt_0-2      (naturally coded; _Ixjobdemt_0 omitted)
+i.support         _Isupport_0-2       (naturally coded; _Isupport_0 omitted)
+
+Multiple-imputation estimates                     Imputations     =         25
+Competing-risks regression                        Number of obs   =       7913
+                                                  Average RVI     =     0.0502
+                                                  Largest FMI     =     0.2032
+DF adjustment:   Large sample                     DF:     min     =     596.52
+                                                          avg     =  685480.50
+                                                          max     =   1.21e+07
+Model F test:       Equal FMI                     F(  21,216821.9)=      21.23
+Within VCE type:       Robust                     Prob > F        =     0.0000
+
+------------------------------------------------------------------------------
+          _t |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+        wtof |  -.0133992   .0095155    -1.41   0.159    -.0320617    .0052633
+_Ixage_qgp_2 |   .0547551   .0371368     1.47   0.140    -.0180317     .127542
+_Ixage_qgp_3 |   .1771602   .0420855     4.21   0.000      .094674    .2596463
+_Ixage_qgp_4 |   .3754154    .043438     8.64   0.000     .2902783    .4605525
+_Ixage_qgp_5 |   .4421881   .0783724     5.64   0.000     .2885791    .5957971
+  _Igender_1 |   .1677661   .0326333     5.14   0.000      .103806    .2317263
+  _Itedlev_1 |  -.0117847   .0363578    -0.32   0.746    -.0830577    .0594884
+  _Itedlev_2 |  -.2049751   .0355064    -5.77   0.000    -.2745759   -.1353743
+_Ixrgrlump_1 |  -.0367246   .0359805    -1.02   0.307    -.1072472     .033798
+_Ixrgrlump_2 |   -.391975   .0543384    -7.21   0.000    -.4984799   -.2854701
+ _Idepress_1 |    .068192   .0348995     1.95   0.051    -.0002112    .1365952
+ _Ichronic_1 |   .0697727    .032358     2.16   0.031     .0063319    .1332135
+ _Ichronic_2 |   .2510172     .06722     3.73   0.000     .1190007    .3830338
+  _Ispouse_1 |  -.0776798   .0339763    -2.29   0.022    -.1442821   -.0110775
+  _Ispouse_2 |   .1708479   .0323548     5.28   0.000     .1074208     .234275
+_Ixdeclatt_1 |  -.0071741   .0376795    -0.19   0.849    -.0810401     .066692
+_Ixdeclatt_2 |  -.2524376   .0407049    -6.20   0.000     -.332224   -.1726511
+_Ixjobdemt_1 |    .023074   .0365926     0.63   0.528    -.0486641    .0948121
+_Ixjobdemt_2 |  -.0068593   .0426253    -0.16   0.872    -.0904184    .0766998
+ _Isupport_1 |  -.0028527   .0367569    -0.08   0.938    -.0749028    .0691975
+ _Isupport_2 |  -.0142167   .0368505    -0.39   0.700    -.0864697    .0580362
+------------------------------------------------------------------------------
+
+. 
+. 
+. saveold newresult, replace
+file newresult.dta saved
+
+. log close
+      name:  <unnamed>
+       log:  /gpfs/home/fas/meghir/rg684/git/baowen/hpc4/log_hpc4.log
+  log type:  text
+ closed on:   8 Feb 2017, 03:13:31
+-------------------------------------------------------------------------------
