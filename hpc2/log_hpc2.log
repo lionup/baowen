@@ -2,7 +2,7 @@
       name:  <unnamed>
        log:  /gpfs/home/fas/meghir/rg684/git/baowen/hpc2/log_hpc2.log
   log type:  text
- opened on:   6 Feb 2017, 18:37:18
+ opened on:   8 Feb 2017, 05:30:04
 
 . 
 . use ../imputed.dta, clear

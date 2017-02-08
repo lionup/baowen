@@ -1,14 +1,20 @@
 -------------------------------------------------------------------------------
       name:  <unnamed>
-       log:  /gpfs/home/fas/meghir/rg684/git/baowen/hpc/log_hpc.log
+       log:  /gpfs/home/fas/meghir/rg684/git/baowen/hpc7/log_hpc7.log
   log type:  text
- opened on:   8 Feb 2017, 05:30:00
+ opened on:   8 Feb 2017, 06:27:46
 
 . 
 . use ../imputed.dta, clear
 
 . 
 . ***************retired
+. recode exit_type 2=0
+(exit_type: 738 changes made)
+
+. recode exit_type 4=6
+(exit_type: 4060 changes made)
+
 . mi stset age_exitnew, failure(exit_type==3) enter(xage_q)exit (age_exitnew=75
 > )
 
@@ -39,9 +45,15 @@ obs. time interval:  (0, age_exitnew]
 . *xi: mi estimate: stcrreg wtof i.xage_qgp i.gender i.tedlev i.xrgrlump i.depr
 > ess i.chronic i.spouse, compete(exit_type ==2 4 5 6)
 . *model 3:
-. xi: mi estimate: stcrreg ftow i.xage_qgp i.gender i.tedlev i.xrgrlump i.depre
-> ss i.chronic i.spouse i.xdeclatt i.xjobdemt i.support, compete(exit_type ==2 
-> 4 5 6)
+. 
+. *xi: mi estimate: stcrreg ftow i.xage_qgp i.gender i.tedlev i.xrgrlump i.depr
+> ess i.chronic i.spouse i.xdeclatt i.xjobdemt i.support, compete(exit_type ==5
+>  6)
+. 
+. 
+. xi: mi estimate: stcrreg wtof i.xage_qgp i.gender i.tedlev i.xrgrlump i.depre
+> ss i.chronic i.spouse i.xdeclatt i.xjobdemt i.support, compete(exit_type ==5 
+> 6)
 i.xage_qgp        _Ixage_qgp_1-5      (naturally coded; _Ixage_qgp_1 omitted)
 i.gender          _Igender_0-1        (naturally coded; _Igender_0 omitted)
 i.tedlev          _Itedlev_0-2        (naturally coded; _Itedlev_0 omitted)
