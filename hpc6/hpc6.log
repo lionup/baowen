@@ -32,12 +32,11 @@ Note:  Your site can add messages to the introduction by editing the file
 . cap log close
 
 . log using log_hpc6, text replace
-(note: file /gpfs/home/fas/meghir/rg684/git/baowen/hpc6/log_hpc6.log not found)
 -------------------------------------------------------------------------------
       name:  <unnamed>
        log:  /gpfs/home/fas/meghir/rg684/git/baowen/hpc6/log_hpc6.log
   log type:  text
- opened on:   8 Feb 2017, 06:18:14
+ opened on:   9 Feb 2017, 06:41:06
 
 . 
 . use ../imputed.dta, clear
