@@ -1,37 +1,3 @@
-
-  ___  ____  ____  ____  ____ (R)
- /__    /   ____/   /   ____/
-___/   /   /___/   /   /___/   13.1   Copyright 1985-2013 StataCorp LP
-  Statistics/Data Analysis            StataCorp
-                                      4905 Lakeway Drive
-     MP - Parallel Edition            College Station, Texas 77845 USA
-                                      800-STATA-PC        http://www.stata.com
-                                      979-696-4600        stata@stata.com
-                                      979-696-4601 (fax)
-
-7-user 8-core Stata network perpetual license:
-       Serial number:  501306262937
-         Licensed to:  Yale University
-                       New Haven, CT
-
-Notes:
-      1.  (-v# option or -set maxvar-) 5000 maximum variables
-      2.  Command line editing disabled
-      3.  Stata running in batch mode
-
-Note:  Your site can add messages to the introduction by editing the file
-       stata.msg in the directory where Stata is installed.
-
-. do hpc5.do 
-
-. cd ~/git/baowen/hpc5
-/gpfs/home/fas/meghir/rg684/git/baowen/hpc5
-
-. set more 1
-
-. cap log close
-
-. log using log_hpc5, text replace
 -------------------------------------------------------------------------------
       name:  <unnamed>
        log:  /gpfs/home/fas/meghir/rg684/git/baowen/hpc5/log_hpc5.log
@@ -45,7 +11,6 @@ Note:  Your site can add messages to the introduction by editing the file
 . ******************retire>60, FIW
 . mi stset age_exitnew, failure(retiretime==2) enter(xage_q)exit (age_exitnew=7
 > 5)
-i.xrgrlump        _Ixrgrlump_0-2      (naturally coded; _Ixrgrlump_0 omitted)
 
      failure event:  retiretime == 2
 obs. time interval:  (0, age_exitnew]
@@ -68,11 +33,8 @@ obs. time interval:  (0, age_exitnew]
 > ss i.chronic i.spouse, compete(retiretime==1 3)
 i.xage_qgp        _Ixage_qgp_1-5      (naturally coded; _Ixage_qgp_1 omitted)
 i.gender          _Igender_0-1        (naturally coded; _Igender_0 omitted)
-i.depress         _Idepress_0-1       (naturally coded; _Idepress_0 omitted)
 i.tedlev          _Itedlev_0-2        (naturally coded; _Itedlev_0 omitted)
 i.xrgrlump        _Ixrgrlump_0-2      (naturally coded; _Ixrgrlump_0 omitted)
 i.depress         _Idepress_0-1       (naturally coded; _Idepress_0 omitted)
-i.chronic         _Ichronic_0-2       (naturally coded; _Ichronic_0 omitted)
-i.spouse          _Ispouse_0-2        (naturally coded; _Ispouse_0 omitted)
 i.chronic         _Ichronic_0-2       (naturally coded; _Ichronic_0 omitted)
 i.spouse          _Ispouse_0-2        (naturally coded; _Ispouse_0 omitted)
