@@ -22,37 +22,31 @@ Notes:
 Note:  Your site can add messages to the introduction by editing the file
        stata.msg in the directory where Stata is installed.
 
-. do hpc3.do 
+. do hpc2.do 
 
-. cd ~/git/baowen/hpc3
-/gpfs/home/fas/meghir/rg684/git/baowen/hpc3
+. cd ~/git/baowen/hpc2
+/gpfs/home/fas/meghir/rg684/git/baowen/hpc2
 
 . set more 1
 
 . cap log close
 
-. log using log_hpc3, text replace
-(note: file /gpfs/home/fas/meghir/rg684/git/baowen/hpc3/log_hpc3.log not found)
+. log using log_hpc2, text replace
 -------------------------------------------------------------------------------
       name:  <unnamed>
-       log:  /gpfs/home/fas/meghir/rg684/git/baowen/hpc3/log_hpc3.log
+       log:  /gpfs/home/fas/meghir/rg684/git/baowen/hpc2/log_hpc2.log
   log type:  text
- opened on:  13 Feb 2017, 15:20:35
+ opened on:  13 Feb 2017, 15:20:32
 
 . 
 . use ../imputed.dta, clear
 
 . 
-. 
 . **************************all reason, FIW, not early, model 1:
 . *mi stset age_exitnew, failure(outwork==1) enter(xage_q)exit (age_exitnew=75)
 . *xi: mi estimate: stcrreg ftow i.xage_qgp i.gender if early==0, compete(exit_
 > type ==2)
-. ***************************all reason, FIW, not early, model 2:
-. *mi stset age_exitnew, failure(outwork==1) enter(xage_q)exit (age_exitnew=75)
-. *xi: mi estimate: stcrreg ftow i.xage_qgp i.gender i.tedlev i.xrgrlump i.depr
-> ess i.chronic i.spouse if i.early==0, compete(exit_type ==2)
-. **************************all reason, FIW, early, model 1:
+. **************************all reason, FIW, not early, model 2:
 . mi stset age_exitnew, failure(outwork==1) enter(xage_q)exit (age_exitnew=75)
 
      failure event:  outwork == 1
@@ -71,7 +65,18 @@ obs. time interval:  (0, age_exitnew]
                                    earliest observed entry t =     39.58
                                         last observed exit t =     81.02
 
-. xi: mi estimate: stcrreg ftow i.xage_qgp i.gender if early==1, compete(exit_t
-> ype ==2)
+. xi: mi estimate: stcrreg ftow i.xage_qgp i.gender i.tedlev i.xrgrlump i.depre
+> ss i.chronic i.spouse if i.early==0, compete(exit_type ==2)
 i.xage_qgp        _Ixage_qgp_1-5      (naturally coded; _Ixage_qgp_1 omitted)
 i.gender          _Igender_0-1        (naturally coded; _Igender_0 omitted)
+i.tedlev          _Itedlev_0-2        (naturally coded; _Itedlev_0 omitted)
+i.xrgrlump        _Ixrgrlump_0-2      (naturally coded; _Ixrgrlump_0 omitted)
+i.depress         _Idepress_0-1       (naturally coded; _Idepress_0 omitted)
+i.chronic         _Ichronic_0-2       (naturally coded; _Ichronic_0 omitted)
+i.spouse          _Ispouse_0-2        (naturally coded; _Ispouse_0 omitted)
+i.early           _Iearly_0-1         (naturally coded; _Iearly_0 omitted)
+_Iearly_* invalid name
+r(198);
+
+end of do-file
+r(198);
