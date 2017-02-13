@@ -2,7 +2,7 @@
       name:  <unnamed>
        log:  /gpfs/home/fas/meghir/rg684/git/baowen/hpc4/log_hpc4.log
   log type:  text
- opened on:  13 Feb 2017, 15:20:42
+ opened on:  13 Feb 2017, 15:23:04
 
 . 
 . use ../imputed.dta, clear
@@ -40,7 +40,7 @@ obs. time interval:  (0, age_exitnew]
                                         last observed exit t =     81.02
 
 . xi: mi estimate: stcrreg ftow i.xage_qgp i.gender i.tedlev i.xrgrlump i.depre
-> ss i.chronic i.spouse if i.early==1, compete(exit_type ==2)
+> ss i.chronic i.spouse if early==1, compete(exit_type ==2)
 i.xage_qgp        _Ixage_qgp_1-5      (naturally coded; _Ixage_qgp_1 omitted)
 i.gender          _Igender_0-1        (naturally coded; _Igender_0 omitted)
 i.tedlev          _Itedlev_0-2        (naturally coded; _Itedlev_0 omitted)
@@ -48,9 +48,3 @@ i.xrgrlump        _Ixrgrlump_0-2      (naturally coded; _Ixrgrlump_0 omitted)
 i.depress         _Idepress_0-1       (naturally coded; _Idepress_0 omitted)
 i.chronic         _Ichronic_0-2       (naturally coded; _Ichronic_0 omitted)
 i.spouse          _Ispouse_0-2        (naturally coded; _Ispouse_0 omitted)
-i.early           _Iearly_0-1         (naturally coded; _Iearly_0 omitted)
-_Iearly_* invalid name
-r(198);
-
-end of do-file
-r(198);
