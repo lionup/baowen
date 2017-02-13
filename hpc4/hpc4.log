@@ -82,3 +82,47 @@ i.xrgrlump        _Ixrgrlump_0-2      (naturally coded; _Ixrgrlump_0 omitted)
 i.depress         _Idepress_0-1       (naturally coded; _Idepress_0 omitted)
 i.chronic         _Ichronic_0-2       (naturally coded; _Ichronic_0 omitted)
 i.spouse          _Ispouse_0-2        (naturally coded; _Ispouse_0 omitted)
+
+Multiple-imputation estimates                     Imputations     =         25
+Competing-risks regression                        Number of obs   =       3502
+                                                  Average RVI     =     0.0392
+                                                  Largest FMI     =     0.1136
+DF adjustment:   Large sample                     DF:     min     =    1890.67
+                                                          avg     =  514721.71
+                                                          max     = 4204535.51
+Model F test:       Equal FMI                     F(  14,230656.4)=       8.25
+Within VCE type:       Robust                     Prob > F        =     0.0000
+
+------------------------------------------------------------------------------
+          _t |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+        ftow |   .0192938   .0127808     1.51   0.131    -.0057723    .0443598
+_Ixage_qgp_2 |   .2344175    .046652     5.02   0.000     .1429812    .3258539
+_Ixage_qgp_3 |   .3157147   .0538246     5.87   0.000     .2102204     .421209
+_Ixage_qgp_4 |   .2065381   .0652226     3.17   0.002     .0787039    .3343724
+_Ixage_qgp_5 |          0  (omitted)
+  _Igender_1 |   .1396507   .0459069     3.04   0.002     .0496747    .2296267
+  _Itedlev_1 |  -.0215302   .0494087    -0.44   0.663    -.1183887    .0753283
+  _Itedlev_2 |   -.141266   .0521793    -2.71   0.007    -.2435636   -.0389683
+_Ixrgrlump_1 |  -.0147547   .0438361    -0.34   0.736    -.1006724     .071163
+_Ixrgrlump_2 |  -.3032717   .0765055    -3.96   0.000    -.4532205   -.1533229
+ _Idepress_1 |   .0964781   .0496506     1.94   0.052    -.0008413    .1937975
+ _Ichronic_1 |  -.0353625   .0476061    -0.74   0.458    -.1287124    .0579874
+ _Ichronic_2 |   .0357055   .0981875     0.36   0.716    -.1567903    .2282012
+  _Ispouse_1 |   .0715769   .0495254     1.45   0.148    -.0254941    .1686479
+  _Ispouse_2 |   .2357407   .0457327     5.15   0.000      .146097    .3253843
+------------------------------------------------------------------------------
+
+. 
+. saveold newresult, replace
+file newresult.dta saved
+
+. log close
+      name:  <unnamed>
+       log:  /gpfs/home/fas/meghir/rg684/git/baowen/hpc4/log_hpc4.log
+  log type:  text
+ closed on:  13 Feb 2017, 15:53:42
+-------------------------------------------------------------------------------
+
+. 
+end of do-file

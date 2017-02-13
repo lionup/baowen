@@ -2,7 +2,7 @@
       name:  <unnamed>
        log:  /gpfs/home/fas/meghir/rg684/git/baowen/hpc2/log_hpc2.log
   log type:  text
- opened on:  13 Feb 2017, 15:20:32
+ opened on:  13 Feb 2017, 15:22:56
 
 . 
 . use ../imputed.dta, clear
@@ -32,7 +32,7 @@ obs. time interval:  (0, age_exitnew]
                                         last observed exit t =     81.02
 
 . xi: mi estimate: stcrreg ftow i.xage_qgp i.gender i.tedlev i.xrgrlump i.depre
-> ss i.chronic i.spouse if i.early==0, compete(exit_type ==2)
+> ss i.chronic i.spouse if early==0, compete(exit_type ==2)
 i.xage_qgp        _Ixage_qgp_1-5      (naturally coded; _Ixage_qgp_1 omitted)
 i.gender          _Igender_0-1        (naturally coded; _Igender_0 omitted)
 i.tedlev          _Itedlev_0-2        (naturally coded; _Itedlev_0 omitted)
@@ -40,9 +40,53 @@ i.xrgrlump        _Ixrgrlump_0-2      (naturally coded; _Ixrgrlump_0 omitted)
 i.depress         _Idepress_0-1       (naturally coded; _Idepress_0 omitted)
 i.chronic         _Ichronic_0-2       (naturally coded; _Ichronic_0 omitted)
 i.spouse          _Ispouse_0-2        (naturally coded; _Ispouse_0 omitted)
-i.early           _Iearly_0-1         (naturally coded; _Iearly_0 omitted)
-_Iearly_* invalid name
-r(198);
 
-end of do-file
-r(198);
+Multiple-imputation estimates                     Imputations     =         25
+Competing-risks regression                        Number of obs   =       4411
+                                                  Average RVI     =     0.0471
+                                                  Largest FMI     =     0.1627
+DF adjustment:   Large sample                     DF:     min     =     927.60
+                                                          avg     = 3093756.54
+                                                          max     =   3.90e+07
+Model F test:       Equal FMI                     F(  15,174081.1)=      14.27
+Within VCE type:       Robust                     Prob > F        =     0.0000
+
+------------------------------------------------------------------------------
+          _t |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+        ftow |  -.0226336    .012255    -1.85   0.065    -.0466684    .0014013
+_Ixage_qgp_2 |   .0912335   .0580881     1.57   0.116     -.022617    .2050841
+_Ixage_qgp_3 |   .1242417   .0615568     2.02   0.044     .0035926    .2448909
+_Ixage_qgp_4 |   .4117563   .0595803     6.91   0.000      .294981    .5285315
+_Ixage_qgp_5 |   .4342698   .0875353     4.96   0.000     .2627033    .6058363
+  _Igender_1 |   .1328156   .0433662     3.06   0.002     .0478193     .217812
+  _Itedlev_1 |  -.0967535   .0506018    -1.91   0.056    -.1959702    .0024631
+  _Itedlev_2 |  -.1659297   .0479471    -3.46   0.001    -.2599272   -.0719322
+_Ixrgrlump_1 |   .2102029   .0450351     4.67   0.000     .1219352    .2984705
+_Ixrgrlump_2 |   .0190757   .0584526     0.33   0.744    -.0954907    .1336421
+ _Idepress_1 |   .0793501    .046171     1.72   0.086    -.0111459    .1698461
+ _Ichronic_1 |   .0321929   .0434687     0.74   0.459    -.0530425    .1174283
+ _Ichronic_2 |   .2014564   .0854224     2.36   0.019     .0338128       .3691
+  _Ispouse_1 |  -.0312001    .045053    -0.69   0.489     -.119513    .0571128
+  _Ispouse_2 |   .0756933   .0442898     1.71   0.087    -.0111272    .1625138
+------------------------------------------------------------------------------
+
+. **************************all reason, FIW, early, model 1:
+. *mi stset age_exitnew, failure(outwork==1) enter(xage_q)exit (age_exitnew=75)
+. *xi: mi estimate: stcrreg ftow i.xage_qgp i.gender if early==1, compete(exit_
+> type ==2)
+. ***************************all reason, FIW, early, model 2:
+. *mi stset age_exitnew, failure(outwork==1) enter(xage_q)exit (age_exitnew=75)
+. *xi: mi estimate: stcrreg ftow i.xage_qgp i.gender i.tedlev i.xrgrlump i.depr
+> ess i.chronic i.spouse if i.early==1, compete(exit_type ==2)
+. 
+. 
+. saveold newresult, replace
+file newresult.dta saved
+
+. log close
+      name:  <unnamed>
+       log:  /gpfs/home/fas/meghir/rg684/git/baowen/hpc2/log_hpc2.log
+  log type:  text
+ closed on:  13 Feb 2017, 16:12:22
+-------------------------------------------------------------------------------
