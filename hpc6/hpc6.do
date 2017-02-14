@@ -5,59 +5,41 @@ log using log_hpc6, text replace
 
 use ../imputed.dta, clear
 
-***************retired
-recode exit_type 2=0
-recode exit_type 4=6
-mi stset age_exitnew, failure(exit_type==3) enter(xage_q)exit (age_exitnew=75)
-*model 1:
-*xi: mi estimate: stcrreg ftow i.xage_qgp i.gender, compete(exit_type ==2 4 5 6)
-*xi: mi estimate: stcrreg wtof i.xage_qgp i.gender, compete(exit_type ==2 4 5 6)
-*mode1 2:
-*xi: mi estimate: stcrreg ftow i.xage_qgp i.gender i.tedlev i.xrgrlump i.depress i.chronic i.spouse , compete(exit_type ==2 4 5 6)
-*xi: mi estimate: stcrreg wtof i.xage_qgp i.gender i.tedlev i.xrgrlump i.depress i.chronic i.spouse, compete(exit_type ==2 4 5 6)
-*model 3:
 
-xi: mi estimate: stcrreg ftow i.xage_qgp i.gender i.tedlev i.xrgrlump i.depress i.chronic i.spouse i.xdeclatt i.xjobdemt i.support, compete(exit_type ==5 6)
-
+gen reage_exit=age_exitnew
+replace reage_exit=60 if reage_exit<60&retire60==1
 /*
-xi: mi estimate: stcrreg wtof i.xage_qgp i.gender i.tedlev i.xrgrlump i.depress i.chronic i.spouse i.xdeclatt i.xjobdemt i.support, compete(exit_type ==5 6)
+**************************all reason, FIW, early, model 1:
+mi stset reage_exit, failure(outwork==1) enter(xage_q)exit(reage_exit==59.999)
+xi: mi estimate: stcrreg ftow i.xage_qgp i.gender, compete(exit_type ==2)
+**************************all reason, FIW, early, model 2:
+mi stset reage_exit, failure(outwork==1) enter(xage_q)exit(reage_exit==59.999)
+xi: mi estimate: stcrreg ftow i.xage_qgp i.gender i.tedlev i.xrgrlump i.depress i.chronic i.spouse, compete(exit_type ==2)
 
-***************unemployed
-mi stset age_exitnew, failure(exit_type==4) enter(xage_q)exit (age_exitnew=75)
-*model 1:
-xi: mi estimate: stcrreg ftow i.xage_qgp i.gender, compete(exit_type ==2 3 5 6)
-xi: mi estimate: stcrreg wtof i.xage_qgp i.gender, compete(exit_type ==2 3 5 6)
-*mode1 2:
-xi: mi estimate: stcrreg ftow i.xage_qgp i.gender i.tedlev i.xrgrlump i.depress i.chronic i.spouse , compete(exit_type ==2 3 5 6)
-xi: mi estimate: stcrreg wtof i.xage_qgp i.gender i.tedlev i.xrgrlump i.depress i.chronic i.spouse, compete(exit_type ==2 3 5 6)
-*model 3:
-xi: mi estimate: stcrreg ftow i.xage_qgp i.gender i.tedlev i.xrgrlump i.depress i.chronic i.spouse i.xdeclatt i.xjobdemt i.support, compete(exit_type ==2 3 5 6)
-xi: mi estimate: stcrreg wtof i.xage_qgp i.gender i.tedlev i.xrgrlump i.depress i.chronic i.spouse i.xdeclatt i.xjobdemt i.support, compete(exit_type ==2 3 5 6)
+**************************all reason, FIW, not early, model 1:
+mi stset reage_exit, failure(outwork==1) enter(reage_exit==60)exit(reage_exit==75)
+xi: mi estimate: stcrreg ftow i.xage_qgp i.gender, compete(exit_type ==2)
 
-***************health reason
-mi stset age_exitnew, failure(exit_type==5) enter(xage_q)exit (age_exitnew=75)
-*model 1:
-xi: mi estimate: stcrreg ftow i.xage_qgp i.gender, compete(exit_type ==2 3 4 6)
-xi: mi estimate: stcrreg wtof i.xage_qgp i.gender, compete(exit_type ==2 3 4 6)
-*mode1 2:
-xi: mi estimate: stcrreg ftow i.xage_qgp i.gender i.tedlev i.xrgrlump i.depress i.chronic i.spouse , compete(exit_type ==2 3 4 6)
-xi: mi estimate: stcrreg wtof i.xage_qgp i.gender i.tedlev i.xrgrlump i.depress i.chronic i.spouse, compete(exit_type ==2 3 4 6)
-*model 3:
-xi: mi estimate: stcrreg ftow i.xage_qgp i.gender i.tedlev i.xrgrlump i.depress i.chronic i.spouse i.xdeclatt i.xjobdemt i.support, compete(exit_type ==2 3 4 6)
-xi: mi estimate: stcrreg wtof i.xage_qgp i.gender i.tedlev i.xrgrlump i.depress i.chronic i.spouse i.xdeclatt i.xjobdemt i.support, compete(exit_type ==2 3 4 6)
+**************************all reason, FIW, not early, model 2:
+mi stset reage_exit, failure(outwork==1) enter(reage_exit==60)exit(reage_exit==75)
+xi: mi estimate: stcrreg ftow i.xage_qgp i.gender i.tedlev i.xrgrlump i.depress i.chronic i.spouse, compete(exit_type ==2)
+
+
+**************************all reason, WIF, early, model 1:
+mi stset reage_exit, failure(outwork==1) enter(xage_q)exit(reage_exit==59.999)
+xi: mi estimate: stcrreg wtof i.xage_qgp i.gender, compete(exit_type ==2)
+**************************all reason, WIF, early, model 2:
+mi stset reage_exit, failure(outwork==1) enter(xage_q)exit(reage_exit==59.999)
+xi: mi estimate: stcrreg wtof i.xage_qgp i.gender i.tedlev i.xrgrlump i.depress i.chronic i.spouse, compete(exit_type ==2)
+
+**************************all reason, WIF, not early, model 1:
+mi stset reage_exit, failure(outwork==1) enter(reage_exit==60)exit(reage_exit==75)
+xi: mi estimate: stcrreg wtof i.xage_qgp i.gender, compete(exit_type ==2)
 */
+**************************all reason, WIF, not early, model 2:
+mi stset reage_exit, failure(outwork==1) enter(reage_exit==60)exit(reage_exit==75)
+xi: mi estimate: stcrreg wtof i.xage_qgp i.gender i.tedlev i.xrgrlump i.depress i.chronic i.spouse, compete(exit_type ==2)
 
-***************other
-*mi stset age_exitnew, failure(exit_type==6) enter(xage_q)exit (age_exitnew=75)
-*model 1:
-*xi: mi estimate: stcrreg ftow i.xage_qgp i.gender, compete(exit_type ==2 3 4 5)
-*xi: mi estimate: stcrreg wtof i.xage_qgp i.gender, compete(exit_type ==2 3 4 5)
-*mode1 2:
-*xi: mi estimate: stcrreg ftow i.xage_qgp i.gender i.tedlev i.xrgrlump i.depress i.chronic i.spouse , compete(exit_type ==2 3 4 5)
-*xi: mi estimate: stcrreg wtof i.xage_qgp i.gender i.tedlev i.xrgrlump i.depress i.chronic i.spouse, compete(exit_type ==2 3 4 5)
-*model 3:
-*xi: mi estimate: stcrreg ftow i.xage_qgp i.gender i.tedlev i.xrgrlump i.depress i.chronic i.spouse i.xdeclatt i.xjobdemt i.support, compete(exit_type ==2 3 4 5)
-*xi: mi estimate: stcrreg wtof i.xage_qgp i.gender i.tedlev i.xrgrlump i.depress i.chronic i.spouse i.xdeclatt i.xjobdemt i.support, compete(exit_type ==2 3 4 5)
 
 
 saveold newresult, replace
