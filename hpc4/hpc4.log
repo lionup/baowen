@@ -36,55 +36,36 @@ Note:  Your site can add messages to the introduction by editing the file
       name:  <unnamed>
        log:  /gpfs/home/fas/meghir/rg684/git/baowen/hpc4/log_hpc4.log
   log type:  text
- opened on:  14 Feb 2017, 11:17:27
+ opened on:  20 Feb 2017, 08:51:07
 
 . 
 . use ../imputed.dta, clear
 
 . 
 . 
-. gen reage_exit=age_exitnew
-
-. replace reage_exit=60 if reage_exit<60&retire60==1
-(4223 real changes made)
-
-. /*
-> **************************all reason, FIW, early, model 1:
-> mi stset reage_exit, failure(outwork==1) enter(xage_q)exit(reage_exit==59.999
+. ***************all reason, WIF, men, model 1:
+. *mi stset age_exitnew, failure(outwork==1) enter(xage_q)exit (age_exitnew=75)
+. *xi: mi estimate: stcrreg ftow i.xage_qgp if gender==0, compete(exit_type ==2
 > )
-> xi: mi estimate: stcrreg ftow i.xage_qgp i.gender, compete(exit_type ==2)
-> **************************all reason, FIW, early, model 2:
-> mi stset reage_exit, failure(outwork==1) enter(xage_q)exit(reage_exit==59.999
+. 
+. ***************all reason, WIF, men, model 2:
+. *mi stset age_exitnew, failure(outwork==1) enter(xage_q)exit (age_exitnew=75)
+. *xi: mi estimate: stcrreg ftow i.xage_qgp i.gender i.tedlev i.xrgrlump i.depr
+> ess i.chronic i.spouse if gender==0, compete(exit_type ==2)
+. 
+. 
+. ***************all reason, WIF, women, model 1:
+. *mi stset age_exitnew, failure(outwork==1) enter(xage_q)exit (age_exitnew=75)
+. *xi: mi estimate: stcrreg ftow i.xage_qgp if gender==1, compete(exit_type ==2
 > )
-> xi: mi estimate: stcrreg ftow i.xage_qgp i.gender i.tedlev i.xrgrlump i.depre
-> ss i.chronic i.spouse, compete(exit_type ==2)
-> 
-> **************************all reason, FIW, not early, model 1:
-> mi stset reage_exit, failure(outwork==1) enter(reage_exit==60)exit(reage_exit
-> ==75)
-> xi: mi estimate: stcrreg ftow i.xage_qgp i.gender, compete(exit_type ==2)
-> 
-> **************************all reason, FIW, not early, model 2:
-> mi stset reage_exit, failure(outwork==1) enter(reage_exit==60)exit(reage_exit
-> ==75)
-> xi: mi estimate: stcrreg ftow i.xage_qgp i.gender i.tedlev i.xrgrlump i.depre
-> ss i.chronic i.spouse, compete(exit_type ==2)
-> 
-> 
-> **************************all reason, WIF, early, model 1:
-> mi stset reage_exit, failure(outwork==1) enter(xage_q)exit(reage_exit==59.999
-> )
-> xi: mi estimate: stcrreg wtof i.xage_qgp i.gender, compete(exit_type ==2)
-> 
-> */
-. **************************all reason, WIF, early, model 2:
-. mi stset reage_exit, failure(outwork==1) enter(xage_q)exit(reage_exit==59.999
-> )
+. 
+. ***************all reason, WIF, women, model 2:
+. mi stset age_exitnew, failure(outwork==1) enter(xage_q)exit (age_exitnew=75)
 
      failure event:  outwork == 1
-obs. time interval:  (0, reage_exit]
+obs. time interval:  (0, age_exitnew]
  enter on or after:  time xage_q
- exit on or before:  reage_exit==59.999
+ exit on or before:  age_exitnew==75
 
 ------------------------------------------------------------------------------
      7913  total observations
@@ -92,13 +73,13 @@ obs. time interval:  (0, reage_exit]
 ------------------------------------------------------------------------------
      7913  observations remaining, representing
      6126  failures in single-record/single-failure data
- 77436.13  total analysis time at risk and under observation
+ 76667.65  total analysis time at risk and under observation
                                               at risk from t =         0
                                    earliest observed entry t =     39.58
                                         last observed exit t =     81.02
 
-. xi: mi estimate: stcrreg wtof i.xage_qgp i.gender i.tedlev i.xrgrlump i.depre
-> ss i.chronic i.spouse, compete(exit_type ==2)
+. xi: mi estimate: stcrreg ftow i.xage_qgp i.gender i.tedlev i.xrgrlump i.depre
+> ss i.chronic i.spouse if gender==1, compete(exit_type ==2)
 i.xage_qgp        _Ixage_qgp_1-5      (naturally coded; _Ixage_qgp_1 omitted)
 i.gender          _Igender_0-1        (naturally coded; _Igender_0 omitted)
 i.tedlev          _Itedlev_0-2        (naturally coded; _Itedlev_0 omitted)
@@ -108,48 +89,35 @@ i.chronic         _Ichronic_0-2       (naturally coded; _Ichronic_0 omitted)
 i.spouse          _Ispouse_0-2        (naturally coded; _Ispouse_0 omitted)
 
 Multiple-imputation estimates                     Imputations     =         25
-Competing-risks regression                        Number of obs   =       7913
-                                                  Average RVI     =     0.0464
-                                                  Largest FMI     =     0.1938
-DF adjustment:   Large sample                     DF:     min     =     655.43
-                                                          avg     =  882171.41
-                                                          max     =   1.00e+07
-Model F test:       Equal FMI                     F(  15,179065.2)=      23.44
+Competing-risks regression                        Number of obs   =       2450
+                                                  Average RVI     =     0.0633
+                                                  Largest FMI     =     0.2244
+DF adjustment:   Large sample                     DF:     min     =     490.44
+                                                          avg     =  456465.59
+                                                          max     = 3376138.68
+Model F test:       Equal FMI                     F(  14,92684.2) =       6.47
 Within VCE type:       Robust                     Prob > F        =     0.0000
 
 ------------------------------------------------------------------------------
           _t |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
 -------------+----------------------------------------------------------------
-        wtof |  -.0182729   .0087779    -2.08   0.037    -.0354872   -.0010585
-_Ixage_qgp_2 |   .0341467   .0369827     0.92   0.356     -.038338    .1066314
-_Ixage_qgp_3 |    .155565   .0418425     3.72   0.000     .0735551    .2375749
-_Ixage_qgp_4 |   .3106894   .0425063     7.31   0.000     .2273784    .3940003
-_Ixage_qgp_5 |   .4133212   .0789858     5.23   0.000     .2585108    .5681315
-  _Igender_1 |   .1677649   .0321509     5.22   0.000     .1047503    .2307796
-  _Itedlev_1 |  -.0239369   .0357084    -0.67   0.503    -.0939379    .0460642
-  _Itedlev_2 |  -.2184408   .0352379    -6.20   0.000    -.2875185   -.1493631
-_Ixrgrlump_1 |   .0408116   .0339277     1.20   0.229    -.0256867    .1073099
-_Ixrgrlump_2 |  -.2468764   .0484388    -5.10   0.000    -.3418176   -.1519353
- _Idepress_1 |   .1059407   .0339722     3.12   0.002      .039355    .1725265
- _Ichronic_1 |    .068053   .0318195     2.14   0.033      .005672    .1304339
- _Ichronic_2 |   .2382467   .0665436     3.58   0.000     .1075823    .3689111
-  _Ispouse_1 |  -.0781555   .0335287    -2.33   0.020    -.1438802   -.0124308
-  _Ispouse_2 |   .1820701    .031872     5.71   0.000     .1195897    .2445504
+        ftow |   .0194868   .0165396     1.18   0.239    -.0130103     .051984
+_Ixage_qgp_2 |  -.0205863   .0697261    -0.30   0.768    -.1572469    .1160744
+_Ixage_qgp_3 |   .1384373   .0775296     1.79   0.074    -.0135181    .2903928
+_Ixage_qgp_4 |   .2736007   .0804569     3.40   0.001     .1159079    .4312935
+_Ixage_qgp_5 |   .5389833   .1224977     4.40   0.000     .2988917    .7790749
+  _Igender_1 |          0  (omitted)
+  _Itedlev_1 |    .005532   .0680682     0.08   0.935    -.1279276    .1389916
+  _Itedlev_2 |   -.265273   .0717481    -3.70   0.000    -.4059386   -.1246075
+_Ixrgrlump_1 |   .0404824   .0793603     0.51   0.610    -.1150627    .1960276
+_Ixrgrlump_2 |  -.1665457   .0852699    -1.95   0.051     -.333677    .0005856
+ _Idepress_1 |  -.0219574   .0583316    -0.38   0.707    -.1362962    .0923814
+ _Ichronic_1 |    .052597   .0587296     0.90   0.371    -.0625291    .1677231
+ _Ichronic_2 |   .2900125   .1099714     2.64   0.008     .0743182    .5057067
+  _Ispouse_1 |  -.0720641   .0826383    -0.87   0.383    -.2340632     .089935
+  _Ispouse_2 |   .0945365   .0524431     1.80   0.072    -.0083493    .1974222
 ------------------------------------------------------------------------------
 
-. 
-. /*
-> **************************all reason, WIF, not early, model 1:
-> mi stset reage_exit, failure(outwork==1) enter(reage_exit==60)exit(reage_exit
-> ==75)
-> xi: mi estimate: stcrreg wtof i.xage_qgp i.gender, compete(exit_type ==2)
-> 
-> **************************all reason, WIF, not early, model 2:
-> mi stset reage_exit, failure(outwork==1) enter(reage_exit==60)exit(reage_exit
-> ==75)
-> xi: mi estimate: stcrreg wtof i.xage_qgp i.gender i.tedlev i.xrgrlump i.depre
-> ss i.chronic i.spouse, compete(exit_type ==2)
-> */
 . 
 . 
 . saveold newresult, replace
@@ -159,7 +127,7 @@ file newresult.dta saved
       name:  <unnamed>
        log:  /gpfs/home/fas/meghir/rg684/git/baowen/hpc4/log_hpc4.log
   log type:  text
- closed on:  14 Feb 2017, 13:26:09
+ closed on:  20 Feb 2017, 09:06:21
 -------------------------------------------------------------------------------
 
 . 

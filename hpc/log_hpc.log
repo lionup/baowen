@@ -2,112 +2,31 @@
       name:  <unnamed>
        log:  /gpfs/home/fas/meghir/rg684/git/baowen/hpc/log_hpc.log
   log type:  text
- opened on:  14 Feb 2017, 11:17:16
+ opened on:  20 Feb 2017, 08:47:59
 
 . 
 . use ../imputed.dta, clear
 
 . 
 . 
-. gen reage_exit=age_exitnew
-
-. replace reage_exit=60 if reage_exit<60&retire60==1
-(4223 real changes made)
-
-. /*
-> **************************all reason, FIW, early, model 1:
-> mi stset reage_exit, failure(outwork==1) enter(xage_q)exit(reage_exit==59.999
-> )
-> xi: mi estimate: stcrreg ftow i.xage_qgp i.gender, compete(exit_type ==2)
-> **************************all reason, FIW, early, model 2:
-> mi stset reage_exit, failure(outwork==1) enter(xage_q)exit(reage_exit==59.999
-> )
-> xi: mi estimate: stcrreg ftow i.xage_qgp i.gender i.tedlev i.xrgrlump i.depre
-> ss i.chronic i.spouse, compete(exit_type ==2)
-> */
-. **************************all reason, FIW, not early, model 1:
-. mi stset reage_exit, failure(outwork==1) enter(reage_exit==60)exit(reage_exit
-> ==75)
+. ***************all reason, WIF, men, model 1:
+. mi stset age_exitnew, failure(outwork==1) enter(xage_q)exit (age_exitnew=75)
 
      failure event:  outwork == 1
-obs. time interval:  (0, reage_exit]
- enter on or after:  reage_exit==60
- exit on or before:  reage_exit==75
+obs. time interval:  (0, age_exitnew]
+ enter on or after:  time xage_q
+ exit on or before:  age_exitnew==75
 
 ------------------------------------------------------------------------------
      7913  total observations
-     4175  observations end on or before enter()
+        0  exclusions
 ------------------------------------------------------------------------------
-     3738  observations remaining, representing
-     2700  failures in single-record/single-failure data
- 14028.33  total analysis time at risk and under observation
+     7913  observations remaining, representing
+     6126  failures in single-record/single-failure data
+ 76667.65  total analysis time at risk and under observation
                                               at risk from t =         0
-                                   earliest observed entry t =        60
+                                   earliest observed entry t =     39.58
                                         last observed exit t =     81.02
 
-. xi: mi estimate: stcrreg ftow i.xage_qgp i.gender, compete(exit_type ==2)
+. xi: mi estimate: stcrreg ftow i.xage_qgp if gender==0, compete(exit_type ==2)
 i.xage_qgp        _Ixage_qgp_1-5      (naturally coded; _Ixage_qgp_1 omitted)
-i.gender          _Igender_0-1        (naturally coded; _Igender_0 omitted)
-
-Multiple-imputation estimates                     Imputations     =         25
-Competing-risks regression                        Number of obs   =       3738
-                                                  Average RVI     =     0.0198
-                                                  Largest FMI     =     0.1064
-DF adjustment:   Large sample                     DF:     min     =    2154.33
-                                                          avg     =   9.49e+08
-                                                          max     =   4.68e+09
-Model F test:       Equal FMI                     F(   6,360083.5)=      10.89
-Within VCE type:       Robust                     Prob > F        =     0.0000
-
-------------------------------------------------------------------------------
-          _t |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
--------------+----------------------------------------------------------------
-        ftow |  -.0139011   .0129588    -1.07   0.284    -.0393142    .0115121
-_Ixage_qgp_2 |  -.0515686   .0671413    -0.77   0.442    -.1831631     .080026
-_Ixage_qgp_3 |  -.0331955   .0701942    -0.47   0.636    -.1707738    .1043827
-_Ixage_qgp_4 |   .2573493   .0673113     3.82   0.000     .1254215    .3892771
-_Ixage_qgp_5 |   .0501237   .0802561     0.62   0.532    -.1071755    .2074228
-  _Igender_1 |   .1622566   .0421956     3.85   0.000     .0795548    .2449584
-------------------------------------------------------------------------------
-
-. 
-. **************************all reason, FIW, not early, model 2:
-. /*
-> mi stset reage_exit, failure(outwork==1) enter(reage_exit==60)exit(reage_exit
-> ==75)
-> xi: mi estimate: stcrreg ftow i.xage_qgp i.gender i.tedlev i.xrgrlump i.depre
-> ss i.chronic i.spouse, compete(exit_type ==2)
-> 
-> 
-> **************************all reason, WIF, early, model 1:
-> mi stset reage_exit, failure(outwork==1) enter(xage_q)exit(reage_exit==59.999
-> )
-> xi: mi estimate: stcrreg wtof i.xage_qgp i.gender, compete(exit_type ==2)
-> **************************all reason, WIF, early, model 2:
-> mi stset reage_exit, failure(outwork==1) enter(xage_q)exit(reage_exit==59.999
-> )
-> xi: mi estimate: stcrreg wtof i.xage_qgp i.gender i.tedlev i.xrgrlump i.depre
-> ss i.chronic i.spouse, compete(exit_type ==2)
-> 
-> **************************all reason, WIF, not early, model 1:
-> mi stset reage_exit, failure(outwork==1) enter(reage_exit==60)exit(reage_exit
-> ==75)
-> xi: mi estimate: stcrreg wtof i.xage_qgp i.gender, compete(exit_type ==2)
-> 
-> **************************all reason, WIF, not early, model 2:
-> mi stset reage_exit, failure(outwork==1) enter(reage_exit==60)exit(reage_exit
-> ==75)
-> xi: mi estimate: stcrreg wtof i.xage_qgp i.gender i.tedlev i.xrgrlump i.depre
-> ss i.chronic i.spouse, compete(exit_type ==2)
-> */
-. 
-. 
-. saveold newresult, replace
-file newresult.dta saved
-
-. log close
-      name:  <unnamed>
-       log:  /gpfs/home/fas/meghir/rg684/git/baowen/hpc/log_hpc.log
-  log type:  text
- closed on:  14 Feb 2017, 11:33:04
--------------------------------------------------------------------------------
