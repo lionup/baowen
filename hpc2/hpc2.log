@@ -36,19 +36,15 @@ Note:  Your site can add messages to the introduction by editing the file
       name:  <unnamed>
        log:  /gpfs/home/fas/meghir/rg684/git/baowen/hpc2/log_hpc2.log
   log type:  text
- opened on:  20 Feb 2017, 08:47:59
+ opened on:  21 Feb 2017, 10:06:01
 
 . 
 . use ../imputed.dta, clear
 
 . 
 . 
-. ***************all reason, WIF, men, model 1:
-. *mi stset age_exitnew, failure(outwork==1) enter(xage_q)exit (age_exitnew=75)
-. *xi: mi estimate: stcrreg ftow i.xage_qgp if gender==0, compete(exit_type ==2
-> )
 . 
-. ***************all reason, WIF, men, model 2:
+. ***************all reason, WIF, Administrative, men, model 1:
 . mi stset age_exitnew, failure(outwork==1) enter(xage_q)exit (age_exitnew=75)
 
      failure event:  outwork == 1
@@ -67,10 +63,152 @@ obs. time interval:  (0, age_exitnew]
                                    earliest observed entry t =     39.58
                                         last observed exit t =     81.02
 
-. xi: mi estimate: stcrreg ftow i.xage_qgp i.gender i.tedlev i.xrgrlump i.depre
-> ss i.chronic i.spouse if gender==0, compete(exit_type ==2)
+. xi: mi estimate: stcrreg wtof i.xage_qgp  if xrgrlump==0&gender==0, compete(e
+> xit_type ==2)
 i.xage_qgp        _Ixage_qgp_1-5      (naturally coded; _Ixage_qgp_1 omitted)
-i.gender          _Igender_0-1        (naturally coded; _Igender_0 omitted)
+
+Multiple-imputation estimates                     Imputations     =         25
+Competing-risks regression                        Number of obs   =       2604
+                                                  Average RVI     =     0.0208
+                                                  Largest FMI     =     0.0904
+DF adjustment:   Large sample                     DF:     min     =    2976.28
+                                                          avg     =   1.19e+08
+                                                          max     =   4.45e+08
+Model F test:       Equal FMI                     F(   5,269932.3)=      11.75
+Within VCE type:       Robust                     Prob > F        =     0.0000
+
+------------------------------------------------------------------------------
+          _t |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+        wtof |  -.0490163   .0144012    -3.40   0.001    -.0772536   -.0207791
+_Ixage_qgp_2 |   .0996575   .0635126     1.57   0.117    -.0248248    .2241399
+_Ixage_qgp_3 |   .2655072   .0709014     3.74   0.000     .1265431    .4044713
+_Ixage_qgp_4 |   .4446881   .0747111     5.95   0.000      .298257    .5911193
+_Ixage_qgp_5 |    .247596   .1592931     1.55   0.120    -.0646129    .5598049
+------------------------------------------------------------------------------
+
+. ***************all reason, WIF, Administrative, men,model 2:
+. mi stset age_exitnew, failure(outwork==1) enter(xage_q)exit (age_exitnew=75)
+
+     failure event:  outwork == 1
+obs. time interval:  (0, age_exitnew]
+ enter on or after:  time xage_q
+ exit on or before:  age_exitnew==75
+
+------------------------------------------------------------------------------
+     7913  total observations
+        0  exclusions
+------------------------------------------------------------------------------
+     7913  observations remaining, representing
+     6126  failures in single-record/single-failure data
+ 76667.65  total analysis time at risk and under observation
+                                              at risk from t =         0
+                                   earliest observed entry t =     39.58
+                                        last observed exit t =     81.02
+
+. xi: mi estimate: stcrreg wtof i.xage_qgp  i.tedlev i.xrgrlump i.depress i.chr
+> onic i.spouse if xrgrlump==0&gender==0, compete(exit_type ==2)
+i.xage_qgp        _Ixage_qgp_1-5      (naturally coded; _Ixage_qgp_1 omitted)
+i.tedlev          _Itedlev_0-2        (naturally coded; _Itedlev_0 omitted)
+i.xrgrlump        _Ixrgrlump_0-2      (naturally coded; _Ixrgrlump_0 omitted)
+i.depress         _Idepress_0-1       (naturally coded; _Idepress_0 omitted)
+i.chronic         _Ichronic_0-2       (naturally coded; _Ichronic_0 omitted)
+i.spouse          _Ispouse_0-2        (naturally coded; _Ispouse_0 omitted)
+
+Multiple-imputation estimates                     Imputations     =         25
+Competing-risks regression                        Number of obs   =       2604
+                                                  Average RVI     =     0.0473
+                                                  Largest FMI     =     0.1042
+DF adjustment:   Large sample                     DF:     min     =    2245.53
+                                                          avg     = 1005895.13
+                                                          max     = 7045399.61
+Model F test:       Equal FMI                     F(  12,137193.5)=       9.95
+Within VCE type:       Robust                     Prob > F        =     0.0000
+
+------------------------------------------------------------------------------
+          _t |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+        wtof |  -.0503887   .0148637    -3.39   0.001    -.0795351   -.0212423
+_Ixage_qgp_2 |     .06593   .0653577     1.01   0.313    -.0621686    .1940287
+_Ixage_qgp_3 |   .2046452   .0726708     2.82   0.005      .062213    .3470774
+_Ixage_qgp_4 |   .3725776    .075795     4.92   0.000      .224022    .5211332
+_Ixage_qgp_5 |   .0925621   .1615404     0.57   0.567    -.2240525    .4091766
+  _Itedlev_1 |    .015139   .0703567     0.22   0.830    -.1228089     .153087
+  _Itedlev_2 |  -.2481978   .0597847    -4.15   0.000    -.3653865   -.1310091
+_Ixrgrlump_1 |          0  (omitted)
+_Ixrgrlump_2 |          0  (omitted)
+ _Idepress_1 |   .2409556   .0634178     3.80   0.000     .1166464    .3652649
+ _Ichronic_1 |    .022142   .0564566     0.39   0.695    -.0885406    .1328247
+ _Ichronic_2 |   .1819317   .1339537     1.36   0.175    -.0807544    .4446177
+  _Ispouse_1 |  -.0865892    .051408    -1.68   0.092    -.1873496    .0141712
+  _Ispouse_2 |   .2171412   .0648377     3.35   0.001     .0900578    .3442246
+------------------------------------------------------------------------------
+
+. ***************all reason, WIF,Prof/Exec, men,model 1:
+. mi stset age_exitnew, failure(outwork==1) enter(xage_q)exit (age_exitnew=75)
+
+     failure event:  outwork == 1
+obs. time interval:  (0, age_exitnew]
+ enter on or after:  time xage_q
+ exit on or before:  age_exitnew==75
+
+------------------------------------------------------------------------------
+     7913  total observations
+        0  exclusions
+------------------------------------------------------------------------------
+     7913  observations remaining, representing
+     6126  failures in single-record/single-failure data
+ 76667.65  total analysis time at risk and under observation
+                                              at risk from t =         0
+                                   earliest observed entry t =     39.58
+                                        last observed exit t =     81.02
+
+. xi: mi estimate: stcrreg wtof i.xage_qgp  if xrgrlump==1&gender==0, compete(e
+> xit_type ==2)
+i.xage_qgp        _Ixage_qgp_1-5      (naturally coded; _Ixage_qgp_1 omitted)
+
+Multiple-imputation estimates                     Imputations     =         25
+Competing-risks regression                        Number of obs   =       2473
+                                                  Average RVI     =     0.0310
+                                                  Largest FMI     =     0.1332
+DF adjustment:   Large sample                     DF:     min     =    1378.52
+                                                          avg     = 6054863.58
+                                                          max     =   1.09e+07
+Model F test:       Equal FMI                     F(   5,124137.7)=      17.18
+Within VCE type:       Robust                     Prob > F        =     0.0000
+
+------------------------------------------------------------------------------
+          _t |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+        wtof |  -.0365111   .0148103    -2.47   0.014    -.0655642   -.0074581
+_Ixage_qgp_2 |   .0703983   .0614244     1.15   0.252    -.0499914    .1907879
+_Ixage_qgp_3 |   .2132317   .0727877     2.93   0.003     .0705705    .3558929
+_Ixage_qgp_4 |   .5356923   .0731592     7.32   0.000     .3923028    .6790817
+_Ixage_qgp_5 |   .7253543   .1490483     4.87   0.000     .4332249    1.017484
+------------------------------------------------------------------------------
+
+. ***************all reason, WIF, Prof/Exec,men, model 2:
+. mi stset age_exitnew, failure(outwork==1) enter(xage_q)exit (age_exitnew=75)
+
+     failure event:  outwork == 1
+obs. time interval:  (0, age_exitnew]
+ enter on or after:  time xage_q
+ exit on or before:  age_exitnew==75
+
+------------------------------------------------------------------------------
+     7913  total observations
+        0  exclusions
+------------------------------------------------------------------------------
+     7913  observations remaining, representing
+     6126  failures in single-record/single-failure data
+ 76667.65  total analysis time at risk and under observation
+                                              at risk from t =         0
+                                   earliest observed entry t =     39.58
+                                        last observed exit t =     81.02
+
+. xi: mi estimate: stcrreg wtof i.xage_qgp  i.tedlev i.xrgrlump i.depress i.chr
+> onic i.spouse if xrgrlump==1&gender==0, compete(exit_type ==2)
+i.xage_qgp        _Ixage_qgp_1-5      (naturally coded; _Ixage_qgp_1 omitted)
 i.tedlev          _Itedlev_0-2        (naturally coded; _Itedlev_0 omitted)
 i.xrgrlump        _Ixrgrlump_0-2      (naturally coded; _Ixrgrlump_0 omitted)
 i.depress         _Idepress_0-1       (naturally coded; _Idepress_0 omitted)
