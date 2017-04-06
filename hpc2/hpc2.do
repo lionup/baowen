@@ -3,29 +3,14 @@ set more 1
 cap log close
 log using log_hpc2, text replace
 
-use ../imputed.dta, clear
+use ../imputed_march.dta, clear
 
-
-
-***************all reason, WIF, Administrative, men, model 1:
-mi stset age_exitnew, failure(outwork==1) enter(xage_q)exit (age_exitnew=75)
-xi: mi estimate: stcrreg wtof i.xage_qgp  if xrgrlump==0&gender==0, compete(exit_type ==2)
-***************all reason, WIF, Administrative, men,model 2:
-mi stset age_exitnew, failure(outwork==1) enter(xage_q)exit (age_exitnew=75)
-xi: mi estimate: stcrreg wtof i.xage_qgp  i.tedlev i.xrgrlump i.depress i.chronic i.spouse if xrgrlump==0&gender==0, compete(exit_type ==2)
-***************all reason, WIF,Prof/Exec, men,model 1:
-mi stset age_exitnew, failure(outwork==1) enter(xage_q)exit (age_exitnew=75)
-xi: mi estimate: stcrreg wtof i.xage_qgp  if xrgrlump==1&gender==0, compete(exit_type ==2)
-***************all reason, WIF, Prof/Exec,men, model 2:
-mi stset age_exitnew, failure(outwork==1) enter(xage_q)exit (age_exitnew=75)
-xi: mi estimate: stcrreg wtof i.xage_qgp  i.tedlev i.xrgrlump i.depress i.chronic i.spouse if xrgrlump==1&gender==0, compete(exit_type ==2)
-***************all reason, WIF, Clerical,men, model 1:
-mi stset age_exitnew, failure(outwork==1) enter(xage_q)exit (age_exitnew=75)
-xi: mi estimate: stcrreg wtof i.xage_qgp  if xrgrlump==2&gender==0, compete(exit_type ==2)
-***************all reason, WIF, Clerical,men, model 2:
-mi stset age_exitnew, failure(outwork==1) enter(xage_q)exit (age_exitnew=75)
-xi: mi estimate: stcrreg wtof i.xage_qgp  i.tedlev i.xrgrlump i.depress i.chronic i.spouse if xrgrlump==2&gender==0, compete(exit_type ==2)
-
+mi stset time2, id(id) failure(exit_typeLvar==3) exit(allexit==1)
+*model 4
+*mi estimate,hr:stcrreg lastftow ageenter i.education i.lastgrade i.lastdepress i.lastwsp i.chronic i.lastjobdemt i.lastdeclatt i.lastsupp i.lastcarer i.lastnumchild i.biconhm if gender==0&notuse!=1, compete(exit_typeLvar ==2 4 5 6)
+mi estimate,hr:stcrreg lastftow ageenter i.education i.lastgrade i.lastdepress i.lastwsp i.chronic i.lastjobdemt i.lastdeclatt i.lastsupp i.lastcarer i.lastnumchild i.biconhm if gender==1&notuse!=1, compete(exit_typeLvar ==2 4 5 6)
+*mi estimate,hr:stcrreg lastwtof ageenter i.education i.lastgrade i.lastdepress i.lastwsp i.chronic i.lastjobdemt i.lastdeclatt i.lastsupp i.lastcarer i.lastnumchild i.biconhm if gender==0&notuse!=1, compete(exit_typeLvar ==2 4 5 6)
+*mi estimate,hr:stcrreg lastwtof ageenter i.education i.lastgrade i.lastdepress i.lastwsp i.chronic i.lastjobdemt i.lastdeclatt i.lastsupp i.lastcarer i.lastnumchild i.biconhm if gender==1&notuse!=1, compete(exit_typeLvar ==2 4 5 6)
 
 
 saveold newresult, replace

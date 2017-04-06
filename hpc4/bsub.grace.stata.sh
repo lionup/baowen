@@ -2,7 +2,7 @@
 
 #BSUB -q cowles
 #BSUB -W 24:00
-#BSUB -J hpc5
+#BSUB -J hpc4
 
 #BSUB -n 4
 ##BSUB -R "span[hosts=1]"
@@ -13,4 +13,4 @@
 # 9. load modules
 module load Apps/Stata/13.1
 
-stata-mp -b do hpc5.do
+stata-mp -b do hpc4.do

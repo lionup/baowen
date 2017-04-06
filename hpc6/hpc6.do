@@ -3,42 +3,17 @@ set more 1
 cap log close
 log using log_hpc6, text replace
 
-use ../imputed.dta, clear
+use ../imputed_march.dta, clear
 
 
-gen reage_exit=age_exitnew
-replace reage_exit=60 if reage_exit<60&retire60==1
-/*
-**************************all reason, FIW, early, model 1:
-mi stset reage_exit, failure(outwork==1) enter(xage_q)exit(reage_exit==59.999)
-xi: mi estimate: stcrreg ftow i.xage_qgp i.gender, compete(exit_type ==2)
-**************************all reason, FIW, early, model 2:
-mi stset reage_exit, failure(outwork==1) enter(xage_q)exit(reage_exit==59.999)
-xi: mi estimate: stcrreg ftow i.xage_qgp i.gender i.tedlev i.xrgrlump i.depress i.chronic i.spouse, compete(exit_type ==2)
+mi stset time2, id(id) failure(exit_typeLvar==5) exit(allexit==1)
 
-**************************all reason, FIW, not early, model 1:
-mi stset reage_exit, failure(outwork==1) enter(reage_exit==60)exit(reage_exit==75)
-xi: mi estimate: stcrreg ftow i.xage_qgp i.gender, compete(exit_type ==2)
+*model 4
+*mi estimate,hr:stcrreg lastftow ageenter i.education i.lastgrade i.lastdepress i.lastwsp i.chronic i.lastjobdemt i.lastdeclatt i.lastsupp i.lastcarer i.lastnumchild i.biconhm if gender==0&notuse!=1, compete(exit_typeLvar ==2 3 4 6)
+mi estimate,hr:stcrreg lastftow ageenter i.education i.lastgrade i.lastdepress i.lastwsp i.chronic i.lastjobdemt i.lastdeclatt i.lastsupp i.lastcarer i.lastnumchild i.biconhm if gender==1&notuse!=1, compete(exit_typeLvar ==2 3 4 6)
+*mi estimate,hr:stcrreg lastwtof ageenter i.education i.lastgrade i.lastdepress i.lastwsp i.chronic i.lastjobdemt i.lastdeclatt i.lastsupp i.lastcarer i.lastnumchild i.biconhm if gender==0&notuse!=1, compete(exit_typeLvar ==2 3 4 6)
+*mi estimate,hr:stcrreg lastwtof ageenter i.education i.lastgrade i.lastdepress i.lastwsp i.chronic i.lastjobdemt i.lastdeclatt i.lastsupp i.lastcarer i.lastnumchild i.biconhm if gender==1&notuse!=1, compete(exit_typeLvar ==2 3 4 6)
 
-**************************all reason, FIW, not early, model 2:
-mi stset reage_exit, failure(outwork==1) enter(reage_exit==60)exit(reage_exit==75)
-xi: mi estimate: stcrreg ftow i.xage_qgp i.gender i.tedlev i.xrgrlump i.depress i.chronic i.spouse, compete(exit_type ==2)
-
-
-**************************all reason, WIF, early, model 1:
-mi stset reage_exit, failure(outwork==1) enter(xage_q)exit(reage_exit==59.999)
-xi: mi estimate: stcrreg wtof i.xage_qgp i.gender, compete(exit_type ==2)
-**************************all reason, WIF, early, model 2:
-mi stset reage_exit, failure(outwork==1) enter(xage_q)exit(reage_exit==59.999)
-xi: mi estimate: stcrreg wtof i.xage_qgp i.gender i.tedlev i.xrgrlump i.depress i.chronic i.spouse, compete(exit_type ==2)
-
-**************************all reason, WIF, not early, model 1:
-mi stset reage_exit, failure(outwork==1) enter(reage_exit==60)exit(reage_exit==75)
-xi: mi estimate: stcrreg wtof i.xage_qgp i.gender, compete(exit_type ==2)
-*/
-**************************all reason, WIF, not early, model 2:
-mi stset reage_exit, failure(outwork==1) enter(reage_exit==60)exit(reage_exit==75)
-xi: mi estimate: stcrreg wtof i.xage_qgp i.gender i.tedlev i.xrgrlump i.depress i.chronic i.spouse, compete(exit_type ==2)
 
 
 
