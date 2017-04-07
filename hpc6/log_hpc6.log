@@ -2,116 +2,112 @@
       name:  <unnamed>
        log:  /gpfs/home/fas/meghir/rg684/git/baowen/hpc6/log_hpc6.log
   log type:  text
- opened on:  14 Feb 2017, 11:17:38
+ opened on:   6 Apr 2017, 18:34:29
 
 . 
-. use ../imputed.dta, clear
+. use ../imputed_march.dta, clear
 
 . 
 . 
-. gen reage_exit=age_exitnew
+. mi stset time2, id(id) failure(exit_typeLvar==5) exit(allexit==1)
 
-. replace reage_exit=60 if reage_exit<60&retire60==1
-(4223 real changes made)
-
-. /*
-> **************************all reason, FIW, early, model 1:
-> mi stset reage_exit, failure(outwork==1) enter(xage_q)exit(reage_exit==59.999
-> )
-> xi: mi estimate: stcrreg ftow i.xage_qgp i.gender, compete(exit_type ==2)
-> **************************all reason, FIW, early, model 2:
-> mi stset reage_exit, failure(outwork==1) enter(xage_q)exit(reage_exit==59.999
-> )
-> xi: mi estimate: stcrreg ftow i.xage_qgp i.gender i.tedlev i.xrgrlump i.depre
-> ss i.chronic i.spouse, compete(exit_type ==2)
-> 
-> **************************all reason, FIW, not early, model 1:
-> mi stset reage_exit, failure(outwork==1) enter(reage_exit==60)exit(reage_exit
-> ==75)
-> xi: mi estimate: stcrreg ftow i.xage_qgp i.gender, compete(exit_type ==2)
-> 
-> **************************all reason, FIW, not early, model 2:
-> mi stset reage_exit, failure(outwork==1) enter(reage_exit==60)exit(reage_exit
-> ==75)
-> xi: mi estimate: stcrreg ftow i.xage_qgp i.gender i.tedlev i.xrgrlump i.depre
-> ss i.chronic i.spouse, compete(exit_type ==2)
-> 
-> 
-> **************************all reason, WIF, early, model 1:
-> mi stset reage_exit, failure(outwork==1) enter(xage_q)exit(reage_exit==59.999
-> )
-> xi: mi estimate: stcrreg wtof i.xage_qgp i.gender, compete(exit_type ==2)
-> **************************all reason, WIF, early, model 2:
-> mi stset reage_exit, failure(outwork==1) enter(xage_q)exit(reage_exit==59.999
-> )
-> xi: mi estimate: stcrreg wtof i.xage_qgp i.gender i.tedlev i.xrgrlump i.depre
-> ss i.chronic i.spouse, compete(exit_type ==2)
-> 
-> **************************all reason, WIF, not early, model 1:
-> mi stset reage_exit, failure(outwork==1) enter(reage_exit==60)exit(reage_exit
-> ==75)
-> xi: mi estimate: stcrreg wtof i.xage_qgp i.gender, compete(exit_type ==2)
-> */
-. **************************all reason, WIF, not early, model 2:
-. mi stset reage_exit, failure(outwork==1) enter(reage_exit==60)exit(reage_exit
-> ==75)
-
-     failure event:  outwork == 1
-obs. time interval:  (0, reage_exit]
- enter on or after:  reage_exit==60
- exit on or before:  reage_exit==75
+                id:  idout_107
+     failure event:  exit_typeLvar == 5
+obs. time interval:  (time2[_n-1], time2]
+ exit on or before:  allexit==1
 
 ------------------------------------------------------------------------------
-     7913  total observations
-     4175  observations end on or before enter()
+    68384  total observations
+    21053  observations begin on or after exit
 ------------------------------------------------------------------------------
-     3738  observations remaining, representing
-     2700  failures in single-record/single-failure data
- 14028.33  total analysis time at risk and under observation
+    47331  observations remaining, representing
+     8548  subjects
+      593  failures in single-failure-per-subject data
+ 111649.5  total analysis time at risk and under observation
                                               at risk from t =         0
-                                   earliest observed entry t =        60
-                                        last observed exit t =     81.02
+                                   earliest observed entry t =         0
+                                        last observed exit t =     23.09
 
-. xi: mi estimate: stcrreg wtof i.xage_qgp i.gender i.tedlev i.xrgrlump i.depre
-> ss i.chronic i.spouse, compete(exit_type ==2)
-i.xage_qgp        _Ixage_qgp_1-5      (naturally coded; _Ixage_qgp_1 omitted)
-i.gender          _Igender_0-1        (naturally coded; _Igender_0 omitted)
-i.tedlev          _Itedlev_0-2        (naturally coded; _Itedlev_0 omitted)
-i.xrgrlump        _Ixrgrlump_0-2      (naturally coded; _Ixrgrlump_0 omitted)
-i.depress         _Idepress_0-1       (naturally coded; _Idepress_0 omitted)
-i.chronic         _Ichronic_0-2       (naturally coded; _Ichronic_0 omitted)
-i.spouse          _Ispouse_0-2        (naturally coded; _Ispouse_0 omitted)
+. 
+. *model 4
+. *mi estimate,hr:stcrreg lastftow ageenter i.education i.lastgrade i.lastdepre
+> ss i.lastwsp i.chronic i.lastjobdemt i.lastdeclatt i.lastsupp i.lastcarer i.l
+> astnumchild i.biconhm if gender==0&notuse!=1, compete(exit_typeLvar ==2 3 4 6
+> )
+. mi estimate,hr:stcrreg lastftow ageenter i.education i.lastgrade i.lastdepres
+> s i.lastwsp i.chronic i.lastjobdemt i.lastdeclatt i.lastsupp i.lastcarer i.la
+> stnumchild i.biconhm if gender==1&notuse!=1, compete(exit_typeLvar ==2 3 4 6)
+note: option shr is assumed
 
 Multiple-imputation estimates                     Imputations     =         25
-Competing-risks regression                        Number of obs   =       3738
-                                                  Average RVI     =     0.0454
-                                                  Largest FMI     =     0.1433
-DF adjustment:   Large sample                     DF:     min     =    1192.19
-                                                          avg     = 1544799.38
-                                                          max     =   1.88e+07
-Model F test:       Equal FMI                     F(  15,186527.7)=       8.55
+Competing-risks regression                        Number of obs   =      12146
+                                                  Average RVI     =     0.0425
+                                                  Largest FMI     =     0.2211
+DF adjustment:   Large sample                     DF:     min     =     504.85
+                                                          avg     = 4488929.31
+                                                          max     =   4.09e+07
+Model F test:       Equal FMI                     F(  23,326888.8)=      10.99
 Within VCE type:       Robust                     Prob > F        =     0.0000
 
+                          (Within VCE adjusted for 2334 clusters in idout_107)
 ------------------------------------------------------------------------------
-          _t |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+          _t |        SHR   Std. Err.      t    P>|t|     [95% Conf. Interval]
 -------------+----------------------------------------------------------------
-        wtof |  -.0225218   .0136446    -1.65   0.099    -.0492872    .0042437
-_Ixage_qgp_2 |  -.0592022   .0676949    -0.87   0.382    -.1918817    .0734772
-_Ixage_qgp_3 |  -.0470993   .0711646    -0.66   0.508    -.1865793    .0923808
-_Ixage_qgp_4 |   .2228189   .0692424     3.22   0.001     .0871061    .3585317
-_Ixage_qgp_5 |   -.015384   .0821059    -0.19   0.851    -.1763094    .1455414
-  _Igender_1 |   .0767414   .0482392     1.59   0.112    -.0178058    .1712886
-  _Itedlev_1 |  -.1393709   .0561689    -2.48   0.013     -.249491   -.0292508
-  _Itedlev_2 |  -.1414147   .0533369    -2.65   0.008     -.245985   -.0368445
-_Ixrgrlump_1 |    .213532   .0524445     4.07   0.000     .1107406    .3163234
-_Ixrgrlump_2 |   .0651274   .0683576     0.95   0.341    -.0688577    .1991124
- _Idepress_1 |   .0836104   .0505804     1.65   0.098    -.0155284    .1827492
- _Ichronic_1 |   .0210477     .04758     0.44   0.658    -.0722303    .1143257
- _Ichronic_2 |   .2151846    .093627     2.30   0.022     .0314927    .3988765
-  _Ispouse_1 |  -.0238539   .0500276    -0.48   0.634    -.1219167    .0742089
-  _Ispouse_2 |   .0507071   .0496853     1.02   0.307    -.0466924    .1481065
+    lastftow |   1.035978   .0540199     0.68   0.498     .9353151    1.147476
+    ageenter |   .9847244   .0122593    -1.24   0.216     .9609873    1.009048
+             |
+   education |
+          2  |   .9083778   .1898326    -0.46   0.646     .6030154    1.368373
+          3  |   .8731523   .1845349    -0.64   0.521     .5770054    1.321296
+             |
+   lastgrade |
+          2  |   1.092025   .2773858     0.35   0.729     .6637712    1.796581
+          3  |   1.282916   .3829664     0.83   0.404     .7146667    2.302993
+             |
+ lastdepress |
+ 1 yes, h..  |   1.544805   .3148384     2.13   0.033     1.036035    2.303418
+             |
+     lastwsp |
+ 1 not wo..  |   1.093241   .2770585     0.35   0.725     .6644747    1.798676
+    2 no sp  |   1.147384   .2064475     0.76   0.445     .8062845    1.632787
+             |
+     chronic |
+          1  |   2.071749   .3774555     4.00   0.000     1.449623    2.960867
+          2  |   3.383861   1.270874     3.25   0.001     1.620792    7.064765
+          3  |   7.32e-07   7.76e-07   -13.33   0.000     9.17e-08    5.85e-06
+             |
+ lastjobdemt |
+          1  |   1.030639   .1915834     0.16   0.871     .7159428    1.483661
+          2  |    1.14625   .2459647     0.64   0.525     .7527086    1.745549
+             |
+ lastdeclatt |
+          1  |   .7091789   .1289415    -1.89   0.059     .4965827    1.012792
+          2  |   .5328824   .1236002    -2.71   0.007     .3382177    .8395882
+             |
+    lastsupp |
+          1  |   .8949025   .1611494    -0.62   0.537     .6287758    1.273666
+          2  |   .8699676   .1689499    -0.72   0.473     .5945625    1.272942
+             |
+ 1.lastcarer |    1.15436   .2374124     0.70   0.485     .7713959    1.727447
+             |
+lastnumchild |
+          1  |   1.130189   .2260534     0.61   0.541     .7635953    1.672781
+          2  |   .8948037   .1933685    -0.51   0.607     .5857674     1.36688
+          3  |   1.454372   .5182784     1.05   0.293     .7232965    2.924387
+             |
+     biconhm |
+1 have co..  |   1.203641   .3083731     0.72   0.469     .7283339    1.989133
 ------------------------------------------------------------------------------
 
+. *mi estimate,hr:stcrreg lastwtof ageenter i.education i.lastgrade i.lastdepre
+> ss i.lastwsp i.chronic i.lastjobdemt i.lastdeclatt i.lastsupp i.lastcarer i.l
+> astnumchild i.biconhm if gender==0&notuse!=1, compete(exit_typeLvar ==2 3 4 6
+> )
+. *mi estimate,hr:stcrreg lastwtof ageenter i.education i.lastgrade i.lastdepre
+> ss i.lastwsp i.chronic i.lastjobdemt i.lastdeclatt i.lastsupp i.lastcarer i.l
+> astnumchild i.biconhm if gender==1&notuse!=1, compete(exit_typeLvar ==2 3 4 6
+> )
+. 
 . 
 . 
 . 
@@ -122,5 +118,5 @@ file newresult.dta saved
       name:  <unnamed>
        log:  /gpfs/home/fas/meghir/rg684/git/baowen/hpc6/log_hpc6.log
   log type:  text
- closed on:  14 Feb 2017, 11:52:39
+ closed on:   6 Apr 2017, 20:47:43
 -------------------------------------------------------------------------------

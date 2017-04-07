@@ -1,0 +1,121 @@
+-------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  /gpfs/home/fas/meghir/rg684/git/baowen/hpc8/log_hpc8.log
+  log type:  text
+ opened on:   6 Apr 2017, 18:34:50
+
+. 
+. use ../imputed_march.dta, clear
+
+. 
+. mi stset time2, id(id) failure(exit_typeLvar==5) exit(allexit==1)
+
+                id:  idout_107
+     failure event:  exit_typeLvar == 5
+obs. time interval:  (time2[_n-1], time2]
+ exit on or before:  allexit==1
+
+------------------------------------------------------------------------------
+    68384  total observations
+    21053  observations begin on or after exit
+------------------------------------------------------------------------------
+    47331  observations remaining, representing
+     8548  subjects
+      593  failures in single-failure-per-subject data
+ 111649.5  total analysis time at risk and under observation
+                                              at risk from t =         0
+                                   earliest observed entry t =         0
+                                        last observed exit t =     23.09
+
+. 
+. *model 4
+. *mi estimate,hr:stcrreg lastftow ageenter i.education i.lastgrade i.lastdepre
+> ss i.lastwsp i.chronic i.lastjobdemt i.lastdeclatt i.lastsupp i.lastcarer i.l
+> astnumchild i.biconhm if gender==0&notuse!=1, compete(exit_typeLvar ==2 3 4 6
+> )
+. *mi estimate,hr:stcrreg lastftow ageenter i.education i.lastgrade i.lastdepre
+> ss i.lastwsp i.chronic i.lastjobdemt i.lastdeclatt i.lastsupp i.lastcarer i.l
+> astnumchild i.biconhm if gender==1&notuse!=1, compete(exit_typeLvar ==2 3 4 6
+> )
+. *mi estimate,hr:stcrreg lastwtof ageenter i.education i.lastgrade i.lastdepre
+> ss i.lastwsp i.chronic i.lastjobdemt i.lastdeclatt i.lastsupp i.lastcarer i.l
+> astnumchild i.biconhm if gender==0&notuse!=1, compete(exit_typeLvar ==2 3 4 6
+> )
+. mi estimate,hr:stcrreg lastwtof ageenter i.education i.lastgrade i.lastdepres
+> s i.lastwsp i.chronic i.lastjobdemt i.lastdeclatt i.lastsupp i.lastcarer i.la
+> stnumchild i.biconhm if gender==1&notuse!=1, compete(exit_typeLvar ==2 3 4 6)
+note: option shr is assumed
+
+Multiple-imputation estimates                     Imputations     =         25
+Competing-risks regression                        Number of obs   =      12146
+                                                  Average RVI     =     0.0491
+                                                  Largest FMI     =     0.2241
+DF adjustment:   Large sample                     DF:     min     =     491.65
+                                                          avg     = 1730844.74
+                                                          max     =   1.29e+07
+Model F test:       Equal FMI                     F(  23,248840.6)=      10.87
+Within VCE type:       Robust                     Prob > F        =     0.0000
+
+                          (Within VCE adjusted for 2334 clusters in idout_107)
+------------------------------------------------------------------------------
+          _t |        SHR   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+    lastwtof |   1.036559   .0567453     0.66   0.512     .9309755    1.154118
+    ageenter |   .9853573   .0123136    -1.18   0.238     .9615162     1.00979
+             |
+   education |
+          2  |   .9036907   .1890993    -0.48   0.628     .5995845    1.362038
+          3  |    .873919    .185175    -0.64   0.525     .5768904    1.323881
+             |
+   lastgrade |
+          2  |   1.108369   .2816523     0.40   0.686     .6735686    1.823841
+          3  |   1.313553   .3941799     0.91   0.363     .7294786    2.365279
+             |
+ lastdepress |
+ 1 yes, h..  |   1.549723    .313077     2.17   0.030     1.042942    2.302756
+             |
+     lastwsp |
+ 1 not wo..  |   1.082163   .2727147     0.31   0.754     .6595578    1.775548
+    2 no sp  |   1.145001   .2057397     0.75   0.451     .8049891    1.628629
+             |
+     chronic |
+          1  |   2.086351   .3824449     4.01   0.000      1.45665    2.988267
+          2  |   3.375817   1.264188     3.25   0.001     1.620384    7.032987
+          3  |   7.43e-07   7.87e-07   -13.32   0.000     9.31e-08    5.93e-06
+             |
+ lastjobdemt |
+          1  |   1.019324   .1937055     0.10   0.920     .7023523    1.479344
+          2  |    1.10841   .2534943     0.45   0.653     .7079888      1.7353
+             |
+ lastdeclatt |
+          1  |   .7078025   .1288346    -1.90   0.058     .4954223    1.011227
+          2  |   .5279784   .1225733    -2.75   0.006     .3349678    .8322029
+             |
+    lastsupp |
+          1  |   .9040583   .1614927    -0.56   0.572      .637009    1.283061
+          2  |   .8812659   .1717255    -0.65   0.517     .6015056    1.291143
+             |
+ 1.lastcarer |   1.187819   .2472379     0.83   0.408     .7899093    1.786172
+             |
+lastnumchild |
+          1  |    1.13707   .2265518     0.64   0.519     .7694131    1.680409
+          2  |   .8977126   .1939411    -0.50   0.617     .5877432    1.371156
+          3  |    1.47419   .5215048     1.10   0.273     .7369005    2.949157
+             |
+     biconhm |
+1 have co..  |   1.194639    .309219     0.69   0.492     .7191617    1.984482
+------------------------------------------------------------------------------
+
+. 
+. 
+. 
+. saveold newresult, replace
+(note: file newresult.dta not found)
+file newresult.dta saved
+
+. log close
+      name:  <unnamed>
+       log:  /gpfs/home/fas/meghir/rg684/git/baowen/hpc8/log_hpc8.log
+  log type:  text
+ closed on:   6 Apr 2017, 20:48:00
+-------------------------------------------------------------------------------

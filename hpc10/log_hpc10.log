@@ -1,0 +1,121 @@
+-------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  /gpfs/home/fas/meghir/rg684/git/baowen/hpc10/log_hpc10.log
+  log type:  text
+ opened on:   6 Apr 2017, 18:34:50
+
+. 
+. use ../imputed_march.dta, clear
+
+. 
+. mi stset time2, id(id) failure(exit_typeLvar==6) exit(allexit==1)
+
+                id:  idout_107
+     failure event:  exit_typeLvar == 6
+obs. time interval:  (time2[_n-1], time2]
+ exit on or before:  allexit==1
+
+------------------------------------------------------------------------------
+    68384  total observations
+    21053  observations begin on or after exit
+------------------------------------------------------------------------------
+    47331  observations remaining, representing
+     8548  subjects
+      356  failures in single-failure-per-subject data
+ 111649.5  total analysis time at risk and under observation
+                                              at risk from t =         0
+                                   earliest observed entry t =         0
+                                        last observed exit t =     23.09
+
+. 
+. *model 4
+. *mi estimate,hr:stcrreg lastftow ageenter i.education i.lastgrade i.lastdepre
+> ss i.lastwsp i.chronic i.lastjobdemt i.lastdeclatt i.lastsupp i.lastcarer i.l
+> astnumchild i.biconhm if gender==0&notuse!=1, compete(exit_typeLvar ==2 3 4 5
+> )
+. mi estimate,hr:stcrreg lastftow ageenter i.education i.lastgrade i.lastdepres
+> s i.lastwsp i.chronic i.lastjobdemt i.lastdeclatt i.lastsupp i.lastcarer i.la
+> stnumchild i.biconhm if gender==1&notuse!=1, compete(exit_typeLvar ==2 3 4 5)
+note: option shr is assumed
+
+Multiple-imputation estimates                     Imputations     =         25
+Competing-risks regression                        Number of obs   =      12146
+                                                  Average RVI     =     0.0590
+                                                  Largest FMI     =     0.2214
+DF adjustment:   Large sample                     DF:     min     =     503.39
+                                                          avg     = 4719357.03
+                                                          max     =   4.23e+07
+Model F test:       Equal FMI                     F(  23,175182.1)=      11.13
+Within VCE type:       Robust                     Prob > F        =     0.0000
+
+                          (Within VCE adjusted for 2334 clusters in idout_107)
+------------------------------------------------------------------------------
+          _t |        SHR   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+    lastftow |   1.169152    .061091     2.99   0.003     1.055311    1.295274
+    ageenter |   .9288952   .0163969    -4.18   0.000     .8973073    .9615951
+             |
+   education |
+          2  |   1.085969   .2897633     0.31   0.757     .6435178    1.832626
+          3  |   1.355379   .3420217     1.21   0.228     .8264172    2.222913
+             |
+   lastgrade |
+          2  |   .8602935   .1842374    -0.70   0.482     .5653995    1.308995
+          3  |   .4458822   .1422519    -2.53   0.011     .2385923    .8332665
+             |
+ lastdepress |
+ 1 yes, h..  |   .4756698    .172515    -2.05   0.041     .2333687    .9695464
+             |
+     lastwsp |
+ 1 not wo..  |   .9068484   .2621195    -0.34   0.735     .5139331    1.600157
+    2 no sp  |   .9121013   .1889684    -0.44   0.657     .6075095    1.369408
+             |
+     chronic |
+          1  |   .8744862   .2349471    -0.50   0.618     .5164898    1.480622
+          2  |   2.605399   1.336115     1.87   0.062     .9535784     7.11856
+          3  |   1.94e-06   2.20e-06   -11.59   0.000     2.09e-07    .0000179
+             |
+ lastjobdemt |
+          1  |   1.539512    .403335     1.65   0.100     .9212503    2.572695
+          2  |   1.971722   .5505918     2.43   0.015     1.140651    3.408308
+             |
+ lastdeclatt |
+          1  |   .7325129   .1705246    -1.34   0.181     .4641522    1.156033
+          2  |   .6928716    .167187    -1.52   0.128     .4317783    1.111846
+             |
+    lastsupp |
+          1  |   .8934225   .1888192    -0.53   0.594     .5904196    1.351926
+          2  |   .9360883   .2060745    -0.30   0.764     .6080364    1.441133
+             |
+ 1.lastcarer |   1.480442   .3476784     1.67   0.095     .9342979    2.345835
+             |
+lastnumchild |
+          1  |   1.062804     .25654     0.25   0.801     .6621732    1.705828
+          2  |   .7167894   .1702363    -1.40   0.161      .449994    1.141764
+          3  |   .7386358   .3241037    -0.69   0.490     .3125323    1.745685
+             |
+     biconhm |
+1 have co..  |   1.159202   .3224812     0.53   0.595      .671771    2.000309
+------------------------------------------------------------------------------
+
+. *mi estimate,hr:stcrreg lastwtof ageenter i.education i.lastgrade i.lastdepre
+> ss i.lastwsp i.chronic i.lastjobdemt i.lastdeclatt i.lastsupp i.lastcarer i.l
+> astnumchild i.biconhm if gender==0&notuse!=1, compete(exit_typeLvar ==2 3 4 5
+> )
+. *mi estimate,hr:stcrreg lastwtof ageenter i.education i.lastgrade i.lastdepre
+> ss i.lastwsp i.chronic i.lastjobdemt i.lastdeclatt i.lastsupp i.lastcarer i.l
+> astnumchild i.biconhm if gender==1&notuse!=1, compete(exit_typeLvar ==2 3 4 5
+> )
+. 
+. 
+. 
+. saveold newresult, replace
+(note: file newresult.dta not found)
+file newresult.dta saved
+
+. log close
+      name:  <unnamed>
+       log:  /gpfs/home/fas/meghir/rg684/git/baowen/hpc10/log_hpc10.log
+  log type:  text
+ closed on:   6 Apr 2017, 21:01:35
+-------------------------------------------------------------------------------

@@ -1,0 +1,231 @@
+
+  ___  ____  ____  ____  ____ (R)
+ /__    /   ____/   /   ____/
+___/   /   /___/   /   /___/   13.1   Copyright 1985-2013 StataCorp LP
+  Statistics/Data Analysis            StataCorp
+                                      4905 Lakeway Drive
+     MP - Parallel Edition            College Station, Texas 77845 USA
+                                      800-STATA-PC        http://www.stata.com
+                                      979-696-4600        stata@stata.com
+                                      979-696-4601 (fax)
+
+7-user 8-core Stata network perpetual license:
+       Serial number:  501306262937
+         Licensed to:  Yale University
+                       New Haven, CT
+
+Notes:
+      1.  (-v# option or -set maxvar-) 5000 maximum variables
+      2.  Command line editing disabled
+      3.  Stata running in batch mode
+
+Note:  Your site can add messages to the introduction by editing the file
+       stata.msg in the directory where Stata is installed.
+
+. do hpc13.do 
+
+. cd ~/git/baowen/hpc13
+/gpfs/home/fas/meghir/rg684/git/baowen/hpc13
+
+. set more 1
+
+. cap log close
+
+. log using log_hpc13, text replace
+(note: file /gpfs/home/fas/meghir/rg684/git/baowen/hpc13/log_hpc13.log not foun
+> d)
+-------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  /gpfs/home/fas/meghir/rg684/git/baowen/hpc13/log_hpc13.log
+  log type:  text
+ opened on:   6 Apr 2017, 18:51:46
+
+. 
+. use ../imputed_march.dta, clear
+
+. 
+. mi stset time2, id(id) failure(fail==1) exit(allexit==1)
+
+                id:  idout_107
+     failure event:  fail == 1
+obs. time interval:  (time2[_n-1], time2]
+ exit on or before:  allexit==1
+
+------------------------------------------------------------------------------
+    68384  total observations
+    21053  observations begin on or after exit
+------------------------------------------------------------------------------
+    47331  observations remaining, representing
+     8548  subjects
+     6280  failures in single-failure-per-subject data
+ 111649.5  total analysis time at risk and under observation
+                                              at risk from t =         0
+                                   earliest observed entry t =         0
+                                        last observed exit t =     23.09
+
+. *model 4
+. mi estimate,hr:stcrreg lastftow ageenter i.education i.lastgrade i.lastdepres
+> s i.lastwsp i.chronic i.lastjobdemt i.lastdeclatt i.lastsupp i.lastcarer i.la
+> stnumchild i.biconhm if gender==0&age_exitB<60, compete(exit_typeLvar ==2)
+note: option shr is assumed
+
+Multiple-imputation estimates                     Imputations     =         25
+Competing-risks regression                        Number of obs   =      11070
+                                                  Average RVI     =     0.0483
+                                                  Largest FMI     =     0.1532
+DF adjustment:   Large sample                     DF:     min     =    1044.73
+                                                          avg     = 1427143.90
+                                                          max     =   1.35e+07
+Model F test:       Equal FMI                     F(  23,256251.7)=      13.01
+Within VCE type:       Robust                     Prob > F        =     0.0000
+
+                          (Within VCE adjusted for 2268 clusters in idout_107)
+------------------------------------------------------------------------------
+          _t |        SHR   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+    lastftow |   .9940997   .0182823    -0.32   0.748     .9588951    1.030597
+    ageenter |   1.130183   .0091064    15.19   0.000     1.112475    1.148173
+             |
+   education |
+          2  |   .9608446   .0769337    -0.50   0.618     .8211799    1.124263
+          3  |   .8214002   .0637878    -2.53   0.011     .7053035     .956607
+             |
+   lastgrade |
+          2  |    .784473   .0513962    -3.71   0.000     .6899372    .8919621
+          3  |   .2923815   .0478603    -7.51   0.000     .2121363    .4029812
+             |
+ lastdepress |
+ 1 yes, h..  |   .9946304   .0884129    -0.06   0.952     .8355576    1.183988
+             |
+     lastwsp |
+ 1 not wo..  |   .9398921   .0727674    -0.80   0.423     .8074825    1.094014
+    2 no sp  |   1.172398   .0976164     1.91   0.056     .9957164    1.380431
+             |
+     chronic |
+          1  |    .859599   .0835074    -1.56   0.119     .7105657     1.03989
+          2  |   1.071711   .2706607     0.27   0.784     .6532904    1.758122
+          3  |   1.833249    2.39587     0.46   0.643     .1415101    23.74956
+             |
+ lastjobdemt |
+          1  |   .9778684   .0768682    -0.28   0.776     .8382415    1.140753
+          2  |   1.001912   .0871087     0.02   0.982     .8449361    1.188051
+             |
+ lastdeclatt |
+          1  |   .8736676     .06806    -1.73   0.083      .749957    1.017785
+          2  |   .8173871   .0650891    -2.53   0.011     .6992717    .9554537
+             |
+    lastsupp |
+          1  |   1.053943   .0737984     0.75   0.453     .9187872    1.208981
+          2  |   1.003312   .0735831     0.05   0.964     .8689777    1.158413
+             |
+ 1.lastcarer |   1.247871   .1185753     2.33   0.020      1.03574    1.503448
+             |
+lastnumchild |
+          1  |   .9506799   .0838046    -0.57   0.566     .7997774    1.130055
+          2  |   .9955951   .0782213    -0.06   0.955     .8534802    1.161374
+          3  |   .9550325   .1038647    -0.42   0.672     .7716782    1.181953
+             |
+     biconhm |
+1 have co..  |   1.049773   .1038083     0.49   0.623     .8647349    1.274407
+------------------------------------------------------------------------------
+
+. mi estimate,hr:stcrreg lastftow ageenter i.education i.lastgrade i.lastdepres
+> s i.lastwsp i.chronic i.lastjobdemt i.lastdeclatt i.lastsupp i.lastcarer i.la
+> stnumchild i.biconhm if gender==1&age_exitB<60, compete(exit_typeLvar ==2)
+note: option shr is assumed
+
+Multiple-imputation estimates                     Imputations     =         25
+Competing-risks regression                        Number of obs   =       5086
+                                                  Average RVI     =     0.0817
+                                                  Largest FMI     =     0.2797
+DF adjustment:   Large sample                     DF:     min     =     317.02
+                                                          avg     =  368877.31
+                                                          max     = 3069207.26
+Model F test:       Equal FMI                     F(  23,95405.2) =      12.54
+Within VCE type:       Robust                     Prob > F        =     0.0000
+
+                          (Within VCE adjusted for 1110 clusters in idout_107)
+------------------------------------------------------------------------------
+          _t |        SHR   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+    lastftow |   1.067893   .0257373     2.73   0.007     1.018437     1.11975
+    ageenter |   1.098544   .0106575     9.69   0.000     1.077852    1.119632
+             |
+   education |
+          2  |   1.234968   .1262514     2.06   0.039     1.010639    1.509091
+          3  |   1.137939   .1200685     1.22   0.221     .9252129    1.399576
+             |
+   lastgrade |
+          2  |   .9690608   .0899991    -0.34   0.735     .8077867    1.162533
+          3  |   .5778035   .0802652    -3.95   0.000     .4400831    .7586225
+             |
+ lastdepress |
+ 1 yes, h..  |   .8739958   .1100259    -1.07   0.285     .6825455    1.119147
+             |
+     lastwsp |
+ 1 not wo..  |   1.303419   .1414247     2.44   0.015     1.053377    1.612813
+    2 no sp  |   1.054147   .0961549     0.58   0.563     .8814575    1.260669
+             |
+     chronic |
+          1  |   .9695404   .1129412    -0.27   0.791     .7716314    1.218209
+          2  |   .5187637   .1884752    -1.81   0.071     .2545155    1.057365
+          3  |   2.11e-06   2.13e-06   -12.94   0.000     2.92e-07    .0000153
+             |
+ lastjobdemt |
+          1  |   1.003162   .1060382     0.03   0.976     .8154471     1.23409
+          2  |   1.173435   .1295714     1.45   0.148     .9450767    1.456973
+             |
+ lastdeclatt |
+          1  |   .9783791   .0981158    -0.22   0.827     .8037945    1.190884
+          2  |   .9349862   .0994952    -0.63   0.528     .7589716    1.151821
+             |
+    lastsupp |
+          1  |   1.021457   .0939068     0.23   0.817     .8530319    1.223137
+          2  |   .9842479   .0955297    -0.16   0.870     .8137441    1.190477
+             |
+ 1.lastcarer |   1.043715   .1178824     0.38   0.705     .8364214    1.302383
+             |
+lastnumchild |
+          1  |   1.051662   .1186818     0.45   0.655     .8429679    1.312024
+          2  |   .8586294   .0833335    -1.57   0.116     .7098711    1.038561
+          3  |   1.178414   .2037636     0.95   0.342     .8396065     1.65394
+             |
+     biconhm |
+1 have co..  |   1.066148   .1233824     0.55   0.580     .8493513    1.338283
+------------------------------------------------------------------------------
+
+. *mi estimate,hr:stcrreg lastwtof ageenter i.education i.lastgrade i.lastdepre
+> ss i.lastwsp i.chronic i.lastjobdemt i.lastdeclatt i.lastsupp i.lastcarer i.l
+> astnumchild i.biconhm if gender==0&age_exitB<60, compete(exit_typeLvar ==2)
+. *mi estimate,hr:stcrreg lastwtof ageenter i.education i.lastgrade i.lastdepre
+> ss i.lastwsp i.chronic i.lastjobdemt i.lastdeclatt i.lastsupp i.lastcarer i.l
+> astnumchild i.biconhm if gender==1&age_exitB<60, compete(exit_typeLvar ==2)
+. 
+. *mi estimate,hr:stcrreg lastftow ageenter i.education i.lastgrade i.lastdepre
+> ss i.lastwsp i.chronic i.lastjobdemt i.lastdeclatt i.lastsupp i.lastcarer i.l
+> astnumchild i.biconhm if gender==0&age_exitB>=60, compete(exit_typeLvar ==2)
+. *mi estimate,hr:stcrreg lastftow ageenter i.education i.lastgrade i.lastdepre
+> ss i.lastwsp i.chronic i.lastjobdemt i.lastdeclatt i.lastsupp i.lastcarer i.l
+> astnumchild i.biconhm if gender==1&age_exitB>=60, compete(exit_typeLvar ==2)
+. *mi estimate,hr:stcrreg lastwtof ageenter i.education i.lastgrade i.lastdepre
+> ss i.lastwsp i.chronic i.lastjobdemt i.lastdeclatt i.lastsupp i.lastcarer i.l
+> astnumchild i.biconhm if gender==0&age_exitB>=60, compete(exit_typeLvar ==2)
+. *mi estimate,hr:stcrreg lastwtof ageenter i.education i.lastgrade i.lastdepre
+> ss i.lastwsp i.chronic i.lastjobdemt i.lastdeclatt i.lastsupp i.lastcarer i.l
+> astnumchild i.biconhm if gender==1&age_exitB>=60, compete(exit_typeLvar ==2)
+. 
+. 
+. 
+. saveold newresult, replace
+(note: file newresult.dta not found)
+file newresult.dta saved
+
+. log close
+      name:  <unnamed>
+       log:  /gpfs/home/fas/meghir/rg684/git/baowen/hpc13/log_hpc13.log
+  log type:  text
+ closed on:   6 Apr 2017, 21:41:28
+-------------------------------------------------------------------------------
+
+. 
+end of do-file
