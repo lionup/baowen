@@ -40,3 +40,80 @@ obs. time interval:  (time2[_n-1], time2]
 > s i.lastwsp i.chronic i.lastjobdemt i.lastdeclatt i.lastsupp i.lastcarer i.la
 > stnumchild i.biconhm if gender==0&notuse!=1, compete(exit_typeLvar ==2 4 5 6)
 note: option shr is assumed
+
+Multiple-imputation estimates                     Imputations     =         25
+Competing-risks regression                        Number of obs   =      31075
+                                                  Average RVI     =     0.0381
+                                                  Largest FMI     =     0.2108
+DF adjustment:   Large sample                     DF:     min     =     555.07
+                                                          avg     = 8732717.04
+                                                          max     =   9.79e+07
+Model F test:       Equal FMI                     F(  23,403303.6)=      32.67
+Within VCE type:       Robust                     Prob > F        =     0.0000
+
+                          (Within VCE adjusted for 5406 clusters in idout_107)
+------------------------------------------------------------------------------
+          _t |        SHR   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+    lastwtof |   .9916452   .0127511    -0.65   0.514     .9669642    1.016956
+    ageenter |   1.096923   .0043476    23.34   0.000     1.088435    1.105477
+             |
+   education |
+          2  |   1.009688   .0556282     0.17   0.861     .9063205    1.124845
+          3  |   .8355732   .0420652    -3.57   0.000     .7570478    .9222438
+             |
+   lastgrade |
+          2  |   .8499971   .0386984    -3.57   0.000     .7774349    .9293318
+          3  |   .4352705    .047292    -7.66   0.000     .3517842    .5385701
+             |
+ lastdepress |
+ 1 yes, h..  |   .8405284   .0616894    -2.37   0.018     .7278651    .9706305
+             |
+     lastwsp |
+ 1 not wo..  |   .9352455   .0448645    -1.40   0.163     .8512167    1.027569
+    2 no sp  |   .9361939   .0610793    -1.01   0.313     .8235885    1.064195
+             |
+     chronic |
+          1  |   .9383919   .0507191    -1.18   0.239     .8440686    1.043256
+          2  |    1.17322   .1631661     1.15   0.251     .8933021    1.540852
+          3  |   2.891615   1.101943     2.79   0.005     1.370133    6.102647
+             |
+ lastjobdemt |
+          1  |   1.270301   .0664594     4.57   0.000     1.146499    1.407472
+          2  |   1.357749   .0838234     4.95   0.000     1.203009    1.532393
+             |
+ lastdeclatt |
+          1  |   1.089491   .0661671     1.41   0.158     .9672269     1.22721
+          2  |   .9126521   .0549222    -1.52   0.129     .8111124    1.026903
+             |
+    lastsupp |
+          1  |   1.169062   .0561822     3.25   0.001     1.063974    1.284529
+          2  |   1.208795   .0583501     3.93   0.000     1.099674    1.328743
+             |
+ 1.lastcarer |   1.065372   .0761624     0.89   0.376     .9260827    1.225612
+             |
+lastnumchild |
+          1  |   .9804449   .0552357    -0.35   0.726     .8779169    1.094947
+          2  |   .9243585   .0464876    -1.56   0.118     .8375823    1.020125
+          3  |   .7748824   .0545326    -3.62   0.000     .6750383    .8894944
+             |
+     biconhm |
+1 have co..  |   1.176725   .0781531     2.45   0.014     1.033069    1.340357
+------------------------------------------------------------------------------
+
+. *mi estimate,hr:stcrreg lastwtof ageenter i.education i.lastgrade i.lastdepre
+> ss i.lastwsp i.chronic i.lastjobdemt i.lastdeclatt i.lastsupp i.lastcarer i.l
+> astnumchild i.biconhm if gender==1&notuse!=1, compete(exit_typeLvar ==2 4 5 6
+> )
+. 
+. 
+. 
+. saveold newresult, replace
+file newresult.dta saved
+
+. log close
+      name:  <unnamed>
+       log:  /gpfs/home/fas/meghir/rg684/git/baowen/hpc3/log_hpc3.log
+  log type:  text
+ closed on:   7 Apr 2017, 15:22:40
+-------------------------------------------------------------------------------

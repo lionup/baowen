@@ -32,3 +32,87 @@ obs. time interval:  (time2[_n-1], time2]
 > s i.lastwsp i.chronic i.lastjobdemt i.lastdeclatt i.lastsupp i.lastcarer i.la
 > stnumchild i.biconhm if gender==0&notuse!=1, compete(exit_typeLvar ==2 4 5 6)
 note: option shr is assumed
+
+Multiple-imputation estimates                     Imputations     =         25
+Competing-risks regression                        Number of obs   =      31075
+                                                  Average RVI     =     0.0377
+                                                  Largest FMI     =     0.2091
+DF adjustment:   Large sample                     DF:     min     =     563.69
+                                                          avg     =   1.06e+07
+                                                          max     =   9.39e+07
+Model F test:       Equal FMI                     F(  23,411921.8)=      32.78
+Within VCE type:       Robust                     Prob > F        =     0.0000
+
+                          (Within VCE adjusted for 5406 clusters in idout_107)
+------------------------------------------------------------------------------
+          _t |        SHR   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+    lastftow |   .9515787   .0128818    -3.67   0.000     .9266619    .9771656
+    ageenter |   1.097144   .0043519    23.37   0.000     1.088647    1.105706
+             |
+   education |
+          2  |   1.008195   .0556051     0.15   0.882     .9048771     1.12331
+          3  |    .840656   .0423613    -3.44   0.001     .7615811    .9279412
+             |
+   lastgrade |
+          2  |   .8517128   .0385047    -3.55   0.000     .7794915    .9306256
+          3  |   .4345132    .046978    -7.71   0.000     .3515394    .5370714
+             |
+ lastdepress |
+ 1 yes, h..  |   .8597386   .0635341    -2.05   0.041     .7437601    .9938023
+             |
+     lastwsp |
+ 1 not wo..  |   .9335606   .0447872    -1.43   0.152     .8496795    1.025722
+    2 no sp  |   .9318774    .060924    -1.08   0.281     .8195764    1.059566
+             |
+     chronic |
+          1  |   .9403339   .0509121    -1.14   0.256     .8456601    1.045607
+          2  |   1.181919   .1650594     1.20   0.231     .8989054    1.554036
+          3  |     2.7548   1.063211     2.63   0.009     1.292915    5.869623
+             |
+ lastjobdemt |
+          1  |   1.295306   .0667604     5.02   0.000      1.17085    1.432992
+          2  |   1.386726   .0806758     5.62   0.000     1.237287    1.554216
+             |
+ lastdeclatt |
+          1  |   1.087741   .0662102     1.38   0.167     .9654132    1.225568
+          2  |   .9061782   .0546885    -1.63   0.103     .8050872    1.019963
+             |
+    lastsupp |
+          1  |   1.165441   .0559133     3.19   0.001     1.060848    1.280347
+          2  |     1.1951   .0572106     3.72   0.000     1.088069    1.312659
+             |
+ 1.lastcarer |   1.099691   .0791065     1.32   0.186     .9550783      1.2662
+             |
+lastnumchild |
+          1  |   .9880474   .0556883    -0.21   0.831     .8846807    1.103491
+          2  |   .9304524     .04692    -1.43   0.153     .8428805    1.027123
+          3  |   .7929733   .0559789    -3.29   0.001     .6905026    .9106508
+             |
+     biconhm |
+1 have co..  |   1.141797    .076807     1.97   0.049      1.00073    1.302749
+------------------------------------------------------------------------------
+
+. *mi estimate,hr:stcrreg lastftow ageenter i.education i.lastgrade i.lastdepre
+> ss i.lastwsp i.chronic i.lastjobdemt i.lastdeclatt i.lastsupp i.lastcarer i.l
+> astnumchild i.biconhm if gender==1&notuse!=1, compete(exit_typeLvar ==2 4 5 6
+> )
+. *mi estimate,hr:stcrreg lastwtof ageenter i.education i.lastgrade i.lastdepre
+> ss i.lastwsp i.chronic i.lastjobdemt i.lastdeclatt i.lastsupp i.lastcarer i.l
+> astnumchild i.biconhm if gender==0&notuse!=1, compete(exit_typeLvar ==2 4 5 6
+> )
+. *mi estimate,hr:stcrreg lastwtof ageenter i.education i.lastgrade i.lastdepre
+> ss i.lastwsp i.chronic i.lastjobdemt i.lastdeclatt i.lastsupp i.lastcarer i.l
+> astnumchild i.biconhm if gender==1&notuse!=1, compete(exit_typeLvar ==2 4 5 6
+> )
+. 
+. 
+. saveold newresult, replace
+file newresult.dta saved
+
+. log close
+      name:  <unnamed>
+       log:  /gpfs/home/fas/meghir/rg684/git/baowen/hpc/log_hpc.log
+  log type:  text
+ closed on:   7 Apr 2017, 15:29:19
+-------------------------------------------------------------------------------
