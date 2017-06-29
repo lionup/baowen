@@ -195,3 +195,154 @@ Degree le..  |   .8720696   .0183755    -6.50   0.000     .8367879    .9088389
 
 Iteration 0:   log pseudolikelihood = -341222.52  
 Iteration 1:   log pseudolikelihood = -341168.75  
+Iteration 2:   log pseudolikelihood = -341168.71  
+Iteration 3:   log pseudolikelihood = -341168.71  
+
+Competing-risks regression                       No. of obs       =     46,965
+                                                 No. of subjects  =     46,965
+Failure event  : fail == 1                       No. failed       =     35,397
+Competing event: exit_typeL == 2                 No. competing    =        508
+                                                 No. censored     =     11,060
+
+                                                 Wald chi2(17)    =    4473.74
+Log pseudolikelihood = -341168.71                Prob > chi2      =     0.0000
+
+------------------------------------------------------------------------------
+             |               Robust
+          _t |        SHR   Std. Err.      z    P>|z|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+    lastwtof |   1.026926    .003631     7.51   0.000     1.019834    1.034067
+       agexp |   1.023456   .0010783    22.01   0.000     1.021345    1.025571
+             |
+      tedlev |
+A level o..  |   .9304618   .0134348    -4.99   0.000     .9044993    .9571696
+Degree le..  |   .7642626   .0102039   -20.14   0.000     .7445226    .7845259
+             |
+   lastgrade |
+          2  |    1.16669   .0151178    11.90   0.000     1.137432    1.196699
+          3  |   .9116272    .022844    -3.69   0.000     .8679355    .9575184
+             |
+ lastdepress |
+ 1 yes, h..  |   1.077096   .0196688     4.07   0.000     1.039227    1.116344
+             |
+  lastworksp |
+          1  |   .7235707   .0097055   -24.12   0.000      .704796    .7428454
+          2  |   .7180444   .0112467   -21.15   0.000     .6963362    .7404294
+             |
+ lastchronic |
+          1  |   .6899783   .0094426   -27.12   0.000     .6717172    .7087359
+          2  |   .3577238   .0219643   -16.74   0.000      .317164    .4034704
+             |
+ lastjobdemt |
+          1  |   1.217306   .0171446    13.96   0.000     1.184163    1.251377
+          2  |   1.338604   .0227817    17.14   0.000     1.294689    1.384009
+             |
+ lastdeclatt |
+          1  |   1.036731    .017381     2.15   0.031     1.003218    1.071363
+          2  |   .7380617   .0125414   -17.87   0.000     .7138858    .7630563
+             |
+ lastjobsupp |
+          1  |   1.156968   .0155994    10.81   0.000     1.126794    1.187949
+          2  |   1.123305   .0148949     8.77   0.000     1.094488    1.152881
+------------------------------------------------------------------------------
+
+. stcrreg lastwtof agexp i.tedlev i.lastgrade i.lastdepress i.lastworksp i.last
+> chronic i.lastjobdemt i.lastdeclatt i.lastjobsupp  if sex==2& drop1!=1&drop2!
+> =1&drop3!=1&drop4!=1, compete(exit_typeL==2)
+
+         failure _d:  fail == 1
+   analysis time _t:  age_exitB
+  enter on or after:  time ageenter
+
+Iteration 0:   log pseudolikelihood = -173599.25  
+Iteration 1:   log pseudolikelihood = -173583.96  
+Iteration 2:   log pseudolikelihood = -173583.96  
+
+Competing-risks regression                       No. of obs       =     24,555
+                                                 No. of subjects  =     24,555
+Failure event  : fail == 1                       No. failed       =     19,548
+Competing event: exit_typeL == 2                 No. competing    =        185
+                                                 No. censored     =      4,822
+
+                                                 Wald chi2(17)    =    1959.56
+Log pseudolikelihood = -173583.96                Prob > chi2      =     0.0000
+
+------------------------------------------------------------------------------
+             |               Robust
+          _t |        SHR   Std. Err.      z    P>|z|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+    lastwtof |   1.038409   .0051622     7.58   0.000     1.028341    1.048577
+       agexp |   1.021914    .001557    14.23   0.000     1.018867    1.024971
+             |
+      tedlev |
+A level o..  |   1.060264   .0203833     3.04   0.002     1.021057    1.100977
+Degree le..  |   .8660965   .0182911    -6.81   0.000     .8309784    .9026987
+             |
+   lastgrade |
+          2  |   1.379266   .0306729    14.46   0.000     1.320439    1.440713
+          3  |   1.330995   .0338581    11.24   0.000     1.266261    1.399038
+             |
+ lastdepress |
+ 1 yes, h..  |   1.097232    .022633     4.50   0.000     1.053757    1.142501
+             |
+  lastworksp |
+          1  |   .7962525   .0116443   -15.58   0.000      .773754    .8194052
+          2  |   .8477566   .0287769    -4.87   0.000     .7931902    .9060768
+             |
+ lastchronic |
+          1  |   .6654984    .014626   -18.53   0.000     .6374406    .6947912
+          2  |   .4074062   .0225471   -16.23   0.000     .3655271    .4540835
+             |
+ lastjobdemt |
+          1  |   1.132659    .019535     7.22   0.000     1.095011    1.171601
+          2  |   1.252881   .0271407    10.41   0.000       1.2008    1.307221
+             |
+ lastdeclatt |
+          1  |   1.057908   .0174885     3.41   0.001     1.024181    1.092746
+          2  |   1.031423   .0204367     1.56   0.118      .992136    1.072266
+             |
+ lastjobsupp |
+          1  |   1.004769   .0173258     0.28   0.783     .9713788    1.039308
+          2  |    .939687   .0172157    -3.40   0.001     .9065434    .9740424
+------------------------------------------------------------------------------
+
+. 
+. 
+. /*
+> *model 5
+> 
+> stcrreg lastftow agexp i.tedlev i.lastgrade i.lastdepress i.lastworksp i.last
+> chronic i.lastnchild i.lastconthm i.lastcarer i.lastjobdemt i.lastdeclatt i.l
+> astjobsupp if sex==1& drop1!=1&drop2!=1&drop3!=1&drop4!=1, compete(exit_typeL
+> ==2)
+> stcrreg lastftow agexp i.tedlev i.lastgrade i.lastdepress i.lastworksp i.last
+> chronic i.lastnchild i.lastconthm i.lastcarer i.lastjobdemt i.lastdeclatt i.l
+> astjobsupp if sex==2& drop1!=1&drop2!=1&drop3!=1&drop4!=1, compete(exit_typeL
+> ==2)
+> stcrreg lastwtof agexp i.tedlev i.lastgrade i.lastdepress i.lastworksp i.last
+> chronic i.lastnchild i.lastconthm i.lastcarer i.lastjobdemt i.lastdeclatt i.l
+> astjobsupp if sex==1& drop1!=1&drop2!=1&drop3!=1&drop4!=1, compete(exit_typeL
+> ==2)
+> stcrreg lastwtof agexp i.tedlev i.lastgrade i.lastdepress i.lastworksp i.last
+> chronic i.lastnchild i.lastconthm i.lastcarer i.lastjobdemt i.lastdeclatt i.l
+> astjobsupp if sex==2& drop1!=1&drop2!=1&drop3!=1&drop4!=1, compete(exit_typeL
+> ==2)
+> */
+. 
+. 
+. 
+. saveold newresult, replace
+(saving in Stata 13 format)
+(FYI, saveold has options version(12) and version(11) that write files in
+      older Stata formats)
+file newresult.dta saved
+
+. log close
+      name:  <unnamed>
+       log:  /gpfs/home/fas/meghir/rg684/git/baowen/hpc2/log_hpc2.log
+  log type:  text
+ closed on:  29 Jun 2017, 18:01:24
+-------------------------------------------------------------------------------
+
+. 
+end of do-file
