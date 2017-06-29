@@ -3,14 +3,35 @@ set more 1
 cap log close
 log using log_hpc, text replace
 
-use ../imputed_march.dta, clear
+use ../EWL_mergedfiles_imputed.dta, clear
 
-mi stset time2, id(id) failure(exit_typeLvar==3) exit(allexit==1)
-*model 4
-mi estimate,hr:stcrreg lastftow ageenter i.education i.lastgrade i.lastdepress i.lastwsp i.chronic i.lastjobdemt i.lastdeclatt i.lastsupp i.lastcarer i.lastnumchild i.biconhm if gender==0&notuse!=1, compete(exit_typeLvar ==2 4 5 6)
-*mi estimate,hr:stcrreg lastftow ageenter i.education i.lastgrade i.lastdepress i.lastwsp i.chronic i.lastjobdemt i.lastdeclatt i.lastsupp i.lastcarer i.lastnumchild i.biconhm if gender==1&notuse!=1, compete(exit_typeLvar ==2 4 5 6)
-*mi estimate,hr:stcrreg lastwtof ageenter i.education i.lastgrade i.lastdepress i.lastwsp i.chronic i.lastjobdemt i.lastdeclatt i.lastsupp i.lastcarer i.lastnumchild i.biconhm if gender==0&notuse!=1, compete(exit_typeLvar ==2 4 5 6)
-*mi estimate,hr:stcrreg lastwtof ageenter i.education i.lastgrade i.lastdepress i.lastwsp i.chronic i.lastjobdemt i.lastdeclatt i.lastsupp i.lastcarer i.lastnumchild i.biconhm if gender==1&notuse!=1, compete(exit_typeLvar ==2 4 5 6)
+gen ageenter=agexp
+mi stset age_exitB,enter(ageenter) failure(fail=1)
+
+*model 2
+
+stcrreg lastftow agexp i.tedlev i.lastgrade i.lastdepress i.lastworksp i.lastchronic if sex==1& drop1!=1&drop2!=1&drop3!=1&drop4!=1, compete(exit_typeL==2)
+stcrreg lastftow agexp i.tedlev i.lastgrade i.lastdepress i.lastworksp i.lastchronic if sex==2& drop1!=1&drop2!=1&drop3!=1&drop4!=1, compete(exit_typeL==2)
+stcrreg lastwtof agexp i.tedlev i.lastgrade i.lastdepress i.lastworksp i.lastchronic if sex==1& drop1!=1&drop2!=1&drop3!=1&drop4!=1, compete(exit_typeL==2)
+stcrreg lastwtof agexp i.tedlev i.lastgrade i.lastdepress i.lastworksp i.lastchronic if sex==2& drop1!=1&drop2!=1&drop3!=1&drop4!=1, compete(exit_typeL==2)
+
+/*
+*model 3
+
+stcrreg lastftow agexp i.tedlev i.lastgrade i.lastdepress i.lastworksp i.lastchronic i.lastjobdemt i.lastdeclatt i.lastjobsupp if sex==1& drop1!=1&drop2!=1&drop3!=1&drop4!=1, compete(exit_typeL==2)
+stcrreg lastftow agexp i.tedlev i.lastgrade i.lastdepress i.lastworksp i.lastchronic i.lastjobdemt i.lastdeclatt i.lastjobsupp  if sex==2& drop1!=1&drop2!=1&drop3!=1&drop4!=1, compete(exit_typeL==2)
+stcrreg lastwtof agexp i.tedlev i.lastgrade i.lastdepress i.lastworksp i.lastchronic i.lastjobdemt i.lastdeclatt i.lastjobsupp  if sex==1& drop1!=1&drop2!=1&drop3!=1&drop4!=1, compete(exit_typeL==2)
+stcrreg lastwtof agexp i.tedlev i.lastgrade i.lastdepress i.lastworksp i.lastchronic i.lastjobdemt i.lastdeclatt i.lastjobsupp  if sex==2& drop1!=1&drop2!=1&drop3!=1&drop4!=1, compete(exit_typeL==2)
+
+
+
+*model 5
+
+stcrreg lastftow agexp i.tedlev i.lastgrade i.lastdepress i.lastworksp i.lastchronic i.lastnchild i.lastconthm i.lastcarer i.lastjobdemt i.lastdeclatt i.lastjobsupp if sex==1& drop1!=1&drop2!=1&drop3!=1&drop4!=1, compete(exit_typeL==2)
+stcrreg lastftow agexp i.tedlev i.lastgrade i.lastdepress i.lastworksp i.lastchronic i.lastnchild i.lastconthm i.lastcarer i.lastjobdemt i.lastdeclatt i.lastjobsupp if sex==2& drop1!=1&drop2!=1&drop3!=1&drop4!=1, compete(exit_typeL==2)
+stcrreg lastwtof agexp i.tedlev i.lastgrade i.lastdepress i.lastworksp i.lastchronic i.lastnchild i.lastconthm i.lastcarer i.lastjobdemt i.lastdeclatt i.lastjobsupp if sex==1& drop1!=1&drop2!=1&drop3!=1&drop4!=1, compete(exit_typeL==2)
+stcrreg lastwtof agexp i.tedlev i.lastgrade i.lastdepress i.lastworksp i.lastchronic i.lastnchild i.lastconthm i.lastcarer i.lastjobdemt i.lastdeclatt i.lastjobsupp if sex==2& drop1!=1&drop2!=1&drop3!=1&drop4!=1, compete(exit_typeL==2)
+*/
 
 
 saveold newresult, replace
