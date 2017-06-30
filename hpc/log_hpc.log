@@ -33,3 +33,55 @@ obs. time interval:  (0, age_exitB]
 > stworksp i.lastchronic if sex==1& drop1!=1&drop2!=1&drop3!=1&drop4!=1, compet
 > e(exit_typeL==2)
 note: option shr is assumed
+
+Multiple-imputation estimates                   Imputations       =         25
+Competing-risks regression                      Number of obs     =      5,406
+                                                Average RVI       =     0.0599
+                                                Largest FMI       =     0.1681
+DF adjustment:   Large sample                   DF:     min       =     869.18
+                                                        avg       = 909,908.54
+                                                        max       = 6289384.80
+Model F test:       Equal FMI                   F(  11,80225.4)   =      19.98
+Within VCE type:       Robust                   Prob > F          =     0.0000
+
+------------------------------------------------------------------------------
+          _t |        SHR   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+    lastwtof |   1.027099   .0096799     2.84   0.005     1.008299     1.04625
+       agexp |    1.01111   .0032902     3.40   0.001     1.004682    1.017579
+             |
+      tedlev |
+A level o..  |   .9564128   .0410316    -1.04   0.299      .879264    1.040331
+Degree le..  |   .8230299   .0333531    -4.81   0.000     .7601784    .8910779
+             |
+   lastgrade |
+          2  |    1.13625   .0414838     3.50   0.000     1.057783    1.220537
+          3  |   .8723065   .0619368    -1.92   0.054     .7589803    1.002554
+             |
+ lastdepress |
+ 1 yes, h..  |   1.278358   .0682224     4.60   0.000     1.151398    1.419317
+             |
+  lastworksp |
+          1  |   .7998761   .0385436    -4.63   0.000     .7276939    .8792182
+          2  |    .787565     .04318    -4.36   0.000     .7072357    .8770183
+             |
+ lastchronic |
+          1  |    .668182    .027762    -9.70   0.000     .6159261    .7248714
+          2  |   .5271142   .0641107    -5.26   0.000     .4153139    .6690104
+------------------------------------------------------------------------------
+
+. 
+. 
+. 
+. saveold newresult, replace
+(saving in Stata 13 format)
+(FYI, saveold has options version(12) and version(11) that write files in
+      older Stata formats)
+file newresult.dta saved
+
+. log close
+      name:  <unnamed>
+       log:  /gpfs/home/fas/meghir/rg684/git/baowen/hpc/log_hpc.log
+  log type:  text
+ closed on:  30 Jun 2017, 02:52:30
+-------------------------------------------------------------------------------
