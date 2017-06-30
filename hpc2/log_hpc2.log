@@ -2,7 +2,7 @@
       name:  <unnamed>
        log:  /gpfs/home/fas/meghir/rg684/git/baowen/hpc2/log_hpc2.log
   log type:  text
- opened on:  29 Jun 2017, 16:51:38
+ opened on:  29 Jun 2017, 19:05:24
 
 . 
 . use ../EWL_mergedfiles_imputed.dta, clear
@@ -29,273 +29,228 @@ obs. time interval:  (0, age_exitB]
                                           last observed exit t =     81.02
 
 . 
+. *model 4
 . 
-. *model 3
-. 
-. stcrreg lastftow agexp i.tedlev i.lastgrade i.lastdepress i.lastworksp i.last
-> chronic i.lastjobdemt i.lastdeclatt i.lastjobsupp if sex==1& drop1!=1&drop2!=
-> 1&drop3!=1&drop4!=1, compete(exit_typeL==2)
+. mi estimate,hr:stcrreg lastftow agexp i.tedlev i.lastgrade i.lastdepress i.la
+> stworksp i.lastchronic i.lastnchild i.lastconthm i.lastcarer if sex==1& drop1
+> !=1&drop2!=1&drop3!=1&drop4!=1, compete(exit_typeL==2)
+note: option shr is assumed
 
-         failure _d:  fail == 1
-   analysis time _t:  age_exitB
-  enter on or after:  time ageenter
-
-Iteration 0:   log pseudolikelihood = -341547.06  
-Iteration 1:   log pseudolikelihood = -341489.64  
-Iteration 2:   log pseudolikelihood =  -341489.6  
-Iteration 3:   log pseudolikelihood =  -341489.6  
-
-Competing-risks regression                       No. of obs       =     47,007
-                                                 No. of subjects  =     47,007
-Failure event  : fail == 1                       No. failed       =     35,427
-Competing event: exit_typeL == 2                 No. competing    =        510
-                                                 No. censored     =     11,070
-
-                                                 Wald chi2(17)    =    4420.80
-Log pseudolikelihood =  -341489.6                Prob > chi2      =     0.0000
+Multiple-imputation estimates                   Imputations       =         25
+Competing-risks regression                      Number of obs     =      5,406
+                                                Average RVI       =     0.0468
+                                                Largest FMI       =     0.1986
+DF adjustment:   Large sample                   DF:     min       =     624.20
+                                                        avg       = 775,820.95
+                                                        max       = 5530290.31
+Model F test:       Equal FMI                   F(  20,236362.8)  =      13.63
+Within VCE type:       Robust                   Prob > F          =     0.0000
 
 ------------------------------------------------------------------------------
-             |               Robust
-          _t |        SHR   Std. Err.      z    P>|z|     [95% Conf. Interval]
+          _t |        SHR   Std. Err.      t    P>|t|     [95% Conf. Interval]
 -------------+----------------------------------------------------------------
-    lastftow |   .9769054   .0035978    -6.34   0.000     .9698792    .9839825
-       agexp |   1.023042   .0010765    21.65   0.000     1.020934    1.025154
+    lastftow |   .9885496   .0107981    -1.05   0.292     .9676099    1.009942
+       agexp |   1.010876   .0034409     3.18   0.001     1.004155    1.017643
              |
       tedlev |
-A level o..  |   .9331595   .0134301    -4.81   0.000     .9072048    .9598568
-Degree le..  |   .7702874   .0103012   -19.52   0.000     .7503598    .7907442
+A level o..  |   .9625705   .0413721    -0.89   0.375      .884786    1.047193
+Degree le..  |   .8330508   .0340572    -4.47   0.000      .768894    .9025609
              |
    lastgrade |
-          2  |   1.144401   .0146619    10.53   0.000     1.116022    1.173501
-          3  |   .8752329   .0214011    -5.45   0.000     .8342767    .9181997
+          2  |    1.11046   .0399859     2.91   0.004     1.034791    1.191664
+          3  |   .8475239   .0591724    -2.37   0.018     .7391325    .9718104
              |
  lastdepress |
- 1 yes, h..  |   1.095419   .0201644     4.95   0.000     1.056602    1.135662
+ 1 yes, h..  |   1.378691   .0761005     5.82   0.000      1.23732    1.536215
              |
   lastworksp |
-          1  |   .7337881   .0098307   -23.10   0.000     .7147711    .7533112
-          2  |   .7325223   .0114494   -19.91   0.000      .710422      .75531
+          1  |   .7983032   .0390732    -4.60   0.000     .7251729    .8788083
+          2  |   .7652682    .045071    -4.54   0.000     .6816857    .8590988
              |
  lastchronic |
-          1  |   .6923979   .0094176   -27.03   0.000     .6741837    .7111042
-          2  |   .3760111   .0231748   -15.87   0.000     .3332255    .4242902
+          1  |   .6665451   .0277616    -9.74   0.000     .6142949    .7232395
+          2  |   .5431611   .0655989    -5.05   0.000     .4286738    .6882248
              |
- lastjobdemt |
-          1  |   1.258553   .0174077    16.63   0.000     1.224893    1.293138
-          2  |   1.428131    .022288    22.83   0.000     1.385109     1.47249
+  lastnchild |
+          1  |   1.194885   .0622322     3.42   0.001      1.07888    1.323363
+          2  |   1.212397   .0677458     3.45   0.001     1.086603    1.352754
+          3  |   1.023284   .0885863     0.27   0.790     .8635684    1.212539
              |
- lastdeclatt |
-          1  |   1.032269   .0171345     1.91   0.056     .9992264    1.066404
-          2  |   .7342676   .0123848   -18.31   0.000     .7103906    .7589471
+  lastconthm |
+          2  |   .9886761   .1556047    -0.07   0.942     .7262497    1.345929
+          3  |   .8909326   .1407257    -0.73   0.465     .6537241    1.214214
+          4  |   .9587067   .1457645    -0.28   0.782     .7116501    1.291531
+          5  |   1.133403   .1627712     0.87   0.383     .8553443    1.501855
+          6  |   1.210867   .1753578     1.32   0.186     .9116438    1.608302
              |
- lastjobsupp |
-          1  |   1.144881   .0153455    10.09   0.000     1.115196    1.175356
-          2  |    1.09786    .014381     7.13   0.000     1.070032    1.126411
+ 1.lastcarer |   1.169793   .0599774     3.06   0.002     1.057952    1.293456
 ------------------------------------------------------------------------------
 
-. stcrreg lastftow agexp i.tedlev i.lastgrade i.lastdepress i.lastworksp i.last
-> chronic i.lastjobdemt i.lastdeclatt i.lastjobsupp  if sex==2& drop1!=1&drop2!
-> =1&drop3!=1&drop4!=1, compete(exit_typeL==2)
+. mi estimate,hr:stcrreg lastftow agexp i.tedlev i.lastgrade i.lastdepress i.la
+> stworksp i.lastchronic i.lastnchild i.lastconthm i.lastcarer if sex==2& drop1
+> !=1&drop2!=1&drop3!=1&drop4!=1, compete(exit_typeL==2)
+note: option shr is assumed
 
-         failure _d:  fail == 1
-   analysis time _t:  age_exitB
-  enter on or after:  time ageenter
-
-Iteration 0:   log pseudolikelihood = -174310.28  
-Iteration 1:   log pseudolikelihood = -174293.84  
-Iteration 2:   log pseudolikelihood = -174293.84  
-
-Competing-risks regression                       No. of obs       =     24,635
-                                                 No. of subjects  =     24,635
-Failure event  : fail == 1                       No. failed       =     19,619
-Competing event: exit_typeL == 2                 No. competing    =        186
-                                                 No. censored     =      4,830
-
-                                                 Wald chi2(17)    =    1889.63
-Log pseudolikelihood = -174293.84                Prob > chi2      =     0.0000
+Multiple-imputation estimates                   Imputations       =         25
+Competing-risks regression                      Number of obs     =      2,334
+                                                Average RVI       =     0.0522
+                                                Largest FMI       =     0.2102
+DF adjustment:   Large sample                   DF:     min       =     558.23
+                                                        avg       = 920,531.47
+                                                        max       = 5820216.10
+Model F test:       Equal FMI                   F(  20,191717.1)  =       8.10
+Within VCE type:       Robust                   Prob > F          =     0.0000
 
 ------------------------------------------------------------------------------
-             |               Robust
-          _t |        SHR   Std. Err.      z    P>|z|     [95% Conf. Interval]
+          _t |        SHR   Std. Err.      t    P>|t|     [95% Conf. Interval]
 -------------+----------------------------------------------------------------
-    lastftow |   .9946326   .0046105    -1.16   0.246      .985637     1.00371
-       agexp |   1.021642   .0015519    14.10   0.000     1.018605    1.024688
+    lastftow |   1.038983   .0165169     2.41   0.016     1.007106     1.07187
+       agexp |   1.013666   .0047606     2.89   0.004     1.004378    1.023039
              |
       tedlev |
-A level o..  |   1.058372   .0203609     2.95   0.003     1.019209    1.099041
-Degree le..  |   .8720696   .0183755    -6.50   0.000     .8367879    .9088389
+A level o..  |   1.063653   .0700598     0.94   0.349     .9348053    1.210261
+Degree le..  |    .810635   .0571498    -2.98   0.003     .7059918    .9307886
              |
    lastgrade |
-          2  |   1.356039   .0301599    13.69   0.000     1.298197    1.416459
-          3  |   1.291852   .0326026    10.15   0.000     1.229507    1.357358
+          2  |   1.204023   .0869864     2.57   0.010     1.045048    1.387181
+          3  |   1.150557   .0887215     1.82   0.069     .9891635    1.338284
              |
  lastdepress |
- 1 yes, h..  |   1.112815   .0232755     5.11   0.000     1.068119    1.159382
+ 1 yes, h..  |   1.169408   .0808372     2.26   0.024     1.021218    1.339103
              |
   lastworksp |
-          1  |   .8062122   .0117248   -14.81   0.000     .7835563    .8295231
-          2  |   .8633891   .0293713    -4.32   0.000     .8076996    .9229182
+          1  |   .9222886   .0499706    -1.49   0.136     .8291776    1.025855
+          2  |   .8692226   .1101913    -1.11   0.269     .6776845    1.114896
              |
  lastchronic |
-          1  |    .656114    .014469   -19.11   0.000     .6283594    .6850945
-          2  |   .4193191   .0228782   -15.93   0.000     .3767929    .4666449
+          1  |   .6277123   .0417626    -7.00   0.000     .5509714    .7151419
+          2  |   .5163091   .0827279    -4.13   0.000      .377157    .7068015
              |
- lastjobdemt |
-          1  |   1.165865   .0200022     8.94   0.000     1.127314    1.205736
-          2  |   1.337494   .0271386    14.33   0.000     1.285348    1.391757
+  lastnchild |
+          1  |    1.32761   .1025255     3.67   0.000     1.141101    1.544604
+          2  |   1.615351      .2037     3.80   0.000     1.261569    2.068344
+          3  |   1.303306   .2166171     1.59   0.111     .9408481    1.805401
              |
- lastdeclatt |
-          1  |   1.055337   .0174314     3.26   0.001     1.021719    1.090061
-          2  |   1.038031   .0205518     1.89   0.059     .9985221    1.079104
+  lastconthm |
+          2  |   .9186556   .1931999    -0.40   0.687     .6083294    1.387288
+          3  |   .8068928   .1697261    -1.02   0.308     .5342806    1.218603
+          4  |   .8301903   .1660725    -0.93   0.352     .5609214    1.228721
+          5  |   1.131742   .2006972     0.70   0.485     .7994659    1.602121
+          6  |   1.046938    .186964     0.26   0.797     .7377543    1.485696
              |
- lastjobsupp |
-          1  |   .9886442   .0170112    -0.66   0.507     .9558587    1.022554
-          2  |   .9134325   .0162804    -5.08   0.000     .8820745    .9459054
+ 1.lastcarer |   1.113841    .079304     1.51   0.130     .9687655    1.280642
 ------------------------------------------------------------------------------
 
-. stcrreg lastwtof agexp i.tedlev i.lastgrade i.lastdepress i.lastworksp i.last
-> chronic i.lastjobdemt i.lastdeclatt i.lastjobsupp  if sex==1& drop1!=1&drop2!
-> =1&drop3!=1&drop4!=1, compete(exit_typeL==2)
+. mi estimate,hr:stcrreg lastwtof agexp i.tedlev i.lastgrade i.lastdepress i.la
+> stworksp i.lastchronic i.lastnchild i.lastconthm i.lastcarer if sex==1& drop1
+> !=1&drop2!=1&drop3!=1&drop4!=1, compete(exit_typeL==2)
+note: option shr is assumed
 
-         failure _d:  fail == 1
-   analysis time _t:  age_exitB
-  enter on or after:  time ageenter
-
-Iteration 0:   log pseudolikelihood = -341222.52  
-Iteration 1:   log pseudolikelihood = -341168.75  
-Iteration 2:   log pseudolikelihood = -341168.71  
-Iteration 3:   log pseudolikelihood = -341168.71  
-
-Competing-risks regression                       No. of obs       =     46,965
-                                                 No. of subjects  =     46,965
-Failure event  : fail == 1                       No. failed       =     35,397
-Competing event: exit_typeL == 2                 No. competing    =        508
-                                                 No. censored     =     11,060
-
-                                                 Wald chi2(17)    =    4473.74
-Log pseudolikelihood = -341168.71                Prob > chi2      =     0.0000
+Multiple-imputation estimates                   Imputations       =         25
+Competing-risks regression                      Number of obs     =      5,406
+                                                Average RVI       =     0.0478
+                                                Largest FMI       =     0.1895
+DF adjustment:   Large sample                   DF:     min       =     685.44
+                                                        avg       = 686,595.37
+                                                        max       = 4785441.69
+Model F test:       Equal FMI                   F(  20,227295.8)  =      13.89
+Within VCE type:       Robust                   Prob > F          =     0.0000
 
 ------------------------------------------------------------------------------
-             |               Robust
-          _t |        SHR   Std. Err.      z    P>|z|     [95% Conf. Interval]
+          _t |        SHR   Std. Err.      t    P>|t|     [95% Conf. Interval]
 -------------+----------------------------------------------------------------
-    lastwtof |   1.026926    .003631     7.51   0.000     1.019834    1.034067
-       agexp |   1.023456   .0010783    22.01   0.000     1.021345    1.025571
+    lastwtof |   1.032761   .0099552     3.34   0.001      1.01343     1.05246
+       agexp |   1.011813   .0034576     3.44   0.001     1.005059    1.018613
              |
       tedlev |
-A level o..  |   .9304618   .0134348    -4.99   0.000     .9044993    .9571696
-Degree le..  |   .7642626   .0102039   -20.14   0.000     .7445226    .7845259
+A level o..  |   .9540276   .0410221    -1.09   0.274     .8769028    1.037936
+Degree le..  |   .8257017   .0338115    -4.68   0.000     .7620108     .894716
              |
    lastgrade |
-          2  |    1.16669   .0151178    11.90   0.000     1.137432    1.196699
-          3  |   .9116272    .022844    -3.69   0.000     .8679355    .9575184
+          2  |   1.140233   .0418719     3.57   0.000     1.061049    1.225327
+          3  |   .8860579   .0627754    -1.71   0.088       .77118    1.018048
              |
  lastdepress |
- 1 yes, h..  |   1.077096   .0196688     4.07   0.000     1.039227    1.116344
+ 1 yes, h..  |   1.357268   .0745161     5.56   0.000       1.2188    1.511467
              |
   lastworksp |
-          1  |   .7235707   .0097055   -24.12   0.000      .704796    .7428454
-          2  |   .7180444   .0112467   -21.15   0.000     .6963362    .7404294
+          1  |   .7870432   .0389022    -4.84   0.000     .7142702    .8672306
+          2  |   .7543125   .0443774    -4.79   0.000     .6720247    .8466763
              |
  lastchronic |
-          1  |   .6899783   .0094426   -27.12   0.000     .6717172    .7087359
-          2  |   .3577238   .0219643   -16.74   0.000      .317164    .4034704
+          1  |   .6658833   .0277926    -9.74   0.000     .6135792     .722646
+          2  |   .5353384   .0648189    -5.16   0.000     .4222452    .6787222
              |
- lastjobdemt |
-          1  |   1.217306   .0171446    13.96   0.000     1.184163    1.251377
-          2  |   1.338604   .0227817    17.14   0.000     1.294689    1.384009
+  lastnchild |
+          1  |   1.185689   .0618993     3.26   0.001      1.07032    1.313493
+          2  |   1.200921   .0668563     3.29   0.001     1.076754    1.339406
+          3  |   1.009989    .087572     0.11   0.909     .8521234    1.197102
              |
- lastdeclatt |
-          1  |   1.036731    .017381     2.15   0.031     1.003218    1.071363
-          2  |   .7380617   .0125414   -17.87   0.000     .7138858    .7630563
+  lastconthm |
+          2  |   .9904318   .1565288    -0.06   0.951     .7266074    1.350048
+          3  |   .9023763   .1431342    -0.65   0.517     .6612572    1.231416
+          4  |   .9659264   .1476224    -0.23   0.821     .7159041    1.303267
+          5  |    1.16861   .1685015     1.08   0.280     .8809171    1.550259
+          6  |   1.262689     .18335     1.61   0.108     .9499407    1.678402
              |
- lastjobsupp |
-          1  |   1.156968   .0155994    10.81   0.000     1.126794    1.187949
-          2  |   1.123305   .0148949     8.77   0.000     1.094488    1.152881
+ 1.lastcarer |   1.152328   .0586079     2.79   0.005     1.042998    1.273119
 ------------------------------------------------------------------------------
 
-. stcrreg lastwtof agexp i.tedlev i.lastgrade i.lastdepress i.lastworksp i.last
-> chronic i.lastjobdemt i.lastdeclatt i.lastjobsupp  if sex==2& drop1!=1&drop2!
-> =1&drop3!=1&drop4!=1, compete(exit_typeL==2)
+. mi estimate,hr:stcrreg lastwtof agexp i.tedlev i.lastgrade i.lastdepress i.la
+> stworksp i.lastchronic i.lastnchild i.lastconthm i.lastcarer if sex==2& drop1
+> !=1&drop2!=1&drop3!=1&drop4!=1, compete(exit_typeL==2)
+note: option shr is assumed
 
-         failure _d:  fail == 1
-   analysis time _t:  age_exitB
-  enter on or after:  time ageenter
-
-Iteration 0:   log pseudolikelihood = -173599.25  
-Iteration 1:   log pseudolikelihood = -173583.96  
-Iteration 2:   log pseudolikelihood = -173583.96  
-
-Competing-risks regression                       No. of obs       =     24,555
-                                                 No. of subjects  =     24,555
-Failure event  : fail == 1                       No. failed       =     19,548
-Competing event: exit_typeL == 2                 No. competing    =        185
-                                                 No. censored     =      4,822
-
-                                                 Wald chi2(17)    =    1959.56
-Log pseudolikelihood = -173583.96                Prob > chi2      =     0.0000
+Multiple-imputation estimates                   Imputations       =         25
+Competing-risks regression                      Number of obs     =      2,334
+                                                Average RVI       =     0.0546
+                                                Largest FMI       =     0.2044
+DF adjustment:   Large sample                   DF:     min       =     589.79
+                                                        avg       = 568,644.72
+                                                        max       = 2838594.85
+Model F test:       Equal FMI                   F(  20,176210.0)  =       8.83
+Within VCE type:       Robust                   Prob > F          =     0.0000
 
 ------------------------------------------------------------------------------
-             |               Robust
-          _t |        SHR   Std. Err.      z    P>|z|     [95% Conf. Interval]
+          _t |        SHR   Std. Err.      t    P>|t|     [95% Conf. Interval]
 -------------+----------------------------------------------------------------
-    lastwtof |   1.038409   .0051622     7.58   0.000     1.028341    1.048577
-       agexp |   1.021914    .001557    14.23   0.000     1.018867    1.024971
+    lastwtof |   1.072518   .0165051     4.55   0.000     1.040642    1.105369
+       agexp |   1.015237   .0047759     3.21   0.001      1.00592    1.024641
              |
       tedlev |
-A level o..  |   1.060264   .0203833     3.04   0.002     1.021057    1.100977
-Degree le..  |   .8660965   .0182911    -6.81   0.000     .8309784    .9026987
+A level o..  |   1.049442   .0693431     0.73   0.465     .9219382    1.194579
+Degree le..  |   .8056019   .0568835    -3.06   0.002     .7014573    .9252086
              |
    lastgrade |
-          2  |   1.379266   .0306729    14.46   0.000     1.320439    1.440713
-          3  |   1.330995   .0338581    11.24   0.000     1.266261    1.399038
+          2  |   1.275158   .0934157     3.32   0.001     1.104597    1.472055
+          3  |   1.257863   .1009367     2.86   0.004     1.074794    1.472115
              |
  lastdepress |
- 1 yes, h..  |   1.097232    .022633     4.50   0.000     1.053757    1.142501
+ 1 yes, h..  |    1.14489    .079244     1.95   0.051     .9996336    1.311254
              |
   lastworksp |
-          1  |   .7962525   .0116443   -15.58   0.000      .773754    .8194052
-          2  |   .8477566   .0287769    -4.87   0.000     .7931902    .9060768
+          1  |    .910649   .0488931    -1.74   0.082     .8195202    1.011911
+          2  |   .8575875   .1090116    -1.21   0.227     .6681225    1.100781
              |
  lastchronic |
-          1  |   .6654984    .014626   -18.53   0.000     .6374406    .6947912
-          2  |   .4074062   .0225471   -16.23   0.000     .3655271    .4540835
+          1  |   .6362304   .0425872    -6.76   0.000     .5580045    .7254226
+          2  |   .5119576   .0822209    -4.17   0.000     .3737058    .7013554
              |
- lastjobdemt |
-          1  |   1.132659    .019535     7.22   0.000     1.095011    1.171601
-          2  |   1.252881   .0271407    10.41   0.000       1.2008    1.307221
+  lastnchild |
+          1  |    1.32924   .1024703     3.69   0.000     1.142803    1.546092
+          2  |   1.579611   .2034569     3.55   0.000      1.22715    2.033306
+          3  |   1.356021   .2241246     1.84   0.065     .9806535    1.875068
              |
- lastdeclatt |
-          1  |   1.057908   .0174885     3.41   0.001     1.024181    1.092746
-          2  |   1.031423   .0204367     1.56   0.118      .992136    1.072266
+  lastconthm |
+          2  |   .8961797   .1911062    -0.51   0.607     .5900381    1.361163
+          3  |   .7965865   .1703331    -1.06   0.288     .5238673     1.21128
+          4  |   .8234507   .1668124    -0.96   0.338     .5536094    1.224818
+          5  |   1.123218    .202389     0.64   0.519     .7890214    1.598967
+          6  |   1.041352   .1886969     0.22   0.823     .7300559    1.485384
              |
- lastjobsupp |
-          1  |   1.004769   .0173258     0.28   0.783     .9713788    1.039308
-          2  |    .939687   .0172157    -3.40   0.001     .9065434    .9740424
+ 1.lastcarer |   1.145547   .0797183     1.95   0.051     .9994892    1.312949
 ------------------------------------------------------------------------------
 
-. 
-. 
-. /*
-> *model 5
-> 
-> stcrreg lastftow agexp i.tedlev i.lastgrade i.lastdepress i.lastworksp i.last
-> chronic i.lastnchild i.lastconthm i.lastcarer i.lastjobdemt i.lastdeclatt i.l
-> astjobsupp if sex==1& drop1!=1&drop2!=1&drop3!=1&drop4!=1, compete(exit_typeL
-> ==2)
-> stcrreg lastftow agexp i.tedlev i.lastgrade i.lastdepress i.lastworksp i.last
-> chronic i.lastnchild i.lastconthm i.lastcarer i.lastjobdemt i.lastdeclatt i.l
-> astjobsupp if sex==2& drop1!=1&drop2!=1&drop3!=1&drop4!=1, compete(exit_typeL
-> ==2)
-> stcrreg lastwtof agexp i.tedlev i.lastgrade i.lastdepress i.lastworksp i.last
-> chronic i.lastnchild i.lastconthm i.lastcarer i.lastjobdemt i.lastdeclatt i.l
-> astjobsupp if sex==1& drop1!=1&drop2!=1&drop3!=1&drop4!=1, compete(exit_typeL
-> ==2)
-> stcrreg lastwtof agexp i.tedlev i.lastgrade i.lastdepress i.lastworksp i.last
-> chronic i.lastnchild i.lastconthm i.lastcarer i.lastjobdemt i.lastdeclatt i.l
-> astjobsupp if sex==2& drop1!=1&drop2!=1&drop3!=1&drop4!=1, compete(exit_typeL
-> ==2)
-> */
 . 
 . 
 . 
@@ -309,5 +264,5 @@ file newresult.dta saved
       name:  <unnamed>
        log:  /gpfs/home/fas/meghir/rg684/git/baowen/hpc2/log_hpc2.log
   log type:  text
- closed on:  29 Jun 2017, 18:01:24
+ closed on:  29 Jun 2017, 22:25:43
 -------------------------------------------------------------------------------
