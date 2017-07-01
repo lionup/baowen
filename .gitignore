@@ -13,6 +13,7 @@ R/.tensor/
 *.dta
 *-Ex.R
 *.RData
+*.out
 
 machine.file.*
 grace.output.*

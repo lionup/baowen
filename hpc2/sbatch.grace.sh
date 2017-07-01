@@ -10,8 +10,8 @@
 
 ##SBATCH --ntasks=1 --nodes=1
 ##SBATCH --nodes=1 --cpus-per-task=4
-#SBATCH --ntasks=1 --cpus-per-task=4
-##SBATCH --ntasks=1
+##SBATCH --ntasks=1 --cpus-per-task=4
+#SBATCH --ntasks=1
 
 #! How much wallclock time will be required?
 #SBATCH --time=24:00:00
