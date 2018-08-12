@@ -5,16 +5,19 @@
 #!#############################################################
 
 #! sbatch directives begin here ###############################
+##SBATCH -p day
+##SBATCH -p pi_cowles
+#SBATCH -p bigmem
+
 #! Name of the job:
 #SBATCH -J hpc
 
 ##SBATCH --ntasks=1 --nodes=1
-##SBATCH --mem 120G
-
 ##SBATCH --nodes=1 --cpus-per-task=4
 ##SBATCH --ntasks=1 --cpus-per-task=10
 #SBATCH --ntasks=1
 
+#SBATCH --mem 500G
 ##SBATCH --mem-per-cpu=20480
 ##SBATCH --mem-per-cpu=6000 
 ##SBATCH --mem-per-cpu=MaxMemPerCPU
@@ -25,10 +28,6 @@
 #! What types of email messages do you wish to receive?
 #SBATCH --mail-type=FAIL
 
-#! Do not change:
-##SBATCH -p day
-##SBATCH -p pi_cowles
-#SBATCH -p bigmem
 
 module load Apps/Stata/15.1
 
