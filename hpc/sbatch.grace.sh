@@ -22,7 +22,8 @@
 #SBATCH --mail-type=FAIL
 
 #! Do not change:
-#SBATCH -p day
+##SBATCH -p day
+#SBATCH -p pi_cowles
 
 module load Apps/Stata/15.1
 
