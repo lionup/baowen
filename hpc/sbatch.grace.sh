@@ -8,12 +8,14 @@
 #! Name of the job:
 #SBATCH -J hpc
 
-#SBATCH --ntasks=1 --nodes=1
+##SBATCH --ntasks=1 --nodes=1
 ##SBATCH --nodes=1 --cpus-per-task=4
-##SBATCH --ntasks=1 --cpus-per-task=4
+#SBATCH --ntasks=1 --cpus-per-task=4
 ##SBATCH --ntasks=1
 
-#SBATCH --mem-per-cpu=16000 
+#SBATCH --mem-per-cpu=20480
+##SBATCH --mem 120G
+##SBATCH --mem-per-cpu=6000 
 
 #! How much wallclock time will be required?
 #SBATCH --time=24:00:00
