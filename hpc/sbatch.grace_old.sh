@@ -22,6 +22,6 @@
 #! Do not change:
 #SBATCH -p day
 
-module load Apps/Stata/15.1
+module load Apps/Stata/14.0
 
 stata-mp -b do hpc.do
