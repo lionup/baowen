@@ -17,7 +17,7 @@
 ##SBATCH --ntasks=1 --cpus-per-task=10
 #SBATCH --ntasks=1
 
-#SBATCH --mem 1000G
+#SBATCH --mem 800G
 ##SBATCH --mem-per-cpu=20480
 ##SBATCH --mem-per-cpu=6000 
 ##SBATCH --mem-per-cpu=MaxMemPerCPU
